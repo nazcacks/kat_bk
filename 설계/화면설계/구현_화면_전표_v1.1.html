@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 서비스 구현 화면설계서 v1.0 (Phase 1)</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:256px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:256px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:24px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head>
+<body>
+<nav id="toc">
+  <h2>구현 화면설계서</h2>
+  <div class="ver">v1.1 · Phase 1 · 2026-06-18</div>
+  <a href="#s1">1. 문서 개요 · Phase 1 범위</a>
+  <a class="sub" href="#chglog">1.1 v1.1 검토 의견 반영</a>
+  <a href="#s2">2. 공통 UI 표준</a>
+  <a href="#s3">3. Phase 1 화면 목록</a>
+  <div class="g">4. 전표 입력 화면 (상세)</div>
+  <a class="sub" href="#jv-common">4.1 전표 입력 공통 구조</a>
+  <a class="sub" href="#jv01">4.2 일반전표입력(대체·입금·출금) JV-01</a>
+  <a class="sub" href="#jv02">4.3 현금 간편입력 — 입금 JV-02</a>
+  <a class="sub" href="#jv03">4.4 현금 간편입력 — 출금 JV-03</a>
+  <a class="sub" href="#jv04">4.5 매입전표 JV-04</a>
+  <a class="sub" href="#jv05">4.6 매출전표 JV-05</a>
+  <a class="sub" href="#jv06">4.7 복사·반복·템플릿·역분개 JV-06</a>
+  <a class="sub" href="#jv07">4.8 전표 검색·수정·삭제 JV-07</a>
+  <a class="sub" href="#jv08">4.9 다건·일괄 전표 입력 JV-08</a>
+  <div class="g">5. 전표 보조부 입력 화면 (상세)</div>
+  <a class="sub" href="#aux-common">5.1 보조부 개념·연동 구조</a>
+  <a class="sub" href="#aux01">5.2 거래처별 보조부 AUX-01</a>
+  <a class="sub" href="#aux02">5.3 어음 보조부 AUX-02</a>
+  <a class="sub" href="#aux03">5.4 예금(은행) 보조부 AUX-03</a>
+  <a class="sub" href="#aux04">5.5 카드 보조부 AUX-04</a>
+  <a class="sub" href="#aux05">5.6 가지급금·가수금 AUX-05</a>
+  <a class="sub" href="#aux06">5.7 부가세 보조부 AUX-06</a>
+  <a class="sub" href="#aux07">5.8 현금출납장 AUX-07</a>
+  <a class="sub" href="#aux08">5.9 재고 수불부(기초) AUX-08</a>
+  <a class="sub" href="#aux09">5.10 고정자산대장(기초) AUX-09</a>
+  <div class="g">6. 연계 화면</div>
+  <a class="sub" href="#s6">결재함·장부조회·증빙·마감</a>
+  <a href="#s7">7. 부록: 상태 · 오류 · 권한</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>BK 회계/세무 서비스 구현 화면설계서 v1.1 — Phase 1</h1>
+  <p>기준 문서: <b>서비스_구현계획_v1.0.md</b> (Phase 1 범위) · <b>bk_서비스_상세설계서_v_4.0.md</b> (11.1 전표 / 11.2 장부 / 9.5 차원 / 16.2 그리드 UX / 11.12 증빙) · bk_화면설계서_v4.0.html · <b>260617_BK_전표_설계서_v1_검토.xlsx</b>(고객 검토 의견)</p>
+  <p>작성일: 2026-06-18 · 버전: <b>v1.1</b>(v1.0 고객 검토 의견 + <b>주간정기회의(2026-06-18)</b> 더존/위하고 기능 검토 반영) · 범위: <b>Phase 1(코어 플랫폼 & 기장 기본)</b> 구현 대상 화면 — 특히 <b>전표 상세 입력 화면 전종</b>과 <b>전표 보조부 입력 화면 전종</b>을 구현 수준으로 상세화</p>
+  <p style="color:var(--accent)"><b>v1.1 rev(2026-06-18)</b>: 주간정기회의 반영 — 사원(Employee) 차원 컬럼/필터(M1), 결차·결대 분개구분 「구분」 컬럼(M2), AUX-01 송금수수료·조회조건(M9·M10), AUX-02 어음 할인료(M5), AUX-04 카드 매입세액 공제/환급(M6), AUX-06 프로젝트/부서 차원·매출 과세유형 분류(M11).</p>
+  <p>기술 스택: 백엔드 <b>NestJS</b> / 프론트 <b>React 18</b> / DB <b>PostgreSQL 16</b>(RLS·파티셔닝) · 본 문서의 모든 그리드는 가상 스크롤·키보드 주도·실시간 검증(16.2)을 전제로 한다.</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · Phase 1 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>Phase 1 구현 착수를 위해 화면별 레이아웃(와이어프레임)·입력 필드·액션/검증·연계 API·권한·상태를 구현 가능한 수준으로 정의한다. 특히 <b>전표 입력</b>과 <b>전표 보조부 입력</b>은 전표 유형별·보조부 유형별 화면을 모두 표현한다.</td></tr>
+  <tr><th>Phase 1 정의</th><td>멀티테넌시(SHARED+RLS)·인증/2FA·운영 콘솔(테넌트/구독/표준)·권한 위임·관리자 접근 로그·공통 표준 배포·<b>전표 코어</b>·차원 엔진 기초·회계기간/마감 워크플로우(11.9)·증빙 수집/적격 판정(11.12)·장부/시산표/재무제표 기초(구현계획 Phase 1).</td></tr>
+  <tr><th>전표 범위</th><td><b>일반전표입력</b> 1개 화면으로 <b>대체·입금·출금</b>을 모두 처리(별도 입금/출금 메뉴 없음 — 현금 고정값의 차/대 위치로 입금·출금 자동 구분). 매입·매출 전표, 복사/반복/템플릿/역분개, 검색·수정·삭제. 라인 차원 입력(9.5, <b>코스트센터·프로젝트는 선택</b>), 멱등 채번(<code>tenant</code>+연도+유형), <b>부가세 자동라인(부가세 계정코드 입력 시에만 생성)</b>, 외화 환산, 행위자 표식(4.5). <span style="color:var(--accent)">[v1.1 검토 반영]</span></td></tr>
+  <tr><th>보조부 범위</th><td>거래처별(매출처/매입처 원장)·어음(받을/지급)·예금(은행계정)·카드·가지급금/가수금·부가세(대급금/예수금)·현금출납장·재고 수불(기초)·고정자산대장(기초). 보조부는 전표 라인의 <b>관리항목</b>으로 입력되며 보조원장으로 집계된다.</td></tr>
+  <tr><th>표기 원칙</th><td>화면 ID는 본 문서 전용으로 <code>JV-xx</code>(전표)·<code>AUX-xx</code>(보조부)를 사용하고, 상위 화면설계서의 <code>TN-05</code>(전표 입력)·<code>TN-07</code>(장부)·<code>TN-08</code>(증빙)·<code>TN-09</code>(마감)와 연결한다.</td></tr>
+</table>
+<div class="tip">본 문서는 <b>업무 화면(TenantUser)</b> 기준이다. <code>OPERATOR_LED</code> 회사의 기장 담당자는 OP-12 기장 워크벤치에서 <code>BOOKKEEPING</code> 컨텍스트로 동일 화면을 사용한다(상세 5.2.1). <code>TENANT_LED</code>(자가 기장)가 Phase 1의 기본 시나리오다.</div>
+
+<h3 id="chglog">1.1 v1.1 검토 의견 반영 요약</h3>
+<p>고객 검토 파일(<code>260617_BK_전표_설계서_v1_검토.xlsx</code>)의 의견을 화면별로 반영했다. 분류: <span class="badge b-green">반영</span> 설계 변경 / <span class="badge b-blue">보완</span> 기능 추가 / <span class="badge b-amber">검토</span> 질의에 대한 설계 근거·방향 명시 / <span class="badge b-gray">연기</span> 후속 단계.</p>
+<table>
+  <tr><th>화면</th><th>검토 의견</th><th>반영 내용 (v1.1)</th><th>구분</th></tr>
+  <tr><td>JV-01</td><td>일반(대체)·입금·출금은 [일반전표입력] 동일 화면에서 수행. 부가세자동라인 불필요</td><td>JV-01을 <b>일반전표입력 통합 화면</b>으로 재정의. 부가세자동라인은 매입/매출전표(JV-04/05)와 부가세 계정코드 입력 시에만 동작</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-01</td><td>전표 입력 시 오늘 날짜 전표가 조회되고 그 화면에서 추가하여 입력하는 방식으로</td><td>JV-01을 <b>일자별 마스터-디테일</b>로 재구성 — 진입 시 <b>전기일(오늘) 당일 전표 목록</b> 자동 조회, 상단 목록에서 <b>「＋ 전표 추가(신규)」/행 선택</b> → 하단 분개 입력. 「저장 후 계속 입력」으로 연속 기표(더존/위하고식 일계 입력)</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-01</td><td>코스트센터/프로젝트/현장은 입력 시 선택사항</td><td>필수 차원에서 코스트센터·프로젝트·현장 제외(사업장만 기본). <code>DimensionConfig</code>로 회사별 필수 지정 가능, 기본=선택. 4개 차원(사업장·코스트센터·프로젝트·현장) 모두 라인 입력 컬럼 제공</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-01</td><td>부가세자동라인은 부가세 계정코드를 입력해야 생성</td><td>부가세구분만으로 자동 생성하지 않고, <b>부가세대급금/예수금 계정코드 입력(또는 매입/매출 전표 세금계산서 영역)</b> 시에만 자동라인 생성</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-02·JV-03</td><td>입금/출금전표 메뉴가 따로 있을 필요 없음. 현금(고정값) 차변=입금, 대변=출금</td><td>별도 메뉴 폐지. <b>일반전표입력의 현금 간편입력</b>으로 통합(현금 위치로 입금/출금 자동 판별). JV-02/03은 동작 설명용 모드로 유지</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-02·JV-03</td><td>간편입력 고정값은 현금만. 보통예금·카드출금·어음회수는 대체전표</td><td>현금만 간편입력 고정값 허용. 보통예금 입출금·카드출금·어음회수는 <b>대체전표(JV-01)</b>로 안내·전환</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-02</td><td>현금 상대계정에 외상매출금·미수금·선수금 등이 오면 대체전표</td><td>현금 간편입력 상대계정 검증 추가 — 채권/채무·선수선급 계정 선택 시 <span class="badge b-red">간편입력 차단</span> 후 대체전표 전환</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-02·JV-03</td><td>상대계정을 N개 중 선택보다 계정코드 직접 입력/일괄변경</td><td>상대계정 <b>계정코드 직접 입력(F3)</b> + 선택 분개 <b>상대계정 일괄 변경</b> 기능 추가</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>JV-03</td><td>출금전표에서 부가세계정 사용 시 채번 충돌</td><td>출금 간편입력에서 부가세계정 사용 불가(대체전표 유도) → 통합으로 채번 문제 해소</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>공통</td><td>전표번호 <code>A-202606-대체-000131</code> 체계가 영문코드·한글유형·연월을 모두 포함해 복잡</td><td><b>더존 방식으로 단순화</b> → 전표번호는 <b>전표일자 단위로 매일 001부터 리셋되는 일련번호</b>(예: 2026-06-18의 001·002…). 유형코드·연월을 번호에 넣지 않고, 대체·입금·출금·매입·매출 구분은 화면 「구분」 컬럼으로 표시. 외부 참조 표기는 <code>YYYY-MM-DD-NNN</code>(예: 2026-06-18-003)</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>공통 / JV-01</td><td>전표일자와 전표번호를 합해 PK로 구성하고 입력 화면에도 함께 표시</td><td><code>journal_header</code> <b>PK = (tenant_id, 전표일자, 전표번호)</b> 복합키로 정의(번호가 일자별 리셋되므로 전표일자 필수), 라인·증빙·보조부 FK 반영. 일반전표입력 분개 영역에 <b>전표일자·전표번호 동시 표시</b>(번호는 채번 전 「예정」)</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>JV-04</td><td>'매입10%' 의미가 무엇인가</td><td>부가세구분 배지 의미를 범례로 명시(매입 과세 10% 세액 자동계산 대상)</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>JV-07/08</td><td>입력을 건건 확인해야 하나, 한꺼번에 볼 수 없나 / 외부 기장자료 대량 업로드 보완 / 거래처 마스터 검증</td><td>다건·일괄 입력(JV-08) 강화: 외부자료 매핑·대량 업로드·일괄 상대계정 변경·전체 미리보기. <b>거래처 사업자번호·휴폐업 검증</b> 추가</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-01</td><td>채권/채무 정보 표시(외화·환율·거래 성격) 및 조회조건 세분화 필요</td><td>거래처보조부에 <b>외화/발생환율·거래성격(신규·일부회수·청구반제·대손조정·선수선급대체)·전표 연계</b> 표시, 조회조건(잔액만/연체만/미반제만) 추가</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-02</td><td>원전표→증빙→상태이력→후속전표 추적 구조 필요</td><td>어음 보조부에 <b>추적 타임라인</b>(원전표·증빙·상태변경이력·부도/결제 후속전표) 추가</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-03</td><td>예금보조부를 왜 만들었나</td><td>존재 근거 명시 — 단순 계정원장이 아니라 <b>계좌 단위 은행거래 대사·자금 일정</b> 기준(11.11). 거래처원장과 역할 구분</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>AUX-04</td><td>자동전표·부가세신고 연동 보조부인가</td><td>목적 명시 — 카드 수신내역 매칭→<b>전표 자동생성 후보·매입원장(11.4) 연계</b>. 부가세 공제구분 보존</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>AUX-05</td><td>거래처원장으로 되는데 왜 별도인가</td><td>거래처보조부의 <b>특수 뷰</b>로 재정의 — 세무조정 <b>가지급금 인정이자</b> 계산 연동 목적임을 명시</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>AUX-06</td><td>NTS PENDING 의미·화면 구성 이해 어려움. 위하고식 보조부 희망</td><td>NTS 상태 표기 근거 명시, 화면을 <b>매입/매출 세금계산서 합계·세무구분별 집계(위하고 스타일)</b>로 재구성</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>AUX-08</td><td>재고수불부는 2차 개발 기간에</td><td>재고자산 수불부를 <b>Phase 2(2차 개발)</b>로 이관 표시</td><td><span class="badge b-gray">연기</span></td></tr>
+  <tr><td colspan="4" style="background:#f1f5f9;font-weight:700">주간정기회의(2026-06-18) 반영 — 더존/위하고 기능 검토 의견(M1~M11)</td></tr>
+  <tr><td>JV-01~08 전체</td><td>현장별·사원별·부서별 원가 집계가 가능해야 함(관리코드)</td><td><b>사원(Employee) 차원 컬럼</b>을 전 분개 그리드·검색·필터에 추가(M1). 사업장·코스트센터·프로젝트·현장과 동일하게 라인 선택 입력</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>JV-01</td><td>결차/결대를 사용해야 제조원가명세서·손익계산서에 원가 반영(더존 6종 분개구분)</td><td>분개 그리드에 <b>「구분」 컬럼</b> 추가 — 차변/대변/입금/출금/<b>결차(결산차변)/결대(결산대변)</b> 6종. <code>JournalLine.entryCode</code>=CLOSING_DR/CLOSING_CR 라인만 결산 원가에 반영(M2)</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-01</td><td>외화채권채무 송금수수료·외환차손익 처리, 조회조건 세분화</td><td>거래처보조부 모달에 <b>회수환율·송금수수료·수수료계정·외환차손익</b> 라인 추가(M9), 조회구분에 <b>선수·선급 대체건만</b> 추가(M10)</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-02</td><td>어음 할인율 적용·할인료 자동 분개</td><td>어음보조부에 <b>할인율(연)·할인일수·할인료·실수령액</b> + <b>할인 자동 분개</b>(보통예금/매출채권처분손실 ↔ 받을어음) 추가(M5)</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-04</td><td>카드 매입세액 공제/환급 판정(업종·MCC, 파투아)</td><td>카드보조부에 <b>업종(MCC)·사용 사원·공제판정·공제세액</b> 컬럼 및 <b>매입세액 공제·환급 판정/요약</b> 패널 추가(M6)</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>AUX-06</td><td>부가세 보조부 프로젝트/부서 차원·매출 과세유형별 분류·인보이스 증빙(위하고식)</td><td>부가세보조부에 <b>사업장·프로젝트·부서 필터</b> 및 <b>매출 과세유형별 분류(과세/영세율/면세)·프로젝트/부서·인보이스 증빙</b> 집계표 추가(M11)</td><td><span class="badge b-blue">보완</span></td></tr>
+</table>
+</section>
+
+<section id="s2">
+<h2>2. 공통 UI 표준 (요약)</h2>
+<h3>2.1 화면 셸 · 그리드 표준</h3>
+<ul>
+  <li><b>셸</b>: 상단 GNB(회사명·기장 모드 배지·알림·사용자) + 좌측 LNB(전표/장부·결산/마감·증빙·설정) + 콘텐츠 영역. 메뉴는 Role 메뉴권한, 버튼은 행위권한으로 렌더링(4.3).</li>
+  <li><b>대량 그리드(16.2)</b>: 가상 스크롤(windowing), 키보드 주도(<span class="kbd">Tab</span>/<span class="kbd">Enter</span> 이동, <span class="kbd">F2</span> 편집, <span class="kbd">Ctrl+S</span> 저장, <span class="kbd">Ctrl+D</span> 행 복사, <span class="kbd">F3</span> 계정/거래처 검색), 유도규칙 자동기입(코스트센터→사업장), 풋터 실시간 검증.</li>
+  <li><b>2단계 검증</b>: <span class="badge b-amber">Amber 경고</span>(저장 가능) / <span class="badge b-red">Red 차단</span>(저장 불가). 서버 검증 이중 유지.</li>
+  <li><b>마스킹(17장)</b>: 계좌·카드·주민번호 기본 마스킹, 👁 평문 조회는 Step-up 인증 + 사유 + 자동 재마스킹.</li>
+  <li><b>보조부 호출</b>: 전표 라인에서 <b>관리항목이 설정된 계정</b>(거래처/어음/카드/예금/수량 등)에 진입하면 <span class="kbd">F4</span> 또는 자동으로 <b>보조부 입력 팝업</b>이 뜬다(5장).</li>
+  <li><b>차원 입력 정책 <span style="color:var(--accent)">[v1.1]</span></b>: <b>사업장</b>만 회사 기본 필수이며 <b>코스트센터·프로젝트·현장은 선택</b>이 기본이다. 회사별로 <code>DimensionConfig.required</code>에서 필수 여부를 조정한다(9.5). 코스트센터 입력 시 사업장은 유도규칙으로 자동기입되며, <b>현장</b>은 사업장에 귀속된다.</li>
+  <li><b>거래처 마스터 검증 <span style="color:var(--accent)">[v1.1]</span></b>: 거래처 등록·선택 시 <b>사업자등록번호 유효성·휴폐업 여부</b>를 국세청 연계로 검증(8.4). 폐업·번호 오류는 <span class="badge b-amber">경고</span> 표시, 신규 등록 시 중복 사업자번호 차단.</li>
+</ul>
+<h3>2.2 전표·보조부 데이터 모델 매핑 (PostgreSQL)</h3>
+<table>
+  <tr><th>화면 요소</th><th>엔티티 / 테이블</th><th>비고</th></tr>
+  <tr><td>전표 헤더</td><td><code>journal_header</code> (JournalHeader)</td><td><b>PK = (<code>tenant_id</code>, <code>전표일자</code>, <code>전표번호</code>)</b> 복합키 <span style="color:var(--accent)">[v1.1]</span>. 그 외 유형, 적요, 상태, 채번, 행위자 표식. 라인은 이 복합키를 FK로 참조</td></tr>
+  <tr><td>전표 라인(분개)</td><td><code>journal_line</code> (JournalLine)</td><td>계정, 차/대, 금액, 차원 FK, 거래처, 통화/환율, 부가세 플래그. FK = (<code>tenant_id</code>,<code>전표일자</code>,<code>전표번호</code>) + <code>line_no</code> — 파티셔닝(<code>tenant_id</code>+<code>전표일자</code>)</td></tr>
+  <tr><td>보조부 관리항목</td><td><code>journal_line_aux</code> (라인:보조 1:N)</td><td>보조부 유형(VENDOR/NOTE/BANK/CARD/ADVANCE/VAT/QTY) + 참조키</td></tr>
+  <tr><td>거래처</td><td><code>partner</code></td><td>거래처코드·사업자번호·구분</td></tr>
+  <tr><td>어음</td><td><code>note</code> (Note)</td><td>어음번호·만기·발행/수취·상태(11.11 골격)</td></tr>
+  <tr><td>은행계좌</td><td><code>bank_account</code></td><td>계좌·예금종류(마스킹)</td></tr>
+  <tr><td>증빙</td><td><code>evidence</code> / <code>evidence_match</code></td><td>전표 라인 매칭(11.12)</td></tr>
+  <tr><td>변경 이력</td><td><code>journal_history</code> / <code>data_change_log</code></td><td>append-only, 물리 삭제 금지(12.3)</td></tr>
+</table>
+</section>
+
+<section id="s3">
+<h2>3. Phase 1 화면 목록 (인벤토리)</h2>
+<table>
+<tr><th>화면 ID</th><th>화면명</th><th>그룹</th><th>본 문서 상세</th><th>상위 화면설계서</th></tr>
+<tr><td><code>JV-01</code></td><td>일반전표입력(대체·입금·출금 통합)</td><td>전표</td><td><a href="#jv01">●</a></td><td>TN-05</td></tr>
+<tr><td><code>JV-02</code></td><td>현금 간편입력 — 입금(일반전표입력의 현금 차변 모드)</td><td>전표</td><td><a href="#jv02">●</a></td><td>TN-05</td></tr>
+<tr><td><code>JV-03</code></td><td>현금 간편입력 — 출금(일반전표입력의 현금 대변 모드)</td><td>전표</td><td><a href="#jv03">●</a></td><td>TN-05</td></tr>
+<tr><td><code>JV-04</code></td><td>매입전표 입력(세금계산서·부가세)</td><td>전표</td><td><a href="#jv04">●</a></td><td>TN-05·11.4</td></tr>
+<tr><td><code>JV-05</code></td><td>매출전표 입력(세금계산서·부가세)</td><td>전표</td><td><a href="#jv05">●</a></td><td>TN-05·11.4</td></tr>
+<tr><td><code>JV-06</code></td><td>복사·반복·템플릿·역분개</td><td>전표</td><td><a href="#jv06">●</a></td><td>TN-05</td></tr>
+<tr><td><code>JV-07</code></td><td>전표 검색·조회·수정·삭제</td><td>전표</td><td><a href="#jv07">●</a></td><td>TN-05·TN-07</td></tr>
+<tr><td><code>JV-08</code></td><td>다건·일괄 전표 입력(분개장 연속 입력)</td><td>전표</td><td><a href="#jv08">●</a></td><td>TN-05·16.2</td></tr>
+<tr><td><code>AUX-01</code></td><td>거래처별 보조부(매출처/매입처 원장)</td><td>보조부</td><td><a href="#aux01">●</a></td><td>TN-07</td></tr>
+<tr><td><code>AUX-02</code></td><td>어음 보조부(받을/지급어음)</td><td>보조부</td><td><a href="#aux02">●</a></td><td>TN-14(11.11)</td></tr>
+<tr><td><code>AUX-03</code></td><td>예금(은행계정) 보조부</td><td>보조부</td><td><a href="#aux03">●</a></td><td>TN-14(11.11)</td></tr>
+<tr><td><code>AUX-04</code></td><td>카드 사용내역 보조부</td><td>보조부</td><td><a href="#aux04">●</a></td><td>TN-08·11.4</td></tr>
+<tr><td><code>AUX-05</code></td><td>가지급금·가수금 보조부</td><td>보조부</td><td><a href="#aux05">●</a></td><td>TN-07</td></tr>
+<tr><td><code>AUX-06</code></td><td>부가세 보조부(대급금/예수금)</td><td>보조부</td><td><a href="#aux06">●</a></td><td>11.4</td></tr>
+<tr><td><code>AUX-07</code></td><td>현금출납장</td><td>보조부</td><td><a href="#aux07">●</a></td><td>TN-07</td></tr>
+<tr><td><code>AUX-08</code></td><td>재고자산 수불부 <span class="badge b-gray">Phase 2 이관</span></td><td>보조부</td><td><a href="#aux08">●</a></td><td>11.21(2차)</td></tr>
+<tr><td><code>AUX-09</code></td><td>고정자산대장(기초)</td><td>보조부</td><td><a href="#aux09">●</a></td><td>11.5(기초)</td></tr>
+<tr><td><code>TN-06</code></td><td>전표 결재함</td><td>연계</td><td><a href="#s6">요약</a></td><td>TN-06</td></tr>
+<tr><td><code>TN-07</code></td><td>장부·원장 조회</td><td>연계</td><td><a href="#s6">요약</a></td><td>TN-07</td></tr>
+</table>
+</section>
+
+<section id="s4">
+<h2>4. 전표 입력 화면 (상세)</h2>
+
+<h4 id="jv-common"><span class="sid">4.1</span>전표 입력 공통 구조 · 동작</h4>
+<p>모든 전표 입력은 <b>헤더(공통) → 분개 라인 그리드 → 보조부 팝업 → 검증 풋터 → 결재요청</b>의 동일 골격을 공유한다. <span style="color:var(--accent)">[v1.1]</span> 실제 입력 화면은 <b>일반전표입력(JV-01) · 매입전표(JV-04) · 매출전표(JV-05)</b> 세 종류이며, <b>입금·출금은 별도 전표·메뉴가 아니라 일반전표입력의 「현금 간편입력」 동작</b>이다(현금 고정값이 <b>차변이면 입금 · 대변이면 출금</b>). 유형에 따라 그리드 컬럼·자동분개·고정계정이 달라진다.</p>
+<div class="note"><b>전표 유형 체계(v1.1)</b> — ① <b>대체(일반)</b>: 자유 분개. ② <b>현금 간편입력</b>: 현금(고정값) 한 변을 고정하고 상대 라인만 입력(JV-02 입금·JV-03 출금). ③ <b>매입/매출</b>: 세금계산서 영역 기반 자동 분개. <b>보통예금 입출금·카드출금·어음 회수·채권/채무(외상매출금·미수금·선수금 등) 거래는 현금 간편입력 대상이 아니라 대체전표</b>로 입력한다.</div>
+<table>
+  <tr><th>구역</th><th>구성 요소</th></tr>
+  <tr><td>헤더</td><td>전표유형 · 전기일(회계기간 검증) · 전표번호(채번 전 임시) · 적요(공통) · 사업장(기본 차원) · 증빙첨부 · 작성자/행위자 표식</td></tr>
+  <tr><td>분개 라인</td><td>계정과목(코드/명, <span class="kbd">F3</span> 검색) · 차변 · 대변 · 거래처 · 차원(사업장/코스트센터/프로젝트/현장) · 적요(라인) · 부가세구분 · 보조부(<span class="kbd">F4</span>) · 증빙 · AI 경고칩</td></tr>
+  <tr><td>검증 풋터</td><td>차변합계 · 대변합계 · 차대 일치 배지 · 경고/차단 카운트 · 임시저장 · 결재요청(채번)</td></tr>
+</table>
+<table>
+  <tr><th>공통 검증 (근거)</th><th>동작</th></tr>
+  <tr><td>차대 평균</td><td>차변합계=대변합계. 불일치 시 <span class="badge b-red">Red 차단</span> — 결재요청 비활성(11.1).</td></tr>
+  <tr><td>마감기간</td><td>전기일 연월이 <code>TEMP_CLOSED</code>/<code>CLOSED</code>/<code>LOCKED</code>면 저장 차단 — <code>CLOSING_LOCKED</code>(16.1).</td></tr>
+  <tr><td>차원 입력 <span style="color:var(--accent)">[v1.1]</span></td><td><b>사업장만 기본 필수</b>, <b>코스트센터·프로젝트·현장은 선택</b>. 회사별 <code>DimensionConfig.required</code>로 필수 전환 가능. 필수로 지정된 차원 누락 시에만 <span class="badge b-red">차단</span>. 코스트센터 입력 시 사업장 자동기입, <b>현장은 사업장에 귀속</b>(9.5·16.2).</td></tr>
+  <tr><td>부가세 자동라인 <span style="color:var(--accent)">[v1.1]</span></td><td><b>부가세대급금/예수금 계정코드가 입력될 때에만</b> 세액 자동라인을 생성한다(부가세구분 선택만으로는 미생성). <b>일반전표입력에서는 자동라인을 강제하지 않으며</b>, 부가세 처리는 매입/매출 전표(JV-04/05) 또는 부가세 계정 직접 입력으로 수행(11.1·11.4).</td></tr>
+  <tr><td>전표번호 체계 <span style="color:var(--accent)">[v1.1 · 더존식]</span></td><td><b>전표일자 단위로 매일 001부터 리셋되는 일련번호</b>(예: 2026-06-18의 <code>001</code>, <code>002</code> …). 유형코드·연월을 번호에 넣지 않으며(더존 방식), <b>대체·입금·출금·매입·매출 구분은 화면의 「구분」 컬럼</b>으로 표시한다. 같은 날짜 내에서 일반전표입력(JV-01)과 매입/매출전표(JV-04/05)가 <b>하나의 일자별 일련</b>을 공유한다(테넌트·사업장 기준). 외부 참조 표기는 <code>YYYY-MM-DD-NNN</code>(예: <code>2026-06-18-003</code>).</td></tr>
+  <tr><td>식별키(PK) <span style="color:var(--accent)">[v1.1]</span></td><td>전표는 <b>(<code>전표일자</code> + <code>전표번호</code>)</b>로 식별한다(더존식). 즉 <code>journal_header</code> PK = (<code>tenant_id</code>, <code>전표일자</code>, <code>전표번호</code>). 번호가 일자별로 리셋되므로 <b>전표일자가 PK 필수 구성요소</b>이며, 날짜 단위 파티션·조회 키이자 사용자가 인용하는 업무 식별자(예: "6/18 003번")가 된다. 라인·증빙·보조부는 이 복합키를 FK로 참조한다.</td></tr>
+  <tr><td>멱등 채번(일자별) <span style="color:var(--accent)">[v1.1]</span></td><td>결재요청 시 <b>(tenant+사업장+전표일자)</b> 범위에서 다음 일련번호를 멱등 채번. 동시성 충돌은 <code>NUMBERING_CONFLICT</code> 재시도. 임시저장은 <code>tempId</code>만, 번호는 채번 전 <span class="badge b-gray">예정</span> 표시.</td></tr>
+  <tr><td>입금/출금 통합 채번</td><td>입금/출금도 별도 번호대 없이 <b>일반전표와 같은 일자별 일련</b>으로 채번되어 <b>부가세계정 사용 시 채번 충돌 없음</b>(현금 차/대 위치로 입금·출금 구분).</td></tr>
+  <tr><td>SOD</td><td>작성자=승인자 차단. 결재는 주기장 측 결재선에서 완결(4.5).</td></tr>
+  <tr><td>관리항목(보조부)</td><td>계정의 관리항목 설정에 따라 거래처/어음/카드/예금/수량 입력이 <b>필수</b>면 보조부 팝업 미입력 시 <span class="badge b-red">차단</span>(5장).</td></tr>
+  <tr><td>행위자 표식</td><td><code>createdByGroup</code>+<code>bookkeepingMode</code>+<code>assignmentId</code>(기장분)/<code>breakGlassSessionId</code>(긴급분) 저장(4.5-(3)).</td></tr>
+</table>
+
+<h4 id="jv01"><span class="sid">JV-01</span>일반전표입력 (대체 · 입금 · 출금 통합)</h4>
+<table class="meta">
+  <tr><th>용도</th><td><b>모든 수기 전표의 단일 입력 화면</b>. <b>전기일(오늘) 당일 전표 목록을 조회하고 그 화면에서 「추가」해 입력</b>하는 일자별 입력 방식 <span style="color:var(--accent)">[v1.1]</span>. 대체 거래(미지급/미수/결산) 자유 분개 + <b>현금 간편입력(입금/출금)</b>을 한 화면에서 처리. 별도 입금/출금 전표 메뉴 없음</td><th>API</th><td><code>GET /api/tenant/journals?postingDate</code>(당일 조회) · <code>POST /api/tenant/journals</code> (type=GENERAL)</td></tr>
+  <tr><th>권한</th><td><code>tenant:journal:write</code></td><th>고정계정</th><td>대체=없음(자유 차/대) · 현금 간편입력=현금(101) 한 변 고정</td></tr>
+</table>
+<div class="note"><b>입금/출금 통합 동작 <span style="color:var(--accent)">[v1.1]</span></b> — 헤더의 <b>「현금 간편입력」</b>을 켜고 현금 위치를 <b>차변(입금)/대변(출금)</b>으로 두면 상대 라인만 입력한다. 끄면 일반 대체 분개다. 간편입력 고정값은 <b>현금만</b> 허용하며 보통예금은 대체로 입력한다. 부가세 자동라인은 부가세 계정코드 입력 시에만 생성된다.</div>
+<div class="note"><b>일자별 전표 입력 흐름 <span style="color:var(--accent)">[v1.1]</span></b> — 화면을 열면 <b>전기일(기본=오늘)</b> 기준으로 그날 입력된 전표 목록이 먼저 조회된다. 목록에서 <b>「＋ 전표 추가(신규)」</b>를 누르면 하단 분개 입력 영역에 빈 전표가 열리고, 기존 전표를 <b>선택</b>하면 그 전표가 하단에서 편집 모드로 열린다. 입력·저장 즉시 상단 목록에 반영되어 <b>같은 화면에서 조회→추가→입력</b>이 끊김 없이 이어진다(더존/위하고식 일계 입력).</div>
+<div class="wf">
+  <div class="wf-cap">일반전표입력 — ① 전기일(오늘) 당일 전표 목록 + ② 선택/신규 전표 분개 입력(마스터-디테일)</div>
+  <div class="wf-bar">전표/장부 › 일반전표 <span class="sp"></span> <span class="badge b-blue">자가 기장 TENANT_LED</span> <span>👤 홍길동 · 회계담당</span></div>
+
+  <div class="wf-tool">
+    전기일 <span class="wf-in" style="min-width:140px">2026-06-18 (오늘)</span> <span class="wf-btn">◀ 전일</span><span class="wf-btn">익일 ▶</span><span class="wf-btn">📅 달력</span> 사업장 <span class="wf-in" style="min-width:80px">전체 ▾</span> <span class="wf-btn pri">조회</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn pri">＋ 전표 추가(신규)</span><span class="wf-btn">복사전표(F8)</span><span class="wf-btn">템플릿 ▾</span><span class="wf-btn dng">선택 삭제</span>
+  </div>
+  <div class="wf-body">
+    <div style="margin-bottom:4px;color:var(--sub)">📅 <b>2026-06-18</b> 당일 전표 목록 <b>3건</b> · 합계 차변 <b>4,245,000</b> = 대변 <b>4,245,000</b> · 전표번호는 <b>일자별 001부터</b> — 행 선택 시 아래에서 편집, <span class="kbd">Ins</span> 또는 「＋ 전표 추가」로 신규</div>
+    <table class="wf-grid">
+      <tr><th>선택</th><th>전표번호</th><th>구분</th><th>적요(대표)</th><th class="r">금액</th><th>사업장</th><th>증빙</th><th>상태</th><th>작성자</th></tr>
+      <tr><td>○</td><td class="r">001</td><td><span class="badge b-gray">대체</span></td><td>카드 사용분 정산</td><td class="r">880,000</td><td>본점</td><td><span class="badge b-green">📎2</span></td><td><span class="badge b-green">결재대기</span></td><td>홍길동</td></tr>
+      <tr><td>○</td><td class="r">002</td><td><span class="badge b-teal">입금</span></td><td>예금이자 외 현금수입</td><td class="r">65,000</td><td>본점</td><td>—</td><td><span class="badge b-green">POSTED</span></td><td>홍길동</td></tr>
+      <tr style="background:#eef3ff"><td>◉</td><td class="r">003 <span class="badge b-gray">예정</span></td><td><span class="badge b-gray">대체</span></td><td>6월 임차료 미지급</td><td class="r">3,300,000</td><td>본점</td><td><span class="badge b-green">📎1</span></td><td><span class="badge b-amber">편집중</span></td><td>홍길동</td></tr>
+      <tr><td colspan="9" style="color:#8a94a8">… 당일 전표만 표시 · 전표번호 일자별 리셋(001~) · 전기일 변경 시 해당 일자 목록으로 재조회 · 기간/조건 검색은 JV-07 …</td></tr>
+    </table>
+  </div>
+
+  <div class="wf-tool" style="border-top:2px solid var(--accent)">
+    <b>분개 입력</b> — <b>전표일자</b> <span class="wf-in" style="min-width:104px">2026-06-18</span> <b>전표번호</b> <span class="wf-in" style="min-width:96px">003 <span class="badge b-gray">예정</span></span> 구분 <span class="wf-in" style="min-width:90px">대체 ▾</span> <span class="wf-btn">☐ 현금 간편입력</span> 적요 <span class="wf-in" style="min-width:140px">6월 임차료 미지급</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">상대계정 일괄변경</span><span class="wf-btn">행 추가(Ins)</span><span class="wf-btn">엑셀 업로드</span>
+  </div>
+  <div style="color:var(--sub);padding:2px 8px">※ 전표는 <b>(전표일자 + 전표번호)</b>로 식별. 전표일자는 상단 조회 일자를 상속(라인별 변경 가능), 전표번호는 결재요청(채번) 시 확정 — 그 전에는 <span class="badge b-gray">예정</span>/임시 표시.</div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 74%">
+    <table class="wf-grid">
+      <tr><th>#</th><th>계정과목</th><th>구분</th><th class="r">차변</th><th class="r">대변</th><th>거래처</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적요</th><th>부가세</th><th>보조</th><th>AI</th></tr>
+      <tr><td>1</td><td>519 임차료</td><td><span class="badge b-gray">차변</span></td><td class="r">3,000,000</td><td class="r"></td><td>한빌딩</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>6월 임차료</td><td>—</td><td>📋</td><td></td></tr>
+      <tr><td>2</td><td>135 부가세대급금</td><td><span class="badge b-gray">차변</span></td><td class="r">300,000</td><td class="r"></td><td>한빌딩</td><td>본점 <i style="color:#2554c7">(자동)</i></td><td>—</td><td>—</td><td>—</td><td>—</td><td>매입세액</td><td><span class="badge b-blue">매입10%</span></td><td>📋</td><td></td></tr>
+      <tr><td>3</td><td>253 미지급금</td><td><span class="badge b-gray">대변</span></td><td class="r"></td><td class="r">3,300,000</td><td>한빌딩</td><td>본점</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>📋</td><td></td></tr>
+      <tr><td>4</td><td><span class="wf-in" style="min-width:130px">계정 입력(F3)…</span></td><td><span class="wf-in" style="min-width:54px">구분 ▾</span></td><td class="r"></td><td class="r"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td colspan="15" style="color:#8a94a8">… 가상 스크롤 영역 …</td></tr>
+    </table>
+    </div>
+    <div>
+      <div class="wf-panel"><div class="pt">증빙</div>📎 임대차계약서.pdf <span class="badge b-green">CLEAN</span><br><span class="wf-btn">증빙 연결(TN-08)</span></div>
+      <div class="wf-panel"><div class="pt">전표 요약</div>라인 3건 · 거래처 1 · 차원 누락 0<br>이상점수 <span class="badge b-green">정상</span></div>
+    </div>
+  </div></div>
+  <div class="wf-foot">
+    차변 <b>3,300,000</b> · 대변 <b>3,300,000</b> <span class="badge b-green">차대 일치</span>
+    <span class="badge b-gray">경고 0 · 차단 0</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">저장 후 계속 입력</span><span class="wf-btn">임시저장 (Ctrl+S)</span> <span class="wf-btn pri">결재요청 (채번)</span>
+  </div>
+</div>
+<table>
+  <tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+  <tr><td>당일 전표 목록 <span style="color:var(--accent)">[v1.1]</span></td><td>화면 진입 시 <b>전기일=오늘</b>로 <code>GET /api/tenant/journals?postingDate=today</code>를 자동 호출해 그날 전표를 상단에 표시. <b>전일/익일/달력</b>으로 전기일 변경 시 해당 일자 목록으로 재조회. 행 선택 → 하단 분개 편집, 저장·삭제 즉시 목록 갱신(낙관적 반영).</td></tr>
+  <tr><td>＋ 전표 추가(신규) <span style="color:var(--accent)">[v1.1]</span></td><td><b>「＋ 전표 추가」 또는 <span class="kbd">Ins</span></b>로 하단에 빈 전표를 열어 입력. 전기일은 상단에서 조회 중인 일자를 기본 상속(라인에서 개별 변경 가능). <b>「저장 후 계속 입력」</b>은 저장 즉시 목록에 추가하고 새 빈 전표를 열어 연속 입력을 지원.</td></tr>
+  <tr><td>계정 입력(F3)</td><td>코드/명 검색. 계정의 관리항목(거래처필수·어음·카드·예금·수량·세무구분) 설정을 읽어 라인에 보조부 입력 요건을 부여.</td></tr>
+  <tr><td>부가세 자동라인 <span style="color:var(--accent)">[v1.1]</span></td><td><b>부가세대급금/예수금 계정코드를 입력한 경우에만</b> 세액·상대 라인 보정이 동작한다. 일반전표입력에서는 부가세구분 선택만으로 라인을 자동 추가하지 않으며, 부가세 처리가 필요하면 매입/매출 전표(JV-04/05)를 사용한다(11.1·11.4).</td></tr>
+  <tr><td>분개구분(결차/결대) <span class="badge b-amber">v1.1</span></td><td><b>차변·대변·입금·출금·결차(결산차변)·결대(결산대변)</b> 6종 분개구분(더존식). 일반 거래는 차변/대변, 현금 간편입력은 입금/출금으로 자동 설정. <b>결산정리분개(원가 대체·기말 재공품·제조원가 배부 등)는 「결차/결대」로 입력</b>해야 제조원가명세서·손익계산서 원가에 반영된다(<code>JournalLine.entryCode</code>=CLOSING_DR/CLOSING_CR, 11.1·11.21). 결차/결대 라인은 결산 시즌·조정전표에서만 활성.</td></tr>
+  <tr><td>보조(📋)</td><td>관리항목 계정에 진입 시 <span class="kbd">F4</span>로 보조부 팝업(거래처/어음/예금 등 5장). 필수 미입력 시 차단.</td></tr>
+  <tr><td>임시저장/결재요청</td><td>임시저장은 <code>tempId</code> 미결함 보관. 결재요청 시 멱등 채번 + SOD + 차대/차원/보조 검증 통과 필요.</td></tr>
+</table>
+
+<h4 id="jv02"><span class="sid">JV-02</span>현금 간편입력 — 입금 (일반전표입력의 현금 차변 모드)</h4>
+<div class="note"><b>v1.1</b> — 별도 「입금전표」 메뉴는 없다. <b>일반전표입력(JV-01)</b>에서 「현금 간편입력 + 현금=차변」을 선택하면 본 화면 동작이 된다. 고정값은 <b>현금(101)만</b> 허용하며, <b>보통예금 입금은 대체전표</b>로 입력한다.</div>
+<table class="meta">
+  <tr><th>용도</th><td>현금 <b>입금</b> 거래 간편 입력. 차변 현금 고정, 대변 상대계정만 입력</td><th>API</th><td><code>POST /api/tenant/journals</code> (type=GENERAL, cashQuickEntry=DR)</td></tr>
+  <tr><th>고정계정</th><td>차변 = 현금(101) 고정 <span style="color:var(--accent)">[v1.1: 보통예금 제외]</span></td><th>상대계정</th><td>대변 계정코드 직접 입력(F3) · 외상매출금·미수금·선수금 등 채권/선수 계정 선택 시 <span class="badge b-red">간편입력 차단 → 대체전표</span></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">현금 간편입력(입금) — 현금 차변 고정, 대변 상대계정 라인만 입력</div>
+  <div class="wf-tool">입력방식 <span class="wf-in" style="min-width:120px">현금 간편입력 ▾</span> 현금위치 <span class="wf-in">차변(입금) ▾</span> 전기일 <span class="wf-in" style="min-width:92px">2026-06-11</span> 적요 <span class="wf-in" style="min-width:140px">현금 잡수입</span> <span class="sp" style="flex:1"></span><span class="wf-btn">상대계정 일괄변경</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>#</th><th>대변 계정과목(상대)</th><th class="r">금액</th><th>거래처</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적요</th><th>부가세</th><th>보조</th></tr>
+      <tr><td>1</td><td>901 이자수익</td><td class="r">15,000</td><td>국민은행</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>예금이자</td><td>—</td><td>📋 예금</td></tr>
+      <tr><td>2</td><td>930 잡이익</td><td class="r">50,000</td><td>—</td><td>본점</td><td>—</td><td>—</td><td>—</td><td>—</td><td>고철 매각</td><td>—</td><td>—</td></tr>
+      <tr style="background:#fff5f5"><td>3</td><td>108 외상매출금 <span class="badge b-red">간편입력 불가 → 대체전표</span></td><td class="r">2,200,000</td><td>대한상사</td><td>본점</td><td>영업팀</td><td>P-2026물류</td><td>—</td><td>—</td><td>5월 판매분 회수</td><td>—</td><td>📋 거래처</td></tr>
+      <tr><td>4</td><td><span class="wf-in" style="min-width:120px">계정 입력(F3)…</span></td><td class="r"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div style="color:var(--sub)">※ 차변은 <b>현금 65,000</b> 자동 생성(현금 고정). <b>외상매출금·미수금·선수금 등 채권/선수 계정</b>은 상대값이 현금이 될 수 없어 간편입력에서 차단(<code>QUICK_ENTRY_INVALID_ACCOUNT</code>) → <b>대체전표(JV-01)</b>로 전환. 사업장 필수·코스트센터·프로젝트·현장 선택(9.5·16.2).</div>
+  </div>
+  <div class="wf-foot">입금(차변) <b>65,000</b> = 대변 <b>65,000</b> <span class="badge b-green">차대 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn">상대계정 일괄변경</span><span class="wf-btn">임시저장</span><span class="wf-btn pri">결재요청</span></div>
+</div>
+<table>
+  <tr><th>요소</th><th>처리 · 검증</th></tr>
+  <tr><td>현금 고정 <span class="badge b-amber">v1.1</span></td><td>차변은 <b>현금(101)만</b> 고정 자동 생성. <b>보통예금 입금은 대체전표</b>(JV-01)로 입력(간편입력 고정값에서 제외).</td></tr>
+  <tr><td>대변 상대계정</td><td>계정코드 <b>직접 입력(F3)</b>. 이자수익·잡이익 등 현금성 수입만 허용. <b>외상매출금·미수금·선수금</b> 선택 시 <code>QUICK_ENTRY_INVALID_ACCOUNT</code>로 차단하고 대체전표 전환을 안내.</td></tr>
+  <tr><td>상대계정 일괄변경 <span class="badge b-amber">v1.1</span></td><td>선택한 다건 라인의 대변 상대계정을 한 번에 변경(5개 고정 선택이 아닌 자유 입력 + 일괄 적용).</td></tr>
+  <tr><td>어음 회수</td><td>받을어음 회수는 현금 간편입력 대상이 아님 → <b>대체전표(JV-01)</b>에서 차변 현금/대변 받을어음 + AUX-02 어음 보조부 상태를 <code>결제</code>로 갱신.</td></tr>
+  <tr><td>차원(사업장·코스트센터·프로젝트·현장)</td><td><b>사업장 필수·코스트센터·프로젝트·현장 선택</b>이 기본. 코스트센터 선택 시 소속 사업장 자동기입(유도규칙), <b>현장은 사업장에 귀속</b>. <code>DimensionConfig.required</code> 차원 누락 시 <code>DIMENSION_REQUIRED</code> 차단(9.5·16.2).</td></tr>
+</table>
+
+<h4 id="jv03"><span class="sid">JV-03</span>현금 간편입력 — 출금 (일반전표입력의 현금 대변 모드)</h4>
+<div class="note"><b>v1.1</b> — 별도 「출금전표」 메뉴는 없다. <b>일반전표입력(JV-01)</b>에서 「현금 간편입력 + 현금=대변」을 선택하면 본 화면 동작이 된다. 고정값은 <b>현금(101)만</b> 허용하며, <b>보통예금 출금·카드 결제는 대체전표</b>로 입력한다(일반적으로 보통예금에서 인출).</div>
+<table class="meta">
+  <tr><th>용도</th><td>현금 <b>출금</b> 거래 간편 입력. 대변 현금 고정, 차변 상대계정만 입력</td><th>API</th><td><code>POST /api/tenant/journals</code> (type=GENERAL, cashQuickEntry=CR)</td></tr>
+  <tr><th>고정계정</th><td>대변 = 현금(101) 고정 <span style="color:var(--accent)">[v1.1: 보통예금·카드 제외]</span></td><th>상대계정</th><td>차변 계정코드 직접 입력(F3) · 부가세 계정 사용 거래는 <span class="badge b-red">간편입력 차단 → 대체전표</span></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">현금 간편입력(출금) — 현금 대변 고정, 차변 상대계정 라인만 입력</div>
+  <div class="wf-tool">입력방식 <span class="wf-in" style="min-width:120px">현금 간편입력 ▾</span> 현금위치 <span class="wf-in">대변(출금) ▾</span> 전기일 <span class="wf-in" style="min-width:92px">2026-06-11</span> 적요 <span class="wf-in" style="min-width:130px">소모품 구입</span> <span class="sp" style="flex:1"></span><span class="wf-btn">상대계정 일괄변경</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>#</th><th>차변 계정과목(상대)</th><th class="r">금액</th><th>거래처</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적요</th><th>부가세</th><th>보조</th></tr>
+      <tr><td>1</td><td>830 소모품비</td><td class="r">120,000</td><td>오피스월드</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>A4용지 외</td><td>—</td><td>📋 거래처</td></tr>
+      <tr><td>2</td><td>811 복리후생비</td><td class="r">38,000</td><td>—</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>E-1001 김영업</td><td>간식 구입</td><td>—</td><td>—</td></tr>
+      <tr style="background:#fff5f5"><td>3</td><td>135 부가세대급금 <span class="badge b-red">간편입력 불가 → 대체전표</span></td><td class="r">—</td><td></td><td></td><td></td><td></td><td></td><td></td><td>세액 포함 매입</td><td>—</td><td></td></tr>
+      <tr><td>4</td><td><span class="wf-in" style="min-width:120px">계정 입력(F3)…</span></td><td class="r"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <div style="color:var(--sub)">※ 대변은 <b>현금 158,000</b> 자동 생성(현금 고정). <b>부가세 계정을 사용하는 거래</b>는 채번 충돌을 피하기 위해 간편입력에서 차단 → <b>대체전표(JV-01)</b> 또는 매입전표(JV-04)로 입력. 사업장 필수·코스트센터·프로젝트·현장 선택(9.5·16.2).</div>
+  </div>
+  <div class="wf-foot">차변 <b>158,000</b> = 출금(대변) 현금 <b>158,000</b> <span class="badge b-green">차대 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn">상대계정 일괄변경</span><span class="wf-btn">임시저장</span><span class="wf-btn pri">결재요청</span></div>
+</div>
+<table>
+  <tr><th>요소</th><th>처리 · 검증</th></tr>
+  <tr><td>현금 고정 <span class="badge b-amber">v1.1</span></td><td>대변은 <b>현금(101)만</b> 고정. <b>보통예금 출금·카드 결제는 대체전표</b>(JV-01)로 입력(일반적으로 보통예금에서 인출되므로).</td></tr>
+  <tr><td>차변 상대계정</td><td>계정코드 <b>직접 입력(F3)</b> + 다건 <b>일괄변경</b>(4개 고정 선택 폐지). 비용/자산 계정에 거래처·세무구분 관리항목 입력.</td></tr>
+  <tr><td>부가세 계정 차단 <span class="badge b-amber">v1.1</span></td><td>출금 간편입력에서 부가세 계정 사용 시 전표번호 채번 충돌이 발생 → <code>QUICK_ENTRY_INVALID_ACCOUNT</code>로 차단하고 <b>대체전표(JV-01)·매입전표(JV-04)</b>로 유도(임의 채번 수정 불편 제거).</td></tr>
+  <tr><td>카드 출금</td><td>법인카드 결제는 보통예금 인출이 일반적 → <b>대체전표</b>로 미지급금(카드) 계상 + AUX-04 카드 보조부 매칭.</td></tr>
+  <tr><td>차원(사업장·코스트센터·프로젝트·현장)</td><td>비용 라인은 코스트센터(부서)·프로젝트·현장 배부가 핵심. <b>사업장 필수·코스트센터·프로젝트·현장 선택</b>. 코스트센터 선택 시 사업장 자동기입(유도), <b>현장은 사업장에 귀속</b>. 필수 차원 누락 시 <code>DIMENSION_REQUIRED</code> 차단(9.5·16.2).</td></tr>
+</table>
+
+<h4 id="jv04"><span class="sid">JV-04</span>매입전표 입력 (세금계산서 · 부가세)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>매입 거래(세금계산서/계산서/카드/현금영수증) 입력. 부가세대급금·세무구분·매입원장(11.4) 자동 연계</td><th>API</th><td><code>POST /api/tenant/journals</code> (type=PURCHASE)</td></tr>
+  <tr><th>권한</th><td><code>tenant:journal:write</code></td><th>엔티티</th><td><code>JournalHeader/Line</code>, <code>PurchaseLedgerLine</code>(11.4)</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">매입전표 — 세금계산서 정보 영역 + 분개 자동생성 + 매입원장 미리보기</div>
+  <div class="wf-tool">전표유형 <span class="wf-in">매입 ▾</span> 전기일 <span class="wf-in" style="min-width:92px">2026-06-09</span> <span class="wf-btn">전자세금계산서 불러오기(증빙함)</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      <div class="wf-panel"><div class="pt">세금계산서 정보</div>
+        거래처 <span class="wf-in" style="min-width:120px">오피스월드(123-45-67890)</span><br>
+        세무구분 <span class="wf-in" style="min-width:140px">전자세금계산서 ▾</span><br>
+        품목/적요 <span class="wf-in" style="min-width:140px">사무용품</span><br>
+        공급가액 <span class="wf-in">1,000,000</span> 세액 <span class="wf-in">100,000</span><br>
+        매입 구분 <span class="wf-in" style="min-width:120px">과세(공제) ▾</span> 계정 <span class="wf-in" style="min-width:110px">830 소모품비</span><br>
+        사업장 <span class="wf-in" style="min-width:90px">본점 ▾</span> 코스트센터 <span class="wf-in" style="min-width:110px">경영지원팀 ▾</span><br>
+        프로젝트 <span class="wf-in" style="min-width:110px">(선택) ▾</span> 현장 <span class="wf-in" style="min-width:90px">(선택) ▾</span> 사원 <span class="wf-in" style="min-width:90px">(선택) ▾</span> <span style="color:var(--sub)">※ 비용/자산 라인에 적용</span>
+      </div>
+    </div>
+    <div>
+      <div class="wf-panel"><div class="pt">자동 생성 분개</div>
+        <table class="wf-grid">
+          <tr><th>계정</th><th class="r">차변</th><th class="r">대변</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th></tr>
+          <tr><td>830 소모품비</td><td class="r">1,000,000</td><td class="r"></td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>135 부가세대급금</td><td class="r">100,000</td><td class="r"></td><td>본점 <i style="color:#2554c7">(자동)</i></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>251 외상매입금</td><td class="r"></td><td class="r">1,100,000</td><td>본점</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        </table>
+      </div>
+      <div class="wf-panel"><div class="pt">매입원장 라인 미리보기(11.4)</div>
+        세무구분 <span class="badge b-blue">전자세금계산서</span> · 공제 <span class="badge b-green">공제</span> · NTS상태 <span class="badge b-amber">PENDING</span> · 증빙 <span class="badge b-green">매칭</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">차변 <b>1,100,000</b> = 대변 <b>1,100,000</b> <span class="badge b-green">일치</span><span class="sp" style="flex:1"></span><span class="wf-btn">임시저장</span><span class="wf-btn pri">결재요청</span></div>
+</div>
+<table>
+  <tr><th>요소</th><th>처리 · 검증 (근거)</th></tr>
+  <tr><td>세금계산서 불러오기</td><td>증빙함(TN-08) 수신 전자세금계산서를 선택하면 거래처·금액·세무구분 자동 채움(11.12·8.4).</td></tr>
+  <tr><td>세무구분/공제</td><td>전자세금계산서/계산서/카드/현금영수증/불공제/면세/영세율 등. 불공제 시 부가세대급금 대신 비용/자산 가산(11.4).</td></tr>
+  <tr><td><span class="badge b-blue">매입10%</span> 표식 <span class="badge b-amber">v1.1</span></td><td>매입 <b>과세(공제) 세율 10%</b> 적용 라인을 뜻하는 배지로, 공급가액의 10%가 <b>부가세대급금 자동라인</b> 대상임을 표시한다. 세무구분 배지 범례 — <span class="badge b-blue">매입10%</span> 과세공제 · <span class="badge b-gray">불공제</span> · <span class="badge b-gray">면세</span> · <span class="badge b-gray">영세율</span>. <b>부가세 계정코드를 입력해야</b> 자동라인이 생성된다(미입력 시 미생성).</td></tr>
+  <tr><td>매입원장 연계</td><td>저장 시 <code>PurchaseLedgerLine</code> 생성 — 세무구분·NTS 전송상태·증빙상태 보존. AUX-06 부가세 보조부에서 집계(11.4).</td></tr>
+  <tr><td>대변 결제수단</td><td>외상매입금/미지급금/현금/예금/카드 선택 — 거래처/카드/어음 관리항목이면 보조부 팝업(5장).</td></tr>
+  <tr><td>차원(사업장·코스트센터·프로젝트·현장)</td><td>패널에서 지정한 사업장·코스트센터·프로젝트·현장이 비용/자산 라인에 적용되고 자동 분개에 표기. 코스트센터→사업장 유도, 현장은 사업장에 귀속, 필수 차원 누락 시 <code>DIMENSION_REQUIRED</code> 차단(9.5·16.2).</td></tr>
+</table>
+
+<h4 id="jv05"><span class="sid">JV-05</span>매출전표 입력 (세금계산서 · 부가세)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>매출 거래 입력. 부가세예수금·세무구분·매출처원장(AUX-01) 자동 연계</td><th>API</th><td><code>POST /api/tenant/journals</code> (type=SALES)</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">매출전표 — 세금계산서 정보 + 자동 분개 + 매출처 보조부</div>
+  <div class="wf-tool">전표유형 <span class="wf-in">매출 ▾</span> 전기일 <span class="wf-in" style="min-width:92px">2026-06-12</span> <span class="wf-btn">전자세금계산서 발행 연계</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      <div class="wf-panel"><div class="pt">세금계산서 정보</div>
+        거래처 <span class="wf-in" style="min-width:120px">대한상사(211-22-33333)</span><br>
+        세무구분 <span class="wf-in" style="min-width:140px">전자세금계산서(매출) ▾</span><br>
+        공급가액 <span class="wf-in">5,000,000</span> 세액 <span class="wf-in">500,000</span><br>
+        매출 계정 <span class="wf-in" style="min-width:110px">401 상품매출</span> 결제 <span class="wf-in" style="min-width:110px">외상매출금</span><br>
+        사업장 <span class="wf-in" style="min-width:90px">본점 ▾</span> 코스트센터 <span class="wf-in" style="min-width:90px">영업팀 ▾</span><br>
+        프로젝트 <span class="wf-in" style="min-width:110px">P-2026물류 ▾</span> 현장 <span class="wf-in" style="min-width:90px">(선택) ▾</span> 사원 <span class="wf-in" style="min-width:90px">(선택) ▾</span> <span style="color:var(--sub)">※ 수익 라인에 적용</span>
+      </div>
+    </div>
+    <div>
+      <div class="wf-panel"><div class="pt">자동 생성 분개</div>
+        <table class="wf-grid">
+          <tr><th>계정</th><th class="r">차변</th><th class="r">대변</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th></tr>
+          <tr><td>108 외상매출금</td><td class="r">5,500,000</td><td class="r"></td><td>본점</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>401 상품매출</td><td class="r"></td><td class="r">5,000,000</td><td>본점</td><td>영업팀</td><td>P-2026물류</td><td>—</td><td>—</td></tr>
+          <tr><td>255 부가세예수금</td><td class="r"></td><td class="r">500,000</td><td>본점 <i style="color:#2554c7">(자동)</i></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        </table>
+      </div>
+      <div class="wf-panel"><div class="pt">매출처 보조부(AUX-01)</div>거래처 대한상사 외상매출금 잔액 <b>+5,500,000</b> 반영 · aging 대상</div>
+    </div>
+  </div></div>
+  <div class="wf-foot">차변 <b>5,500,000</b> = 대변 <b>5,500,000</b> <span class="badge b-green">일치</span><span class="sp" style="flex:1"></span><span class="wf-btn">임시저장</span><span class="wf-btn pri">결재요청</span></div>
+</div>
+<table>
+  <tr><th>요소</th><th>처리 · 검증</th></tr>
+  <tr><td>매출 부가세</td><td>공급가액 입력 시 부가세예수금 자동라인. 영세율/면세 구분 반영(11.4).</td></tr>
+  <tr><td>결제수단</td><td>외상매출금(거래처 보조부)·받을어음(어음 보조부)·현금·예금 선택. 어음 수취 시 AUX-02 어음 신규 등록.</td></tr>
+  <tr><td>매출처원장</td><td>저장 시 AUX-01 거래처별 외상매출금 잔액·증감 갱신, aging 스냅샷 대상(11.11).</td></tr>
+  <tr><td>차원(사업장·코스트센터·프로젝트·현장)</td><td>패널 지정 차원이 수익 라인에 적용되고 자동 분개에 표기. 사업장·프로젝트·현장별 매출 집계의 기준(차원별 원장 11.2). 현장은 사업장에 귀속. 필수 차원 누락 시 <code>DIMENSION_REQUIRED</code> 차단(9.5).</td></tr>
+</table>
+
+<h4 id="jv06"><span class="sid">JV-06</span>복사 · 반복 · 템플릿 · 역분개</h4>
+<table class="meta">
+  <tr><th>용도</th><td>반복 거래 효율 입력 및 오류 정정(역분개)</td><th>API</th><td><code>POST /api/tenant/journals/{id}/copy</code> · <code>/reverse</code>, <code>GET·POST /api/tenant/journal-templates</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전표 도구 — 복사/반복(정기)/템플릿/역분개</div>
+  <div class="wf-body"><div class="wf-split">
+    <div><div class="wf-panel"><div class="pt">복사전표(F8)</div>기존 전표를 불러와 전기일·금액만 수정 후 신규 채번. 보조부 관리항목도 함께 복사(편집 가능).</div>
+      <div class="wf-panel"><div class="pt">정기 반복전표</div>매월 임차료·감가상각 등 반복 분개를 등록 → 지정일에 임시 전표 자동 생성(결재 필요). 주기·종료일·금액 설정.</div></div>
+    <div><div class="wf-panel"><div class="pt">전표 템플릿</div>자주 쓰는 분개 패턴을 템플릿으로 저장(계정·차원·적요·보조항목 프리셋). 헤더 툴바 <span class="wf-btn">템플릿 ▾</span>에서 호출.</div>
+      <div class="wf-panel"><div class="pt">역분개(취소)</div>승인·기표된 전표는 수정 대신 <b>역분개</b>로 정정 — 차/대 반대 전표 자동 생성·연결(원전표 참조). 마감기간은 차단(16.1).</div></div>
+  </div></div>
+</div>
+
+<h4 id="jv07"><span class="sid">JV-07</span>전표 검색 · 조회 · 수정 · 삭제</h4>
+<table class="meta">
+  <tr><th>용도</th><td>기간·유형·계정·거래처·<b>사업장·코스트센터·프로젝트·현장</b>·금액·상태·작성자 조건 검색 및 상태별 처리</td><th>API</th><td><code>GET /api/tenant/journals</code>(차원 필터 포함), <code>PUT/DELETE /api/tenant/journals/{id}</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전표 검색 목록 — 조건 필터 + 결과 그리드 + 상태/행위자 배지</div>
+  <div class="wf-tool">기간 <span class="wf-in" style="min-width:140px">2026-06-01 ~ 06-30</span> 유형 <span class="wf-in">전체 ▾</span> 계정 <span class="wf-in">전체</span> 거래처 <span class="wf-in">전체</span> 사업장 <span class="wf-in">전체 ▾</span> 코스트센터 <span class="wf-in">전체 ▾</span> 프로젝트 <span class="wf-in">전체 ▾</span> 현장 <span class="wf-in">전체 ▾</span> 사원 <span class="wf-in">전체 ▾</span> 상태 <span class="wf-in">전체 ▾</span> <span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>전표일자</th><th class="r">전표번호</th><th>구분</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적요</th><th class="r">금액</th><th>상태</th><th>행위자</th><th>액션</th></tr>
+      <tr><td>06-10</td><td class="r">001</td><td>대체</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>6월 임차료 미지급</td><td class="r">3,300,000</td><td><span class="badge b-green">POSTED</span></td><td><span class="badge b-gray">TENANT</span></td><td><span class="wf-btn">보기</span> <span class="wf-btn">역분개</span></td></tr>
+      <tr><td>06-11</td><td class="r">001</td><td>입금</td><td>본점</td><td>영업팀</td><td>P-2026물류</td><td>—</td><td>—</td><td>외상매출금 회수</td><td class="r">2,200,000</td><td><span class="badge b-amber">결재대기</span></td><td><span class="badge b-blue">OPERATOR 기장</span></td><td><span class="wf-btn">수정</span> <span class="wf-btn dng">삭제</span></td></tr>
+      <tr><td>06-12</td><td class="r">(임시)</td><td>매출</td><td>본점</td><td>영업팀</td><td>P-2026물류</td><td>—</td><td>—</td><td>대한상사 상품매출</td><td class="r">5,500,000</td><td><span class="badge b-gray">임시저장</span></td><td><span class="badge b-gray">TENANT</span></td><td><span class="wf-btn">편집</span> <span class="wf-btn dng">삭제</span></td></tr>
+    </table>
+    <div style="color:var(--sub)">※ 기본 정렬은 <b>전표일자 → 전표번호</b> 오름차순(복합키 순)이며, 전표번호는 일자별 001부터의 일련번호다. 전표 헤더 차원이 여러 라인에 걸치면 <b>(복수)</b>로 표시하고, 라인 펼침에서 라인별 사업장·코스트센터·프로젝트·현장 확인. 차원 조건은 라인 단위로 매칭(차원별 원장 11.2).</div>
+  </div>
+</div>
+<table>
+  <tr><th>상태</th><th>허용 동작 (근거)</th></tr>
+  <tr><td>임시저장</td><td>편집·삭제 자유(채번 전).</td></tr>
+  <tr><td>결재대기/반려</td><td>작성자 수정·삭제 가능(재상신). 결재 진행 중 잠금.</td></tr>
+  <tr><td>POSTED(기표)</td><td>수정·삭제 금지 — <b>역분개(JV-06)</b>로만 정정. 회계 불변성(12.3).</td></tr>
+  <tr><td>마감기간</td><td><code>CLOSING_LOCKED</code> — 마감해제(TN-09) 후 또는 조정전표만 가능(16.1).</td></tr>
+  <tr><td>차원 검색·드릴다운</td><td>사업장·코스트센터·프로젝트·현장 조건은 라인 단위 매칭. 결과에서 차원별 원장(TN-07)·차원별 시산표로 드릴다운(11.2).</td></tr>
+  <tr><td>상대계정 일괄변경 <span class="badge b-amber">v1.1</span></td><td>검색 결과에서 다건 라인 선택 → <b>상대계정 일괄 변경</b>(잘못 입력한 상대계정을 한 번에 정정). 임시저장·결재대기 상태만 허용, POSTED는 역분개.</td></tr>
+  <tr><td>전체 보기(미리보기) <span class="badge b-amber">v1.1</span></td><td>건건 확인 대신 <b>여러 전표를 펼쳐 한 화면에서 일괄 검토</b>(전표별 분개 펼침 + 차대·차원·증빙 상태 컬럼). 분개장 형태 인쇄/엑셀 내보내기.</td></tr>
+</table>
+
+<h4 id="jv08"><span class="sid">JV-08</span>다건 · 일괄 전표 입력 (분개장 연속 입력)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>기장 대행·월말 다건 거래를 <b>한 화면에서 끊김 없이 연속 기표</b>하고 일괄 채번·일괄 결재요청. 엑셀 업로드 일괄 검증/적재 포함(16.2)</td><th>API</th><td><code>POST /api/tenant/journals:batch</code>, <code>POST /api/tenant/journals:import</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:journal:write</code> (+ 일괄 결재요청)</td><th>특징</th><td>전표 단위 그룹(전표번호 임시키) + 라인 연속 입력, 가상 스크롤·키보드 주도</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">다건/일괄 전표 입력 — 여러 전표를 한 그리드에서 연속 입력, 전표 그룹별 차대 검증</div>
+  <div class="wf-bar">전표/장부 › 일괄 입력 <span class="sp"></span> <span class="badge b-blue">자가 기장 TENANT_LED</span> <span>👤 홍길동 · 회계담당</span></div>
+  <div class="wf-tool">
+    기본 전기일 <span class="wf-in" style="min-width:92px">2026-06-30</span> 기본 유형 <span class="wf-in" style="min-width:70px">대체 ▾</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">엑셀 양식 다운로드</span><span class="wf-btn">엑셀 업로드</span><span class="wf-btn">행 추가(Ins)</span><span class="wf-btn">전표 분리(Ctrl+Enter)</span>
+  </div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>전표</th><th>전기일</th><th>유형</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th><th>거래처</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적요</th><th>부가세</th><th>보조</th><th>검증</th></tr>
+      <tr><td rowspan="2">①</td><td>06-30</td><td>대체</td><td>519 임차료</td><td class="r">3,000,000</td><td class="r"></td><td>한빌딩</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>6월 임차료</td><td>—</td><td>📋</td><td rowspan="2"><span class="badge b-green">일치</span></td></tr>
+      <tr><td>06-30</td><td>대체</td><td>253 미지급금</td><td class="r"></td><td class="r">3,000,000</td><td>한빌딩</td><td>본점</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>📋</td></tr>
+      <tr><td rowspan="2">②</td><td>06-30</td><td>대체</td><td>811 복리후생비</td><td class="r">450,000</td><td class="r"></td><td>김밥천국</td><td>본점</td><td>영업팀</td><td>—</td><td>—</td><td>E-1001 김영업</td><td>야근 식대</td><td><span class="badge b-blue">매입10%</span></td><td>📋</td><td rowspan="2"><span class="badge b-green">일치</span></td></tr>
+      <tr><td>06-30</td><td>대체</td><td>103 보통예금</td><td class="r"></td><td class="r">450,000</td><td>김밥천국</td><td>본점 <i style="color:#2554c7">(자동)</i></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>📋 예금</td></tr>
+      <tr><td>③</td><td>06-30</td><td>대체</td><td>826 도서인쇄비</td><td class="r">80,000</td><td class="r"></td><td>교보문고</td><td>본점</td><td>경영지원팀</td><td>—</td><td>—</td><td>—</td><td>업무 도서</td><td>—</td><td>📋</td><td><span class="badge b-red">차대 불일치</span></td></tr>
+      <tr><td colspan="16" style="color:#8a94a8">… 가상 스크롤 영역 · <span class="kbd">Ctrl+D</span> 행 복사 · <span class="kbd">Ctrl+Enter</span> 새 전표 분리 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">
+    전표 <b>3</b>건 · 라인 <b>5</b> · <span class="badge b-green">일치 2</span> <span class="badge b-red">불일치 1</span> <span class="badge b-amber">경고 0</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">전체 임시저장</span> <span class="wf-btn pri">일괄 결재요청 (검증 통과분만 채번)</span>
+  </div>
+</div>
+<table>
+  <tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+  <tr><td>전표 그룹·분리</td><td>같은 전표번호(①②③)로 라인을 묶고 <span class="kbd">Ctrl+Enter</span>로 새 전표 분리. 전표 그룹 <b>단위로 차대 검증</b> — 그룹별 일치/불일치 배지(11.1).</td></tr>
+  <tr><td>엑셀 업로드</td><td>표준 양식(계정·차대·거래처·차원·적요·부가세) 업로드 → 행별 검증 결과를 그리드에 적재. 오류행은 <span class="badge b-red">차단</span> 표시 후 인라인 수정(16.2).</td></tr>
+  <tr><td>외부 기장자료 대량 업로드 <span class="badge b-amber">v1.1</span></td><td>타 회계/ERP 분개 추출본을 <b>컬럼 매핑 마법사</b>로 표준 양식에 매핑 → 계정·거래처 코드 자동 매칭(미매칭은 후보 추천). 거래처 신규는 <b>사업자등록번호 검증</b> 후 마스터 등록, 대용량은 청크 비동기 적재 + 적재 리포트(16.2).</td></tr>
+  <tr><td>차원·보조부</td><td>각 라인에서 JV-01과 동일한 사업장·코스트센터·프로젝트·현장·관리항목(보조부 F4) 입력. 코스트센터→사업장 자동기입(유도), 현장은 사업장에 귀속.</td></tr>
+  <tr><td>일괄 결재요청</td><td><b>검증 통과 전표만</b> 멱등 채번 후 결재 상신. 불일치·필수누락 전표는 제외하고 사유 리포트 제공. 채번은 전표 그룹별 개별 부여(11.1).</td></tr>
+  <tr><td>마감/SOD</td><td>마감기간 라인은 <code>CLOSING_LOCKED</code>로 제외. 결재·기표는 결재함(TN-06)에서 SOD 적용(4.5).</td></tr>
+</table>
+</section>
+
+<section id="s5">
+<h2>5. 전표 보조부 입력 화면 (상세)</h2>
+
+<h4 id="aux-common"><span class="sid">5.1</span>보조부 개념 · 전표 연동 구조</h4>
+<p><b>전표 보조부(보조원장)</b>는 특정 계정의 거래 내역을 <b>관리항목(거래처·어음·카드·예금·수량·세무 등) 단위</b>로 분해·집계하는 종속 장부다. 본 서비스에서 보조부는 별도 입력 화면이 아니라 <b>전표 라인 입력 중 관리항목 계정에 진입할 때 호출되는 입력 팝업(<span class="kbd">F4</span>)</b>과 <b>독립 조회용 보조원장 뷰</b> 두 형태로 제공된다. 입력은 항상 전표에서 발생하며(단일 입력원), 보조부는 그 결과를 관리항목 키로 누적한다.</p>
+<table>
+  <tr><th>구조</th><th>설명 (근거)</th></tr>
+  <tr><td>입력원</td><td>모든 보조부 기표는 <b>전표 라인</b>에서 발생. 라인 저장 시 <code>journal_line_aux</code>(1:N)에 보조부 유형·참조키·금액·수량·일자 기록(11.1·12.x).</td></tr>
+  <tr><td>관리항목 트리거</td><td>계정과목의 <b>관리항목 설정</b>(거래처필수/어음/카드/예금/수량/세무)에 따라 라인 진입 시 해당 보조부 팝업이 <b>자동/F4</b> 호출. 필수 미입력 시 <span class="badge b-red">Red 차단</span>.</td></tr>
+  <tr><td>집계 시점</td><td>보조원장 잔액·증감은 <b>POSTED(기표) 전표만</b> 집계(11.2). 임시저장·결재대기 전표는 미반영(별도 표시).</td></tr>
+  <tr><td>독립 뷰</td><td>거래처/어음/예금/카드/가지급금/부가세/현금/재고/고정자산 보조원장은 TN-07 장부 조회에서 조건 검색·드릴다운(원전표) 가능.</td></tr>
+  <tr><td>마감 연동</td><td>마감기간 보조부 신규 기표는 전표와 동일하게 <code>CLOSING_LOCKED</code>로 차단(16.1).</td></tr>
+  <tr><td>차원(사업장·코스트센터·프로젝트·현장)</td><td>보조부의 1차 키는 <b>관리항목</b>이고 차원(사업장·코스트센터·프로젝트·현장 4종)은 <b>전표 라인 속성</b>이라 <b>F4 입력 팝업에는 차원을 두지 않는다</b>(라인에서 입력, 보조부 비중복). 독립 보조원장 뷰에서는 보조부 성격에 따라 차원을 <b>필터/컬럼으로 선별 제공</b>한다(아래 각 화면).</td></tr>
+</table>
+<table>
+  <tr><th>보조부</th><th>유형코드</th><th>참조 테이블</th><th>호출 전표 유형</th><th>화면</th></tr>
+  <tr><td>거래처별(매출처/매입처)</td><td><code>VENDOR</code></td><td><code>partner</code></td><td>대체·입금·출금·매입·매출</td><td><a href="#aux01">AUX-01</a></td></tr>
+  <tr><td>어음(받을/지급)</td><td><code>NOTE</code></td><td><code>note</code></td><td>입금·출금·대체·매입·매출</td><td><a href="#aux02">AUX-02</a></td></tr>
+  <tr><td>예금(은행계정)</td><td><code>BANK</code></td><td><code>bank_account</code></td><td>입금·출금·대체</td><td><a href="#aux03">AUX-03</a></td></tr>
+  <tr><td>카드 사용내역</td><td><code>CARD</code></td><td><code>card</code>/<code>card_txn</code></td><td>출금·매입·대체</td><td><a href="#aux04">AUX-04</a></td></tr>
+  <tr><td>가지급금·가수금</td><td><code>ADVANCE</code></td><td><code>partner</code>/직원</td><td>출금·입금·대체</td><td><a href="#aux05">AUX-05</a></td></tr>
+  <tr><td>부가세(대급금/예수금)</td><td><code>VAT</code></td><td><code>purchase_ledger_line</code>(11.4)</td><td>매입·매출·출금·입금</td><td><a href="#aux06">AUX-06</a></td></tr>
+  <tr><td>현금출납장</td><td><code>BANK</code>(현금)</td><td><code>journal_line</code>(현금계정)</td><td>입금·출금</td><td><a href="#aux07">AUX-07</a></td></tr>
+  <tr><td>재고자산 수불부(기초)</td><td><code>QTY</code></td><td><code>item</code>/<code>stock_move</code></td><td>매입·매출·대체</td><td><a href="#aux08">AUX-08</a></td></tr>
+  <tr><td>고정자산대장(기초)</td><td>—</td><td><code>fixed_asset</code></td><td>매입·대체(취득)</td><td><a href="#aux09">AUX-09</a></td></tr>
+</table>
+<p><b>보조부별 차원(사업장·코스트센터·프로젝트·현장·사원) 적합성</b> — 1차 키(관리항목)와 직교하므로, 독립 보조원장 뷰에만 보조부 성격에 맞게 <b>필터/컬럼</b>으로 선별 제공한다(F4 입력 팝업은 비적용). <span class="badge b-teal">사원=v4.1</span></p>
+<table>
+  <tr><th>보조부</th><th>사업장</th><th>코스트센터</th><th>프로젝트</th><th>현장</th><th>사원</th><th>적용 형태 · 사유</th></tr>
+  <tr><td>AUX-01 거래처별</td><td>○</td><td>△</td><td>△</td><td>△</td><td>✕</td><td>사업장 필터(다사업장 채권/채무 분리) · 프로젝트/현장별 채권·채무 분석 필터</td></tr>
+  <tr><td>AUX-02 어음</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>어음번호·거래처·만기 단위 — 차원 미적용</td></tr>
+  <tr><td>AUX-03 예금</td><td>○</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>사업장 필터(계좌의 사업장 귀속)</td></tr>
+  <tr><td>AUX-04 카드</td><td>△</td><td>○</td><td>△</td><td>✕</td><td>○</td><td>코스트센터 필터(부서 카드 사용 분석) · 프로젝트 사용 분석 · 사용 사원별 분석</td></tr>
+  <tr><td>AUX-05 가지급/가수금</td><td>△</td><td>○</td><td>△</td><td>✕</td><td>○</td><td>코스트센터 필터·컬럼(부서·대상별 정산) · 프로젝트 정산 · <b>사원별 가지급금·인정이자</b></td></tr>
+  <tr><td>AUX-06 부가세</td><td>△</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>사업자(사업장) 단위 과세 — 코스트센터·프로젝트·현장 무관(매출 과세유형별 집계는 프로젝트/부서 분류 제공, 11.4)</td></tr>
+  <tr><td>AUX-07 현금출납장</td><td>○</td><td>△</td><td>✕</td><td>△</td><td>✕</td><td>사업장 필터·컬럼(사업장별 시재) · 현장 시재 관리</td></tr>
+  <tr><td>AUX-08 재고 수불부</td><td>△</td><td>✕</td><td>✕</td><td>△</td><td>✕</td><td>1차 축은 창고(warehouse) — 사업장은 창고로 유도, 현장 창고 매핑</td></tr>
+  <tr><td>AUX-09 고정자산대장</td><td>○</td><td>○</td><td>△</td><td>○</td><td>△</td><td>컬럼(설치 사업장·사용부서·설치 현장·사용 사원) — 상각비 배부 기준</td></tr>
+</table>
+
+<h4 id="aux01"><span class="sid">AUX-01</span>거래처별 보조부 (매출처 / 매입처 원장)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>외상매출금·외상매입금·미수금·미지급금 등 채권/채무 계정을 <b>거래처 단위</b>로 입력·집계. 잔액·연령(aging) 산출</td><th>유형</th><td><code>journal_line_aux.type=VENDOR</code></td></tr>
+  <tr><th>호출</th><td>거래처 관리항목 계정 라인 진입 시 <span class="kbd">F4</span></td><th>API</th><td><code>GET /api/tenant/ledgers/partner</code></td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 거래처 보조부 입력 (F4) — 라인: 108 외상매출금 / 차변 5,500,000</div>
+  <div class="wf-body">
+    거래처 <span class="wf-in" style="min-width:160px">대한상사(211-22-33333) ▾</span> <span class="wf-btn">거래처 검색(F3)</span> <span class="wf-btn">신규 등록</span> <span class="badge b-green">정상사업자</span><br>
+    구분 <span class="wf-in">매출처(채권)</span> 거래일 <span class="wf-in" style="min-width:92px">2026-06-12</span> 적요 <span class="wf-in" style="min-width:150px">상품매출 외상</span><br>
+    거래성격 <span class="wf-in" style="min-width:150px">신규채권 ▾</span> 반제대상 <span class="wf-in" style="min-width:130px">— (회수 시 청구건 선택)</span> <span style="color:var(--sub)">※ 신규/일부회수/특정청구반제/대손·조정/선수금대체</span><br>
+    통화 <span class="wf-in" style="min-width:70px">USD ▾</span> 외화금액 <span class="wf-in" style="min-width:90px">4,000.00</span> 발생환율 <span class="wf-in" style="min-width:90px">1,375.00</span> 원화 <span class="wf-in">5,500,000</span> <span style="color:var(--sub)">※ 외화 채권/채무는 발생 시 적용환율 보존</span><br>
+    <span style="color:var(--accent)">[회수 시]</span> 회수환율 <span class="wf-in" style="min-width:90px">1,390.00</span> 송금수수료 <span class="wf-in" style="min-width:90px">15,000</span> 수수료계정 <span class="wf-in" style="min-width:110px">831 지급수수료 ▾</span> 외환차손익 <span class="wf-in" style="min-width:90px">+60,000</span> <span style="color:var(--sub)">※ v1.1 M9: 송금수수료 별도 분개·환율차 외환차손익 인식(11.16)</span><br>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">거래처 현재 잔액(POSTED 기준)</div>외상매출금 기존 <b>3,200,000</b> → 본 거래 후 <b>8,700,000</b> · 최장 연체 <span class="badge b-amber">47일</span> · 연계 전표 <span class="badge b-blue">2026-06-12-001</span></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 거래처 미선택 시 라인 저장 차단 · 폐업 거래처는 <span class="badge b-amber">경고</span><span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용 (Enter)</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">거래처별 보조원장 (독립 조회) — 매출처 드릴다운</div>
+  <div class="wf-tool">계정 <span class="wf-in">108 외상매출금 ▾</span> 거래처 <span class="wf-in" style="min-width:140px">대한상사</span> 사업장 <span class="wf-in">전체 ▾</span> 기간 <span class="wf-in" style="min-width:130px">2026-01~06</span> 조회구분 <span class="wf-in" style="min-width:120px">전체 ▾</span> <span class="wf-btn pri">조회</span> <span class="sp" style="flex:1"></span><span class="wf-btn">연령분석</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <div style="margin-bottom:6px">조회구분 <span class="badge b-gray">전체</span> <span class="badge b-blue">잔액만</span> <span class="badge b-amber">연체건만</span> <span class="badge b-red">미반제건만</span> <span class="badge b-teal">선수·선급 대체건만</span> <span style="color:var(--sub)">— v1.1 M10: 조회조건 세분화(조합 가능)</span></div>
+    <table class="wf-grid">
+      <tr><th>일자</th><th class="r">전표번호</th><th>적요</th><th>거래성격</th><th class="r">외화</th><th class="r">증가(차변)</th><th class="r">감소(대변)</th><th class="r">잔액</th><th>반제</th><th>상태</th></tr>
+      <tr><td>05-31</td><td>—</td><td>전기이월</td><td>—</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r">3,200,000</td><td>—</td><td><span class="badge b-gray">이월</span></td></tr>
+      <tr><td>06-12</td><td class="r">001</td><td>상품매출 외상</td><td><span class="badge b-blue">신규채권</span></td><td class="r">$4,000</td><td class="r">5,500,000</td><td class="r"></td><td class="r">8,700,000</td><td><span class="badge b-red">미반제</span></td><td><span class="badge b-green">POSTED</span></td></tr>
+      <tr><td>06-15</td><td class="r">001</td><td>외상대금 회수(일부)</td><td><span class="badge b-amber">일부회수</span></td><td class="r"></td><td class="r"></td><td class="r">2,000,000</td><td class="r">6,700,000</td><td>↳ 2026-06-12-001 청구</td><td><span class="badge b-green">POSTED</span></td></tr>
+    </table>
+    <div style="color:var(--sub)">행 더블클릭 → 원전표(JV-07) 드릴다운. 연령분석은 0/30/60/90일+ 버킷. <b>v1.1</b>: 거래성격(신규채권·일부회수·특정청구반제·대손/조정·선수선급대체)·외화/발생환율·반제 청구건·전표 연계를 컬럼으로 표시.</div>
+  </div>
+</div>
+
+<h4 id="aux02"><span class="sid">AUX-02</span>어음 보조부 (받을어음 / 지급어음)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>받을어음·지급어음을 <b>어음 단위</b>로 등록·추적(만기·배서·할인·결제·부도). 잔액·만기도래 관리</td><th>유형</th><td><code>journal_line_aux.type=NOTE</code> → <code>note</code></td></tr>
+  <tr><th>호출</th><td>받을어음/지급어음 계정 라인 진입 시 <span class="kbd">F4</span></td><th>API</th><td><code>GET·POST /api/tenant/notes</code></td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 어음 보조부 입력 (F4) — 라인: 110 받을어음 / 차변 3,000,000</div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      구분 <span class="wf-in">받을어음 ▾</span> 어음번호 <span class="wf-in" style="min-width:140px">가12345678</span><br>
+      거래처 <span class="wf-in" style="min-width:140px">대한상사 ▾</span> 어음종류 <span class="wf-in">약속어음 ▾</span><br>
+      발행일 <span class="wf-in" style="min-width:92px">2026-06-12</span> 만기일 <span class="wf-in" style="min-width:92px">2026-09-12</span><br>
+      금액 <span class="wf-in">3,000,000</span> 지급은행 <span class="wf-in" style="min-width:110px">국민은행</span><br>
+      <span style="color:var(--accent)">[할인 시]</span> 할인율(연) <span class="wf-in" style="min-width:70px">6.5%</span> 할인일수 <span class="wf-in" style="min-width:60px">92</span> 할인료 <span class="wf-in" style="min-width:90px">49,150</span> 실수령액 <span class="wf-in" style="min-width:90px">2,950,850</span> <span style="color:var(--sub)">※ v1.1 M5</span>
+    </div>
+    <div><div class="wf-panel"><div class="pt">상태 전이</div>수취/발행 → 배서 → <b>할인</b> → <b>결제</b> / 부도. 본 입력은 <span class="badge b-blue">수취</span>로 등록.</div>
+      <div class="wf-panel" style="margin-top:6px"><div class="pt">할인 자동 분개 (M5)</div>차변 <b>103 보통예금 2,950,850</b> + <b>936 매출채권처분손실 49,150</b> / 대변 <b>110 받을어음 3,000,000</b>. 거래성격(할인·배서·만기회수·부도)별 계정 자동 매칭.</div></div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 어음번호·만기 누락 시 차단<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">어음 보조원장 (독립 조회) — 만기·상태 관리</div>
+  <div class="wf-tool">구분 <span class="wf-in">받을어음 ▾</span> 상태 <span class="wf-in">전체 ▾</span> 만기 <span class="wf-in" style="min-width:130px">~2026-09-30</span> <span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">만기도래 알림</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>어음번호</th><th>거래처</th><th>발행일</th><th>만기일</th><th class="r">금액</th><th>상태</th><th>전표</th></tr>
+      <tr><td>가12345678</td><td>대한상사</td><td>06-12</td><td>09-12</td><td class="r">3,000,000</td><td><span class="badge b-blue">수취(보유)</span></td><td>2026-06-12-001</td></tr>
+      <tr><td>나98765432</td><td>한울유통</td><td>04-20</td><td>06-20</td><td class="r">1,500,000</td><td><span class="badge b-amber">만기도래</span></td><td>2026-04-20-001</td></tr>
+      <tr><td>다55667788</td><td>대성기업</td><td>03-10</td><td>06-10</td><td class="r">2,200,000</td><td><span class="badge b-green">결제완료</span></td><td>2026-06-10-002</td></tr>
+    </table>
+    <div style="color:var(--sub)">결제·배서·할인·부도는 해당 전표(입금/출금/대체) 입력 시 어음 상태 갱신. 부도 시 <span class="badge b-red">부도</span> + 부도어음 대체.<br>※ 차원 미적용: 어음은 <b>어음번호·거래처·만기</b> 단위로 관리하며 사업장/코스트센터 귀속 의미가 약해 보조원장 컬럼/필터에서 제외(원전표에서 차원 확인).</div>
+  </div>
+  <div class="wf-body">
+    <div class="wf-panel"><div class="pt">어음 추적 타임라인 (가12345678) <span class="badge b-amber">v1.1</span></div>
+      <table class="wf-grid">
+        <tr><th>단계</th><th>일자</th><th>전표/증빙</th><th>상태</th><th>비고</th></tr>
+        <tr><td>① 원전표(수취)</td><td>06-12</td><td><span class="badge b-blue">2026-06-12-001</span></td><td><span class="badge b-blue">수취(보유)</span></td><td>받을어음 계상</td></tr>
+        <tr><td>② 증빙</td><td>06-12</td><td>📎 어음 스캔본(TN-08)</td><td><span class="badge b-green">매칭</span></td><td>증빙함 연결</td></tr>
+        <tr><td>③ 상태변경 이력</td><td>07-01</td><td>배서양도 처리</td><td><span class="badge b-gray">배서</span></td><td>한울유통 결제 충당</td></tr>
+        <tr><td>④ 후속전표(결제/부도)</td><td>09-12</td><td><span class="badge b-blue">2026-09-12-001</span></td><td><span class="badge b-green">결제완료</span></td><td>만기 정상결제 / 부도 시 부도어음 대체</td></tr>
+      </table>
+      <div style="color:var(--sub)">원전표 → 증빙 → 상태변경 이력 → 부도/결제 후속전표까지 <b>단일 추적 체인</b>으로 연결(<code>note.audit_trail</code>). 각 단계 더블클릭 → 원전표/증빙 드릴다운.</div>
+    </div>
+  </div>
+</div>
+
+<h4 id="aux03"><span class="sid">AUX-03</span>예금 (은행계정) 보조부</h4>
+<div class="note"><b>설계 근거(v1.1)</b> — 예금 보조부는 단순 계정원장(거래처원장)과 다르다. <b>계좌(은행·계좌번호) 단위</b>로 ① <b>은행 거래내역 대사(reconciliation, 11.11)</b>, ② <b>계좌별 자금 일정·잔액 관리</b>, ③ 계좌번호 마스킹/접근통제(17장)를 수행하기 위한 전용 보조부다. 거래처원장은 채권/채무 거래처 단위, 예금 보조부는 자사 계좌 단위로 역할이 구분된다.</div>
+<table class="meta">
+  <tr><th>용도</th><td>보통예금·당좌예금 등을 <b>계좌 단위</b>로 입출 추적. 은행 거래내역 대사(11.11 골격) 기준 계좌별 잔액</td><th>유형</th><td><code>journal_line_aux.type=BANK</code> → <code>bank_account</code></td></tr>
+  <tr><th>호출</th><td>예금 계정 라인 진입(또는 입/출금전표 계정 선택) 시 <span class="kbd">F4</span></td><th>마스킹</th><td>계좌번호 기본 마스킹(17장), 👁 평문은 Step-up</td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 예금 보조부 입력 (F4) — 라인: 103 보통예금 / 대변 132,000</div>
+  <div class="wf-body">
+    은행/계좌 <span class="wf-in" style="min-width:180px">국민은행 ****-**-**3456 ▾</span> <span class="wf-btn">계좌 등록</span> 👁<br>
+    거래구분 <span class="wf-in">출금 ▾</span> 거래일 <span class="wf-in" style="min-width:92px">2026-06-11</span> 적요 <span class="wf-in" style="min-width:140px">소모품 결제</span><br>
+    금액 <span class="wf-in">132,000</span> 상대거래처 <span class="wf-in" style="min-width:120px">오피스월드</span><br>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">계좌 잔액 / 대사</div>장부잔액 <b>4,868,000</b> · 은행 거래내역 매칭 <span class="badge b-amber">대사 대기</span>(11.11)</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 계좌 미선택 차단<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">예금 보조원장 (독립 조회) — 계좌별 입출 내역</div>
+  <div class="wf-tool">계좌 <span class="wf-in" style="min-width:170px">국민은행 ****3456 ▾</span> 사업장 <span class="wf-in">전체 ▾</span> 기간 <span class="wf-in" style="min-width:130px">2026-06</span> <span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">은행거래 대사(11.11)</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th class="r">전표번호</th><th>적요</th><th class="r">입금</th><th class="r">출금</th><th class="r">잔액</th><th>대사</th></tr>
+      <tr><td>06-01</td><td>—</td><td>전월이월</td><td class="r"></td><td class="r"></td><td class="r">5,000,000</td><td>—</td></tr>
+      <tr><td>06-11</td><td class="r">003</td><td>소모품 결제</td><td class="r"></td><td class="r">132,000</td><td class="r">4,868,000</td><td><span class="badge b-amber">대기</span></td></tr>
+      <tr><td>06-15</td><td class="r">001</td><td>외상대금 회수</td><td class="r">2,000,000</td><td class="r"></td><td class="r">6,868,000</td><td><span class="badge b-green">대사</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<h4 id="aux04"><span class="sid">AUX-04</span>카드 사용내역 보조부</h4>
+<div class="note"><b>목적(v1.1)</b> — 카드사 <b>수신 사용내역을 매칭</b>하여 ① <b>전표 자동생성 후보</b>(미반영 사용분 → 매입/대체전표 생성), ② <b>매입원장(11.4) 연계</b>(신용카드매입 공제구분 보존), ③ 미지급금(카드) 결제 추적을 수행하는 보조부다. 부가세 공제/불공제 구분을 사용내역 단위로 보존한다.</div>
+<table class="meta">
+  <tr><th>용도</th><td>법인/사업용 카드 사용내역을 <b>카드 단위</b>로 관리하고 전표(매입/출금)와 매칭. 미지급금(카드) 결제 추적</td><th>유형</th><td><code>journal_line_aux.type=CARD</code> → <code>card_txn</code></td></tr>
+  <tr><th>호출</th><td>미지급금(카드)·매입 카드 결제 라인 진입 시 <span class="kbd">F4</span></td><th>연계</th><td>매입원장(11.4)·증빙(TN-08)</td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 카드 보조부 입력 (F4) — 라인: 253 미지급금(카드) / 대변 132,000</div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      카드 <span class="wf-in" style="min-width:170px">신한 법인 ****-****-**11 ▾</span> 👁<br>
+      가맹점 <span class="wf-in" style="min-width:140px">오피스월드</span> 업종(MCC) <span class="wf-in" style="min-width:110px">사무용품 ▾</span> 승인번호 <span class="wf-in" style="min-width:110px">30012345</span><br>
+      사용일 <span class="wf-in" style="min-width:92px">2026-06-11</span> 금액 <span class="wf-in">132,000</span> 사용 사원 <span class="wf-in" style="min-width:100px">E-1001 김영업 ▾</span><br>
+      세무구분 <span class="wf-in" style="min-width:130px">신용카드매입(공제) ▾</span> 공제판정 <span class="badge b-green">공제 가능</span> <span style="color:var(--sub)">※ v1.1 M6: 업종(MCC) 기준 자동 판정</span>
+    </div>
+    <div><div class="wf-panel"><div class="pt">매칭 상태</div>카드사 수신내역 <span class="badge b-green">매칭</span> · 매입원장 <span class="badge b-blue">생성예정</span> · 증빙 <span class="badge b-amber">대기</span></div>
+      <div class="wf-panel" style="margin-top:6px"><div class="pt">공제·환급 판정 (M6)</div>업종 <b>사무용품</b> → <span class="badge b-green">매입세액 공제 대상</span> · 공급가액 120,000 / 세액 <b>12,000</b> 환급 반영. (접대성·비영업용 승용차·면세 업종은 <span class="badge b-gray">불공제</span> 자동 분류)</div></div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-amber">권장</span> 승인번호·가맹점<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">카드 보조원장 (독립 조회) — 카드별 사용·결제</div>
+  <div class="wf-tool">카드 <span class="wf-in" style="min-width:160px">신한 법인 ****11 ▾</span> 코스트센터 <span class="wf-in">전체 ▾</span> 사원 <span class="wf-in">전체 ▾</span> 기간 <span class="wf-in" style="min-width:120px">2026-06</span> 상태 <span class="wf-in">전체 ▾</span> <span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>사용일</th><th>가맹점</th><th>업종</th><th>승인번호</th><th class="r">금액</th><th>세무구분</th><th>공제판정</th><th class="r">공제세액</th><th>전표매칭</th></tr>
+      <tr><td>06-11</td><td>오피스월드</td><td>사무용품</td><td>30012345</td><td class="r">132,000</td><td><span class="badge b-blue">공제</span></td><td><span class="badge b-green">공제</span></td><td class="r">12,000</td><td><span class="badge b-green">매칭</span></td></tr>
+      <tr><td>06-13</td><td>○○주유소(비영업승용)</td><td>주유</td><td>30012988</td><td class="r">88,000</td><td><span class="badge b-gray">불공제</span></td><td><span class="badge b-gray">불공제</span></td><td class="r">0</td><td><span class="badge b-amber">미매칭</span></td></tr>
+    </table>
+    <div style="color:var(--sub)">미매칭 내역은 전표 미작성 상태. 일괄 전표 생성(반복/엑셀) 후 매칭.</div>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">매입세액 공제·환급 요약 (M6) <span class="badge b-amber">v1.1</span></div>
+      공제 가능 건 <b>1건</b> · 공제세액 합계 <b>12,000</b> · 불공제 <b>1건</b>(접대·비영업 승용차·면세 업종 자동 분류). <b>업종별 공제규칙은 공통 표준(6장) 버전 배포</b>, 회사별 예외 허용. 산출 공제세액은 부가세 보조부(AUX-06)·신고서 매입세액에 반영. <span style="color:var(--sub)">실무 근거: 파투아 카드 환급 분석. Phase 2 자동분개.</span>
+    </div>
+  </div>
+</div>
+
+<h4 id="aux05"><span class="sid">AUX-05</span>가지급금 · 가수금 보조부</h4>
+<table class="meta">
+  <tr><th>용도</th><td>가지급금·가수금을 <b>거래처/직원/사유 단위</b>로 추적, 후속 정산(대체)으로 소멸 관리</td><th>유형</th><td><code>journal_line_aux.type=ADVANCE</code></td></tr>
+  <tr><th>호출</th><td>가지급금·가수금 계정 라인 진입 시 <span class="kbd">F4</span></td><th>특이</th><td>장기 미정산 잔액 결산 점검 대상(11.9)</td></tr>
+</table>
+<div class="note"><b>위치 정의(v1.1)</b> — 가지급금/가수금은 본질적으로 거래처원장(AUX-01)으로 조회 가능한 계정이다. 본 보조부는 거래처원장의 <b>특수 뷰</b>로, ① <b>대상(직원·임원·거래처)·사유별 정산 추적</b>과 ② <b>세무조정 「가지급금 인정이자」 계산 연동</b>(특수관계자 업무무관 가지급금 가중평균 잔액·기간 산출)을 목적으로 별도 제공한다. 단순 채권/채무 조회만 필요하면 AUX-01을 사용한다.</div>
+<div class="wf-modal">
+  <div class="mh">📋 가지급금 보조부 입력 (F4) — 라인: 134 가지급금 / 차변 500,000</div>
+  <div class="wf-body">
+    구분 <span class="wf-in">가지급금 ▾</span> 대상 <span class="wf-in" style="min-width:140px">직원·홍길동 ▾</span> <span class="wf-btn">대상 검색</span><br>
+    사유 <span class="wf-in" style="min-width:160px">출장 가지급</span> 지급일 <span class="wf-in" style="min-width:92px">2026-06-11</span><br>
+    금액 <span class="wf-in">500,000</span> 정산예정 <span class="wf-in" style="min-width:92px">2026-06-30</span><br>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">대상 미정산 잔액</div>홍길동 기존 미정산 <b>0</b> → <b>500,000</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 대상 미지정 차단<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">가지급금·가수금 보조원장 (독립 조회) — 정산 추적</div>
+  <div class="wf-tool">구분 <span class="wf-in">가지급금 ▾</span> 대상 <span class="wf-in" style="min-width:120px">전체</span> 코스트센터 <span class="wf-in">전체 ▾</span> 상태 <span class="wf-in">미정산 ▾</span> <span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>대상</th><th>코스트센터</th><th>사유</th><th>지급일</th><th class="r">발생</th><th class="r">정산</th><th class="r">잔액</th><th>상태</th></tr>
+      <tr><td>홍길동</td><td>경영지원팀</td><td>출장 가지급</td><td>06-11</td><td class="r">500,000</td><td class="r"></td><td class="r">500,000</td><td><span class="badge b-amber">미정산</span></td></tr>
+      <tr><td>대한상사</td><td>영업팀</td><td>선급 보증금</td><td>05-02</td><td class="r">1,000,000</td><td class="r">1,000,000</td><td class="r">0</td><td><span class="badge b-green">정산완료</span></td></tr>
+    </table>
+    <div style="color:var(--sub)">정산은 대체전표(가지급금↔비용/현금)로 처리, 보조부에서 잔액 차감.</div>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">세무조정 인정이자 연동 미리보기 <span class="badge b-amber">v1.1</span></div>
+      대상 <b>임원·김대표</b> · 특수관계자 <span class="badge b-red">해당</span> · 업무무관 <span class="badge b-amber">검토</span> · 가중평균 잔액 <b>30,000,000</b> · 적용이자율(당좌대출/가중평균) <b>4.6%</b> · 인정이자(추정) <b>1,380,000</b>
+      <div style="color:var(--sub)">※ 세무조정 모듈(11.x)로 잔액·기간을 전달, 인정이자·익금산입 계산에 사용. Phase 1은 데이터 연계 골격.</div>
+    </div>
+  </div>
+</div>
+
+<h4 id="aux06"><span class="sid">AUX-06</span>부가세 보조부 (대급금 / 예수금)</h4>
+<div class="note"><b>화면 재구성(v1.1)</b> — 위하고 스타일로 <b>매입/매출 세금계산서 합계 + 세무구분별 집계표</b>를 1차 화면으로 제공한다(아래 보조원장 그리드가 세무구분별 집계). <b>NTS 상태</b> 컬럼은 국세청 전자세금계산서 전송/수신 대사 상태(<code>PENDING/ACCEPTED/REJECTED</code>)를 의미하며, Phase 1은 <b>상태 표시·집계</b>까지이고 세금계산서 발행·전송 프로그램은 Phase 2다. 즉 NTS PENDING은 발행 프로그램 예고가 아니라 <b>수신 대사 대기</b> 표기다.</div>
+<table class="meta">
+  <tr><th>용도</th><td>부가세대급금(매입)·부가세예수금(매출)을 <b>세무구분·거래처 단위</b>로 집계. 매입원장(11.4)과 동기화하여 신고 기초자료 생성</td><th>유형</th><td><code>journal_line_aux.type=VAT</code> → <code>purchase_ledger_line</code></td></tr>
+  <tr><th>호출</th><td>부가세 자동라인 생성 시 자동 기록(JV-04/05)</td><th>연계</th><td>매입원장 세무상태(NTS) — 11.4</td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 부가세 보조부 (자동) — 매입 라인에서 생성된 부가세대급금 100,000</div>
+  <div class="wf-body">
+    세무구분 <span class="wf-in" style="min-width:150px">전자세금계산서 ▾</span> 거래처 <span class="wf-in" style="min-width:140px">오피스월드(123-45-67890)</span><br>
+    공급가액 <span class="wf-in">1,000,000</span> 세액 <span class="wf-in">100,000</span> 공제구분 <span class="wf-in" style="min-width:110px">공제 ▾</span><br>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">매입원장 라인(11.4)</div>NTS상태 <span class="badge b-amber">PENDING</span> · 증빙상태 <span class="badge b-green">매칭</span> · 공제유형 <span class="badge b-green">매입세액공제</span></div>
+  </div>
+  <div class="wf-foot"><span style="color:var(--sub)">※ 전표 저장 시 자동 동기화 — 수정은 원전표 정정으로만</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">확인</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">부가세 보조원장 (독립 조회) — 매입/매출 세액 집계(Phase 1 기초)</div>
+  <div class="wf-tool">구분 <span class="wf-in">매입 ▾</span> 과세기간 <span class="wf-in" style="min-width:130px">2026 1기 확정</span> 세무구분 <span class="wf-in">전체 ▾</span> 사업장 <span class="wf-in">전체 ▾</span> 프로젝트 <span class="wf-in">전체 ▾</span> 부서 <span class="wf-in">전체 ▾</span> <span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">매입원장(11.4)</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>세무구분</th><th class="r">건수</th><th class="r">공급가액</th><th class="r">세액</th><th class="r">공제세액</th><th>NTS</th></tr>
+      <tr><td>전자세금계산서</td><td class="r">24</td><td class="r">52,000,000</td><td class="r">5,200,000</td><td class="r">5,200,000</td><td><span class="badge b-green">ACCEPTED</span></td></tr>
+      <tr><td>신용카드매입</td><td class="r">11</td><td class="r">3,400,000</td><td class="r">340,000</td><td class="r">340,000</td><td><span class="badge b-gray">N/A</span></td></tr>
+      <tr><td>불공제(접대 등)</td><td class="r">3</td><td class="r">900,000</td><td class="r">90,000</td><td class="r">0</td><td><span class="badge b-gray">N/A</span></td></tr>
+    </table>
+    <div class="wf-panel" style="margin-top:8px"><div class="pt">매출 과세유형별 분류 · 프로젝트/부서 차원 (M11) <span class="badge b-amber">v1.1</span></div>
+      <table class="wf-grid">
+        <tr><th>과세유형</th><th>프로젝트</th><th>부서(코스트센터)</th><th class="r">공급가액</th><th class="r">세액</th><th>인보이스 증빙</th></tr>
+        <tr><td><span class="badge b-blue">과세</span></td><td>P-2026물류</td><td>영업팀</td><td class="r">48,000,000</td><td class="r">4,800,000</td><td>📎 INV-0612 <span class="badge b-green">첨부</span></td></tr>
+        <tr><td><span class="badge b-gray">영세율</span></td><td>P-수출</td><td>영업팀</td><td class="r">12,000,000</td><td class="r">0</td><td>📎 수출신고필증 <span class="badge b-green">첨부</span></td></tr>
+        <tr><td><span class="badge b-gray">면세</span></td><td>—</td><td>경영지원팀</td><td class="r">2,000,000</td><td class="r">0</td><td><span class="badge b-amber">대기</span></td></tr>
+      </table>
+    </div>
+    <div style="color:var(--sub)">※ Phase 1은 <b>집계·기초자료</b>까지. 부가세 신고서 작성·전송은 Phase 2(11.4).<br>※ 차원: 신고 단위는 <b>사업자(사업장) 단위 과세</b>이나, <b>매출 과세유형별 집계는 프로젝트·부서(코스트센터) 차원으로 분류 조회</b>를 제공하고(9장 연계, M11) 각 라인에 <b>인보이스·세금계산서 증빙을 첨부</b>(11.12)한다. 집계 축은 세무구분·거래처·과세유형.</div>
+  </div>
+</div>
+
+<h4 id="aux07"><span class="sid">AUX-07</span>현금출납장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>현금(101) 계정의 입출을 일자순으로 정리한 <b>현금 보조원장</b>. 일계·잔액 산출, 시재 점검</td><th>입력원</th><td>일반전표입력의 <b>현금 간편입력(JV-02/03)</b> 및 현금 라인을 포함한 대체전표에서 자동 생성</td></tr>
+  <tr><th>유형</th><td>현금계정 <code>journal_line</code> 집계</td><th>API</th><td><code>GET /api/tenant/ledgers/cash</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">현금출납장 (독립 조회) — 일자별 입출·잔액</div>
+  <div class="wf-tool">사업장 <span class="wf-in">본점 ▾</span> 기간 <span class="wf-in" style="min-width:130px">2026-06-01~06-30</span> <span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">일계표</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th class="r">전표번호</th><th>사업장</th><th>적요</th><th>상대계정</th><th class="r">수입</th><th class="r">지출</th><th class="r">잔액</th></tr>
+      <tr><td>06-01</td><td>—</td><td>본점</td><td>전월이월</td><td>—</td><td class="r"></td><td class="r"></td><td class="r">350,000</td></tr>
+      <tr><td>06-11</td><td class="r">001</td><td>본점</td><td>외상매출금 회수</td><td>외상매출금</td><td class="r">2,200,000</td><td class="r"></td><td class="r">2,550,000</td></tr>
+      <tr><td>06-11</td><td class="r">002</td><td>본점</td><td>소모품 구입</td><td>소모품비</td><td class="r"></td><td class="r">120,000</td><td class="r">2,430,000</td></tr>
+      <tr><td colspan="5" class="r"><b>월 합계</b></td><td class="r"><b>2,200,000</b></td><td class="r"><b>120,000</b></td><td class="r"><b>2,430,000</b></td></tr>
+    </table>
+    <div style="color:var(--sub)">현금 입력은 <b>현금 간편입력(JV-02/03)</b> 또는 현금 라인을 포함한 대체전표에서 발생(직접 보조부 입력 없음). 행 더블클릭 → 원전표. 사업장별 시재 분리 관리(다사업장). 코스트센터는 현금 시재 축과 무관해 미적용.</div>
+  </div>
+</div>
+
+<h4 id="aux08"><span class="sid">AUX-08</span>재고자산 수불부 (기초) <span class="badge b-gray">Phase 2 이관</span></h4>
+<div class="note"><b>일정 조정(v1.1)</b> — 검토 의견에 따라 <b>재고자산 수불부는 2차 개발(Phase 2)로 이관</b>한다. 아래 화면은 목표 설계(참고)이며, Phase 1 범위에서는 구현하지 않는다. 재고 관련 매입/매출 전표는 Phase 1에서 수량 관리항목 없이 금액 전표로 처리한다.</div>
+<table class="meta">
+  <tr><th>용도</th><td>품목 <b>수량 관리항목</b> 계정의 입·출고를 품목별 추적(Phase 1은 <b>수량·금액 수불 기초</b>). 단가평가·원가계산은 Phase 3(11.21)</td><th>유형</th><td><code>journal_line_aux.type=QTY</code> → <code>stock_move</code></td></tr>
+  <tr><th>호출</th><td>상품·제품·원재료 등 수량 관리 계정 라인 진입 시 <span class="kbd">F4</span></td><th>범위</th><td>Phase 1: 수불 기록·잔량 / Phase 3: 평가·원가</td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 재고 수불 입력 (F4) — 라인: 146 상품 / 차변 1,000,000</div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      품목 <span class="wf-in" style="min-width:150px">SKU-1001 사무용지 ▾</span> <span class="wf-btn">품목 검색</span><br>
+      입출구분 <span class="wf-in">입고 ▾</span> 창고 <span class="wf-in" style="min-width:100px">본사창고 ▾</span><br>
+      수량 <span class="wf-in">100</span> 단가 <span class="wf-in">10,000</span> 금액 <span class="wf-in">1,000,000</span><br>
+      거래처 <span class="wf-in" style="min-width:120px">오피스월드</span>
+    </div>
+    <div><div class="wf-panel"><div class="pt">품목 현재 수량</div>SKU-1001 기존 <b>40</b> → 입고 후 <b>140</b> · 평가방법 <span class="badge b-gray">Phase 3</span></div></div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 품목·수량 누락 차단<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">재고 수불부 (독립 조회) — 품목별 입출고·잔량</div>
+  <div class="wf-tool">품목 <span class="wf-in" style="min-width:150px">SKU-1001 사무용지</span> 창고 <span class="wf-in">본사창고 ▾</span> 기간 <span class="wf-in" style="min-width:110px">2026-06</span> <span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th class="r">전표번호</th><th>구분</th><th class="r">입고수량</th><th class="r">출고수량</th><th class="r">잔량</th><th class="r">금액</th></tr>
+      <tr><td>06-01</td><td>—</td><td>기초</td><td class="r"></td><td class="r"></td><td class="r">40</td><td class="r">400,000</td></tr>
+      <tr><td>06-09</td><td class="r">001</td><td>입고</td><td class="r">100</td><td class="r"></td><td class="r">140</td><td class="r">1,000,000</td></tr>
+      <tr><td>06-14</td><td class="r">001</td><td>출고</td><td class="r"></td><td class="r">30</td><td class="r">110</td><td class="r">—</td></tr>
+    </table>
+    <div style="color:var(--sub)">※ 출고 단가·매출원가 자동계산은 Phase 3 원가(11.21). Phase 1은 수량·취득금액 수불만.<br>※ 차원: 재고의 1차 공간 축은 <b>창고(warehouse)</b>로 사업장/코스트센터와 별개다. 창고가 사업장에 매핑되면 사업장 집계는 창고를 통해 유도(원가 차원 연계는 Phase 3).</div>
+  </div>
+</div>
+
+<h4 id="aux09"><span class="sid">AUX-09</span>고정자산대장 (기초)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>유형/무형자산 취득을 <b>자산 단위</b>로 등록(Phase 1은 <b>취득·대장 기초</b>). 감가상각 자동계산·월할 상각은 Phase 2~3(11.5)</td><th>참조</th><td><code>fixed_asset</code></td></tr>
+  <tr><th>호출</th><td>유형자산 취득(매입/대체) 라인 진입 시 <span class="kbd">F4</span></td><th>범위</th><td>Phase 1: 취득 등록·내용연수 입력 / 상각: Phase 2~3</td></tr>
+</table>
+<div class="wf-modal">
+  <div class="mh">📋 고정자산 등록 (F4) — 라인: 212 비품 / 차변 3,000,000</div>
+  <div class="wf-body"><div class="wf-split">
+    <div>
+      자산명 <span class="wf-in" style="min-width:150px">노트북 10대</span> 자산코드 <span class="wf-in" style="min-width:100px">(자동)</span><br>
+      자산분류 <span class="wf-in">비품 ▾</span> 취득일 <span class="wf-in" style="min-width:92px">2026-06-05</span><br>
+      취득가액 <span class="wf-in">3,000,000</span> 내용연수 <span class="wf-in" style="min-width:60px">5년</span><br>
+      상각방법 <span class="wf-in">정액법 ▾</span> 거래처 <span class="wf-in" style="min-width:110px">테크몰</span><br>
+      설치 사업장 <span class="wf-in" style="min-width:90px">본점 ▾</span> 사용부서 <span class="wf-in" style="min-width:110px">경영지원팀 ▾</span> <span style="color:var(--sub)">※ 상각비 배부 기준(자산 속성)</span>
+    </div>
+    <div><div class="wf-panel"><div class="pt">상각 일정</div><span class="badge b-gray">Phase 2~3</span> 월할 상각·상각비 자동전표 예정. Phase 1은 대장 등록만. 상각비는 사용부서(코스트센터)·설치 사업장으로 배부(Phase 2~3).</div></div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-red">필수</span> 자산명·취득가액·내용연수<span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">등록</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">고정자산대장 (독립 조회) — 자산 목록</div>
+  <div class="wf-tool">분류 <span class="wf-in">전체 ▾</span> 설치 사업장 <span class="wf-in">전체 ▾</span> 사용부서 <span class="wf-in">전체 ▾</span> 취득연도 <span class="wf-in" style="min-width:80px">2026</span> <span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>자산코드</th><th>자산명</th><th>분류</th><th>설치 사업장</th><th>사용부서</th><th>취득일</th><th class="r">취득가액</th><th class="r">내용연수</th><th>상각</th></tr>
+      <tr><td>FA-2026-0007</td><td>노트북 10대</td><td>비품</td><td>본점</td><td>경영지원팀</td><td>06-05</td><td class="r">3,000,000</td><td class="r">5년</td><td><span class="badge b-gray">미상각(P2)</span></td></tr>
+      <tr><td>FA-2026-0003</td><td>업무용 차량</td><td>차량운반구</td><td>본점</td><td>영업팀</td><td>02-10</td><td class="r">28,000,000</td><td class="r">5년</td><td><span class="badge b-gray">미상각(P2)</span></td></tr>
+    </table>
+    <div style="color:var(--sub)">※ Phase 1은 취득·대장 관리. 감가상각비 자동전표·월할 상각은 Phase 2~3(11.5).</div>
+  </div>
+</div>
+</section>
+
+<section id="s6">
+<h2>6. 연계 화면 (요약)</h2>
+<p>전표·보조부 입력은 아래 화면과 함께 동작한다. 상세 와이어프레임은 상위 <code>bk_화면설계서_v4.0.html</code>을 참조하고, 여기서는 Phase 1 연동 포인트만 요약한다.</p>
+<table>
+  <tr><th>화면</th><th>역할</th><th>전표·보조부 연동</th></tr>
+  <tr><td><b>TN-06 전표 결재함</b></td><td>결재요청된 전표 목록·승인/반려</td><td>채번 완료 전표 표시. <b>SOD</b>로 작성자=승인자 차단. 승인 시 <code>POSTED</code> 전이 → 보조부·장부 집계 반영(11.1·4.5).</td></tr>
+  <tr><td><b>TN-07 장부·원장 조회</b></td><td>총계정원장·시산표·보조원장 통합 조회</td><td>AUX-01~09 보조원장의 상위 진입점. 계정·거래처·기간 조건 검색, 원전표(JV-07) 드릴다운(11.2).</td></tr>
+  <tr><td><b>TN-08 증빙함</b></td><td>증빙 업로드·매칭·바이러스 스캔</td><td>전표 라인 증빙 연결(11.12). 매입전표 전자세금계산서 불러오기, 카드 보조부 증빙 매칭.</td></tr>
+  <tr><td><b>TN-09 마감 관리</b></td><td>기간 마감·해제·잠금</td><td>마감기간 전표/보조부 신규 기표 차단(<code>CLOSING_LOCKED</code>). 마감 게이트 검증(16.1·11.9).</td></tr>
+</table>
+<p style="color:var(--sub)">※ TN-06/07은 본 문서 인벤토리(3장)에 포함되어 연동 요약을 제공하며, TN-08/09는 상위 화면설계서에서 상세 정의한다.</p>
+</section>
+
+<section id="s7">
+<h2>7. 부록 — 상태·오류·권한 (Phase 1)</h2>
+
+<h3>7.1 상태 배지 규칙</h3>
+<table>
+  <tr><th>배지</th><th>의미</th><th>적용</th></tr>
+  <tr><td><span class="badge b-gray">임시저장 / 이월 / N/A</span></td><td>채번 전·집계 외</td><td>전표 임시저장, 보조원장 전기이월</td></tr>
+  <tr><td><span class="badge b-amber">결재대기 / PENDING / 대기 / 만기도래</span></td><td>진행 중·주의</td><td>결재함 대기, NTS 미전송, 대사 대기</td></tr>
+  <tr><td><span class="badge b-green">POSTED / 정상 / 일치 / 매칭 / 정산완료</span></td><td>정상 완료</td><td>기표 전표, 차대 일치, 증빙·대사 매칭</td></tr>
+  <tr><td><span class="badge b-red">반려 / 차단 / 부도</span></td><td>오류·차단·부정 상태</td><td>검증 차단, 결재 반려, 어음 부도</td></tr>
+  <tr><td><span class="badge b-blue">OPERATOR 기장 / 매입10% / 수취</span></td><td>행위자·분류 표식</td><td>행위자 배지, 부가세구분, 어음 상태</td></tr>
+</table>
+
+<h3>7.2 오류 코드 (Phase 1)</h3>
+<table>
+  <tr><th>코드</th><th>발생 조건</th><th>화면 처리</th></tr>
+  <tr><td><code>VALIDATION_FAILED</code></td><td>차대 불일치·필수항목 누락</td><td>풋터 <span class="badge b-red">Red 차단</span>, 결재요청 비활성</td></tr>
+  <tr><td><code>CLOSING_LOCKED</code></td><td>전기일이 마감(TEMP_CLOSED/CLOSED/LOCKED) 기간</td><td>저장 차단, 마감해제(TN-09) 안내(16.1)</td></tr>
+  <tr><td><code>SOD_VIOLATION</code></td><td>작성자=승인자 결재 시도</td><td>결재함에서 승인 버튼 차단(4.5)</td></tr>
+  <tr><td><code>DIMENSION_REQUIRED</code></td><td>필수 차원 누락</td><td>해당 라인 셀 <span class="badge b-red">차단</span> 표시</td></tr>
+  <tr><td><code>AUX_REQUIRED</code></td><td>관리항목(거래처/어음/예금 등) 필수 미입력</td><td>보조부 팝업 강제 호출, 라인 저장 차단(5장)</td></tr>
+  <tr><td><code>NUMBERING_CONFLICT</code></td><td>멱등 채번 충돌(동시성)</td><td>재시도 안내, 멱등키 재사용(11.1)</td></tr>
+  <tr><td><code>POSTED_IMMUTABLE</code></td><td>기표 전표 직접 수정·삭제 시도</td><td>역분개(JV-06) 유도(12.3)</td></tr>
+</table>
+
+<h3>7.3 Phase 1 권한 매트릭스 (전표·보조부)</h3>
+<table>
+  <tr><th>권한 / 역할</th><th>BK_PREPARER<br>(작성)</th><th>BK_REVIEWER<br>(검토·승인)</th><th>BK_MANAGER<br>(관리)</th><th>비고</th></tr>
+  <tr><td><code>tenant:journal:write</code> (작성·임시저장)</td><td>●</td><td>●</td><td>●</td><td>전표·보조부 입력</td></tr>
+  <tr><td>결재요청(채번)</td><td>●</td><td>●</td><td>●</td><td>작성자</td></tr>
+  <tr><td><code>tenant:journal:approve</code> (승인·기표)</td><td>—</td><td>●</td><td>●</td><td><b>SOD</b>: 작성자≠승인자</td></tr>
+  <tr><td>역분개</td><td>—</td><td>●</td><td>●</td><td>기표 정정</td></tr>
+  <tr><td><code>tenant:closing:manage</code> (마감/해제)</td><td>—</td><td>—</td><td>●</td><td>TN-09</td></tr>
+  <tr><td>보조원장 조회(TN-07)</td><td>●</td><td>●</td><td>●</td><td>마스킹 평문은 Step-up(17장)</td></tr>
+</table>
+<p style="color:var(--sub)">※ 역할명은 기장 모드(TENANT_LED 기본)의 대표 역할이며, 실제 권한은 Role-행위권한 매핑(4.3)으로 세분화된다. 운영자(OPERATOR) 기장분은 행위자 배지·<code>assignmentId</code>로 구분 기록(4.5).</p>
+</section>
+
+</main>
+</body>
+</html>

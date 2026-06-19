@@ -1,0 +1,13 @@
+# Local tool state
+.claude/
+.skill-staging/
+backup/
+
+# Large raw source artifacts
+요청사항/SmartA 10_회계관리매뉴얼.pdf
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.log

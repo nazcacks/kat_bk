@@ -1,0 +1,4 @@
+interface:
+  display_name: "BK 설계 관리"
+  short_description: "BK 설계 변경 전파와 설계-구현 추적 관리"
+  default_prompt: "$bk-design-management를 사용해 BK 설계 변경을 연관 산출물까지 전파해줘."
