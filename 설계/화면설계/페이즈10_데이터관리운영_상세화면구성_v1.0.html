@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Phase 10 상세화면구성 v1.0 - 데이터관리·운영 전환</title>
+  <style>
+:root{--ink:#172033;--sub:#667085;--line:#d6dce8;--bg:#f4f6fa;--nav:#182235;--blue:#2454c6;--blue2:#e8eefc;--green:#08785f;--green2:#def5ee;--amber:#9a5b00;--amber2:#fff4d8;--red:#b42318;--red2:#fee4e2;--panel:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',Arial,sans-serif;font-size:13px;line-height:1.55}
+nav{position:fixed;inset:0 auto 0 0;width:292px;background:var(--nav);color:#d8e1f3;overflow:auto;padding:18px 14px}nav h1{margin:0 0 6px;color:#fff;font-size:16px;line-height:1.35}.meta{color:#9aa8bd;font-size:11px;margin-bottom:14px}.nav-title{margin:16px 0 7px;color:#8fe0cf;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.04em}nav a{display:block;text-decoration:none;color:#d8e1f3;border-radius:6px;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.on{background:#2a3650;color:#fff}.phase-link{font-size:11.5px;color:#b3c7ff}
+main{margin-left:292px;padding:28px 36px 80px}.doc-head,.panel,.screen{background:var(--panel);border:1px solid var(--line);border-radius:8px}.doc-head{padding:24px 28px;margin-bottom:16px}.doc-head h2{font-size:25px;margin:5px 0 7px}.doc-head p{margin:4px 0;color:var(--sub)}.phase-badge,.pill,.tag{display:inline-block;border-radius:999px;font-weight:800;font-size:11px}.phase-badge{background:var(--blue2);color:var(--blue);padding:3px 10px}.pill{background:#eef2f8;color:#344054;padding:2px 8px}.tag{background:#eef2f8;color:#334155;margin:2px 4px 2px 0;padding:2px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;margin:16px 0}.stats div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.stats strong{display:block;font-size:24px}.stats span{color:var(--sub);font-size:11px}.panel{padding:20px 22px;margin:16px 0}.panel h2{font-size:18px;margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{background:#eef2f8;color:#344054;font-size:12px}td{font-size:12px}code{font-family:Consolas,'D2Coding',monospace;background:#eef2f8;border-radius:4px;padding:1px 5px}
+.screen{margin:22px 0;overflow:hidden}.screen-head{display:flex;align-items:center;gap:12px;background:#fbfcff;border-bottom:1px solid var(--line);padding:13px 15px}.sid{font-family:Consolas,'D2Coding',monospace;background:#172033;color:#fff;border-radius:6px;padding:5px 9px;font-weight:900}.screen-head h3{font-size:16px;margin:0}.screen-head p{margin:2px 0 0;color:var(--sub);font-size:12px}.screen-body{padding:15px}.brief-grid,.detail-grid,.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.brief,.detail-card{border:1px solid var(--line);border-radius:8px;background:#fcfdff;padding:11px}.brief p{margin:5px 0 0;color:#344054}.detail-card h4{font-size:13px;color:var(--blue);margin:0 0 8px}
+.mock{border:2px solid #8995aa;border-radius:9px;background:#f9fbff;margin:14px 0;overflow:hidden}.mock-top{display:flex;gap:10px;align-items:center;background:#253049;color:white;padding:7px 10px}.mock-top strong{font-family:Consolas,'D2Coding',monospace}.mock-top em{margin-left:auto;color:#c2cee2;font-style:normal;font-size:11px}
+.tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}.tabs span{border:1px solid var(--line);background:#fff;border-radius:6px 6px 0 0;padding:4px 10px;font-size:11px}.tabs .active{background:var(--blue2);color:var(--blue);font-weight:800}
+.form-grid{display:grid;grid-template-columns:minmax(95px,150px) 1fr;gap:5px}.form-grid label{background:#edf2f8;border:1px solid var(--line);padding:5px;color:#344054}.form-grid div{background:#fff;border:1px solid var(--line);padding:5px;min-height:27px}.form-panel{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.form-panel>b{display:block;color:var(--blue);margin-bottom:7px}
+.mock-grid th,.mock-grid td{font-size:11px;padding:6px}.mock-grid tbody tr:nth-child(even){background:#fbfcff}.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}.kpi-row div{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.kpi-row span{display:block;color:var(--sub);font-size:11px}.kpi-row strong{font-size:17px}
+button,.mock button{border:1px solid #8d99ae;background:#fff;border-radius:5px;padding:5px 9px;margin:3px;font-size:11px}.mock button:first-of-type{background:var(--blue);border-color:var(--blue);color:#fff}
+.tenant-search{display:grid;grid-template-columns:170px 1fr 80px;gap:8px;padding:10px;background:#eef2f8;border-bottom:1px solid var(--line)}.tenant-search span,.tenant-search b{background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px}.tenant-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}.tenant-cards div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.tenant-cards span{display:inline-block;background:var(--green2);color:var(--green);border-radius:999px;padding:2px 8px;margin:5px 0}.context-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 10px 10px}.context-strip span{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px;color:var(--sub)}.context-strip b{display:block;color:var(--ink)}
+.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout{display:grid;grid-template-columns:210px 1fr 220px;gap:10px;padding:10px}.org-tree,.org-layout aside,.security-layout aside,.matrix-layout aside,.catalog-layout aside,.notification-layout aside,.menu-layout aside,.registration-layout aside,.employee-layout aside,.partner-layout aside,.coa-layout aside,.contract-layout aside,.vehicle-layout aside,.label-layout aside,.conversion-layout aside,.carry-layout aside,.statement-layout aside,.monthly-layout aside,.opening-ledger-layout aside,.voucher-layout aside,.ledger-layout aside,.closing-layout aside,.tax-layout aside,.asset-layout aside,.dataops-layout aside,.search-layout aside,.bulk-layout aside,.bill-layout aside{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.org-tree ul{list-style:none;padding-left:0;line-height:1.9}.org-detail,.label-preview,.timeline{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}
+.settings-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.settings-layout section{grid-column:1/-1}.setting-card{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.label-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.label-preview div{border:1px dashed #98a2b3;background:#fff;padding:8px;min-height:58px}.label-preview span,.label-preview em{display:block;color:var(--sub);font-style:normal}
+.swimlane,.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px}.swimlane div,.pipeline div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:center}.swimlane span,.pipeline span{display:inline-block;margin-top:6px;border-radius:999px;background:var(--blue2);color:var(--blue);padding:2px 8px;font-size:11px}.infra-layout,.automation-layout,.finance-layout{padding-bottom:10px}.job-timeline{display:flex;gap:8px;padding:0 10px 10px}.job-timeline span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px}
+.toolbox-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.toolbox-layout>div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px}.toolbox-layout table{grid-column:1/-1}.tax-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tax-form div{display:grid;grid-template-columns:32px 1fr 120px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px}.tax-form span{background:#253049;color:#fff;border-radius:5px;text-align:center;padding:2px}.tax-form em{font-style:normal;text-align:right;color:var(--blue)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.timeline div{border-left:4px solid var(--blue);background:#f8fafc;border-radius:4px;padding:9px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px}.calendar div{min-height:62px;border:1px solid var(--line);border-radius:6px;padding:6px}.calendar b,.calendar span,.calendar em{display:block}.calendar em{color:var(--blue);font-style:normal}.job-console{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px;margin-bottom:8px}.progress{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green)}
+@media(max-width:1120px){nav{position:static;width:auto}main{margin-left:0;padding:18px}.stats,.brief-grid,.detail-grid,.two-col,.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout,.settings-layout,.tenant-cards,.context-strip,.kpi-row,.swimlane,.pipeline,.calendar{grid-template-columns:1fr}}
+@media print{nav{display:none}main{margin-left:0}.screen{break-inside:avoid}}
+</style>
+</head>
+<body>
+  <nav>
+    <h1>BK 페이즈별 상세화면구성 v1.0</h1>
+    <div class="meta">기준: 설계/bk_설계서_v2.1.md<br>재생성일: 2026-06-20</div>
+    <div class="nav-title">10개 페이즈</div>
+    <a class="phase-link " href="페이즈01_기초정보_상세화면구성_v1.0.html">Phase 01 · 기초정보·조직·표준 설정</a>
+<a class="phase-link " href="페이즈02_전기이월_상세화면구성_v1.0.html">Phase 02 · 전기이월·초기 데이터 이관</a>
+<a class="phase-link " href="페이즈03_전표자동전표_상세화면구성_v1.0.html">Phase 03 · 전표입력·자동전표 처리</a>
+<a class="phase-link " href="페이즈04_장부보조부_상세화면구성_v1.0.html">Phase 04 · 주요장부·보조장부</a>
+<a class="phase-link " href="페이즈05_결산재무제표_상세화면구성_v1.0.html">Phase 05 · 결산·재무제표·결산장부</a>
+<a class="phase-link " href="페이즈06_부가세주요신고_상세화면구성_v1.0.html">Phase 06 · 부가세 주요신고·기초 신고서류</a>
+<a class="phase-link " href="페이즈07_부가세첨부업종_상세화면구성_v1.0.html">Phase 07 · 부가세 첨부·업종별 신고서류</a>
+<a class="phase-link " href="페이즈08_영세율고정자산_상세화면구성_v1.0.html">Phase 08 · 부가세 영세율·기타서류·고정자산</a>
+<a class="phase-link " href="페이즈09_자금예산어음_상세화면구성_v1.0.html">Phase 09 · 자금·예산·예적금·어음</a>
+<a class="phase-link on" href="페이즈10_데이터관리운영_상세화면구성_v1.0.html">Phase 10 · 데이터관리·운영 전환</a>
+    <div class="nav-title">현재 페이즈 화면</div>
+    <a href="#sa-dat-01"><code>SA-DAT-01</code> 삭제전표복구</a>
+<a href="#sa-dat-02"><code>SA-DAT-02</code> 데이터백업 / 데이터복구(기수별)</a>
+<a href="#sa-dat-03"><code>SA-DAT-03</code> SmartA로 보낼 데이터 만들기(기수별)</a>
+<a href="#sa-dat-04"><code>SA-DAT-04</code> SmartA로 보낼 데이터 만들기(월별/분기별)</a>
+<a href="#sa-dat-05"><code>SA-DAT-05</code> SmartA 데이터올리기(전체기수)</a>
+<a href="#sa-dat-06"><code>SA-DAT-06</code> SmartA 데이터올리기(월별/분기별)</a>
+<a href="#sa-dat-07"><code>SA-DAT-07</code> 기수변경</a>
+  </nav>
+  <main>
+    <header class="doc-head">
+      <span class="phase-badge">Phase 10</span>
+      <h2>데이터관리·운영 전환</h2>
+      <p>삭제전표 복구, 백업/복구, SmartA 내보내기/올리기, 월별·분기별 데이터 이관과 기수변경을 운영 콘솔로 구성한다.</p>
+      <p>각 화면의 와이어프레임은 설계서의 입력 필드·기능·산출물·연계 항목을 실제 화면 영역으로 배치했다. 동일 업무군 안에서도 신고서, 합계표, 명세서, 원장, 대사, 배치, 입력 화면은 서로 다른 구조로 설계했다.</p>
+    </header>
+    <section class="stats">
+      <div><strong>7</strong><span>이 페이즈 화면</span></div>
+      <div><strong>7</strong><span>SA 기능 화면</span></div>
+      <div><strong>0</strong><span>BF/JV/AUX 코어</span></div>
+      <div><strong>1</strong><span>화면 구조 유형</span></div>
+    </section>
+    <section class="panel">
+      <h2>페이즈 화면 인벤토리</h2>
+      <table>
+        <thead><tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>핵심 필드</th></tr></thead>
+        <tbody><tr><td><code>SA-DAT-01</code></td><td>삭제전표복구</td><td>데이터관리</td><td>25.20.1</td><td><span class="pill">데이터 작업 콘솔</span></td><td>매입매출/일반전표 탭 선택, · 기간(복구 대상 기간 조회), · 전표복구(체크박스 선택 후 '전표복구'→검토→'확인'), · 복구 전표 확인(가이드라인 영역에 &quot;복구전표&quot; 표기). BK 조회조건: 회계기간(기수)·사업장·전표 유형.</td></tr>
+<tr><td><code>SA-DAT-02</code></td><td>데이터백업 / 데이터복구(기수별)</td><td>데이터관리</td><td>25.20.2</td><td><span class="pill">데이터 작업 콘솔</span></td><td>- 백업: 회사 리스트 선택(검색: 회사명/사업자번호) → [선택한 회사 정보] 확인 → 모듈 구분 선택(현재 회계관리 모듈만 · 급여·법인/개인 추후) → [파일정보] 파일명 확인(9999_#_회사명_#_회계_#_기수_인사년도!.wdb) → [데이터백업… · 작업대상 · 기수</td></tr>
+<tr><td><code>SA-DAT-03</code></td><td>SmartA로 보낼 데이터 만들기(기수별)</td><td>데이터관리</td><td>25.20.3</td><td><span class="pill">데이터 작업 콘솔</span></td><td>회사·모듈 구분 선택(회계관리/급여관리/법인개인 복수 선택 · 검색·세무대리 태그정보 보기) → · [파일정보] 파일명 확인(9999_#_회사명_#_모듈_#기수_인사년도!.whg) → [데이터 내리기] → [데이터 내리기] … · 0101~9999)·암호설정(1~8자리)·자동전표 설정(전자세금계산서·신용카드 등 자동전표처리 데이터 포함여부) → [내리기…</td></tr>
+<tr><td><code>SA-DAT-04</code></td><td>SmartA로 보낼 데이터 만들기(월별/분기별)</td><td>데이터관리</td><td>25.20.4</td><td><span class="pill">데이터 작업 콘솔</span></td><td>[회사명] F2 코드도움 회사 선택 → · 월별/분기별 선택 후 회계기수 선택 → · 보낼데이터 구분 선택(기초[일반전표·매입매출전표 시 기초코드 포함 권장] · 전표입력[일반전표·매입매출전표 체크 후 분기 선택</td></tr>
+<tr><td><code>SA-DAT-05</code></td><td>SmartA 데이터올리기(전체기수)</td><td>데이터관리</td><td>25.20.5</td><td><span class="pill">데이터 작업 콘솔</span></td><td>대상 회사 로그인·회사명·사업자번호·대표자명 확인 → · [파일정보]&gt;내PC로 Smart A [데이터백업] '선택된 모듈의 전체데이터를 백업' 체크로 만든 전체모듈·전체기수·전체년도… · 백업파일 비밀번호 입력·유의사항 동의 체크 → [데이터 재구성하기] → 진행상태 확인 → · WEHAGO 구성 기수·인사년도 선택 → [데이터 구성 시작하기] → 진행현황 확인 → 부서/사원 병합([동일 부서/사원 자…</td></tr>
+<tr><td><code>SA-DAT-06</code></td><td>SmartA 데이터올리기(월별/분기별)</td><td>데이터관리</td><td>25.20.6</td><td><span class="pill">데이터 작업 콘솔</span></td><td>회사정보 확인 → · [파일정보]&gt;내PC로 .spwdata 파일 선택 → 압축해제 → · [첨부 데이터 확인] 상세내역 확인 → 데이터 올리기 → 거래처/관리항목 코드 구성기준(동일 데이터 판단기준) 선택 → [데… · 미연결분 수동연결·신규등록) → 데이터 올리기 진행 → 완료.</td></tr>
+<tr><td><code>SA-DAT-07</code></td><td>기수변경</td><td>데이터관리</td><td>25.20.7</td><td><span class="pill">데이터 작업 콘솔</span></td><td>회사정보(회사명·구분·개업년월일·사업자번호·대표자·회계기간 확인) → · 변경기수(&quot;변경 전&quot;=현재 기수 자동표기·수정불가, &quot;변경 후&quot;=새 기수 입력) → · 데이터 확인(데이터 존재 기수 정보) → · 기수변경이력(회계기간·변경전·변경후·작업시간·작업자(사용자ID)).</td></tr></tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>화면별 상세 구성</h2>
+      <article class="screen" id="sa-dat-01" data-screen-id="SA-DAT-01" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-01</span>
+    <div>
+      <h3>삭제전표복구</h3>
+      <p>데이터관리 · 25.20.1 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[매입매출전표입력]·[일반전표입력]에서 삭제한 전표를 복구하여 해당 입력 메뉴로 재반영하는 BK 전표 소프트삭제(soft-delete)·휴지통 복구 도구. RLS 테넌트 범위 내 삭제 전표 보관.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-01-data-ops">
+    <div class="mock-top"><strong>SA-DAT-01</strong><span>삭제전표복구</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>백업/복구 조건</b><div class="form-grid"><label>매입매출/일반전표 탭 선택,</label><div>3,750,000</div><label>기간(복구 대상 기간 조회),</label><div>2026-01-01 ~ 2026-12-31</div><label>전표복구(체크박스 선택 후 '전표복구'→검토→…</label><div>입력값</div><label>복구 전표 확인(가이드라인 영역에 &quot;복구전표&quot;…</label><div>2026-01-01 ~ 2026-12-31</div><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>계정과목</label><div>401 상품매출</div></div></div></aside>
+    <section><div class="job-console"><b>삭제전표복구 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT01-001</td><td>2026-01-01 ~ 2026-12-31</td><td>삭제전표복구</td><td>삭제전표복구</td><td>검증완료</td><td>삭제전표복구</td></tr><tr><td>AT01-002</td><td>2026-01-01 ~ 2026-12-31</td><td>매입매출</td><td>매입매출</td><td>대기</td><td>매입매출</td></tr><tr><td>AT01-003</td><td>2026-01-01 ~ 2026-12-31</td><td>일반전표</td><td>일반전표</td><td>오류확인</td><td>일반전표</td></tr><tr><td>AT01-004</td><td>2026-01-01 ~ 2026-12-31</td><td>선택</td><td>선택</td><td>승인</td><td>선택</td></tr><tr><td>AT01-005</td><td>2026-01-01 ~ 2026-12-31</td><td>복구</td><td>복구</td><td>검증완료</td><td>복구</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>매입매출/일반전표 탭 선택, · 기간(복구 대상 기간 조회), · 전표복구(체크박스 선택 후 '전표복구'→검토→'확인'), · 복구 전표 확인(가이드라인 영역에 &quot;복구전표&quot; 표기). BK 조회조건: 회계기간(기수)·사업장·전표 유형. · 전표일자 · 전표번호 · 구분</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>타 메뉴(신용카드·현금영수증·통장·회계전표처리·현금예금잔액검토·결산자료입력·정기청구입력 등)에서 전표전송된 전표 · 매입매출 복수거래 설정 전표 · 자금관리 설정 전표는 복구 미지원(조회불가). 복구 시 새 전표번호(복합키 (tenant_id · 전표일자 · 전표번호)) 재채번. 거래처코드가 [거래처등록]에 없는 전표는 복구 불가. 자동연동·자금관리 전표는 무결성 보호를 위해 복구… · 조회 · 저장 · 검증</td></tr><tr><th>상태/검증</th><td>코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">타 메뉴(신용카드·현금영수증·통장·회계전표처리·현금예금잔액검…</span><span class="tag">매입매출 복수거래 설정 전표</span><span class="tag">자금관리 설정 전표는 복구 미지원(조회불가). 복구 시 새 …</span><span class="tag">전표일자</span><span class="tag">전표번호)) 재채번. 거래처코드가 [거래처등록]에 없는 전표…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">복구된 전표(일반/매입매출).</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[일반전표]·[매입매출전표] 재반영, [거래처등록] 검증.</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 복구 제외 규칙(자동연동·복수거래·자금관리 전표)을 무결성 보호 규칙으로 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-02" data-screen-id="SA-DAT-02" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-02</span>
+    <div>
+      <h3>데이터백업 / 데이터복구(기수별)</h3>
+      <p>데이터관리 · 25.20.2 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>기수(회계기간) 단위로 회계관리 데이터를 백업·복구하는 BK 멀티테넌시 테넌트별 백업/복구 도구. 기수·사업자번호를 백업 무결성 키로 사용. (Smart A 기준 2021년 데이터부터 기수 백업) 기수별데이터백업·기수별데이터복구 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-02-data-ops">
+    <div class="mock-top"><strong>SA-DAT-02</strong><span>데이터백업 / 데이터복구(기수별)</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>백업/복구 조건</b><div class="form-grid"><label>- 백업: 회사 리스트 선택(검색: 회사명/사…</label><div>2026-01-01 ~ 2026-12-31</div><label>급여·법인/개인 추후) → [파일정보] 파일명…</label><div>2026-01-01 ~ 2026-12-31</div><label>작업대상</label><div>입력값</div><label>기수</label><div>제 8기</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>테넌트</label><div>입력값</div><label>실행단계</label><div>입력값</div><label>상태</label><div>검증완료</div></div></div></aside>
+    <section><div class="job-console"><b>데이터백업 / 데이터복구(기수별) 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT02-001</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터백업</td><td>데이터백업</td><td>검증완료</td><td>데이터백업</td></tr><tr><td>AT02-002</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터복구</td><td>데이터복구</td><td>대기</td><td>데이터복구</td></tr><tr><td>AT02-003</td><td>2026-01-01 ~ 2026-12-31</td><td>기수별</td><td>기수별</td><td>오류확인</td><td>기수별</td></tr><tr><td>AT02-004</td><td>2026-01-01 ~ 2026-12-31</td><td>백업</td><td>백업</td><td>승인</td><td>백업</td></tr><tr><td>AT02-005</td><td>2026-01-01 ~ 2026-12-31</td><td>회사</td><td>회사</td><td>검증완료</td><td>회사</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 백업: 회사 리스트 선택(검색: 회사명/사업자번호) → [선택한 회사 정보] 확인 → 모듈 구분 선택(현재 회계관리 모듈만 · 급여·법인/개인 추후) → [파일정보] 파일명 확인(9999_#_회사명_#_회계_#_기수_인사년도!.wdb) → [데이터백업… · 작업대상 · 기수 · 기간 · 테넌트 · 실행단계</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>복구 데이터와 현재 회사의 기수·사업자번호 불일치 시 복구 불가. 비밀번호 오류 시 경고. 현재회사 복구 시 업로드 모듈 기… · 체크 시 거래처명 포함 비교(거래처코드 신규생성). 물류 전송 전표 존재 시 복구 후 확인. 데이터 머지 엔진으로 중복통합 … · 암호화 백업·면책 고지 포함. · 사전검증 · 실행 · 로그 확인 · 복구지점 생성</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">복구 데이터와 현재 회사의 기수·사업자번호 불일치 시 복구 …</span><span class="tag">체크 시 거래처명 포함 비교(거래처코드 신규생성). 물류 전…</span><span class="tag">암호화 백업·면책 고지 포함.</span><span class="tag">사전검증</span><span class="tag">실행</span><span class="tag">로그 확인</span><span class="tag">복구지점 생성</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">.wdb 암호화 백업파일, 복구 회사·데이터(신규 테넌트 또…</span><span class="tag">작업 로그</span><span class="tag">백업 파일</span><span class="tag">검증 리포트</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">BK 멀티테넌시 테넌트 관리, [SmartA로 보낼 데이터 …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). BK에서는 멀티테넌시·회계기간 운영 도구로 치환, 기수·사업자번호 무결성 키 검증 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-03" data-screen-id="SA-DAT-03" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-03</span>
+    <div>
+      <h3>SmartA로 보낼 데이터 만들기(기수별)</h3>
+      <p>데이터관리 · 25.20.3 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>BK 테넌트 데이터를 구버전 [Smart A]에서 복구 가능한 파일로 내보내는 BK 테넌트 데이터 내보내기(export to legacy). 선택 회사의 현재 기수·인사년도 데이터만 파일화(전체년도 변환 미지원).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-03-data-ops">
+    <div class="mock-top"><strong>SA-DAT-03</strong><span>SmartA로 보낼 데이터 만들기(기수별)</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>이관 조건</b><div class="form-grid"><label>회사·모듈 구분 선택(회계관리/급여관리/법인개…</label><div>2026-01-01 ~ 2026-12-31</div><label>검색·세무대리 태그정보 보기) →</label><div>입력값</div><label>[파일정보] 파일명 확인(9999_#_회사명_…</label><div>제 8기</div><label>0101~9999)·암호설정(1~8자리)·자동…</label><div>입력값</div><label>작업대상</label><div>입력값</div><label>기수</label><div>제 8기</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>테넌트</label><div>입력값</div></div></div></aside>
+    <section><div class="job-console"><b>SmartA로 보낼 데이터 만들기(기수별) 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT03-001</td><td>2026-01-01 ~ 2026-12-31</td><td>SmartA로</td><td>SmartA로</td><td>검증완료</td><td>SmartA로</td></tr><tr><td>AT03-002</td><td>2026-01-01 ~ 2026-12-31</td><td>보낼</td><td>보낼</td><td>대기</td><td>보낼</td></tr><tr><td>AT03-003</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터</td><td>데이터</td><td>오류확인</td><td>데이터</td></tr><tr><td>AT03-004</td><td>2026-01-01 ~ 2026-12-31</td><td>만들기</td><td>만들기</td><td>승인</td><td>만들기</td></tr><tr><td>AT03-005</td><td>2026-01-01 ~ 2026-12-31</td><td>기수별</td><td>기수별</td><td>검증완료</td><td>기수별</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>회사·모듈 구분 선택(회계관리/급여관리/법인개인 복수 선택 · 검색·세무대리 태그정보 보기) → · [파일정보] 파일명 확인(9999_#_회사명_#_모듈_#기수_인사년도!.whg) → [데이터 내리기] → [데이터 내리기] … · 0101~9999)·암호설정(1~8자리)·자동전표 설정(전자세금계산서·신용카드 등 자동전표처리 데이터 포함여부) → [내리기… · 작업대상 · 기수 · 기간</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>보안상 회사마다 암호 설정·다중변환 미지원(1회 1개 회사). 데이터내리기 시 모든 메뉴 종료. 암호 분실 시 복구 불가. … · 암호 입력 후 새 회사코드/선택 회사코드 복구 선택. 작업결과 성공/실패 · 실패 시 더블클릭 원인 확인.) 기수·인사년도 단위 익스포트 · 회사코드 리매핑·암호화·자동전표 포함옵션을 export 파라미터로 구현. · 사전검증 · 실행 · 로그 확인 · 복구지점 생성</td></tr><tr><th>상태/검증</th><td>코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">보안상 회사마다 암호 설정·다중변환 미지원(1회 1개 회사)…</span><span class="tag">암호 입력 후 새 회사코드/선택 회사코드 복구 선택. 작업결…</span><span class="tag">실패 시 더블클릭 원인 확인.) 기수·인사년도 단위 익스포트</span><span class="tag">회사코드 리매핑·암호화·자동전표 포함옵션을 export 파라…</span><span class="tag">사전검증</span><span class="tag">실행</span><span class="tag">로그 확인</span><span class="tag">복구지점 생성</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">.whg 익스포트 파일(레거시 Smart A 임포트 호환).</span><span class="tag">작업 로그</span><span class="tag">백업 파일</span><span class="tag">검증 리포트</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">레거시 Smart A [백업데이터복구] 메뉴, BK [데이터…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). 레거시 호환 익스포트 포맷·파라미터를 그대로 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-04" data-screen-id="SA-DAT-04" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-04</span>
+    <div>
+      <h3>SmartA로 보낼 데이터 만들기(월별/분기별)</h3>
+      <p>데이터관리 · 25.20.4 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>BK의 월별/분기별 데이터를 [Smart A] 복구 가능 파일로 내보내는 BK 부분(기간/분기) 데이터 내보내기(회계모듈 선택 데이터만 변환). 전표항목은 월별 1개월·분기별 1분기 단위.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-04-data-ops">
+    <div class="mock-top"><strong>SA-DAT-04</strong><span>SmartA로 보낼 데이터 만들기(월별/분기별)</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>이관 조건</b><div class="form-grid"><label>[회사명] F2 코드도움 회사 선택 →</label><div>BK-001</div><label>월별/분기별 선택 후 회계기수 선택 →</label><div>2026-01-01 ~ 2026-12-31</div><label>보낼데이터 구분 선택(기초[일반전표·매입매출전…</label><div>BK-001</div><label>전표입력[일반전표·매입매출전표 체크 후 분기 …</label><div>3,750,000</div><label>중복선택 불가]</label><div>입력값</div><label>부가가치세 신고서 및 첨부서류[작성조회→신고서…</label><div>공사관리팀</div><label>[파일명] 확인·회사코드 설정(기본 9999,…</label><div>BK-001</div><label>작업대상</label><div>입력값</div></div></div></aside>
+    <section><div class="job-console"><b>SmartA로 보낼 데이터 만들기(월별/분기별) 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT04-001</td><td>2026-01-01 ~ 2026-12-31</td><td>SmartA로</td><td>SmartA로</td><td>검증완료</td><td>SmartA로</td></tr><tr><td>AT04-002</td><td>2026-01-01 ~ 2026-12-31</td><td>보낼</td><td>보낼</td><td>대기</td><td>보낼</td></tr><tr><td>AT04-003</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터</td><td>데이터</td><td>오류확인</td><td>데이터</td></tr><tr><td>AT04-004</td><td>2026-01-01 ~ 2026-12-31</td><td>만들기</td><td>만들기</td><td>승인</td><td>만들기</td></tr><tr><td>AT04-005</td><td>2026-01-01 ~ 2026-12-31</td><td>월별</td><td>월별</td><td>검증완료</td><td>월별</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>[회사명] F2 코드도움 회사 선택 → · 월별/분기별 선택 후 회계기수 선택 → · 보낼데이터 구분 선택(기초[일반전표·매입매출전표 시 기초코드 포함 권장] · 전표입력[일반전표·매입매출전표 체크 후 분기 선택 · 중복선택 불가] · 부가가치세 신고서 및 첨부서류[작성조회→신고서 더블클릭 선택]) → · [파일명] 확인·회사코드 설정(기본 9999, 0101~9999) → [만들기] → 변환 → 다운로드 경로 저장(.whgda…</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>회사관리자 또는 권한관리(메뉴권한 'SmartA10 백업 데이터 내리기(월별/분기별/기수별)') 보유자만 실행. 월별 다건은… · 로그인 회사와 업로드 회사정보(사업자번호·기수) 불일치 시 업로드 불가 · [데이터 선택]에서 메뉴 자동체크(제외 가능)·[실행하기] · 선택 메뉴 기입력 데이터는 삭제·덮어쓰기.) 기초코드·전표·부가세 신고서식 단위 선택 익스포트 · 권한관리(메뉴 권한) 통제 · 임포트 시 기간 단위 삭제·덮어쓰기 무결성 규칙 적용. · 사전검증 · 실행</td></tr><tr><th>상태/검증</th><td>권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">회사관리자 또는 권한관리(메뉴권한 'SmartA10 백업 데…</span><span class="tag">로그인 회사와 업로드 회사정보(사업자번호·기수) 불일치 시 …</span><span class="tag">[데이터 선택]에서 메뉴 자동체크(제외 가능)·[실행하기]</span><span class="tag">선택 메뉴 기입력 데이터는 삭제·덮어쓰기.) 기초코드·전표·…</span><span class="tag">권한관리(메뉴 권한) 통제</span><span class="tag">임포트 시 기간 단위 삭제·덮어쓰기 무결성 규칙 적용.</span><span class="tag">사전검증</span><span class="tag">실행</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">.whgdata 부분 익스포트 파일(부가가치세 신고서·첨부서…</span><span class="tag">작업 로그</span><span class="tag">백업 파일</span><span class="tag">검증 리포트</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">레거시 Smart A [받은데이터올리기], 부가가치세 신고 …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). 권한관리·기간 단위 덮어쓰기 무결성 규칙 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-05" data-screen-id="SA-DAT-05" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-05</span>
+    <div>
+      <h3>SmartA 데이터올리기(전체기수)</h3>
+      <p>데이터관리 · 25.20.5 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>레거시 [Smart A]의 전체기수·전체모듈 백업 데이터를 BK에 이미 생성된 회사(테넌트)에 업로드하는 BK 전체 마이그레이션(legacy→tenant full reconstruct). 현재 로그인 회사 데이터는 모두 삭제·재구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-05-data-ops">
+    <div class="mock-top"><strong>SA-DAT-05</strong><span>SmartA 데이터올리기(전체기수)</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>이관 조건</b><div class="form-grid"><label>대상 회사 로그인·회사명·사업자번호·대표자명 …</label><div>2026-06-20-001</div><label>[파일정보]&gt;내PC로 Smart A [데이터백…</label><div>제 8기</div><label>백업파일 비밀번호 입력·유의사항 동의 체크 →…</label><div>검증완료</div><label>WEHAGO 구성 기수·인사년도 선택 → [데…</label><div>공사관리팀</div><label>작업대상</label><div>입력값</div><label>기수</label><div>제 8기</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>테넌트</label><div>입력값</div></div></div></aside>
+    <section><div class="job-console"><b>SmartA 데이터올리기(전체기수) 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT05-001</td><td>2026-01-01 ~ 2026-12-31</td><td>SmartA</td><td>SmartA</td><td>검증완료</td><td>SmartA</td></tr><tr><td>AT05-002</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터올리기</td><td>데이터올리기</td><td>대기</td><td>데이터올리기</td></tr><tr><td>AT05-003</td><td>2026-01-01 ~ 2026-12-31</td><td>전체기수</td><td>전체기수</td><td>오류확인</td><td>전체기수</td></tr><tr><td>AT05-004</td><td>2026-01-01 ~ 2026-12-31</td><td>대상</td><td>대상</td><td>승인</td><td>대상</td></tr><tr><td>AT05-005</td><td>2026-01-01 ~ 2026-12-31</td><td>회사</td><td>회사</td><td>검증완료</td><td>회사</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>대상 회사 로그인·회사명·사업자번호·대표자명 확인 → · [파일정보]&gt;내PC로 Smart A [데이터백업] '선택된 모듈의 전체데이터를 백업' 체크로 만든 전체모듈·전체기수·전체년도… · 백업파일 비밀번호 입력·유의사항 동의 체크 → [데이터 재구성하기] → 진행상태 확인 → · WEHAGO 구성 기수·인사년도 선택 → [데이터 구성 시작하기] → 진행현황 확인 → 부서/사원 병합([동일 부서/사원 자… · 작업대상 · 기수 · 기간</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>회사 관리자·서비스 관리자 권한 보유 시 실행. 재구성 시 기존 데이터 전부 삭제·백업파일 기준 재구성 · 회사명·대표자명 불변 · 경비청구/전자세금계산서 전송 전표 재전송 필요 · 매입매출 전자세금계산서 발행분 자동전표 수집 후 재전송 · 직원 권한 재확인 · 원천 모듈 사용 시 회계모듈 포함 파일 사용 · 2023년 초과 회계기간·인사년도 구성 제한. .whg가 아닌 .sdb(전체기수·전체연도) 필수 · 일부 모듈만 백업 시 오류. SmartA 백업파일과 WEHAGO 사업자번호 동일해야 진행. (Smart A 기준 2018년도…</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">회사 관리자·서비스 관리자 권한 보유 시 실행. 재구성 시 …</span><span class="tag">회사명·대표자명 불변</span><span class="tag">경비청구/전자세금계산서 전송 전표 재전송 필요</span><span class="tag">매입매출 전자세금계산서 발행분 자동전표 수집 후 재전송</span><span class="tag">직원 권한 재확인</span><span class="tag">원천 모듈 사용 시 회계모듈 포함 파일 사용</span><span class="tag">2023년 초과 회계기간·인사년도 구성 제한. .whg가 아…</span><span class="tag">일부 모듈만 백업 시 오류. SmartA 백업파일과 WEHA…</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">재구성된 BK 회사(테넌트) 데이터, 부서/사원 자동연동.</span><span class="tag">작업 로그</span><span class="tag">백업 파일</span><span class="tag">검증 리포트</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">BK 테넌트 관리, 조직(부서/사원) 코드 병합([사원연동설…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). 전체 마이그레이션 시 기존 테넌트 데이터 전면 교체·사업자번호 일치 검증·관리자 권한 통제·면책 고지 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-06" data-screen-id="SA-DAT-06" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-06</span>
+    <div>
+      <h3>SmartA 데이터올리기(월별/분기별)</h3>
+      <p>데이터관리 · 25.20.6 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>레거시 Smart A&gt;[보낼데이터만들기]의 월별/분기별 파일(.spwdata)만 업로드하는 BK 부분(기간) 데이터 임포트. 현재 로그인 회사 데이터는 삭제·재구성(기간/서식 단위).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-06-data-ops">
+    <div class="mock-top"><strong>SA-DAT-06</strong><span>SmartA 데이터올리기(월별/분기별)</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>이관 조건</b><div class="form-grid"><label>회사정보 확인 →</label><div>입력값</div><label>[파일정보]&gt;내PC로 .spwdata 파일 선…</label><div>입력값</div><label>[첨부 데이터 확인] 상세내역 확인 → 데이터…</label><div>대한상사</div><label>미연결분 수동연결·신규등록) → 데이터 올리기…</label><div>입력값</div><label>작업대상</label><div>입력값</div><label>기수</label><div>제 8기</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>테넌트</label><div>입력값</div></div></div></aside>
+    <section><div class="job-console"><b>SmartA 데이터올리기(월별/분기별) 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT06-001</td><td>2026-01-01 ~ 2026-12-31</td><td>SmartA</td><td>SmartA</td><td>검증완료</td><td>SmartA</td></tr><tr><td>AT06-002</td><td>2026-01-01 ~ 2026-12-31</td><td>데이터올리기</td><td>데이터올리기</td><td>대기</td><td>데이터올리기</td></tr><tr><td>AT06-003</td><td>2026-01-01 ~ 2026-12-31</td><td>월별</td><td>월별</td><td>오류확인</td><td>월별</td></tr><tr><td>AT06-004</td><td>2026-01-01 ~ 2026-12-31</td><td>분기별</td><td>분기별</td><td>승인</td><td>분기별</td></tr><tr><td>AT06-005</td><td>2026-01-01 ~ 2026-12-31</td><td>회사정보</td><td>회사정보</td><td>검증완료</td><td>회사정보</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>회사정보 확인 → · [파일정보]&gt;내PC로 .spwdata 파일 선택 → 압축해제 → · [첨부 데이터 확인] 상세내역 확인 → 데이터 올리기 → 거래처/관리항목 코드 구성기준(동일 데이터 판단기준) 선택 → [데… · 미연결분 수동연결·신규등록) → 데이터 올리기 진행 → 완료. · 작업대상 · 기수 · 기간</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>데이터 올리기 후 기초데이터(거래처·부서·사원·현장·프로젝트·업무용승용차등록) 확인. 추가 판단기준 미체크 시 사업자번호·계… · 체크 시 거래처명 포함 비교(거래처코드 신규생성). 기초자료는 기초코드 설정 기준 통합 · 전표·부가세 신고서·첨부서식은 '첨부 데이터 확인' 기간·서식에 따라 기존 데이터 삭제 후 올리기(전표=첨부 기간 · 부가세=서식 해당 기간). 부서/사원 통합 미진행 시 올리기 불가. [최종 작업 정보] 탭에 파일명·작업시간·작업자 이력 조… · 사전검증 · 실행 · 로그 확인 · 복구지점 생성</td></tr><tr><th>상태/검증</th><td>세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">데이터 올리기 후 기초데이터(거래처·부서·사원·현장·프로젝트…</span><span class="tag">체크 시 거래처명 포함 비교(거래처코드 신규생성). 기초자료…</span><span class="tag">전표·부가세 신고서·첨부서식은 '첨부 데이터 확인' 기간·서…</span><span class="tag">부가세=서식 해당 기간). 부서/사원 통합 미진행 시 올리기…</span><span class="tag">사전검증</span><span class="tag">실행</span><span class="tag">로그 확인</span><span class="tag">복구지점 생성</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">업로드 데이터, 최종 작업 정보 이력(감사로그).</span><span class="tag">작업 로그</span><span class="tag">백업 파일</span><span class="tag">검증 리포트</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">레거시 Smart A [보낼데이터만들기] 생성 .spwdat…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). 기간/서식 단위 삭제 후 적재·동일판단 머지 규칙·작업 이력 감사로그 채택.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-dat-07" data-screen-id="SA-DAT-07" data-layout="data-ops">
+  <div class="screen-head">
+    <span class="sid">SA-DAT-07</span>
+    <div>
+      <h3>기수변경</h3>
+      <p>데이터관리 · 25.20.7 · 데이터 작업 콘솔</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>회계기수를 잘못 선택하여 데이터입력 작업을 한 경우 해당 기수로 바로잡는 BK 회계기수(회계기간) 정정 기능. 한 개 기수만 있는 회사에만 지원(2개 이상 기수 보유 회사는 추후/수동 검토). 변경 완료 후 데이터 확인 필요.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>데이터 운영 화면은 실행 전 검증, 진행률, 로그, 복구 지점이 중요하므로 작업 콘솔 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock data-ops" data-blueprint="SA-DAT-07-data-ops">
+    <div class="mock-top"><strong>SA-DAT-07</strong><span>기수변경</span><em>데이터관리</em></div>
+    <div class="dataops-layout">
+    <aside><div class="form-panel"><b>이관 조건</b><div class="form-grid"><label>회사정보(회사명·구분·개업년월일·사업자번호·대…</label><div>2026-01-01 ~ 2026-12-31</div><label>변경기수(&quot;변경 전&quot;=현재 기수 자동표기·수정…</label><div>제 8기</div><label>데이터 확인(데이터 존재 기수 정보) →</label><div>제 8기</div><label>기수변경이력(회계기간·변경전·변경후·작업시간·…</label><div>2026-01-01 ~ 2026-12-31</div><label>작업대상</label><div>입력값</div><label>기수</label><div>제 8기</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>테넌트</label><div>입력값</div></div></div></aside>
+    <section><div class="job-console"><b>기수변경 실행 콘솔</b><p>사전 검증 → 잠금 확인 → 작업 실행 → 결과 다운로드</p><div class="progress"><span style="width:68%"></span></div></div><table class="mock-grid"><thead><tr><th>작업ID</th><th>대상기간</th><th>단계</th><th>건수</th><th>상태</th><th>로그</th></tr></thead><tbody><tr><td>AT07-001</td><td>2026-01-01 ~ 2026-12-31</td><td>기수변경</td><td>기수변경</td><td>검증완료</td><td>기수변경</td></tr><tr><td>AT07-002</td><td>2026-01-01 ~ 2026-12-31</td><td>회사정보</td><td>회사정보</td><td>대기</td><td>회사정보</td></tr><tr><td>AT07-003</td><td>2026-01-01 ~ 2026-12-31</td><td>회사명</td><td>회사명</td><td>오류확인</td><td>회사명</td></tr><tr><td>AT07-004</td><td>2026-01-01 ~ 2026-12-31</td><td>구분</td><td>구분</td><td>승인</td><td>구분</td></tr><tr><td>AT07-005</td><td>2026-01-01 ~ 2026-12-31</td><td>개업년월일</td><td>개업년월일</td><td>검증완료</td><td>개업년월일</td></tr></tbody></table></section>
+    <aside><b>안전장치</b><p>테넌트 스코프</p><p>기수 잠금</p><p>체크섬</p><p>복구 지점</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>회사정보(회사명·구분·개업년월일·사업자번호·대표자·회계기간 확인) → · 변경기수(&quot;변경 전&quot;=현재 기수 자동표기·수정불가, &quot;변경 후&quot;=새 기수 입력) → · 데이터 확인(데이터 존재 기수 정보) → · 기수변경이력(회계기간·변경전·변경후·작업시간·작업자(사용자ID)). · 작업대상 · 기수 · 기간</td></tr><tr><th>주 작업 영역</th><td>작업 조건, 실행 콘솔, 진행률, 로그 다운로드와 복구 지점을 배치한다.</td></tr><tr><th>처리 버튼</th><td>데이터 존재 판단 기준은 전표 입력 유무가 아니라 해당 기수에서 메뉴 실행 여부 · 1개 기수 외 다른 기수에서 메뉴 실행 시 2개 이상 기수 데이터 존재로 간주되어 기수변경 불가 → [온라인 문의하기]로 접… · 단일 기수 제약·변경 이력(작업자·시간) 감사로그 관리. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">데이터 존재 판단 기준은 전표 입력 유무가 아니라 해당 기수…</span><span class="tag">1개 기수 외 다른 기수에서 메뉴 실행 시 2개 이상 기수 …</span><span class="tag">단일 기수 제약·변경 이력(작업자·시간) 감사로그 관리.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">변경된 기수(회계기간) 데이터, 기수변경 이력(감사로그).</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">BK 회계기수→회계기간 모델, 테넌트 메타데이터, 다기수 수…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 운영 도구). 단일 기수 제약·메뉴 실행 기반 데이터 존재 판단·변경 이력 감사를 채택. # 부록. 참조 문서 통합본 본 부록은 k_서비스_상세설계서_v_4.1.md의 기반 문서, 화면설계, 회의 검토자료, 개발 주의사항을 최종 설계서 안에 함께 보존하기 위한 원문 통합 영역이다. HTML 화면설계는 렌더링 혼선을 막기 위해 코드 블록으로 수록한다. ## A. 참조 포함 현황 | # | 참조 원본 | 포함 방식 | 비고 | |---|---|-…</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+    </section>
+  </main>
+</body>
+</html>

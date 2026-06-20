@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Phase 3 상세화면구성 v1.0 - 전표입력·자동전표 처리</title>
+  <style>
+:root{--ink:#172033;--sub:#667085;--line:#d6dce8;--bg:#f4f6fa;--nav:#182235;--blue:#2454c6;--blue2:#e8eefc;--green:#08785f;--green2:#def5ee;--amber:#9a5b00;--amber2:#fff4d8;--red:#b42318;--red2:#fee4e2;--panel:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',Arial,sans-serif;font-size:13px;line-height:1.55}
+nav{position:fixed;inset:0 auto 0 0;width:292px;background:var(--nav);color:#d8e1f3;overflow:auto;padding:18px 14px}nav h1{margin:0 0 6px;color:#fff;font-size:16px;line-height:1.35}.meta{color:#9aa8bd;font-size:11px;margin-bottom:14px}.nav-title{margin:16px 0 7px;color:#8fe0cf;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.04em}nav a{display:block;text-decoration:none;color:#d8e1f3;border-radius:6px;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.on{background:#2a3650;color:#fff}.phase-link{font-size:11.5px;color:#b3c7ff}
+main{margin-left:292px;padding:28px 36px 80px}.doc-head,.panel,.screen{background:var(--panel);border:1px solid var(--line);border-radius:8px}.doc-head{padding:24px 28px;margin-bottom:16px}.doc-head h2{font-size:25px;margin:5px 0 7px}.doc-head p{margin:4px 0;color:var(--sub)}.phase-badge,.pill,.tag{display:inline-block;border-radius:999px;font-weight:800;font-size:11px}.phase-badge{background:var(--blue2);color:var(--blue);padding:3px 10px}.pill{background:#eef2f8;color:#344054;padding:2px 8px}.tag{background:#eef2f8;color:#334155;margin:2px 4px 2px 0;padding:2px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;margin:16px 0}.stats div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.stats strong{display:block;font-size:24px}.stats span{color:var(--sub);font-size:11px}.panel{padding:20px 22px;margin:16px 0}.panel h2{font-size:18px;margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{background:#eef2f8;color:#344054;font-size:12px}td{font-size:12px}code{font-family:Consolas,'D2Coding',monospace;background:#eef2f8;border-radius:4px;padding:1px 5px}
+.screen{margin:22px 0;overflow:hidden}.screen-head{display:flex;align-items:center;gap:12px;background:#fbfcff;border-bottom:1px solid var(--line);padding:13px 15px}.sid{font-family:Consolas,'D2Coding',monospace;background:#172033;color:#fff;border-radius:6px;padding:5px 9px;font-weight:900}.screen-head h3{font-size:16px;margin:0}.screen-head p{margin:2px 0 0;color:var(--sub);font-size:12px}.screen-body{padding:15px}.brief-grid,.detail-grid,.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.brief,.detail-card{border:1px solid var(--line);border-radius:8px;background:#fcfdff;padding:11px}.brief p{margin:5px 0 0;color:#344054}.detail-card h4{font-size:13px;color:var(--blue);margin:0 0 8px}
+.mock{border:2px solid #8995aa;border-radius:9px;background:#f9fbff;margin:14px 0;overflow:hidden}.mock-top{display:flex;gap:10px;align-items:center;background:#253049;color:white;padding:7px 10px}.mock-top strong{font-family:Consolas,'D2Coding',monospace}.mock-top em{margin-left:auto;color:#c2cee2;font-style:normal;font-size:11px}
+.tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}.tabs span{border:1px solid var(--line);background:#fff;border-radius:6px 6px 0 0;padding:4px 10px;font-size:11px}.tabs .active{background:var(--blue2);color:var(--blue);font-weight:800}
+.form-grid{display:grid;grid-template-columns:minmax(95px,150px) 1fr;gap:5px}.form-grid label{background:#edf2f8;border:1px solid var(--line);padding:5px;color:#344054}.form-grid div{background:#fff;border:1px solid var(--line);padding:5px;min-height:27px}.form-panel{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.form-panel>b{display:block;color:var(--blue);margin-bottom:7px}
+.mock-grid th,.mock-grid td{font-size:11px;padding:6px}.mock-grid tbody tr:nth-child(even){background:#fbfcff}.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}.kpi-row div{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.kpi-row span{display:block;color:var(--sub);font-size:11px}.kpi-row strong{font-size:17px}
+button,.mock button{border:1px solid #8d99ae;background:#fff;border-radius:5px;padding:5px 9px;margin:3px;font-size:11px}.mock button:first-of-type{background:var(--blue);border-color:var(--blue);color:#fff}
+.tenant-search{display:grid;grid-template-columns:170px 1fr 80px;gap:8px;padding:10px;background:#eef2f8;border-bottom:1px solid var(--line)}.tenant-search span,.tenant-search b{background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px}.tenant-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}.tenant-cards div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.tenant-cards span{display:inline-block;background:var(--green2);color:var(--green);border-radius:999px;padding:2px 8px;margin:5px 0}.context-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 10px 10px}.context-strip span{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px;color:var(--sub)}.context-strip b{display:block;color:var(--ink)}
+.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout{display:grid;grid-template-columns:210px 1fr 220px;gap:10px;padding:10px}.org-tree,.org-layout aside,.security-layout aside,.matrix-layout aside,.catalog-layout aside,.notification-layout aside,.menu-layout aside,.registration-layout aside,.employee-layout aside,.partner-layout aside,.coa-layout aside,.contract-layout aside,.vehicle-layout aside,.label-layout aside,.conversion-layout aside,.carry-layout aside,.statement-layout aside,.monthly-layout aside,.opening-ledger-layout aside,.voucher-layout aside,.ledger-layout aside,.closing-layout aside,.tax-layout aside,.asset-layout aside,.dataops-layout aside,.search-layout aside,.bulk-layout aside,.bill-layout aside{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.org-tree ul{list-style:none;padding-left:0;line-height:1.9}.org-detail,.label-preview,.timeline{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}
+.settings-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.settings-layout section{grid-column:1/-1}.setting-card{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.label-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.label-preview div{border:1px dashed #98a2b3;background:#fff;padding:8px;min-height:58px}.label-preview span,.label-preview em{display:block;color:var(--sub);font-style:normal}
+.swimlane,.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px}.swimlane div,.pipeline div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:center}.swimlane span,.pipeline span{display:inline-block;margin-top:6px;border-radius:999px;background:var(--blue2);color:var(--blue);padding:2px 8px;font-size:11px}.infra-layout,.automation-layout,.finance-layout{padding-bottom:10px}.job-timeline{display:flex;gap:8px;padding:0 10px 10px}.job-timeline span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px}
+.toolbox-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.toolbox-layout>div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px}.toolbox-layout table{grid-column:1/-1}.tax-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tax-form div{display:grid;grid-template-columns:32px 1fr 120px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px}.tax-form span{background:#253049;color:#fff;border-radius:5px;text-align:center;padding:2px}.tax-form em{font-style:normal;text-align:right;color:var(--blue)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.timeline div{border-left:4px solid var(--blue);background:#f8fafc;border-radius:4px;padding:9px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px}.calendar div{min-height:62px;border:1px solid var(--line);border-radius:6px;padding:6px}.calendar b,.calendar span,.calendar em{display:block}.calendar em{color:var(--blue);font-style:normal}.job-console{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px;margin-bottom:8px}.progress{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green)}
+@media(max-width:1120px){nav{position:static;width:auto}main{margin-left:0;padding:18px}.stats,.brief-grid,.detail-grid,.two-col,.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout,.settings-layout,.tenant-cards,.context-strip,.kpi-row,.swimlane,.pipeline,.calendar{grid-template-columns:1fr}}
+@media print{nav{display:none}main{margin-left:0}.screen{break-inside:avoid}}
+</style>
+</head>
+<body>
+  <nav>
+    <h1>BK 페이즈별 상세화면구성 v1.0</h1>
+    <div class="meta">기준: 설계/bk_설계서_v2.1.md<br>재생성일: 2026-06-20</div>
+    <div class="nav-title">10개 페이즈</div>
+    <a class="phase-link " href="페이즈01_기초정보_상세화면구성_v1.0.html">Phase 01 · 기초정보·조직·표준 설정</a>
+<a class="phase-link " href="페이즈02_전기이월_상세화면구성_v1.0.html">Phase 02 · 전기이월·초기 데이터 이관</a>
+<a class="phase-link on" href="페이즈03_전표자동전표_상세화면구성_v1.0.html">Phase 03 · 전표입력·자동전표 처리</a>
+<a class="phase-link " href="페이즈04_장부보조부_상세화면구성_v1.0.html">Phase 04 · 주요장부·보조장부</a>
+<a class="phase-link " href="페이즈05_결산재무제표_상세화면구성_v1.0.html">Phase 05 · 결산·재무제표·결산장부</a>
+<a class="phase-link " href="페이즈06_부가세주요신고_상세화면구성_v1.0.html">Phase 06 · 부가세 주요신고·기초 신고서류</a>
+<a class="phase-link " href="페이즈07_부가세첨부업종_상세화면구성_v1.0.html">Phase 07 · 부가세 첨부·업종별 신고서류</a>
+<a class="phase-link " href="페이즈08_영세율고정자산_상세화면구성_v1.0.html">Phase 08 · 부가세 영세율·기타서류·고정자산</a>
+<a class="phase-link " href="페이즈09_자금예산어음_상세화면구성_v1.0.html">Phase 09 · 자금·예산·예적금·어음</a>
+<a class="phase-link " href="페이즈10_데이터관리운영_상세화면구성_v1.0.html">Phase 10 · 데이터관리·운영 전환</a>
+    <div class="nav-title">현재 페이즈 화면</div>
+    <a href="#jv-01"><code>JV-01</code> 일반전표입력(입금/출금 통합, 일자별 마스터-디테일)</a>
+<a href="#jv-02"><code>JV-02</code> 현금 간편입력 — 입금 모드</a>
+<a href="#jv-03"><code>JV-03</code> 현금 간편입력 — 출금 모드</a>
+<a href="#jv-04"><code>JV-04</code> 매입전표 입력(세금계산서·부가세)</a>
+<a href="#jv-05"><code>JV-05</code> 매출전표 입력(세금계산서·부가세)</a>
+<a href="#jv-06"><code>JV-06</code> 전표 도구(복사/반복/템플릿/역분개)</a>
+<a href="#jv-07"><code>JV-07</code> 전표 검색 목록</a>
+<a href="#jv-08"><code>JV-08</code> 다건/일괄 전표 입력(외부자료 매핑·대량 업로드)</a>
+<a href="#sa-jnl-01"><code>SA-JNL-01</code> 일반전표입력</a>
+<a href="#sa-jnl-02"><code>SA-JNL-02</code> 매입매출전표입력</a>
+<a href="#sa-jnl-03"><code>SA-JNL-03</code> 정기청구입력</a>
+<a href="#sa-jnl-04"><code>SA-JNL-04</code> 물류전표처리</a>
+<a href="#sa-atx-01"><code>SA-ATX-01</code> 수집정보등록</a>
+<a href="#sa-atx-02"><code>SA-ATX-02</code> 전자세금계산서</a>
+<a href="#sa-atx-03"><code>SA-ATX-03</code> 전자계산서</a>
+<a href="#sa-atx-04"><code>SA-ATX-04</code> 신용카드</a>
+<a href="#sa-atx-05"><code>SA-ATX-05</code> 현금영수증</a>
+<a href="#sa-atx-06"><code>SA-ATX-06</code> 통장</a>
+<a href="#sa-atx-07"><code>SA-ATX-07</code> 자료수집현황</a>
+<a href="#sa-atx-08"><code>SA-ATX-08</code> 전표전송현황</a>
+<a href="#sa-atx-09"><code>SA-ATX-09</code> 국세청자료검증 및 사이트비교</a>
+<a href="#sa-atx-10"><code>SA-ATX-10</code> ScrappingBoard</a>
+  </nav>
+  <main>
+    <header class="doc-head">
+      <span class="phase-badge">Phase 03</span>
+      <h2>전표입력·자동전표 처리</h2>
+      <p>일반전표, 매입/매출전표, 전표 도구, 검색, 일괄 입력과 전자자료 수집·검증·전표전송 파이프라인을 구성한다.</p>
+      <p>각 화면의 와이어프레임은 설계서의 입력 필드·기능·산출물·연계 항목을 실제 화면 영역으로 배치했다. 동일 업무군 안에서도 신고서, 합계표, 명세서, 원장, 대사, 배치, 입력 화면은 서로 다른 구조로 설계했다.</p>
+    </header>
+    <section class="stats">
+      <div><strong>22</strong><span>이 페이즈 화면</span></div>
+      <div><strong>14</strong><span>SA 기능 화면</span></div>
+      <div><strong>8</strong><span>BF/JV/AUX 코어</span></div>
+      <div><strong>7</strong><span>화면 구조 유형</span></div>
+    </section>
+    <section class="panel">
+      <h2>페이즈 화면 인벤토리</h2>
+      <table>
+        <thead><tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>핵심 필드</th></tr></thead>
+        <tbody><tr><td><code>JV-01</code></td><td>일반전표입력(입금/출금 통합, 일자별 마스터-디테일)</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">전표 헤더/라인</span></td><td>전표일자, 전표번호, 구분, 계정과목, 차변, 대변, 거래처, 사업장, 부서, 프로젝트, 현장, 사원, 적요 · 전표일자 · 전표번호 · 구분</td></tr>
+<tr><td><code>JV-02</code></td><td>현금 간편입력 — 입금 모드</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">현금 간편입력</span></td><td>입금일자, 상대계정, 거래처, 금액, 적요, 사업장, 부서, 사원, 현금 계정 · 코드 · 명칭 · 구분</td></tr>
+<tr><td><code>JV-03</code></td><td>현금 간편입력 — 출금 모드</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">현금 간편입력</span></td><td>출금일자, 상대계정, 거래처, 금액, 적요, 사업장, 부서, 사원, 현금 계정 · 코드 · 명칭 · 구분</td></tr>
+<tr><td><code>JV-04</code></td><td>매입전표 입력(세금계산서·부가세)</td><td>전표</td><td>0.2, 11.4</td><td><span class="pill">매입매출 전표</span></td><td>증빙일자, 공급자, 사업자번호, 세무구분, 공급가액, 세액, 부가세계정, 비용계정, 결제수단, NTS 상태 · 신고기간 · 사업장 · 수정차수</td></tr>
+<tr><td><code>JV-05</code></td><td>매출전표 입력(세금계산서·부가세)</td><td>전표</td><td>0.2, 11.4</td><td><span class="pill">매입매출 전표</span></td><td>증빙일자, 매출처, 사업자번호, 세무구분, 공급가액, 세액, 부가세계정, 수익계정, 결제수단 · 신고기간 · 사업장 · 수정차수</td></tr>
+<tr><td><code>JV-06</code></td><td>전표 도구(복사/반복/템플릿/역분개)</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">전표 도구</span></td><td>원전표, 반복주기, 템플릿명, 역분개일자, 정정사유, 적용 라인 · 전표일자 · 전표번호 · 구분</td></tr>
+<tr><td><code>JV-07</code></td><td>전표 검색 목록</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">전표 검색</span></td><td>기간, 전표번호, 구분, 계정과목, 거래처, 금액, 작성자, 기표상태, 승인상태 · 전표일자 · 전표번호 · 구분</td></tr>
+<tr><td><code>JV-08</code></td><td>다건/일괄 전표 입력(외부자료 매핑·대량 업로드)</td><td>전표</td><td>0.2, 11.1</td><td><span class="pill">일괄 전표 입력</span></td><td>업로드 파일, 컬럼 매핑, 전표일자, 계정과목, 거래처, 차변, 대변, 세무구분, 오류행 · 전표일자 · 전표번호 · 구분</td></tr>
+<tr><td><code>SA-JNL-01</code></td><td>일반전표입력</td><td>전표관리</td><td>25.4.1</td><td><span class="pill">전표 헤더/라인</span></td><td>- 조회/헤더 영역 - 조회 단위: · 기간/월별 토글(기간 설정 조회·입력/특정 월의 조회·입력). · 현금잔액(조회일/종료일 현재 현금잔액 표시 · [현금잔액] 버튼 → [현금출납장] 실행). BK 관점: 회계기간 모델 내 조회범위 파라미터</td></tr>
+<tr><td><code>SA-JNL-02</code></td><td>매입매출전표입력</td><td>전표관리</td><td>25.4.2</td><td><span class="pill">매입매출 전표</span></td><td>- 상단부(세무헤더) - 탭: · 전체/유형별(더보기 &gt; 빠른부가세 입력설정 &gt; '빠른부가세 입력적용'으로 선택 과세유형만 표시). · 기간/월별. · 일자(요일색상</td></tr>
+<tr><td><code>SA-JNL-03</code></td><td>정기청구입력</td><td>전표관리</td><td>25.4.3</td><td><span class="pill">전표 헤더/라인</span></td><td>- 기본사항등록 탭 - 거래처명/사업·주민번호/대표자명([거래처등록] 반영). BK 관점: 거래처 마스터 FK. - 청구기간… · 31일 입력 시 말일 · 전표전송 시 필수). - 수금예정일(청구월 이후, 청구일보다 이전 불가, 31일 시 말일). - 자금항목([자금계획입력] 반영 · 자금계획 전송 시 필수). - 청구품목(적요). - 전표구분('1.일반전표'→SA-JNL-01/'2.매입매출'→SA-JNL-…</td></tr>
+<tr><td><code>SA-JNL-04</code></td><td>물류전표처리</td><td>전표관리</td><td>25.4.4</td><td><span class="pill">전표 헤더/라인</span></td><td>- 탭 분리: [매출회계처리]·[매입마감 및 회계처리] 전표는 매입매출전표탭, [수금등록]·[지급등록] 전표는 일반전표탭에서… · 기간 · 전표상태(1.확정가능, 2.전표확정, 0.전체) · 과세구분(매출 빨강/매입 파랑)</td></tr>
+<tr><td><code>SA-ATX-01</code></td><td>수집정보등록</td><td>자동전표</td><td>25.5.1</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 1) 전자세금계산서/전자계산서: · 인증서 등록(+버튼으로 홈택스 등록 인증서 등록) · 저장매체선택/인증서 비밀번호 · 정보입력(부서사용자 아이디·비밀번호 — 필수 아님, 홈택스 부서사용자 가입 시)</td></tr>
+<tr><td><code>SA-ATX-02</code></td><td>전자세금계산서</td><td>자동전표</td><td>25.5.2</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 상단내역(수집헤더) - · 기간 · 구분(1.매출/2.매입) · 자료(1.국세청[인증성공 시]/2.엑셀[홈택스 다운 엑셀 업로드])</td></tr>
+<tr><td><code>SA-ATX-03</code></td><td>전자계산서</td><td>자동전표</td><td>25.5.3</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 상단내역: · 기간 · 구분(1.매출/2.매입) · 자료(1.국세청/2.엑셀)</td></tr>
+<tr><td><code>SA-ATX-04</code></td><td>신용카드</td><td>자동전표</td><td>25.5.4</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 신용카드(매출) 상단내역: · 기간 · 구분(1.매출) · 자료(1.여신금융협회/2.엑셀)</td></tr>
+<tr><td><code>SA-ATX-05</code></td><td>현금영수증</td><td>자동전표</td><td>25.5.5</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 현금영수증(매출) 상단내역: · 기간 · 구분(1.매출) · 자료구분(1.국세청[매출내역조회]/2.엑셀)</td></tr>
+<tr><td><code>SA-ATX-06</code></td><td>통장</td><td>자동전표</td><td>25.5.6</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 조회/상단: · 기간 · 구분(1.은행/2.엑셀 · 최초수집기간 이전은 엑셀 업로드로 반영)</td></tr>
+<tr><td><code>SA-ATX-07</code></td><td>자료수집현황</td><td>자동전표</td><td>25.5.7</td><td><span class="pill">자동전표 파이프라인</span></td><td>기간(자료수집기간) · 자료수집현황(최근 수집일시 내림차순, 메뉴별 총 수집건수 · 일자 선택 시 하단에 완료여부·실패사유) · 수집결과내역(증빙별 수집결과 완료여부·실패사유).</td></tr>
+<tr><td><code>SA-ATX-08</code></td><td>전표전송현황</td><td>자동전표</td><td>25.5.8</td><td><span class="pill">자동전표 파이프라인</span></td><td>증빙종류(증빙 메뉴별 전표상태값[미전송/전송완료/확정후 삭제/확정제외] 표시) · 전체(증빙별 전표상태값 전체 건수 합계) · 최종수집일(증빙별 최종 수집일자) · 최종거래일(증빙별 마지막 거래일).</td></tr>
+<tr><td><code>SA-ATX-09</code></td><td>국세청자료검증 및 사이트비교</td><td>자동전표</td><td>25.5.9</td><td><span class="pill">자동전표 파이프라인</span></td><td>- 1) 전자세금계산서(상세): · 조회구분(월별/분기) · 구분(1.매출/2.매입) · 차액 데이터만 보기</td></tr>
+<tr><td><code>SA-ATX-10</code></td><td>ScrappingBoard</td><td>자동전표</td><td>25.5.10</td><td><span class="pill">자동전표 파이프라인</span></td><td>수집정보 등록하기(SA-ATX-01 미등록 시 바로 연동) · 시계아이콘(최종수집 진행일자) · 달력(기간)아이콘(미처리 내역 기간) · 건수(현재 로그인 기수 기준 전표상태 확정가능·미추천·중복전표 미처리 건수</td></tr></tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>화면별 상세 구성</h2>
+      <article class="screen" id="jv-01" data-screen-id="JV-01" data-layout="journal-entry">
+  <div class="screen-head">
+    <span class="sid">JV-01</span>
+    <div>
+      <h3>일반전표입력(입금/출금 통합, 일자별 마스터-디테일)</h3>
+      <p>전표 · 0.2, 11.1 · 전표 헤더/라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전표일자별 당일 전표 목록과 분개 라인을 함께 보며 대체·입금·출금·결차·결대 전표를 입력한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock journal-entry" data-blueprint="JV-01-journal-entry">
+    <div class="mock-top"><strong>JV-01</strong><span>일반전표입력(입금/출금 통합, 일자별 마스터-디테일)</span><em>전표</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>일반전표입력</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>일반전표입력</td></tr><tr><td>입금</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>입금</td></tr><tr><td>출금</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>출금</td></tr><tr><td>통합</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>통합</td></tr><tr><td>일자별</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>일자별</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>전표일자, 전표번호, 구분, 계정과목, 차변, 대변, 거래처, 사업장, 부서, 프로젝트, 현장, 사원, 적요 · 전표일자 · 전표번호 · 구분 · 계정과목 · 차변 · 대변</td></tr><tr><th>주 작업 영역</th><td>전표 헤더와 분개 라인을 한 화면에서 입력하고 대차·마감·보조부 필수값을 즉시 검증한다.</td></tr><tr><th>처리 버튼</th><td>전표 추가, 저장 후 계속 입력, 대차 검증, 현금 간편입력 판별, 역분개 이동 · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">전표 추가, 저장 후 계속 입력, 대차 검증, 현금 간편입력…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">journal_header, journal_line, 보조부…</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">1 전표, 12.2 채번, 12.3 불변성</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-02" data-screen-id="JV-02" data-layout="cash-quick-entry">
+  <div class="screen-head">
+    <span class="sid">JV-02</span>
+    <div>
+      <h3>현금 간편입력 — 입금 모드</h3>
+      <p>전표 · 0.2, 11.1 · 현금 간편입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>일반전표입력 안에서 현금 차변을 고정하고 입금 상대계정을 빠르게 입력한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>현금 간편입력 — 입금 모드의 입력 필드와 산출물을 기준으로 현금 간편입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock cash-quick-entry" data-blueprint="JV-02-cash-quick-entry">
+    <div class="mock-top"><strong>JV-02</strong><span>현금 간편입력 — 입금 모드</span><em>전표</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>현금 고정값</b><div class="form-grid"><label>현금 계정</label><div>401 상품매출</div><label>입출금 방향</label><div>3,750,000</div><label>상대계정</label><div>401 상품매출</div><label>차단 계정</label><div>401 상품매출</div><label>전환 안내</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>현금</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>현금</td></tr><tr><td>간편입력</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>간편입력</td></tr><tr><td>입금</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>입금</td></tr><tr><td>모드</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>모드</td></tr><tr><td>입금일자</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>입금일자</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>입금일자, 상대계정, 거래처, 금액, 적요, 사업장, 부서, 사원, 현금 계정 · 코드 · 명칭 · 구분 · 사용여부 · 사업장 · 부서</td></tr><tr><th>주 작업 영역</th><td>현금 간편입력 구조로 현금 간편입력 — 입금 모드의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>현금 차변 자동 생성, 상대계정 검증, 채권/선수 계정 차단, 일반전표 전환 · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">현금 차변 자동 생성, 상대계정 검증, 채권/선수 계정 차단…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">현금 입금 전표 라인, 현금출납장</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">JV-01, AUX-07</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-03" data-screen-id="JV-03" data-layout="cash-quick-entry">
+  <div class="screen-head">
+    <span class="sid">JV-03</span>
+    <div>
+      <h3>현금 간편입력 — 출금 모드</h3>
+      <p>전표 · 0.2, 11.1 · 현금 간편입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>일반전표입력 안에서 현금 대변을 고정하고 출금 상대계정을 빠르게 입력한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>현금 간편입력 — 출금 모드의 입력 필드와 산출물을 기준으로 현금 간편입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock cash-quick-entry" data-blueprint="JV-03-cash-quick-entry">
+    <div class="mock-top"><strong>JV-03</strong><span>현금 간편입력 — 출금 모드</span><em>전표</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>현금 고정값</b><div class="form-grid"><label>현금 계정</label><div>401 상품매출</div><label>입출금 방향</label><div>3,750,000</div><label>상대계정</label><div>401 상품매출</div><label>차단 계정</label><div>401 상품매출</div><label>전환 안내</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>현금</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>현금</td></tr><tr><td>간편입력</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>간편입력</td></tr><tr><td>출금</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>출금</td></tr><tr><td>모드</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>모드</td></tr><tr><td>출금일자</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>출금일자</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>출금일자, 상대계정, 거래처, 금액, 적요, 사업장, 부서, 사원, 현금 계정 · 코드 · 명칭 · 구분 · 사용여부 · 사업장 · 부서</td></tr><tr><th>주 작업 영역</th><td>현금 간편입력 구조로 현금 간편입력 — 출금 모드의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>현금 대변 자동 생성, 부가세 계정 차단, 카드/예금 거래 전환 안내 · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">현금 대변 자동 생성, 부가세 계정 차단, 카드/예금 거래 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">현금 출금 전표 라인, 현금출납장</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">JV-01, AUX-07</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-04" data-screen-id="JV-04" data-layout="tax-voucher">
+  <div class="screen-head">
+    <span class="sid">JV-04</span>
+    <div>
+      <h3>매입전표 입력(세금계산서·부가세)</h3>
+      <p>전표 · 0.2, 11.4 · 매입매출 전표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>매입 세금계산서와 비용/자산 계정을 입력하고 부가세대급금 자동라인과 매입원장을 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-voucher" data-blueprint="JV-04-tax-voucher">
+    <div class="mock-top"><strong>JV-04</strong><span>매입전표 입력(세금계산서·부가세)</span><em>전표</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>세무구분</th><th>계정</th><th>거래처</th><th>공급가액</th><th>세액</th><th>분개</th></tr></thead><tbody><tr><td>매입전표</td><td>매입전표</td><td>401 상품매출</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>매입전표</td></tr><tr><td>세금계산서</td><td>세금계산서</td><td>146 상품</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>세금계산서</td></tr><tr><td>부가세</td><td>부가세</td><td>253 부가세예수금</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>부가세</td></tr><tr><td>증빙일자</td><td>증빙일자</td><td>401 상품매출</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>증빙일자</td></tr><tr><td>공급자</td><td>공급자</td><td>146 상품</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>공급자</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>증빙일자, 공급자, 사업자번호, 세무구분, 공급가액, 세액, 부가세계정, 비용계정, 결제수단, NTS 상태 · 신고기간 · 사업장 · 수정차수 · 서식구분 · 공급가액 · 세액</td></tr><tr><th>주 작업 영역</th><td>세금계산서 정보, 부가세 계정, 매입/매출 원장 반영 상태를 분개 라인과 함께 배치한다.</td></tr><tr><th>처리 버튼</th><td>세금계산서 검증, 부가세 자동라인 생성, 매입원장 반영, 보조부 갱신 · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">세금계산서 검증, 부가세 자동라인 생성, 매입원장 반영, 보…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">매입전표, PurchaseLedgerLine, VAT 보조부</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">4 매입매출/부가세, AUX-06</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-05" data-screen-id="JV-05" data-layout="tax-voucher">
+  <div class="screen-head">
+    <span class="sid">JV-05</span>
+    <div>
+      <h3>매출전표 입력(세금계산서·부가세)</h3>
+      <p>전표 · 0.2, 11.4 · 매입매출 전표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>매출 세금계산서와 수익 계정을 입력하고 부가세예수금 자동라인과 매출처 원장을 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-voucher" data-blueprint="JV-05-tax-voucher">
+    <div class="mock-top"><strong>JV-05</strong><span>매출전표 입력(세금계산서·부가세)</span><em>전표</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>세무구분</th><th>계정</th><th>거래처</th><th>공급가액</th><th>세액</th><th>분개</th></tr></thead><tbody><tr><td>매출전표</td><td>매출전표</td><td>401 상품매출</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>매출전표</td></tr><tr><td>세금계산서</td><td>세금계산서</td><td>146 상품</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>세금계산서</td></tr><tr><td>부가세</td><td>부가세</td><td>253 부가세예수금</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>부가세</td></tr><tr><td>증빙일자</td><td>증빙일자</td><td>401 상품매출</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>증빙일자</td></tr><tr><td>매출처</td><td>매출처</td><td>146 상품</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>매출처</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>증빙일자, 매출처, 사업자번호, 세무구분, 공급가액, 세액, 부가세계정, 수익계정, 결제수단 · 신고기간 · 사업장 · 수정차수 · 서식구분 · 공급가액 · 세액</td></tr><tr><th>주 작업 영역</th><td>세금계산서 정보, 부가세 계정, 매입/매출 원장 반영 상태를 분개 라인과 함께 배치한다.</td></tr><tr><th>처리 버튼</th><td>세금계산서 발행 상태 검증, 부가세 자동라인 생성, 매출처원장 반영 · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">세금계산서 발행 상태 검증, 부가세 자동라인 생성, 매출처원…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">매출전표, SalesLedgerLine, 거래처 보조부</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">4 매입매출/부가세, AUX-01</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-06" data-screen-id="JV-06" data-layout="voucher-toolbox">
+  <div class="screen-head">
+    <span class="sid">JV-06</span>
+    <div>
+      <h3>전표 도구(복사/반복/템플릿/역분개)</h3>
+      <p>전표 · 0.2, 11.1 · 전표 도구</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>기존 전표를 복사·반복·템플릿화하거나 기표 전표를 역분개로 정정한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock voucher-toolbox" data-blueprint="JV-06-voucher-toolbox">
+    <div class="mock-top"><strong>JV-06</strong><span>전표 도구(복사/반복/템플릿/역분개)</span><em>전표</em></div>
+    <div class="toolbox-layout"><div><b>복사</b><p>전표 도구(복사/반복/템플릿/역분개) 작업</p><button>복사 실행</button></div><div><b>반복</b><p>전표 도구(복사/반복/템플릿/역분개) 작업</p><button>반복 실행</button></div><div><b>템플릿</b><p>전표 도구(복사/반복/템플릿/역분개) 작업</p><button>템플릿 실행</button></div><div><b>역분개</b><p>전표 도구(복사/반복/템플릿/역분개) 작업</p><button>역분개 실행</button></div><table class="mock-grid"><thead><tr><th>원전표</th><th>작업</th><th>적용일</th><th>상태</th><th>감사</th></tr></thead><tbody><tr><td>전표</td><td>전표</td><td>2026-06-20</td><td>검증완료</td><td>전표</td></tr><tr><td>도구</td><td>도구</td><td>2026-06-21</td><td>대기</td><td>도구</td></tr><tr><td>복사</td><td>복사</td><td>2026-06-22</td><td>오류확인</td><td>복사</td></tr><tr><td>반복</td><td>반복</td><td>2026-06-23</td><td>승인</td><td>반복</td></tr></tbody></table></div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>원전표, 반복주기, 템플릿명, 역분개일자, 정정사유, 적용 라인 · 전표일자 · 전표번호 · 구분 · 계정과목 · 차변 · 대변</td></tr><tr><th>주 작업 영역</th><td>전표 도구 구조로 전표 도구(복사/반복/템플릿/역분개)의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>전표 복사, 반복 생성, 템플릿 저장, 역분개 생성, 승인 요청 · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">전표 복사, 반복 생성, 템플릿 저장, 역분개 생성, 승인 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">복사 전표, 반복 예약, 역분개 전표</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">JV-01, 12.3 불변성</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-07" data-screen-id="JV-07" data-layout="voucher-search">
+  <div class="screen-head">
+    <span class="sid">JV-07</span>
+    <div>
+      <h3>전표 검색 목록</h3>
+      <p>전표 · 0.2, 11.1 · 전표 검색</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>기간·계정·거래처·금액·상태 조건으로 전표를 검색하고 원전표로 드릴다운한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock voucher-search" data-blueprint="JV-07-voucher-search">
+    <div class="mock-top"><strong>JV-07</strong><span>전표 검색 목록</span><em>전표</em></div>
+    <div class="search-layout"><aside><div class="form-panel"><b>검색 조건</b><div class="form-grid"><label>기간, 전표번호, 구분, 계정과목, 거래처, …</label><div>2026-01-01 ~ 2026-12-31</div><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>계정과목</label><div>401 상품매출</div><label>차변</label><div>3,750,000</div><label>대변</label><div>3,750,000</div><label>거래처</label><div>대한상사</div></div></div></aside><section><table class="mock-grid"><thead><tr><th>전표일자</th><th>번호</th><th>구분</th><th>거래처</th><th>금액</th><th>상태</th><th>수정가능</th></tr></thead><tbody><tr><td>2026-06-20</td><td>2026-06-20-001</td><td>전표</td><td>대한상사</td><td>3,750,000</td><td>검증완료</td><td>전표</td></tr><tr><td>2026-06-21</td><td>2026-06-20-002</td><td>검색</td><td>청운제조</td><td>5,000,000</td><td>대기</td><td>검색</td></tr><tr><td>2026-06-22</td><td>2026-06-20-003</td><td>목록</td><td>나래상사</td><td>6,250,000</td><td>오류확인</td><td>목록</td></tr><tr><td>2026-06-23</td><td>2026-06-20-004</td><td>전표번호</td><td>대한상사</td><td>7,500,000</td><td>승인</td><td>전표번호</td></tr><tr><td>2026-06-24</td><td>2026-06-20-005</td><td>구분</td><td>청운제조</td><td>8,750,000</td><td>검증완료</td><td>구분</td></tr><tr><td>2026-06-25</td><td>2026-06-20-006</td><td>계정과목</td><td>나래상사</td><td>10,000,000</td><td>대기</td><td>계정과목</td></tr><tr><td>2026-06-26</td><td>2026-06-20-007</td><td>거래처</td><td>대한상사</td><td>11,250,000</td><td>오류확인</td><td>거래처</td></tr></tbody></table></section><aside><b>드릴다운</b><p>원전표 열기</p><p>역분개 유도</p><p>삭제 감사로그</p></aside></div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>기간, 전표번호, 구분, 계정과목, 거래처, 금액, 작성자, 기표상태, 승인상태 · 전표일자 · 전표번호 · 구분 · 계정과목 · 차변 · 대변</td></tr><tr><th>주 작업 영역</th><td>전표 검색 구조로 전표 검색 목록의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>검색, 필터 저장, 원전표 열기, 수정 가능 여부 판정, 삭제 요청 · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">검색, 필터 저장, 원전표 열기, 수정 가능 여부 판정, 삭…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">전표 검색 결과, 수정/삭제 감사로그</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">JV-01, 12.3 불변성</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="jv-08" data-screen-id="JV-08" data-layout="bulk-voucher">
+  <div class="screen-head">
+    <span class="sid">JV-08</span>
+    <div>
+      <h3>다건/일괄 전표 입력(외부자료 매핑·대량 업로드)</h3>
+      <p>전표 · 0.2, 11.1 · 일괄 전표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외부 기장자료를 업로드해 컬럼 매핑, 검증, 전체 미리보기 후 일괄 전표로 적재한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock bulk-voucher" data-blueprint="JV-08-bulk-voucher">
+    <div class="mock-top"><strong>JV-08</strong><span>다건/일괄 전표 입력(외부자료 매핑·대량 업로드)</span><em>전표</em></div>
+    <div class="bulk-layout"><aside><div class="form-panel"><b>업로드/매핑</b><div class="form-grid"><label>업로드 파일, 컬럼 매핑, 전표일자, 계정과목…</label><div>2026-06-20</div><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>계정과목</label><div>401 상품매출</div><label>차변</label><div>3,750,000</div><label>대변</label><div>3,750,000</div><label>거래처</label><div>대한상사</div></div></div></aside><section><table class="mock-grid"><thead><tr><th>원본컬럼</th><th>매핑필드</th><th>샘플값</th><th>검증</th><th>오류</th></tr></thead><tbody><tr><td>다건</td><td>다건</td><td>다건</td><td>검증완료</td><td>다건</td></tr><tr><td>일괄</td><td>일괄</td><td>일괄</td><td>대기</td><td>일괄</td></tr><tr><td>전표</td><td>전표</td><td>전표</td><td>오류확인</td><td>전표</td></tr><tr><td>외부자료</td><td>외부자료</td><td>외부자료</td><td>승인</td><td>외부자료</td></tr><tr><td>매핑</td><td>매핑</td><td>매핑</td><td>검증완료</td><td>매핑</td></tr><tr><td>대량</td><td>대량</td><td>대량</td><td>대기</td><td>대량</td></tr></tbody></table></section><aside><b>배치</b><p>전체 미리보기</p><p>오류행 제외</p><button>일괄 생성</button></aside></div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>업로드 파일, 컬럼 매핑, 전표일자, 계정과목, 거래처, 차변, 대변, 세무구분, 오류행 · 전표일자 · 전표번호 · 구분 · 계정과목 · 차변 · 대변</td></tr><tr><th>주 작업 영역</th><td>일괄 전표 입력 구조로 다건/일괄 전표 입력(외부자료 매핑·대량 업로드)의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>파일 분석, 매핑 저장, 일괄 검증, 미리보기, 전표 생성 · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">파일 분석, 매핑 저장, 일괄 검증, 미리보기, 전표 생성</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">일괄 전표 배치, 오류 리포트, 매핑 템플릿</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">JV-01, 8.4 ETL</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>BK 코어 원칙을 기준으로 화면 입력값을 변환·수용한다.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-jnl-01" data-screen-id="SA-JNL-01" data-layout="journal-entry">
+  <div class="screen-head">
+    <span class="sid">SA-JNL-01</span>
+    <div>
+      <h3>일반전표입력</h3>
+      <p>전표관리 · 25.4.1 · 전표 헤더/라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>부가가치세 신고와 관련된 매입매출 거래(세금계산서·계산서·수입세금계산서·신용카드 매입/매출 등) 이외의 모든 거래를 입력하는 단일 진입 화면. 입금/출금 전표 메뉴를 별도로 두지 않고 본 화면에 통합하여, 현금(101) 라인 위치로 입출금을 자동 판별하고 「구분」 컬럼에 대체/입금/출금을 표시한다. 입력 데이터는 분개장·총계정원장·현금출납장·재무제표·각종 보조부에 반영된다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock journal-entry" data-blueprint="SA-JNL-01-journal-entry">
+    <div class="mock-top"><strong>SA-JNL-01</strong><span>일반전표입력</span><em>전표관리</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>일반전표입력</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>일반전표입력</td></tr><tr><td>헤더</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>헤더</td></tr><tr><td>영역</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>영역</td></tr><tr><td>단위</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>단위</td></tr><tr><td>월별</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>월별</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 조회/헤더 영역 - 조회 단위: · 기간/월별 토글(기간 설정 조회·입력/특정 월의 조회·입력). · 현금잔액(조회일/종료일 현재 현금잔액 표시 · [현금잔액] 버튼 → [현금출납장] 실행). BK 관점: 회계기간 모델 내 조회범위 파라미터 · 현금잔액은 현금(101) 보조부 실시간 합계. - 명세 그리드(JournalLine 단위) - 일자: 거래전표 거래일자. 요… · 당일 수정 U 표시. BK 관점: 전표일자(채번 키) · 공휴일 마스터 참조 표시. - 번호(전표번호): 각 일자별 00001부터 자동 채번. 수동수정 불가. BK 관점: 더존식 채…</td></tr><tr><th>주 작업 영역</th><td>전표 헤더와 분개 라인을 한 화면에서 입력하고 대차·마감·보조부 필수값을 즉시 검증한다.</td></tr><tr><th>처리 버튼</th><td>- 툴바: · 차액전표보기(대차차액 발생 전표 조회) · 행고정/해제 · 자동전표검증(현재 회계기간 기준 [신용카드]·[현금영수증]·[통장]에서 본 화면으로 전송된 전표 중 '전표확정'이 아닌 건 … · 데이터 정렬(입력순/날짜순/거래처코드순/계정코드순/계정과목명순). - 더보기(기능모음): · 전표이동(지정일자로 이동 · 자금(어음)·일마감·계좌관리·증빙·자동전표 데이터는 이동 불가) · 전표복사(자금관리 항목 있으면 관리항목만 제외하고 복사)</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 툴바:</span><span class="tag">차액전표보기(대차차액 발생 전표 조회)</span><span class="tag">행고정/해제</span><span class="tag">자동전표검증(현재 회계기간 기준 [신용카드]·[현금영수증]·…</span><span class="tag">데이터 정렬(입력순/날짜순/거래처코드순/계정코드순/계정과목명…</span><span class="tag">전표이동(지정일자로 이동</span><span class="tag">자금(어음)·일마감·계좌관리·증빙·자동전표 데이터는 이동 불…</span><span class="tag">전표복사(자금관리 항목 있으면 관리항목만 제외하고 복사)</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">분개장, 총계정원장, 현금출납장, 재무제표, 각종 보조부(거…</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-JNL-03(정기청구)·SA-JNL-04(물류전표…</span><span class="tag">자금 AUX 보조부</span><span class="tag">공휴일 마스터</span><span class="tag">계정·거래처·적요 마스터. API: 채번 서비스</span><span class="tag">대차검증</span><span class="tag">일마감/상태머신</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 기존 v2.0 JV-01 일반전표 + 입금/출금 별도전표(JV 입금/출금) 가정을 폐기하고 입금/출금 전표 메뉴를 본 화면에 통합(현금 라인 위치 자동판별, 「구분」 컬럼 입금/출금 표시). 전표번호도 더존식 일자단위 채번·수동수정 불가로 통일.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-jnl-02" data-screen-id="SA-JNL-02" data-layout="tax-voucher">
+  <div class="screen-head">
+    <span class="sid">SA-JNL-02</span>
+    <div>
+      <h3>매입매출전표입력</h3>
+      <p>전표관리 · 25.4.2 · 매입매출 전표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>부가가치세 신고와 관련한 매입매출 거래를 입력. 거래(부가세 신고자료)를 입력하는 상단부([부가가치세신고서]·[세금계산서합계표]·[매입매출장] 반영)와 분개(재무회계자료)를 입력하는 하단부([계정별원장]·재무제표 반영) 2계층으로 구성. 부가세 자동라인은 부가세 계정코드 입력(과세유형) 시에만 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-voucher" data-blueprint="SA-JNL-02-tax-voucher">
+    <div class="mock-top"><strong>SA-JNL-02</strong><span>매입매출전표입력</span><em>전표관리</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>세무구분</th><th>계정</th><th>거래처</th><th>공급가액</th><th>세액</th><th>분개</th></tr></thead><tbody><tr><td>매입매출전표입력</td><td>매입매출전표입력</td><td>401 상품매출</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>매입매출전표입력</td></tr><tr><td>상단부</td><td>상단부</td><td>146 상품</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>상단부</td></tr><tr><td>세무헤더</td><td>세무헤더</td><td>253 부가세예수금</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>세무헤더</td></tr><tr><td>유형별</td><td>유형별</td><td>401 상품매출</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>유형별</td></tr><tr><td>더보기</td><td>더보기</td><td>146 상품</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>더보기</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 상단부(세무헤더) - 탭: · 전체/유형별(더보기 &gt; 빠른부가세 입력설정 &gt; '빠른부가세 입력적용'으로 선택 과세유형만 표시). · 기간/월별. · 일자(요일색상 · N=신규 · U=수정). - Code/거래처/사업자등록번호: 거래처코드는 [세금계산서합계표]·[계산서합계표] 추출 기준. '사업자등록번호… · 사업자번호 필수 검증. - 유형(과세유형): 매출(빨강)/매입(파랑). 매출유형 11.과세(세금계산서</td></tr><tr><th>주 작업 영역</th><td>세금계산서 정보, 부가세 계정, 매입/매출 원장 반영 상태를 분개 라인과 함께 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 툴바: · 전자발행(매출 11·12·13/매입역발행 51·52·53·54 전표를 전자세금(계산)서로 발행 · 화면구성/휴폐업조회/전자발행/발행취소[당일 '확인요청' 전표만]/이메일등록/발행옵션/도움말. 수량·단가 소수점 2자리, 3자… · 전송결과(WEHAGO 처리상태·국세청 전송결과 반영) · 전자세금계산서조회 · 자동전표검증([전자세금계산서]·[전자계산서]에서 전송된 미확정 전표 검증 + 사업자등록번호 일치·면세사업자 매출유형 검증) · 행/열고정 · 데이터정렬</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 정합성·차액 검증 · 권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 툴바:</span><span class="tag">전자발행(매출 11·12·13/매입역발행 51·52·53·5…</span><span class="tag">화면구성/휴폐업조회/전자발행/발행취소[당일 '확인요청' 전표…</span><span class="tag">전송결과(WEHAGO 처리상태·국세청 전송결과 반영)</span><span class="tag">전자세금계산서조회</span><span class="tag">자동전표검증([전자세금계산서]·[전자계산서]에서 전송된 미확…</span><span class="tag">행/열고정</span><span class="tag">데이터정렬</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">[부가가치세신고서]</span><span class="tag">[세금계산서합계표]/[계산서합계표]</span><span class="tag">[매입매출장]</span><span class="tag">[신용카드매출전표발행집계표]</span><span class="tag">[공제받지못할매입세액명세서]</span><span class="tag">[계정별원장]·재무제표</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-02(전자세금계산서)·SA-ATX-03(전…</span><span class="tag">SA-JNL-03(정기청구)</span><span class="tag">SA-JNL-04(물류전표). 엔티티: 매입매출전표(상단 세…</span><span class="tag">taxType 마스터</span><span class="tag">부가세계정 매핑룰</span><span class="tag">전자세금계산서 연동 상태. API: 자동분개 엔진</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 부가세 자동라인 생성 규칙을 &quot;부가세 계정코드 입력 시에만 생성&quot;으로 통일(BK 핵심개념과 정합). 과세유형 마스터(11~25/51~64)를 단일 진실원으로 채택. 충돌 없음(기존 v2.0 매입매출전표 가정을 Smart A 2계층 구조로 정밀화).</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-jnl-03" data-screen-id="SA-JNL-03" data-layout="journal-entry">
+  <div class="screen-head">
+    <span class="sid">SA-JNL-03</span>
+    <div>
+      <h3>정기청구입력</h3>
+      <p>전표관리 · 25.4.3 · 전표 헤더/라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>매월 정기적으로 청구되는 수입에 대해 조회·등록·자동전표를 발행하는 메뉴. 기본사항등록·정기청구입력 두 탭으로 구성. [거래처등록] 선행 필수.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>정기청구입력의 입력 필드와 산출물을 기준으로 전표 헤더/라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock journal-entry" data-blueprint="SA-JNL-03-journal-entry">
+    <div class="mock-top"><strong>SA-JNL-03</strong><span>정기청구입력</span><em>전표관리</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>정기청구입력</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>정기청구입력</td></tr><tr><td>기본사항등록</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>기본사항등록</td></tr><tr><td>거래처명</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>거래처명</td></tr><tr><td>사업</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>사업</td></tr><tr><td>주민번호</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>주민번호</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 기본사항등록 탭 - 거래처명/사업·주민번호/대표자명([거래처등록] 반영). BK 관점: 거래처 마스터 FK. - 청구기간… · 31일 입력 시 말일 · 전표전송 시 필수). - 수금예정일(청구월 이후, 청구일보다 이전 불가, 31일 시 말일). - 자금항목([자금계획입력] 반영 · 자금계획 전송 시 필수). - 청구품목(적요). - 전표구분('1.일반전표'→SA-JNL-01/'2.매입매출'→SA-JNL-… · '1.과세'→매출 11.과세 · '2.면세'→매출 13.면세). BK 관점: entryType + taxType(11/13) 결정 룰. - 분개금액(직접입력… · 하단 청구분개(대변) 공급가액 자동반영</td></tr><tr><th>주 작업 영역</th><td>전표 헤더와 분개 라인을 한 화면에서 입력하고 대차·마감·보조부 필수값을 즉시 검증한다.</td></tr><tr><th>처리 버튼</th><td>- 더보기(기능모음): · 새로불러오기 · 전표추가(전표구분에 따라 SA-JNL-01/SA-JNL-02로 전송, 자금항목설정에 따라 [자금계획입력] 정기자금 등록) · 주민번호별표 사용설정. - 처리·검증 규칙(BK 구체화): 청구일 31일=말일 처리 · 수금예정일은 청구일 이전 불가 검증. 전표구분·과세/면세 설정에 따라 매출 11/13 유형 및 부가세창 활성여부 자동결정. … · 분개금액=대변 공급가액 자동산출. · 조회 · 저장</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 더보기(기능모음):</span><span class="tag">새로불러오기</span><span class="tag">전표추가(전표구분에 따라 SA-JNL-01/SA-JNL-02…</span><span class="tag">주민번호별표 사용설정. - 처리·검증 규칙(BK 구체화): …</span><span class="tag">수금예정일은 청구일 이전 불가 검증. 전표구분·과세/면세 설…</span><span class="tag">분개금액=대변 공급가액 자동산출.</span><span class="tag">조회</span><span class="tag">저장</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-01(일반전표), SA-JNL-02(매입매출전표…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 [거래처등록]. 후행 SA-JNL-01/SA-JNL-02</span><span class="tag">[자금계획입력]. 엔티티: 정기청구 마스터(거래처·청구주기·…</span><span class="tag">자금계획 AUX. API: 정기청구 스케줄러</span><span class="tag">자동전표 생성기.</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 기존 v2.0 인벤토리에 정기청구 템플릿이 없었으므로 Smart A 기준 신규 채택. tenant별 정기청구 템플릿 격리(RLS).</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-jnl-04" data-screen-id="SA-JNL-04" data-layout="journal-entry">
+  <div class="screen-head">
+    <span class="sid">SA-JNL-04</span>
+    <div>
+      <h3>물류전표처리</h3>
+      <p>전표관리 · 25.4.4 · 전표 헤더/라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>물류 모듈에서 전송한 중간전표를 회계 반영을 위해 승인하는 메뉴. 물류 &gt; 회계처리 및 수금/지급등록 메뉴 처리 전표를 표시하며 전송 시 SA-JNL-01·SA-JNL-02에 반영. [물류환경설정]&gt;물류탭&gt;중간전표 사용여부 '1.여' 시 실행. 본 메뉴는 승인·전송 전용으로 직접 편집 불가.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock journal-entry" data-blueprint="SA-JNL-04-journal-entry">
+    <div class="mock-top"><strong>SA-JNL-04</strong><span>물류전표처리</span><em>전표관리</em></div>
+    <div class="voucher-layout">
+    <aside><div class="form-panel"><b>전표 헤더</b><div class="form-grid"><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div><label>사업장</label><div>본점</div><label>작성자</label><div>입력값</div><label>승인상태</label><div>검증완료</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>라인</th><th>계정과목</th><th>차변</th><th>대변</th><th>거래처</th><th>부서</th><th>프로젝트</th><th>적요</th></tr></thead><tbody><tr><td>물류전표처리</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>물류전표처리</td></tr><tr><td>분리</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>분리</td></tr><tr><td>매출회계처리</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>나래상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>매출회계처리</td></tr><tr><td>매입마감</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>대한상사</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>매입마감</td></tr><tr><td>회계처리</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>청운제조</td><td>공사관리팀</td><td>P-2026 본사리뉴얼</td><td>회계처리</td></tr></tbody></table></section>
+    <aside><b>검증 패널</b><p>대차 일치</p><p>마감 기간</p><p>부가세 계정 조건</p><p>보조부 필수값</p><button>저장 후 계속 입력</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 탭 분리: [매출회계처리]·[매입마감 및 회계처리] 전표는 매입매출전표탭, [수금등록]·[지급등록] 전표는 일반전표탭에서… · 기간 · 전표상태(1.확정가능, 2.전표확정, 0.전체) · 과세구분(매출 빨강/매입 파랑) · 전자세금계산서 상태(미발행 전송 시 공란, 발행 후 전송 시 '전자발행') · 전표상태(확정가능=전송가능/전표확정=전송완료) · 하단 분개([물류환경설정]&gt;물류탭&gt;회계연결계정과목 설정 계정으로 분개생성)</td></tr><tr><th>주 작업 영역</th><td>전표 헤더와 분개 라인을 한 화면에서 입력하고 대차·마감·보조부 필수값을 즉시 검증한다.</td></tr><tr><th>처리 버튼</th><td>- 전표전송: 체크한 전표를 SA-JNL-02·SA-JNL-01로 전송. - 삭제(전송취소): 전송 이후 취소는 SA-JNL… · 취소 → 원천 상태 롤백 트랜잭션). 전표상태(확정가능/전표확정)는 전표 상태머신. · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 정합성·차액 검증 · 권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 전표전송: 체크한 전표를 SA-JNL-02·SA-JNL-…</span><span class="tag">취소 → 원천 상태 롤백 트랜잭션). 전표상태(확정가능/전표…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-01, SA-JNL-02, 물류 모듈 원천 메뉴…</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 물류 모듈(매출회계처리/매입마감 및 회계처리/수금등록/…</span><span class="tag">회계연결계정 매핑 룰</span><span class="tag">전표 상태머신. API: 전표전송/전송취소(원천 상태 롤백).</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK는 물류/외부 모듈 → 회계 중간전표 승인 큐 패턴으로 일반화하여 채택. RLS로 tenant 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-01" data-screen-id="SA-ATX-01" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-01</span>
+    <div>
+      <h3>수집정보등록</h3>
+      <p>자동전표 · 25.5.1 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>자동전표처리에 필요한 전자세금계산서(계산서)·통장·현금영수증·신용카드 등 주요 증빙의 수집정보(인증서·계정·계좌)를 등록하는 메뉴. 등록 정보로 매일 자동수집 및 ScrappingBoard 실시간 수집 가능. 인증서 이름·서명정보는 암호화 보관.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>마스터 화면은 목록, 상세 입력, 이력/연계 상태를 동시에 확인해야 하므로 업무 엔티티 중심의 관리 화면으로 설계했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-01-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-01</strong><span>수집정보등록</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>수집정보등록</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>전자세금계산서</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>전자계산서</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>인증서</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>버튼으로</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 1) 전자세금계산서/전자계산서:</label><div>입력값</div><label>인증서 등록(+버튼으로 홈택스 등록 인증서 등…</label><div>입력값</div><label>저장매체선택/인증서 비밀번호</label><div>2026-06-20-001</div><label>정보입력(부서사용자 아이디·비밀번호 — 필수 …</label><div>공사관리팀</div><label>복수거래 수집여부(1건 다품목 수집</label><div>입력값</div><label>'여' 시 수집속도 저하)</label><div>입력값</div><label>인증서 등록상태(정상/사용안함/접속불가</label><div>검증완료</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 1) 전자세금계산서/전자계산서: · 인증서 등록(+버튼으로 홈택스 등록 인증서 등록) · 저장매체선택/인증서 비밀번호 · 정보입력(부서사용자 아이디·비밀번호 — 필수 아님, 홈택스 부서사용자 가입 시) · 복수거래 수집여부(1건 다품목 수집 · '여' 시 수집속도 저하) · 인증서 등록상태(정상/사용안함/접속불가</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 처리·검증 규칙: 계정·인증서 삭제 시 기존 스크래핑 데이터는 유지되나 수집정보는 복원불가. 인증서 접속불가는 삭제 후 … · 수집 잡 스케줄러(매일 배치 + 수동 트리거) 연동. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 처리·검증 규칙: 계정·인증서 삭제 시 기존 스크래핑 데…</span><span class="tag">수집 잡 스케줄러(매일 배치 + 수동 트리거) 연동.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-ATX-02~06(전자세금계산서/전자계산서/신용카드/현…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">후행 SA-ATX-02~07, SA-ATX-10. 엔티티: …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK는 외부 자료수집 자격증명을 tenant 단위 암호화 볼트로 모델링하여 Smart A 기능을 흡수. RLS + 자격증명 암호화로 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-02" data-screen-id="SA-ATX-02" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-02</span>
+    <div>
+      <h3>전자세금계산서</h3>
+      <p>자동전표 · 25.5.2 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>국세청 홈택스로부터 전자세금계산서(매출·매입)를 자동수집하여 분개를 추천하고, 추천 분개를 확인·수정하여 SA-JNL-02(매입매출전표입력)에 전송하는 메뉴.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전자세금계산서의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-02-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-02</strong><span>전자세금계산서</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>국세청</span></div><div><b>정규화</b><span>전자세금계산서</span></div><div><b>매칭</b><span>거래처/세무구분</span></div><div><b>검증</b><span>중복·누락</span></div><div><b>전표전송</b><span>매입매출전표</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>전자세금계산서</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>상단내역</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>수집헤더</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>구분</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>매출</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 상단내역(수집헤더) -</label><div>입력값</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>구분(1.매출/2.매입)</label><div>3,750,000</div><label>자료(1.국세청[인증성공 시]/2.엑셀[홈택스…</label><div>입력값</div><label>거래처(F2/C</label><div>대한상사</div><label>엔터 시 전체)</label><div>입력값</div><label>전표상태(전체/확정가능/전표확정/확정제외/중복…</label><div>검증완료</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 상단내역(수집헤더) - · 기간 · 구분(1.매출/2.매입) · 자료(1.국세청[인증성공 시]/2.엑셀[홈택스 다운 엑셀 업로드]) · 거래처(F2/C · 엔터 시 전체) · 전표상태(전체/확정가능/전표확정/확정제외/중복전표/미추천/삭제)</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 수집하러가기: SA-ATX-10(ScrappingBoard) 연동 · 수집기간·작성일자/전송일자 기준 수동수집(홈택스 ID·PW·부서사용자 ID 선택입력). - 오류검증: 유형검증오류(사용불가 … · 예 전자세금계산서에 13.면세)·사업자번호 검증오류·상하단 합계금액 불일치·&quot;공급가액+세액&quot;과 합계금액 불일치·유형별 부가세… · 전표전송(확정가능: '분개포함/분개없음' 선택 · 중복전표: 승인번호만 전송 · 미추천: '분개없음' 전송, 대차차액 시 '차액분개보기') · 자동분개시 과세유형 설정(차량유지비 '여' 시 54.불공[비영업소형승용차], 접대비는 설정 무관 불공) · 전표전송설정(분개계정과목 자동반영 '여' 시 동일=외상/현금=현금/그외=혼합, '부'=혼합</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 수집하러가기: SA-ATX-10(ScrappingBoar…</span><span class="tag">수집기간·작성일자/전송일자 기준 수동수집(홈택스 ID·PW·…</span><span class="tag">예 전자세금계산서에 13.면세)·사업자번호 검증오류·상하단 …</span><span class="tag">전표전송(확정가능: '분개포함/분개없음' 선택</span><span class="tag">중복전표: 승인번호만 전송</span><span class="tag">미추천: '분개없음' 전송, 대차차액 시 '차액분개보기')</span><span class="tag">자동분개시 과세유형 설정(차량유지비 '여' 시 54.불공[비…</span><span class="tag">전표전송설정(분개계정과목 자동반영 '여' 시 동일=외상/현금…</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-02, [세금계산서합계표], [부가가치세신고서]…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01(자격증명)·SA-ATX-10(수집).…</span><span class="tag">SA-ATX-09(국세청자료검증). 엔티티: 자동전표 스테이…</span><span class="tag">추천 엔진 + 신뢰도</span><span class="tag">전표 상태머신</span><span class="tag">taxType 11/12/51/52/54/55. API: 수…</span><span class="tag">v2.1 설계서</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK 자동전표 스테이징 + 추천 엔진 + 상태머신으로 Smart A 기능을 흡수. 부가세 자동라인은 과세유형(부가세 계정) 입력 시에만 생성 규칙 준수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-03" data-screen-id="SA-ATX-03" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-03</span>
+    <div>
+      <h3>전자계산서</h3>
+      <p>자동전표 · 25.5.3 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>국세청 홈택스로부터 전자계산서(매출·매입, 면세)를 자동수집하여 분개를 추천하고, 확인·수정 후 SA-JNL-02(매입매출전표입력)에 전송하는 메뉴.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전자계산서의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-03-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-03</strong><span>전자계산서</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>전자계산서</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>상단내역</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>구분</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>매출</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>매입</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 상단내역:</label><div>입력값</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>구분(1.매출/2.매입)</label><div>3,750,000</div><label>자료(1.국세청/2.엑셀)</label><div>입력값</div><label>거래처</label><div>대한상사</div><label>전표상태</label><div>검증완료</div><label>조회(조건검색: 거래처·사업자/주민번호·대표자…</label><div>2026-06-20</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 상단내역: · 기간 · 구분(1.매출/2.매입) · 자료(1.국세청/2.엑셀) · 거래처 · 전표상태 · 조회(조건검색: 거래처·사업자/주민번호·대표자명·품명·공급가액·업태/종목·차·대변계정·전표상태·작업방법·체크확인). - 일자…</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 수집하러가기(SA-ATX-10 ScrappingBoard 연동 · 작성일자/전송일자 기준 수동수집). - 오류검증(유형검증오류[예 전자계산서에 11.과세]·사업자번호·상하단 합계 불일치·&quot;공… · 전표전송(확정가능/중복전표/미추천 동일 룰) · 전표전송설정(분개계정과목 자동반영·수량단가 전송) · 주민번호 별표 · 복수거래(품목상세) · 부가세신고요약 · 매출/매입 엑셀서식 불러오기. - 추가기능(우클릭):</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 수집하러가기(SA-ATX-10 ScrappingBoard…</span><span class="tag">작성일자/전송일자 기준 수동수집). - 오류검증(유형검증오류…</span><span class="tag">전표전송(확정가능/중복전표/미추천 동일 룰)</span><span class="tag">전표전송설정(분개계정과목 자동반영·수량단가 전송)</span><span class="tag">주민번호 별표</span><span class="tag">복수거래(품목상세)</span><span class="tag">부가세신고요약</span><span class="tag">매출/매입 엑셀서식 불러오기. - 추가기능(우클릭):</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-02, [계산서합계표], 부가가치세신고서, [계…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01·SA-ATX-10. 후행 SA-JNL…</span><span class="tag">SA-ATX-09. 엔티티: SA-ATX-02와 동일 자동전…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). SA-ATX-02와 스테이징 구조 공유, 면세 처리(부가세 미생성)만 분기하여 Smart A 기능을 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-04" data-screen-id="SA-ATX-04" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-04</span>
+    <div>
+      <h3>신용카드</h3>
+      <p>자동전표 · 25.5.4 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>매출·매입 신용카드 자료를 여신금융협회(매출), 국세청·각 카드사(매입)로부터 수집하여 분개를 추천하고, 확인·변경 후 SA-JNL-01(일반전표)·SA-JNL-02(매입매출전표)로 전송하는 메뉴.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>신용카드의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-04-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-04</strong><span>신용카드</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>카드사</span></div><div><b>정규화</b><span>승인내역</span></div><div><b>매칭</b><span>가맹점/공제</span></div><div><b>검증</b><span>불공제</span></div><div><b>전표전송</b><span>매입전표</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>신용카드</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>매출</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>상단내역</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>구분</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>자료</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 신용카드(매출) 상단내역:</label><div>3,750,000</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>구분(1.매출)</label><div>3,750,000</div><label>자료(1.여신금융협회/2.엑셀)</label><div>입력값</div><label>승인일자·매입일자(승인일자=매출발생일, 매입일…</label><div>2026-06-20</div><label>카드</label><div>입력값</div><label>전표상태</label><div>검증완료</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 신용카드(매출) 상단내역: · 기간 · 구분(1.매출) · 자료(1.여신금융협회/2.엑셀) · 승인일자·매입일자(승인일자=매출발생일, 매입일자=카드사가 VAN사로부터 매입한 일자) · 카드 · 전표상태</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 3)/6) 신용카드(매출)내역 수집(매출만 · 여신금융협회 매입일자 기준, 6개월 초과 불가 · IP차단으로 최초·매일 4일만, 부가세신고 시 수동수집). 5) 수집하러가기(SA-ATX-10 ScrappingBoard · 홈택스/카드사 등록 정상 시 활성). 7) 오류검증. 8) 휴폐업조회. 9) 수집한 국세청 자료집계(매입 · 분기·반기, 0.전체/1.국세청/2.화물복지, 기간내/기간외). - 더보기(기능모음): · 전표전송(전송가능: 매입매출 '분개포함/분개없음' · 미추천: '분개없음', 대차차액 시 '차액분개보기') · 매출수수료분개 및 계정설정(과세/면세/간이/간이(세금계산서 발급)</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 3)/6) 신용카드(매출)내역 수집(매출만</span><span class="tag">여신금융협회 매입일자 기준, 6개월 초과 불가</span><span class="tag">IP차단으로 최초·매일 4일만, 부가세신고 시 수동수집). …</span><span class="tag">홈택스/카드사 등록 정상 시 활성). 7) 오류검증. 8) …</span><span class="tag">분기·반기, 0.전체/1.국세청/2.화물복지, 기간내/기간외…</span><span class="tag">전표전송(전송가능: 매입매출 '분개포함/분개없음'</span><span class="tag">미추천: '분개없음', 대차차액 시 '차액분개보기')</span><span class="tag">매출수수료분개 및 계정설정(과세/면세/간이/간이(세금계산서 …</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-01, SA-JNL-02, [신용카드매출전표발행…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01(카드/홈택스/여신 자격증명)·SA-A…</span><span class="tag">SA-ATX-09. 엔티티: 카드 매출·매입 분리 자동전표 …</span><span class="tag">수수료/봉사료 분리 룰</span><span class="tag">채권계정 카드사 고정 룰</span><span class="tag">전표 상태머신. API: 수집(여신/국세청/카드사)·추천·전…</span><span class="tag">v2.1 설계서</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A의 유형값 기반 일반전표/매입매출전표 전송 라우팅을 BK 전송 파이프라인으로 흡수. 일반전표 전송 시 현금(101) 위치로 입금/출금 자동판별(SA-JNL-01 통합 정책과 정합). RLS + 카드/홈택스/여신 자격증명 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-05" data-screen-id="SA-ATX-05" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-05</span>
+    <div>
+      <h3>현금영수증</h3>
+      <p>자동전표 · 25.5.5 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>국세청 홈택스로부터 현금영수증 매출·매입 내역을 수집하여 분개를 추천하고, 확인·변경 후 SA-JNL-01(일반전표)·SA-JNL-02(매입매출전표)에 전송하는 메뉴.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>현금영수증의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-05-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-05</strong><span>현금영수증</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>국세청</span></div><div><b>정규화</b><span>현금영수증</span></div><div><b>매칭</b><span>사업자번호</span></div><div><b>검증</b><span>공제여부</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>현금영수증</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>매출</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>상단내역</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>구분</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>자료구분</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 현금영수증(매출) 상단내역:</label><div>3,750,000</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>구분(1.매출)</label><div>3,750,000</div><label>자료구분(1.국세청[매출내역조회]/2.엑셀)</label><div>3,750,000</div><label>전표상태</label><div>검증완료</div><label>조회(거래처(상호)명·품명·공급가액·세액·봉사…</label><div>대한상사</div><label>일자(승인일자).</label><div>2026-06-20</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 현금영수증(매출) 상단내역: · 기간 · 구분(1.매출) · 자료구분(1.국세청[매출내역조회]/2.엑셀) · 전표상태 · 조회(거래처(상호)명·품명·공급가액·세액·봉사료·합계·대변계정·전표유형·과세유형). · 일자(승인일자).</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 4) 수집하러가기(SA-ATX-10 ScrappingBoard). 5) 오류검증. 6) 휴폐업조회. - 더보기(기능모음): · 전표전송(전송가능: 매입매출 '분개포함/분개없음' · 미추천: '분개없음', 대차차액 시 '차액분개보기') · 전표전송 설정(신규거래처 코드 생성여부 · 분개유형 동일=외상/현금=현금/그외=혼합 · 일반전표 현금(101) 입금/출금 전송) · 매출증빙병합(매출 · 일자별/월별/전체</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 4) 수집하러가기(SA-ATX-10 ScrappingBo…</span><span class="tag">전표전송(전송가능: 매입매출 '분개포함/분개없음'</span><span class="tag">미추천: '분개없음', 대차차액 시 '차액분개보기')</span><span class="tag">전표전송 설정(신규거래처 코드 생성여부</span><span class="tag">분개유형 동일=외상/현금=현금/그외=혼합</span><span class="tag">일반전표 현금(101) 입금/출금 전송)</span><span class="tag">매출증빙병합(매출</span><span class="tag">일자별/월별/전체</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-01, SA-JNL-02, [신용카드매출전표발행…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01(홈택스 자격증명)·SA-ATX-10.…</span><span class="tag">SA-ATX-09. 엔티티: 현금영수증 매출·매입 자동전표 …</span><span class="tag">전표 상태머신. API: 수집·추천·전송 라우팅.</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 유형값 기반 라우팅 + 현금(101) 위치 입금/출금 자동판별(SA-JNL-01 통합 정책 정합)으로 Smart A 기능을 흡수. RLS + 홈택스 자격증명 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-06" data-screen-id="SA-ATX-06" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-06</span>
+    <div>
+      <h3>통장</h3>
+      <p>자동전표 · 25.5.6 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>각 금융기관 홈페이지에서 통장거래내역을 수집(또는 엑셀 업로드)하여 거래처코드를 찾아 분개를 추천하고, 확인·변경 후 SA-JNL-01(일반전표)에 전송하는 메뉴. 통장 거래내역 1건 = 1전표(입금/출금 자동판별).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>통장의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-06-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-06</strong><span>통장</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>은행</span></div><div><b>정규화</b><span>입출금</span></div><div><b>매칭</b><span>계좌/적요</span></div><div><b>검증</b><span>미매칭</span></div><div><b>전표전송</b><span>일반전표</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>통장</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>상단</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>구분</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>은행</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>엑셀</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 조회/상단:</label><div>입력값</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>구분(1.은행/2.엑셀</label><div>국민 123-456-789</div><label>최초수집기간 이전은 엑셀 업로드로 반영)</label><div>2026-01-01 ~ 2026-12-31</div><label>금융거래처([거래처등록] '금융'탭에 계좌 등…</label><div>대한상사</div><label>전표상태</label><div>검증완료</div><label>조회(통장적요·적요·금액·입금/출금·상대계정·…</label><div>대한상사</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 조회/상단: · 기간 · 구분(1.은행/2.엑셀 · 최초수집기간 이전은 엑셀 업로드로 반영) · 금융거래처([거래처등록] '금융'탭에 계좌 등록 필요) · 전표상태 · 조회(통장적요·적요·금액·입금/출금·상대계정·거래처코드·체크확인·거래처명). - 1) 통장 이미지 영역(수집 원본 통장이미지…</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 4) 수집하러가기(SA-ATX-10 ScrappingBoard · 통장계좌 정상 시 활성). 5) 오류검증. 6) 정렬(0.거래일시순/1.적요순/2.입금액순/3.출금액순/4.거래처코드순/5.… · 입금=매출, 출금=매입], 우측 거래처원장). 8) 통장대조(통장내역과 거래처원장 비교 · 전체[입금액·출금액·잔액 차액]·상세[통장이미지·통장원장·분개내역]). - 9) 더보기(기능모음): · 전표전송설정(SA-JNL-01 현금(101) 입금/출금 전송 · 경비성 계정·체크카드 카드계좌 '여') · 전표전송('확정가능'만 전송) · 송금수수료 분개('송금수수료 일괄분개'</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 4) 수집하러가기(SA-ATX-10 ScrappingBo…</span><span class="tag">통장계좌 정상 시 활성). 5) 오류검증. 6) 정렬(0.거…</span><span class="tag">입금=매출, 출금=매입], 우측 거래처원장). 8) 통장대조…</span><span class="tag">전체[입금액·출금액·잔액 차액]·상세[통장이미지·통장원장·분…</span><span class="tag">전표전송설정(SA-JNL-01 현금(101) 입금/출금 전송</span><span class="tag">경비성 계정·체크카드 카드계좌 '여')</span><span class="tag">전표전송('확정가능'만 전송)</span><span class="tag">송금수수료 분개('송금수수료 일괄분개'</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-01, [매입매출장], [거래처원장], 자금계획…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01(은행 자격증명)·SA-ATX-10. …</span><span class="tag">SA-ATX-09. 엔티티: 통장 자동전표 스테이징(통장이미…</span><span class="tag">거래처 자동매칭</span><span class="tag">송금수수료 룰</span><span class="tag">체크카드 중복회피. API: 수집·매칭·추천·전송</span><span class="tag">통장대조(통장 vs 거래처원장).</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 통장 1건=1전표를 SA-JNL-01 입금/출금 통합 정책(현금 101 위치 자동판별)으로 전송하도록 Smart A 기능을 흡수. RLS + 은행 자격증명 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-07" data-screen-id="SA-ATX-07" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-07</span>
+    <div>
+      <h3>자료수집현황</h3>
+      <p>자동전표 · 25.5.7 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>SA-ATX-01(수집정보등록)에 등록된 정보 기준으로 수집한 자료를 수집일자별로 조회하는 메뉴. 수집기간별 자료수집 실패여부·실패사유 확인.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>장부 화면은 조건 조회, 대량 그리드, 원전표 드릴다운, 집계/차액 확인이 핵심이므로 리포트·대사 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-07-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-07</strong><span>자료수집현황</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>자료수집현황</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>자료수집기간</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>최근</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>수집일시</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>내림차순</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>기간(자료수집기간)</label><div>2026-01-01 ~ 2026-12-31</div><label>자료수집현황(최근 수집일시 내림차순, 메뉴별 …</label><div>입력값</div><label>일자 선택 시 하단에 완료여부·실패사유)</label><div>2026-06-20</div><label>수집결과내역(증빙별 수집결과 완료여부·실패사유…</label><div>입력값</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>계정과목</label><div>401 상품매출</div><label>거래처</label><div>대한상사</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>기간(자료수집기간) · 자료수집현황(최근 수집일시 내림차순, 메뉴별 총 수집건수 · 일자 선택 시 하단에 완료여부·실패사유) · 수집결과내역(증빙별 수집결과 완료여부·실패사유). · 기간 · 계정과목 · 거래처</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 처리·검증 규칙: 증빙별·일자별 수집 성공/실패 로그 조회 전용. - BK 구체화: 수집 잡 실행 이력(job run l… · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 처리·검증 규칙: 증빙별·일자별 수집 성공/실패 로그 조…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">수집 성공/실패 로그 뷰.</span><span class="tag">조회 결과</span><span class="tag">집계표</span><span class="tag">원전표 링크</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01, 각 증빙 수집메뉴(SA-ATX-02…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 수집 잡 실행 이력 엔티티로 Smart A 기능을 흡수. RLS로 tenant별 수집 로그 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-08" data-screen-id="SA-ATX-08" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-08</span>
+    <div>
+      <h3>전표전송현황</h3>
+      <p>자동전표 · 25.5.8 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>자동전표처리 각 증빙메뉴에서 SA-JNL-01·SA-JNL-02로 전표전송하거나 미전송된 현황을 조회하는 메뉴.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전표 화면은 채번, 대차, 보조부, 마감 검증이 입력 중 바로 보여야 하므로 헤더-라인-검증 패널 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-08-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-08</strong><span>전표전송현황</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>전표전송현황</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>증빙종류</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>증빙</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>메뉴별</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>전표상태값</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>증빙종류(증빙 메뉴별 전표상태값[미전송/전송완…</label><div>검증완료</div><label>전체(증빙별 전표상태값 전체 건수 합계)</label><div>검증완료</div><label>최종수집일(증빙별 최종 수집일자)</label><div>2026-06-20</div><label>최종거래일(증빙별 마지막 거래일).</label><div>입력값</div><label>전표일자</label><div>2026-06-20</div><label>전표번호</label><div>2026-06-20-001</div><label>구분</label><div>입력값</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>증빙종류(증빙 메뉴별 전표상태값[미전송/전송완료/확정후 삭제/확정제외] 표시) · 전체(증빙별 전표상태값 전체 건수 합계) · 최종수집일(증빙별 최종 수집일자) · 최종거래일(증빙별 마지막 거래일). · 전표일자 · 전표번호 · 구분</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 처리·검증 규칙: 증빙별 전송 상태(미전송/전송완료/확정후 삭제/확정제외) 집계 조회 전용. - BK 구체화: 자동전표 … · 증빙종류별 최종수집일·최종거래일 메타데이터. · 조회 · 저장 · 검증 · 역분개</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 처리·검증 규칙: 증빙별 전송 상태(미전송/전송완료/확정…</span><span class="tag">증빙종류별 최종수집일·최종거래일 메타데이터.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">역분개</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">증빙별 전송상태 집계 뷰.</span><span class="tag">전표</span><span class="tag">분개 라인</span><span class="tag">감사로그</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 각 증빙 수집메뉴(SA-ATX-02~06). 후행 SA…</span><span class="tag">일반전표입력</span><span class="tag">전표검색</span><span class="tag">보조부</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 자동전표 스테이징 전송상태 집계 뷰로 Smart A 기능을 흡수. RLS.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-09" data-screen-id="SA-ATX-09" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-09</span>
+    <div>
+      <h3>국세청자료검증 및 사이트비교</h3>
+      <p>자동전표 · 25.5.9 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>SA-JNL-02(매입매출전표입력) 입력 데이터와 국세청 홈택스 신고 데이터를 비교·검증하는 메뉴. 누락된 세금계산서는 추가 입력하고, 전자세금계산서가 아닌 데이터는 전자구분값을 제외하여 정확한 신고를 돕는다. 3원(전표입력·자동전표수집·홈택스) 비교 reconciliation.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>국세청자료검증 및 사이트비교의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-09-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-09</strong><span>국세청자료검증 및 사이트비교</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>국세청자료검증</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>사이트비교</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>전자세금계산서</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>상세</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>조회구분</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>- 1) 전자세금계산서(상세):</label><div>입력값</div><label>조회구분(월별/분기)</label><div>입력값</div><label>구분(1.매출/2.매입)</label><div>3,750,000</div><label>차액 데이터만 보기</label><div>입력값</div><label>매입매출전표입력(SA-JNL-02 데이터</label><div>3,750,000</div><label>'전자'항목 공란=종이세금계산서로 인식, 불러…</label><div>입력값</div><label>전자세금계산서(SA-ATX-02 수집 데이터</label><div>입력값</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 1) 전자세금계산서(상세): · 조회구분(월별/분기) · 구분(1.매출/2.매입) · 차액 데이터만 보기 · 매입매출전표입력(SA-JNL-02 데이터 · '전자'항목 공란=종이세금계산서로 인식, 불러올 수 없음) · 전자세금계산서(SA-ATX-02 수집 데이터</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 처리·검증 규칙: 3원(전표입력·자동전표수집·홈택스) 비교로 일치/불일치('○'/'X') 판정. '전자' 공란(종이) 데… · (2)자동전표 수집데이터 · (3)외부 국세청/여신 합계데이터 3소스를 reconciliation 엔진으로 대조. 일치여부 플래그·차액 필터·신고용 합계… · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 처리·검증 규칙: 3원(전표입력·자동전표수집·홈택스) 비…</span><span class="tag">(2)자동전표 수집데이터</span><span class="tag">(3)외부 국세청/여신 합계데이터 3소스를 reconcili…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">SA-JNL-02(누락분 추가입력), 검증 결과 뷰(일치/차…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-JNL-02</span><span class="tag">SA-ATX-02/SA-ATX-03(수집)</span><span class="tag">SA-ATX-04~05(카드/현금영수증 수집). 외부: 홈택…</span><span class="tag">여신금융협회. 후행 SA-JNL-02(누락분)</span><span class="tag">부가세 신고 파이프라인([세금계산서합계표]/[계산서합계표])…</span><span class="tag">신고용 합계표 뷰. API: 3소스 대조</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 3소스 reconciliation 엔진으로 Smart A 기능을 흡수. RLS로 tenant별 신고 검증 격리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-atx-10" data-screen-id="SA-ATX-10" data-layout="automation-pipeline">
+  <div class="screen-head">
+    <span class="sid">SA-ATX-10</span>
+    <div>
+      <h3>ScrappingBoard</h3>
+      <p>자동전표 · 25.5.10 · 자동전표 파이프라인</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>새벽에 수집 완료된 데이터를 각 증빙 메뉴별로 한 눈에 확인하는 메뉴. 증빙별 최종수집일자·전표 미처리 현황 확인, SA-ATX-01(수집정보등록)을 당일/변경한 경우 수동수집 기능 제공. BK의 수집 운영 콘솔(대시보드).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>ScrappingBoard의 입력 필드와 산출물을 기준으로 자동전표 파이프라인 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock automation-pipeline" data-blueprint="SA-ATX-10-automation-pipeline">
+    <div class="mock-top"><strong>SA-ATX-10</strong><span>ScrappingBoard</span><em>자동전표</em></div>
+    <div class="automation-layout">
+    <div class="pipeline"><div><b>수집</b><span>외부자료</span></div><div><b>정규화</b><span>정규화</span></div><div><b>매칭</b><span>매핑</span></div><div><b>검증</b><span>검증</span></div><div><b>전표전송</b><span>전표전송</span></div></div>
+    <div class="two-col"><section><table class="mock-grid"><thead><tr><th>수집일</th><th>원천자료</th><th>거래처</th><th>공급가액</th><th>세액</th><th>상태</th></tr></thead><tbody><tr><td>2026-06-20</td><td>ScrappingBoard</td><td>대한상사</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>2026-06-21</td><td>수집정보</td><td>청운제조</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>2026-06-22</td><td>등록하기</td><td>나래상사</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>2026-06-23</td><td>SA</td><td>대한상사</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>2026-06-24</td><td>ATX</td><td>청운제조</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr></tbody></table></section><aside><div class="form-panel"><b>매핑/오류</b><div class="form-grid"><label>수집정보 등록하기(SA-ATX-01 미등록 시…</label><div>입력값</div><label>시계아이콘(최종수집 진행일자)</label><div>2026-06-20</div><label>달력(기간)아이콘(미처리 내역 기간)</label><div>2026-01-01 ~ 2026-12-31</div><label>건수(현재 로그인 기수 기준 전표상태 확정가능…</label><div>검증완료</div><label>엑셀 업로드 포함, 삭제전표 제외, 클릭 시 …</label><div>입력값</div><label>오류확인(SA-ATX-01 정보 오류 시 증빙…</label><div>입력값</div><label>WEstudio(관련 동영상)</label><div>입력값</div></div></div></aside></div>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>수집정보 등록하기(SA-ATX-01 미등록 시 바로 연동) · 시계아이콘(최종수집 진행일자) · 달력(기간)아이콘(미처리 내역 기간) · 건수(현재 로그인 기수 기준 전표상태 확정가능·미추천·중복전표 미처리 건수 · 엑셀 업로드 포함, 삭제전표 제외, 클릭 시 해당 메뉴 이동) · 오류확인(SA-ATX-01 정보 오류 시 증빙별 버튼 생성, 수집정보 확인 버튼으로 SA-ATX-01 연동) · WEstudio(관련 동영상)</td></tr><tr><th>주 작업 영역</th><td>수집 원천자료, 매핑, 오류, 전표 후보, 전송 결과를 단계별 파이프라인으로 배치한다.</td></tr><tr><th>처리 버튼</th><td>- 수집하기: 증빙별 수동수집 · 수집 시작/종료일(6개월 초과·미래일 불가 · 1년은 1~6월·7~12월 분할), 전자세금/계산서 수집기준(작성일/e세로 전송일), 인증 성공 증빙 선택 · 홈택스 ID·PW는 전자세금/계산서 선택 시 활성(인증서 수집 시 선택입력) · 신용카드매출(여신)은 ScrappingBoard 수동수집 불가 → SA-ATX-04 '신용카드(매출)내역 수집'으로 · 수집 완료 후 남은 시간 카운트. - 처리·검증 규칙: 미처리 건수 = 확정가능+미추천+중복전표(삭제전표 제외). 수동수집 … · 수동수집 트리거(기간·작성일/전송일 기준·6개월 제한) API. 자격증명 오류 알림과 SA-ATX-01 연동. 수집 잡 큐·… · 조회</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 권한·RLS 스코프 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 수집하기: 증빙별 수동수집</span><span class="tag">수집 시작/종료일(6개월 초과·미래일 불가</span><span class="tag">1년은 1~6월·7~12월 분할), 전자세금/계산서 수집기준…</span><span class="tag">홈택스 ID·PW는 전자세금/계산서 선택 시 활성(인증서 수…</span><span class="tag">신용카드매출(여신)은 ScrappingBoard 수동수집 불…</span><span class="tag">수집 완료 후 남은 시간 카운트. - 처리·검증 규칙: 미처…</span><span class="tag">수동수집 트리거(기간·작성일/전송일 기준·6개월 제한) AP…</span><span class="tag">조회</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">수집 운영 대시보드, 수동수집 잡 실행.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-ATX-01(자격증명). 후행 SA-ATX-02~…</span><span class="tag">SA-ATX-07(자료수집현황). 엔티티: 수집 운영 콘솔 …</span><span class="tag">수집 잡 큐</span><span class="tag">자격증명 볼트 연계. API: 수동수집 트리거</span><span class="tag">미처리 건수 집계.</span><span class="tag">v2.1 설계서</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 수집 운영 콘솔(대시보드) + 수집 잡 큐·레이트리밋으로 Smart A 기능을 흡수. RLS + 자격증명 볼트 연계.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+    </section>
+  </main>
+</body>
+</html>

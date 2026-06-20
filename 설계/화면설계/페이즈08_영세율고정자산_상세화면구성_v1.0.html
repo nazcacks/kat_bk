@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Phase 8 상세화면구성 v1.0 - 부가세 영세율·기타서류·고정자산</title>
+  <style>
+:root{--ink:#172033;--sub:#667085;--line:#d6dce8;--bg:#f4f6fa;--nav:#182235;--blue:#2454c6;--blue2:#e8eefc;--green:#08785f;--green2:#def5ee;--amber:#9a5b00;--amber2:#fff4d8;--red:#b42318;--red2:#fee4e2;--panel:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',Arial,sans-serif;font-size:13px;line-height:1.55}
+nav{position:fixed;inset:0 auto 0 0;width:292px;background:var(--nav);color:#d8e1f3;overflow:auto;padding:18px 14px}nav h1{margin:0 0 6px;color:#fff;font-size:16px;line-height:1.35}.meta{color:#9aa8bd;font-size:11px;margin-bottom:14px}.nav-title{margin:16px 0 7px;color:#8fe0cf;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.04em}nav a{display:block;text-decoration:none;color:#d8e1f3;border-radius:6px;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.on{background:#2a3650;color:#fff}.phase-link{font-size:11.5px;color:#b3c7ff}
+main{margin-left:292px;padding:28px 36px 80px}.doc-head,.panel,.screen{background:var(--panel);border:1px solid var(--line);border-radius:8px}.doc-head{padding:24px 28px;margin-bottom:16px}.doc-head h2{font-size:25px;margin:5px 0 7px}.doc-head p{margin:4px 0;color:var(--sub)}.phase-badge,.pill,.tag{display:inline-block;border-radius:999px;font-weight:800;font-size:11px}.phase-badge{background:var(--blue2);color:var(--blue);padding:3px 10px}.pill{background:#eef2f8;color:#344054;padding:2px 8px}.tag{background:#eef2f8;color:#334155;margin:2px 4px 2px 0;padding:2px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;margin:16px 0}.stats div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.stats strong{display:block;font-size:24px}.stats span{color:var(--sub);font-size:11px}.panel{padding:20px 22px;margin:16px 0}.panel h2{font-size:18px;margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{background:#eef2f8;color:#344054;font-size:12px}td{font-size:12px}code{font-family:Consolas,'D2Coding',monospace;background:#eef2f8;border-radius:4px;padding:1px 5px}
+.screen{margin:22px 0;overflow:hidden}.screen-head{display:flex;align-items:center;gap:12px;background:#fbfcff;border-bottom:1px solid var(--line);padding:13px 15px}.sid{font-family:Consolas,'D2Coding',monospace;background:#172033;color:#fff;border-radius:6px;padding:5px 9px;font-weight:900}.screen-head h3{font-size:16px;margin:0}.screen-head p{margin:2px 0 0;color:var(--sub);font-size:12px}.screen-body{padding:15px}.brief-grid,.detail-grid,.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.brief,.detail-card{border:1px solid var(--line);border-radius:8px;background:#fcfdff;padding:11px}.brief p{margin:5px 0 0;color:#344054}.detail-card h4{font-size:13px;color:var(--blue);margin:0 0 8px}
+.mock{border:2px solid #8995aa;border-radius:9px;background:#f9fbff;margin:14px 0;overflow:hidden}.mock-top{display:flex;gap:10px;align-items:center;background:#253049;color:white;padding:7px 10px}.mock-top strong{font-family:Consolas,'D2Coding',monospace}.mock-top em{margin-left:auto;color:#c2cee2;font-style:normal;font-size:11px}
+.tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}.tabs span{border:1px solid var(--line);background:#fff;border-radius:6px 6px 0 0;padding:4px 10px;font-size:11px}.tabs .active{background:var(--blue2);color:var(--blue);font-weight:800}
+.form-grid{display:grid;grid-template-columns:minmax(95px,150px) 1fr;gap:5px}.form-grid label{background:#edf2f8;border:1px solid var(--line);padding:5px;color:#344054}.form-grid div{background:#fff;border:1px solid var(--line);padding:5px;min-height:27px}.form-panel{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.form-panel>b{display:block;color:var(--blue);margin-bottom:7px}
+.mock-grid th,.mock-grid td{font-size:11px;padding:6px}.mock-grid tbody tr:nth-child(even){background:#fbfcff}.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}.kpi-row div{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.kpi-row span{display:block;color:var(--sub);font-size:11px}.kpi-row strong{font-size:17px}
+button,.mock button{border:1px solid #8d99ae;background:#fff;border-radius:5px;padding:5px 9px;margin:3px;font-size:11px}.mock button:first-of-type{background:var(--blue);border-color:var(--blue);color:#fff}
+.tenant-search{display:grid;grid-template-columns:170px 1fr 80px;gap:8px;padding:10px;background:#eef2f8;border-bottom:1px solid var(--line)}.tenant-search span,.tenant-search b{background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px}.tenant-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}.tenant-cards div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.tenant-cards span{display:inline-block;background:var(--green2);color:var(--green);border-radius:999px;padding:2px 8px;margin:5px 0}.context-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 10px 10px}.context-strip span{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px;color:var(--sub)}.context-strip b{display:block;color:var(--ink)}
+.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout{display:grid;grid-template-columns:210px 1fr 220px;gap:10px;padding:10px}.org-tree,.org-layout aside,.security-layout aside,.matrix-layout aside,.catalog-layout aside,.notification-layout aside,.menu-layout aside,.registration-layout aside,.employee-layout aside,.partner-layout aside,.coa-layout aside,.contract-layout aside,.vehicle-layout aside,.label-layout aside,.conversion-layout aside,.carry-layout aside,.statement-layout aside,.monthly-layout aside,.opening-ledger-layout aside,.voucher-layout aside,.ledger-layout aside,.closing-layout aside,.tax-layout aside,.asset-layout aside,.dataops-layout aside,.search-layout aside,.bulk-layout aside,.bill-layout aside{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.org-tree ul{list-style:none;padding-left:0;line-height:1.9}.org-detail,.label-preview,.timeline{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}
+.settings-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.settings-layout section{grid-column:1/-1}.setting-card{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.label-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.label-preview div{border:1px dashed #98a2b3;background:#fff;padding:8px;min-height:58px}.label-preview span,.label-preview em{display:block;color:var(--sub);font-style:normal}
+.swimlane,.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px}.swimlane div,.pipeline div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:center}.swimlane span,.pipeline span{display:inline-block;margin-top:6px;border-radius:999px;background:var(--blue2);color:var(--blue);padding:2px 8px;font-size:11px}.infra-layout,.automation-layout,.finance-layout{padding-bottom:10px}.job-timeline{display:flex;gap:8px;padding:0 10px 10px}.job-timeline span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px}
+.toolbox-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.toolbox-layout>div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px}.toolbox-layout table{grid-column:1/-1}.tax-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tax-form div{display:grid;grid-template-columns:32px 1fr 120px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px}.tax-form span{background:#253049;color:#fff;border-radius:5px;text-align:center;padding:2px}.tax-form em{font-style:normal;text-align:right;color:var(--blue)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.timeline div{border-left:4px solid var(--blue);background:#f8fafc;border-radius:4px;padding:9px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px}.calendar div{min-height:62px;border:1px solid var(--line);border-radius:6px;padding:6px}.calendar b,.calendar span,.calendar em{display:block}.calendar em{color:var(--blue);font-style:normal}.job-console{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px;margin-bottom:8px}.progress{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green)}
+@media(max-width:1120px){nav{position:static;width:auto}main{margin-left:0;padding:18px}.stats,.brief-grid,.detail-grid,.two-col,.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout,.settings-layout,.tenant-cards,.context-strip,.kpi-row,.swimlane,.pipeline,.calendar{grid-template-columns:1fr}}
+@media print{nav{display:none}main{margin-left:0}.screen{break-inside:avoid}}
+</style>
+</head>
+<body>
+  <nav>
+    <h1>BK 페이즈별 상세화면구성 v1.0</h1>
+    <div class="meta">기준: 설계/bk_설계서_v2.1.md<br>재생성일: 2026-06-20</div>
+    <div class="nav-title">10개 페이즈</div>
+    <a class="phase-link " href="페이즈01_기초정보_상세화면구성_v1.0.html">Phase 01 · 기초정보·조직·표준 설정</a>
+<a class="phase-link " href="페이즈02_전기이월_상세화면구성_v1.0.html">Phase 02 · 전기이월·초기 데이터 이관</a>
+<a class="phase-link " href="페이즈03_전표자동전표_상세화면구성_v1.0.html">Phase 03 · 전표입력·자동전표 처리</a>
+<a class="phase-link " href="페이즈04_장부보조부_상세화면구성_v1.0.html">Phase 04 · 주요장부·보조장부</a>
+<a class="phase-link " href="페이즈05_결산재무제표_상세화면구성_v1.0.html">Phase 05 · 결산·재무제표·결산장부</a>
+<a class="phase-link " href="페이즈06_부가세주요신고_상세화면구성_v1.0.html">Phase 06 · 부가세 주요신고·기초 신고서류</a>
+<a class="phase-link " href="페이즈07_부가세첨부업종_상세화면구성_v1.0.html">Phase 07 · 부가세 첨부·업종별 신고서류</a>
+<a class="phase-link on" href="페이즈08_영세율고정자산_상세화면구성_v1.0.html">Phase 08 · 부가세 영세율·기타서류·고정자산</a>
+<a class="phase-link " href="페이즈09_자금예산어음_상세화면구성_v1.0.html">Phase 09 · 자금·예산·예적금·어음</a>
+<a class="phase-link " href="페이즈10_데이터관리운영_상세화면구성_v1.0.html">Phase 10 · 데이터관리·운영 전환</a>
+    <div class="nav-title">현재 페이즈 화면</div>
+    <a href="#sa-vat-36"><code>SA-VAT-36</code> 외국인관광객 숙박용역 환급실적명세서</a>
+<a href="#sa-vat-37"><code>SA-VAT-37</code> 외국인관광객 즉시환급 물품판매실적명세서</a>
+<a href="#sa-vat-38"><code>SA-VAT-38</code> 외국인물품(외교관면세) 판매기록표</a>
+<a href="#sa-vat-39"><code>SA-VAT-39</code> 재화·용역 공급기록표</a>
+<a href="#sa-vat-40"><code>SA-VAT-40</code> 공급가액확정명세서</a>
+<a href="#sa-vat-41"><code>SA-VAT-41</code> 선박에 의한 운송용역 공급가액일람표</a>
+<a href="#sa-vat-42"><code>SA-VAT-42</code> 외항선박등에 제공한 재화·용역 일람표</a>
+<a href="#sa-vat-43"><code>SA-VAT-43</code> 영세율매출명세서</a>
+<a href="#sa-vat-44"><code>SA-VAT-44</code> 일반/간이과세 전환 시 재고품등 신고</a>
+<a href="#sa-vat-45"><code>SA-VAT-45</code> 과세사업전환 감가상각자산 신고서</a>
+<a href="#sa-vat-46"><code>SA-VAT-46</code> 매입자발행세금계산서합계표</a>
+<a href="#sa-vat-47"><code>SA-VAT-47</code> 과세유흥장소 과표신고서(신)</a>
+<a href="#sa-vat-48"><code>SA-VAT-48</code> 사업용계좌 개설신고서</a>
+<a href="#sa-vat-49"><code>SA-VAT-49</code> 납부서 작성(전세목)</a>
+<a href="#sa-vat-50"><code>SA-VAT-50</code> 사업양도신고서</a>
+<a href="#sa-fa-01"><code>SA-FA-01</code> 고정자산등록</a>
+<a href="#sa-fa-02"><code>SA-FA-02</code> 미상각분 감가상각계산</a>
+<a href="#sa-fa-03"><code>SA-FA-03</code> 양도자산 감가상각계산</a>
+<a href="#sa-fa-04"><code>SA-FA-04</code> 원가경비별 감가상각명세서</a>
+<a href="#sa-fa-05"><code>SA-FA-05</code> 고정자산관리대장</a>
+<a href="#sa-fa-06"><code>SA-FA-06</code> 현장 / 프로젝트 / 부서 자산명세서</a>
+<a href="#sa-fa-07"><code>SA-FA-07</code> 월별 감가상각비 계상</a>
+  </nav>
+  <main>
+    <header class="doc-head">
+      <span class="phase-badge">Phase 08</span>
+      <h2>부가세 영세율·기타서류·고정자산</h2>
+      <p>영세율/수출/기타 신고서류와 고정자산 등록, 상각계산, 처분, 월별 상각비 계상을 연결한다.</p>
+      <p>각 화면의 와이어프레임은 설계서의 입력 필드·기능·산출물·연계 항목을 실제 화면 영역으로 배치했다. 동일 업무군 안에서도 신고서, 합계표, 명세서, 원장, 대사, 배치, 입력 화면은 서로 다른 구조로 설계했다.</p>
+    </header>
+    <section class="stats">
+      <div><strong>22</strong><span>이 페이즈 화면</span></div>
+      <div><strong>22</strong><span>SA 기능 화면</span></div>
+      <div><strong>0</strong><span>BF/JV/AUX 코어</span></div>
+      <div><strong>8</strong><span>화면 구조 유형</span></div>
+    </section>
+    <section class="panel">
+      <h2>페이즈 화면 인벤토리</h2>
+      <table>
+        <thead><tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>핵심 필드</th></tr></thead>
+        <tbody><tr><td><code>SA-VAT-36</code></td><td>외국인관광객 숙박용역 환급실적명세서</td><td>부가세/신고</td><td>25.14.8</td><td><span class="pill">납부/환급</span></td><td>종사업장번호/환급창구운영사업자 · 관광사업 등록번호(관광진흥법시행령 3조1항) · 숙박용역일련번호(20자리 · 불러오기시 1부터 순차)</td></tr>
+<tr><td><code>SA-VAT-37</code></td><td>외국인관광객 즉시환급 물품판매실적명세서</td><td>부가세/신고</td><td>25.14.9</td><td><span class="pill">납부/환급</span></td><td>종사업장번호/면세판매장 지정번호 · 환급창구운영자(상호·사업자등록번호) · 구매일련번호(20자리 · 불러오기시 순차)</td></tr>
+<tr><td><code>SA-VAT-38</code></td><td>외국인물품(외교관면세) 판매기록표</td><td>부가세/신고</td><td>25.14.10</td><td><span class="pill">첨부 명세</span></td><td>공급일자 · 공급받는자(성명·국적·근무처·여권번호/외교관면세카드) · 품목·수량·단가·통화코드·금액(외화) · 금액(원화 자동). BK 관점: 외교관면세 거래의 인적·물품 메타를 증빙으로 관리.</td></tr>
+<tr><td><code>SA-VAT-39</code></td><td>재화·용역 공급기록표</td><td>부가세/신고</td><td>25.14.11</td><td><span class="pill">첨부 명세</span></td><td>공급일자, 공급받는자(F2 코드도움 또는 직접입력), 품목·금액, 신고일자(다음달 25일). BK 관점: 외교공관 공급기록 … · 코드 · 명칭 · 구분</td></tr>
+<tr><td><code>SA-VAT-40</code></td><td>공급가액확정명세서</td><td>부가세/신고</td><td>25.14.12</td><td><span class="pill">첨부 명세</span></td><td>노선(노선등록 · 전자신고 필수) · 수입금액(여객/화물/수화물/우편물/기타) · 비고(통화코드(전자신고 필수)·외화금액). 불러오기(12.영세/16.수출</td></tr>
+<tr><td><code>SA-VAT-41</code></td><td>선박에 의한 운송용역 공급가액일람표</td><td>부가세/신고</td><td>25.14.13</td><td><span class="pill">첨부 명세</span></td><td>거래일자 · 선박명(선박등록) · 운송수입금액(원화 · 국내·해외 수입 구분)</td></tr>
+<tr><td><code>SA-VAT-42</code></td><td>외항선박등에 제공한 재화·용역 일람표</td><td>부가세/신고</td><td>25.14.14</td><td><span class="pill">첨부 명세</span></td><td>공급일자 · 구분(1.재화/2.용역) · 거래처명·사업자등록번호 · 품명</td></tr>
+<tr><td><code>SA-VAT-43</code></td><td>영세율매출명세서</td><td>부가세/신고</td><td>25.14.15</td><td><span class="pill">첨부 명세</span></td><td>영세율 적용 공급실적 합계(부가세법·조특법·기타법률별 영세율 공급실적 원화). 부가세신고서 과세표준·매출세액의 영세율 금액 … · 신고기간 · 사업장 · 수정차수</td></tr>
+<tr><td><code>SA-VAT-44</code></td><td>일반/간이과세 전환 시 재고품등 신고</td><td>부가세/신고</td><td>25.15.1</td><td><span class="pill">첨부 명세</span></td><td>신고구분(1.일반(간이→일반)/2.간이(일반→간이)) · 적용시기(시작·종료일자) · 일반과세 전환통지(여/부) · 간이과세 포기신고(여/부)</td></tr>
+<tr><td><code>SA-VAT-45</code></td><td>과세사업전환 감가상각자산 신고서</td><td>부가세/신고</td><td>25.15.2</td><td><span class="pill">신고서</span></td><td>신고구분(1.건축/구축물/2.기타) · 수량 · 취득일 · 면세사업관련 불공제세액</td></tr>
+<tr><td><code>SA-VAT-46</code></td><td>매입자발행세금계산서합계표</td><td>부가세/신고</td><td>25.15.3</td><td><span class="pill">합계표</span></td><td>상호(법인명)·사업자등록번호 · 매수 · 공급가액 · 세액. 불러오기(64.매세</td></tr>
+<tr><td><code>SA-VAT-47</code></td><td>과세유흥장소 과표신고서(신)</td><td>부가세/신고</td><td>25.15.4</td><td><span class="pill">신고서</span></td><td>과세유흥(1.62010 유흥주점/2.62020 외국인전용유흥음식점/3.62030 유사장소) · 과세면세구분 · 유흥음식요금(개별소비세 과세표준) · 세율(개소세 10%·교육세 30% 자동·수정가능)</td></tr>
+<tr><td><code>SA-VAT-48</code></td><td>사업용계좌 개설신고서</td><td>부가세/신고</td><td>25.15.5</td><td><span class="pill">신고서</span></td><td>계좌상태구분(1.개설/2.추가/3.폐지/4.환급겸용계좌) · 개설은행명(거래처등록 금융거래처) · 예금종류명 · 계좌번호</td></tr>
+<tr><td><code>SA-VAT-49</code></td><td>납부서 작성(전세목)</td><td>부가세/신고</td><td>25.15.6</td><td><span class="pill">납부/환급</span></td><td>지급년월 · 회사명·구분(세목) · 결정구분(1.확정/2.수시/3.예정/4.원천/5.확정고지/6.수시고지/7.예정고지(중간예납)/8.원천고지) · 수입징수관서·계좌번호(자동·수정)</td></tr>
+<tr><td><code>SA-VAT-50</code></td><td>사업양도신고서</td><td>부가세/신고</td><td>25.15.7</td><td><span class="pill">신고서</span></td><td>양수자 인적사항(상호·사업자등록번호·대표자명·사업양도 연월일·업태·종목·소재지) · 사업양도내용(구분 01.양도되는 권리/02.양도되는 의무/03.양도제외 권리/04.양도제외 의무 · 명세·양도금액·양도제외금액) · 일괄삭제</td></tr>
+<tr><td><code>SA-FA-01</code></td><td>고정자산등록</td><td>고정자산</td><td>25.16.1</td><td><span class="pill">자산 등록</span></td><td>- 헤더(조회/식별): · 계정과목(F2 코드도움, 유형/무형자산 코드 20200~25099, 토지 20100은 비상각자산으로 등록 차단), · 자산구분(미상각분/양도자산/업무용승용차/폐기자산/양도및폐기자산), · 상각방법 구분(유형 정액·정률, 무형 정액 등 계정과목 범위별),</td></tr>
+<tr><td><code>SA-FA-02</code></td><td>미상각분 감가상각계산</td><td>고정자산</td><td>25.16.2</td><td><span class="pill">상각 계산</span></td><td>유형자산 탭(유형 계정과목 직접입력·F2 코드도움 시 미상각분 유형자산의 자산명·취득일·업종명·기초가액 등 반영) · 무형자산 탭(무형 계정과목 선택 시 미상각분 무형자산 영업권·개발비 등 반영) · 총괄 탭(1.유형자산총괄/2.무형자산총괄 선택 · 계정과목별 합계 자동반영). BK 조회조건: 회계기간(기수)·사업장·차원 필터</td></tr>
+<tr><td><code>SA-FA-03</code></td><td>양도자산 감가상각계산</td><td>고정자산</td><td>25.16.3</td><td><span class="pill">상각 계산</span></td><td>유형자산 탭(유형 계정과목 선택 시 자산명·취득일·업종명·기초가액 등 반영) · 무형자산 탭(무형 계정과목 선택 시 자산명·취득일·양도일·업종명·기초가액 등 반영) · 총괄 탭(1.유형자산총괄/2.무형자산총괄 · 계정과목별 합계 자동반영). BK 조회조건: 회계기간·사업장·차원</td></tr>
+<tr><td><code>SA-FA-04</code></td><td>원가경비별 감가상각명세서</td><td>고정자산</td><td>25.16.4</td><td><span class="pill">자산 명세</span></td><td>계정과목(직접입력·F2 코드도움), · 경비구분(전체/500번대/600번대/700번대/800번대 → 고정자산등록 경비구분), · 자산구분(전체표시/양도자산표시/미상각분표시). 총괄 탭은 유형·무형별 총괄금액을 경비구분별로 조회. BK 조회조건: 회계기간… · 신고기간</td></tr>
+<tr><td><code>SA-FA-05</code></td><td>고정자산관리대장</td><td>고정자산</td><td>25.16.5</td><td><span class="pill">자산 명세</span></td><td>- 전체 탭: · 항목(0.전체/1.유형자산/2.무형자산), · 구분(전체고정자산/과목별고정자산 → 과목별 선택 시 계정과목란 활성화), · 유형(0.전체/1.미상각/2.전체양도/3.전체폐기/4.신규취득/5.상각진행/6.상각완료). 자산변동사항(양도/폐기/사용부서·…</td></tr>
+<tr><td><code>SA-FA-06</code></td><td>현장 / 프로젝트 / 부서 자산명세서</td><td>고정자산</td><td>25.16.6</td><td><span class="pill">자산 명세</span></td><td>유형/무형자산 계정과목(직접입력·F2 코드도움·Enter 전체), · 조회구분(1.전체표시/2.양도자산표시/3.미상각분표시/4.업무용승용차/5.폐기자산/6.양도및폐기자산), · 구분(1.사용부서/2.관리부서/3.프로젝트/4.현장/5.사용사원/6.관리사원 · 구분 선택에 따라 조회옵션 연동). BK 조회조건: 회계기간·사업장, 6차원 슬라이싱.</td></tr>
+<tr><td><code>SA-FA-07</code></td><td>월별 감가상각비 계상</td><td>고정자산</td><td>25.16.7</td><td><span class="pill">상각비 계상</span></td><td>- 1) 결산기준 감가상각 계상: · 결산월(월별·분기별 · 월별은 1월부터 순차 조회, [결산자료입력] 12월 결산 시 1~12월 합계 반영 · 전체양도·폐기일자 입력 자산은 양도·폐기월 이후 상각 미계산),</td></tr></tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>화면별 상세 구성</h2>
+      <article class="screen" id="sa-vat-36" data-screen-id="SA-VAT-36" data-layout="tax-payment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-36</span>
+    <div>
+      <h3>외국인관광객 숙박용역 환급실적명세서</h3>
+      <p>부가세/신고 · 25.14.8 · 납부/환급</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외국인관광객 숙박용역 공급 관광호텔 사업자가 부가세액 공제를 위해 작성하는 부속서류를 BK 부가세 환급 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-payment" data-blueprint="SA-VAT-36-tax-payment">
+    <div class="mock-top"><strong>SA-VAT-36</strong><span>외국인관광객 숙박용역 환급실적명세서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>종사업장번호/환급창구운영사업자</label><div>본점</div><label>관광사업 등록번호(관광진흥법시행령 3조1항)</label><div>2026-06-20-001</div><label>숙박용역일련번호(20자리</label><div>2026-06-20-001</div><label>불러오기시 1부터 순차)</label><div>입력값</div><label>공급일자(숙박용역공급확인서)</label><div>2026-06-20</div><label>환급일자·증명서 송부일자</label><div>2026-06-20</div><label>공급금액(세금포함)·부가가치세·환급액</label><div>3,750,000</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>종사업장번호/환급창구운영사업자</b><em>본점</em></div><div><span>02</span><b>관광사업 등록번호(관광진흥법시행령 3조1항)</b><em>2026-06-20-002</em></div><div><span>03</span><b>숙박용역일련번호(20자리</b><em>2026-06-20-003</em></div><div><span>04</span><b>불러오기시 1부터 순차)</b><em>종사업장번호</em></div><div><span>05</span><b>공급일자(숙박용역공급확인서)</b><em>2026-06-24</em></div><div><span>06</span><b>환급일자·증명서 송부일자</b><em>2026-06-25</em></div><div><span>07</span><b>공급금액(세금포함)·부가가치세·환급액</b><em>11,250,000</em></div><div><span>08</span><b>투숙객 인적사항. 불러오기</b><em>관광진흥법시행령</em></div></div></section>
+    <aside><b>신고 연계</b><p>외국인관광객 숙박용역 환급실적명세서.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>종사업장번호/환급창구운영사업자 · 관광사업 등록번호(관광진흥법시행령 3조1항) · 숙박용역일련번호(20자리 · 불러오기시 1부터 순차) · 공급일자(숙박용역공급확인서) · 환급일자·증명서 송부일자 · 공급금액(세금포함)·부가가치세·환급액</td></tr><tr><th>주 작업 영역</th><td>납부/환급 구조로 외국인관광객 숙박용역 환급실적명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>관광사업등록번호·숙박 일련번호(20자리 순차)·투숙객 메타 관리, 불러오기. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">관광사업등록번호·숙박 일련번호(20자리 순차)·투숙객 메타 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">외국인관광객 숙박용역 환급실적명세서.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">거래처등록(환급창구운영사업자), 부가가치세신고서(SA-VAT…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 숙박용역 일련번호·관광사업등록번호를 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-37" data-screen-id="SA-VAT-37" data-layout="tax-payment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-37</span>
+    <div>
+      <h3>외국인관광객 즉시환급 물품판매실적명세서</h3>
+      <p>부가세/신고 · 25.14.9 · 납부/환급</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외국인관광객 즉시환급 물품 판매 영세율 적용 판매자가 작성하는 부속서류를 BK 영세율·환급 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-payment" data-blueprint="SA-VAT-37-tax-payment">
+    <div class="mock-top"><strong>SA-VAT-37</strong><span>외국인관광객 즉시환급 물품판매실적명세서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>종사업장번호/면세판매장 지정번호</label><div>본점</div><label>환급창구운영자(상호·사업자등록번호)</label><div>2026-06-20-001</div><label>구매일련번호(20자리</label><div>2026-06-20-001</div><label>불러오기시 순차)</label><div>입력값</div><label>판매일자</label><div>2026-06-20</div><label>반출승인번호(관세청장)</label><div>검증완료</div><label>판매가격(세금포함)·부가가치세(자동)</label><div>입력값</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>종사업장번호/면세판매장 지정번호</b><em>본점</em></div><div><span>02</span><b>환급창구운영자(상호·사업자등록번호)</b><em>2026-06-20-002</em></div><div><span>03</span><b>구매일련번호(20자리</b><em>2026-06-20-003</em></div><div><span>04</span><b>불러오기시 순차)</b><em>종사업장번호</em></div><div><span>05</span><b>판매일자</b><em>2026-06-24</em></div><div><span>06</span><b>반출승인번호(관세청장)</b><em>대기</em></div><div><span>07</span><b>판매가격(세금포함)·부가가치세(자동)</b><em>환급창구운영자</em></div><div><span>08</span><b>즉시환급상당액</b><em>상호</em></div></div></section>
+    <aside><b>신고 연계</b><p>외국인관광객 즉시환급 물품판매실적명세서.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>종사업장번호/면세판매장 지정번호 · 환급창구운영자(상호·사업자등록번호) · 구매일련번호(20자리 · 불러오기시 순차) · 판매일자 · 반출승인번호(관세청장) · 판매가격(세금포함)·부가가치세(자동)</td></tr><tr><th>주 작업 영역</th><td>납부/환급 구조로 외국인관광객 즉시환급 물품판매실적명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>즉시환급 면세판매장·구매일련번호(20자리 순차)·환급상당액 메타 관리, 부가세 자동계산, 거래처 기준 불러오기. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">즉시환급 면세판매장·구매일련번호(20자리 순차)·환급상당액 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">외국인관광객 즉시환급 물품판매실적명세서.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">부가가치세신고서(SA-VAT-01) 48.외국인관광객환급, …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 즉시환급상당액·구매일련번호를 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-38" data-screen-id="SA-VAT-38" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-38</span>
+    <div>
+      <h3>외국인물품(외교관면세) 판매기록표</h3>
+      <p>부가세/신고 · 25.14.10 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외국인전용 관광기념품 판매업자 등이 외교관 등에 공급하는 재화·용역에 대해 작성하는 부속서류를 BK 영세율 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>외국인물품(외교관면세) 판매기록표의 입력 필드와 산출물을 기준으로 첨부 명세 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-38-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-38</strong><span>외국인물품(외교관면세) 판매기록표</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>공급일자</label><div>2026-06-20</div><label>공급받는자(성명·국적·근무처·여권번호/외교관면…</label><div>2026-06-20-001</div><label>품목·수량·단가·통화코드·금액(외화)</label><div>BK-001</div><label>금액(원화 자동). BK 관점: 외교관면세 거…</label><div>3,750,000</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>공급일자</b><em>2026-06-20</em></div><div><span>02</span><b>공급받는자(성명·국적·근무처·여권번호/외교관면세카드)</b><em>2026-06-20-002</em></div><div><span>03</span><b>품목·수량·단가·통화코드·금액(외화)</b><em>AT38-003</em></div><div><span>04</span><b>금액(원화 자동). BK 관점: 외교관면세 거래의 인적·물품…</b><em>7,500,000</em></div><div><span>05</span><b>코드</b><em>AT38-005</em></div><div><span>06</span><b>명칭</b><em>성명</em></div><div><span>07</span><b>구분</b><em>국적</em></div><div><span>08</span><b>사용여부</b><em>근무처</em></div></div></section>
+    <aside><b>신고 연계</b><p>외국인물품(외교관면세) 판매기록표.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>공급일자 · 공급받는자(성명·국적·근무처·여권번호/외교관면세카드) · 품목·수량·단가·통화코드·금액(외화) · 금액(원화 자동). BK 관점: 외교관면세 거래의 인적·물품 메타를 증빙으로 관리. · 코드 · 명칭 · 구분</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>외교관면세 거래 인적(여권/면세카드)·물품 메타 관리, 통화·외화→원화 자동환산. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">외교관면세 거래 인적(여권/면세카드)·물품 메타 관리, 통화…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">외국인물품(외교관면세) 판매기록표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">부가가치세신고서(SA-VAT-01), 매입매출전표(영세계열).</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 외교관면세카드·여권번호를 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-39" data-screen-id="SA-VAT-39" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-39</span>
+    <div>
+      <h3>재화·용역 공급기록표</h3>
+      <p>부가세/신고 · 25.14.11 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외교공관 등에 공급하는 재화·용역에 대해 작성하는 부속서류를 BK 영세율 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>재화·용역 공급기록표의 입력 필드와 산출물을 기준으로 첨부 명세 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-39-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-39</strong><span>재화·용역 공급기록표</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>공급일자, 공급받는자(F2 코드도움 또는 직접…</label><div>2026-06-20</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div><label>사용여부</label><div>입력값</div><label>사업장</label><div>본점</div><label>부서</label><div>공사관리팀</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>공급일자, 공급받는자(F2 코드도움 또는 직접입력), 품목·…</b><em>2026-06-20</em></div><div><span>02</span><b>코드</b><em>AT39-002</em></div><div><span>03</span><b>명칭</b><em>공급기록표</em></div><div><span>04</span><b>구분</b><em>공급일자</em></div><div><span>05</span><b>사용여부</b><em>공급받는자</em></div><div><span>06</span><b>사업장</b><em>본점</em></div><div><span>07</span><b>부서</b><em>공사관리팀</em></div><div><span>08</span><b>비고</b><em>또는</em></div></div></section>
+    <aside><b>신고 연계</b><p>재화·용역 공급기록표.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>공급일자, 공급받는자(F2 코드도움 또는 직접입력), 품목·금액, 신고일자(다음달 25일). BK 관점: 외교공관 공급기록 … · 코드 · 명칭 · 구분 · 사용여부 · 사업장 · 부서</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>외교공관 공급기록 메타 관리, 공급받는자 코드도움/직접입력. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">외교공관 공급기록 메타 관리, 공급받는자 코드도움/직접입력.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">재화·용역 공급기록표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">부가가치세신고서(SA-VAT-01), 매입매출전표(영세계열).</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 공급기록 항목을 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-40" data-screen-id="SA-VAT-40" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-40</span>
+    <div>
+      <h3>공급가액확정명세서</h3>
+      <p>부가세/신고 · 25.14.12 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>항공기에 의한 외국항행용역을 제공하고 대가를 원화·해외 수입으로 받아 영세율 적용받는 사업자가 작성하는 부속서류를 BK 영세율 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-40-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-40</strong><span>공급가액확정명세서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>노선(노선등록</label><div>입력값</div><label>전자신고 필수)</label><div>입력값</div><label>수입금액(여객/화물/수화물/우편물/기타)</label><div>3,750,000</div><label>비고(통화코드(전자신고 필수)·외화금액). 불…</label><div>BK-001</div><label>구분별 계정 401~420/901~930). …</label><div>401 상품매출</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>노선(노선등록</b><em>공급가액확정명세서</em></div><div><span>02</span><b>전자신고 필수)</b><em>노선</em></div><div><span>03</span><b>수입금액(여객/화물/수화물/우편물/기타)</b><em>6,250,000</em></div><div><span>04</span><b>비고(통화코드(전자신고 필수)·외화금액). 불러오기(12.영…</b><em>AT40-004</em></div><div><span>05</span><b>구분별 계정 401~420/901~930). BK 관점: 노…</b><em>146 상품</em></div><div><span>06</span><b>신고기간</b><em>2026-01-01 ~ 2026-12-31</em></div><div><span>07</span><b>사업장</b><em>본점</em></div><div><span>08</span><b>수정차수</b><em>화물</em></div></div></section>
+    <aside><b>신고 연계</b><p>공급가액확정명세서.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>노선(노선등록 · 전자신고 필수) · 수입금액(여객/화물/수화물/우편물/기타) · 비고(통화코드(전자신고 필수)·외화금액). 불러오기(12.영세/16.수출 · 구분별 계정 401~420/901~930). BK 관점: 노선·수입구분별 계정 매핑·영세 전표 집계. · 신고기간 · 사업장</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>노선·수입구분(여객/화물/수화물/우편물/기타)별 계정 매핑, 영세 전표 집계. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">노선·수입구분(여객/화물/수화물/우편물/기타)별 계정 매핑,…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">공급가액확정명세서.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">매입매출전표(12/16 영세계열), 노선등록, 부가가치세신고…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 노선·수입 5구분을 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-41" data-screen-id="SA-VAT-41" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-41</span>
+    <div>
+      <h3>선박에 의한 운송용역 공급가액일람표</h3>
+      <p>부가세/신고 · 25.14.13 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>선박에 의한 외국항행용역을 제공하고 대가를 원화·해외 수입으로 받아 영세율 적용받는 사업자가 작성하는 부속서류를 BK 영세율 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>선박에 의한 운송용역 공급가액일람표의 입력 필드와 산출물을 기준으로 첨부 명세 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-41-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-41</strong><span>선박에 의한 운송용역 공급가액일람표</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>거래일자</label><div>2026-06-20</div><label>선박명(선박등록)</label><div>입력값</div><label>운송수입금액(원화</label><div>3,750,000</div><label>국내·해외 수입 구분)</label><div>3,750,000</div><label>비고(통화코드·외화금액). 불러오기(12.영세…</label><div>BK-001</div><label>설정 계정). BK 관점: 선박·수입 구분별 …</label><div>401 상품매출</div><label>코드</label><div>BK-001</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>거래일자</b><em>2026-06-20</em></div><div><span>02</span><b>선박명(선박등록)</b><em>의한</em></div><div><span>03</span><b>운송수입금액(원화</b><em>6,250,000</em></div><div><span>04</span><b>국내·해외 수입 구분)</b><em>7,500,000</em></div><div><span>05</span><b>비고(통화코드·외화금액). 불러오기(12.영세/16.수출</b><em>AT41-005</em></div><div><span>06</span><b>설정 계정). BK 관점: 선박·수입 구분별 집계.</b><em>253 부가세예수금</em></div><div><span>07</span><b>코드</b><em>AT41-007</em></div><div><span>08</span><b>명칭</b><em>운송수입금액</em></div></div></section>
+    <aside><b>신고 연계</b><p>선박에 의한 운송용역 공급가액일람표.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>거래일자 · 선박명(선박등록) · 운송수입금액(원화 · 국내·해외 수입 구분) · 비고(통화코드·외화금액). 불러오기(12.영세/16.수출 · 설정 계정). BK 관점: 선박·수입 구분별 집계. · 코드</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>선박등록·수입(국내/해외) 구분별 집계, 영세 전표 불러오기. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">선박등록·수입(국내/해외) 구분별 집계, 영세 전표 불러오기.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">선박에 의한 운송용역 공급가액일람표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">매입매출전표(12/16 영세계열), 선박등록, 부가가치세신고…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 선박·국내/해외 수입구분을 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-42" data-screen-id="SA-VAT-42" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-42</span>
+    <div>
+      <h3>외항선박등에 제공한 재화·용역 일람표</h3>
+      <p>부가세/신고 · 25.14.14 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외항선박·항공기 등에 공급한 재화·용역(하역 등)을 제공하고 대가를 원화·해외 수입으로 받아 영세율 적용받는 사업자가 작성하는 부속서류를 BK 영세율 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>외항선박등에 제공한 재화·용역 일람표의 입력 필드와 산출물을 기준으로 첨부 명세 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-42-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-42</strong><span>외항선박등에 제공한 재화·용역 일람표</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>공급일자</label><div>2026-06-20</div><label>구분(1.재화/2.용역)</label><div>입력값</div><label>거래처명·사업자등록번호</label><div>대한상사</div><label>품명</label><div>입력값</div><label>금액(원화·외화)</label><div>3,750,000</div><label>제출서류(물품·선용품 적재허가서 등). 작성조…</label><div>검증완료</div><label>불러오기(12.영세/16.수출</label><div>입력값</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>공급일자</b><em>2026-06-20</em></div><div><span>02</span><b>구분(1.재화/2.용역)</b><em>제공한</em></div><div><span>03</span><b>거래처명·사업자등록번호</b><em>나래상사</em></div><div><span>04</span><b>품명</b><em>용역</em></div><div><span>05</span><b>금액(원화·외화)</b><em>8,750,000</em></div><div><span>06</span><b>제출서류(물품·선용품 적재허가서 등). 작성조회(마감여부)</b><em>대기</em></div><div><span>07</span><b>불러오기(12.영세/16.수출</b><em>구분</em></div><div><span>08</span><b>기본 2.용역)</b><em>거래처명</em></div></div></section>
+    <aside><b>신고 연계</b><p>외항선박등에 제공한 재화·용역 일람표.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>공급일자 · 구분(1.재화/2.용역) · 거래처명·사업자등록번호 · 품명 · 금액(원화·외화) · 제출서류(물품·선용품 적재허가서 등). 작성조회(마감여부) · 불러오기(12.영세/16.수출</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>재화/용역 구분(기본 2.용역) 집계, 제출서류 메타 관리, 작성조회(마감여부). · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">재화/용역 구분(기본 2.용역) 집계, 제출서류 메타 관리,…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">외항선박등에 제공한 재화·용역 일람표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">매입매출전표(12/16 영세계열), 부가가치세신고서(SA-V…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 재화/용역 구분·제출서류를 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-43" data-screen-id="SA-VAT-43" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-43</span>
+    <div>
+      <h3>영세율매출명세서</h3>
+      <p>부가세/신고 · 25.14.15 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>부가세법·조세특례제한법상 영세율 매출이 있는 경우 작성하는 부속서류를 BK 부가세 영세율 모듈의 종합 명세로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-43-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-43</strong><span>영세율매출명세서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>영세율 적용 공급실적 합계(부가세법·조특법·기…</label><div>3,750,000</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div><label>수정차수</label><div>입력값</div><label>서식구분</label><div>입력값</div><label>공급가액</label><div>3,750,000</div><label>세액</label><div>3,750,000</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>영세율 적용 공급실적 합계(부가세법·조특법·기타법률별 영세율…</b><em>3,750,000</em></div><div><span>02</span><b>신고기간</b><em>2026-01-01 ~ 2026-12-31</em></div><div><span>03</span><b>사업장</b><em>본점</em></div><div><span>04</span><b>수정차수</b><em>공급실적</em></div><div><span>05</span><b>서식구분</b><em>합계</em></div><div><span>06</span><b>공급가액</b><em>10,000,000</em></div><div><span>07</span><b>세액</b><em>11,250,000</em></div><div><span>08</span><b>전자신고상태</b><em>승인</em></div></div></section>
+    <aside><b>신고 연계</b><p>영세율매출명세서.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>영세율 적용 공급실적 합계(부가세법·조특법·기타법률별 영세율 공급실적 원화). 부가세신고서 과세표준·매출세액의 영세율 금액 … · 신고기간 · 사업장 · 수정차수 · 서식구분 · 공급가액 · 세액</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>영세율 근거 법률(부가세법/조특법/기타법률)별 공급실적 집계. 부가세신고서 영세매출금액과 (13)영세율 적용 공급실적 총합계… · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 정합성·차액 검증 · 세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">영세율 근거 법률(부가세법/조특법/기타법률)별 공급실적 집계…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">영세율매출명세서.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">수출실적명세서(SA-VAT-29)·내국신용장(SA-VAT-3…</span><span class="tag">부가가치세신고서(SA-VAT-01) 영세율 금액 정합.</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 영세율 총합계 정합성 마감오류를 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-44" data-screen-id="SA-VAT-44" data-layout="tax-attachment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-44</span>
+    <div>
+      <h3>일반/간이과세 전환 시 재고품등 신고</h3>
+      <p>부가세/신고 · 25.15.1 · 첨부 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>간이→일반 또는 일반→간이 전환 시 재고품·감가상각자산을 신고하는 부속서류(재고매입세액공제, 부가세시행령 86조)를 BK 부가세 과세유형 전환 처리로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-attachment" data-blueprint="SA-VAT-44-tax-attachment">
+    <div class="mock-top"><strong>SA-VAT-44</strong><span>일반/간이과세 전환 시 재고품등 신고</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>신고구분(1.일반(간이→일반)/2.간이(일반→…</label><div>입력값</div><label>적용시기(시작·종료일자)</label><div>2026-06-20</div><label>일반과세 전환통지(여/부)</label><div>입력값</div><label>간이과세 포기신고(여/부)</label><div>입력값</div><label>간이과세 전환통지일</label><div>2026-06-20</div><label>기타</label><div>입력값</div><label>재고품·건설중인자산·감가상각자산명세(품명(전자…</label><div>3,750,000</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>신고구분(1.일반(간이→일반)/2.간이(일반→간이))</b><em>일반</em></div><div><span>02</span><b>적용시기(시작·종료일자)</b><em>2026-06-21</em></div><div><span>03</span><b>일반과세 전환통지(여/부)</b><em>전환</em></div><div><span>04</span><b>간이과세 포기신고(여/부)</b><em>재고품등</em></div><div><span>05</span><b>간이과세 전환통지일</b><em>2026-06-24</em></div><div><span>06</span><b>기타</b><em>신고구분</em></div><div><span>07</span><b>재고품·건설중인자산·감가상각자산명세(품명(전자신고 필수)·규…</b><em>11,250,000</em></div><div><span>08</span><b>신고일자. BK 관점: 전환 시점 재고·자산 평가</b><em>2026-06-27</em></div></div></section>
+    <aside><b>신고 연계</b><p>일반/간이과세 전환 재고품등 신고서.</p><p>신고서</p><p>전자신고 파일</p><p>검증 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>신고구분(1.일반(간이→일반)/2.간이(일반→간이)) · 적용시기(시작·종료일자) · 일반과세 전환통지(여/부) · 간이과세 포기신고(여/부) · 간이과세 전환통지일 · 기타 · 재고품·건설중인자산·감가상각자산명세(품명(전자신고 필수)·규격·수량·단가·금액·재고매입(납부)세액·보관장소·취득일)</td></tr><tr><th>주 작업 영역</th><td>신고 조건, 서식 본문, 집계/검증, 전자신고 반영 패널을 분리한다.</td></tr><tr><th>처리 버튼</th><td>전환 시점 재고·자산 평가 · 재고매입/납부세액 산정. 재고매입세액은 부가세 포함 · 재고납부세액은 부가세 제외 금액 입력. 간이→일반 재고매입세액공제는 전환일 직전 확정신고 시 제출. · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">전환 시점 재고·자산 평가</span><span class="tag">재고매입/납부세액 산정. 재고매입세액은 부가세 포함</span><span class="tag">재고납부세액은 부가세 제외 금액 입력. 간이→일반 재고매입세…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">일반/간이과세 전환 재고품등 신고서.</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">부가가치세신고서(SA-VAT-01) 46.재고매입세액, 고정…</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 재고매입(부가세 포함)/납부(부가세 제외) 입력 규칙을 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-45" data-screen-id="SA-VAT-45" data-layout="tax-declaration">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-45</span>
+    <div>
+      <h3>과세사업전환 감가상각자산 신고서</h3>
+      <p>부가세/신고 · 25.15.2 · 신고서</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>면세사업에 사용하던 재화를 과세사업으로 전환 시 매입세액 공제를 받기 위한 부속서류를 BK 부가세 과세전환 매입세액공제 산정으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-declaration" data-blueprint="SA-VAT-45-tax-declaration">
+    <div class="mock-top"><strong>SA-VAT-45</strong><span>과세사업전환 감가상각자산 신고서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>신고구분(1.건축/구축물/2.기타)</label><div>입력값</div><label>수량</label><div>입력값</div><label>취득일</label><div>2026-06-20</div><label>면세사업관련 불공제세액</label><div>3,750,000</div><label>과세사업전환공제 매입세액</label><div>3,750,000</div><label>보관장소</label><div>입력값</div><label>면세사업장 정보(회사등록 자동)</label><div>본점</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>신고구분(1.건축/구축물/2.기타)</b><em>과세사업전환</em></div><div><span>02</span><b>수량</b><em>감가상각자산</em></div><div><span>03</span><b>취득일</b><em>2026-06-22</em></div><div><span>04</span><b>면세사업관련 불공제세액</b><em>7,500,000</em></div><div><span>05</span><b>과세사업전환공제 매입세액</b><em>8,750,000</em></div><div><span>06</span><b>보관장소</b><em>기타</em></div><div><span>07</span><b>면세사업장 정보(회사등록 자동)</b><em>본점</em></div><div><span>08</span><b>과세사업 사용·소비시기(필수</b><em>취득일</em></div></div></section>
+    <aside><b>신고 연계</b><p>과세사업전환 감가상각자산 신고서.</p><p>신고서</p><p>전자신고 파일</p><p>검증 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>신고구분(1.건축/구축물/2.기타) · 수량 · 취득일 · 면세사업관련 불공제세액 · 과세사업전환공제 매입세액 · 보관장소 · 면세사업장 정보(회사등록 자동)</td></tr><tr><th>주 작업 영역</th><td>신고서 구조로 과세사업전환 감가상각자산 신고서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>자산 취득·면세 불공제세액·전환공제 매입세액 계산, 고정자산 모듈 연계. 과세사업 사용·소비시기 필수 검증. · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 세무/MRI 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">자산 취득·면세 불공제세액·전환공제 매입세액 계산, 고정자산…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">과세사업전환 감가상각자산 신고서.</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">고정자산 모듈, 부가가치세신고서(SA-VAT-01) 45.과…</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 사용·소비시기 필수·신고구분 2분류를 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-46" data-screen-id="SA-VAT-46" data-layout="tax-summary">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-46</span>
+    <div>
+      <h3>매입자발행세금계산서합계표</h3>
+      <p>부가세/신고 · 25.15.3 · 합계표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>매입자발행세금계산서(공급자 미발행 시 매입자가 세무서장 확인 받아 발행) 합계표(64.매세 전표 자동반영)를 BK 부가세 모듈의 매입자발행세금계산서 집계로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-summary" data-blueprint="SA-VAT-46-tax-summary">
+    <div class="mock-top"><strong>SA-VAT-46</strong><span>매입자발행세금계산서합계표</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>상호(법인명)·사업자등록번호</label><div>2026-06-20-001</div><label>매수</label><div>입력값</div><label>공급가액</label><div>3,750,000</div><label>세액. 불러오기(64.매세</label><div>3,750,000</div><label>기존 삭제)</label><div>입력값</div><label>제출일자(다음달 25일). BK 관점: 64.…</label><div>2026-06-20</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div></div></div></aside>
+    <section><div class="tabs"><span class="active">매출</span><span class="">매입</span><span class="">불러오기</span><span class="">차액</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>상호(법인명)·사업자등록번호</b><em>2026-06-20-001</em></div><div><span>02</span><b>매수</b><em>상호</em></div><div><span>03</span><b>공급가액</b><em>6,250,000</em></div><div><span>04</span><b>세액. 불러오기(64.매세</b><em>7,500,000</em></div><div><span>05</span><b>기존 삭제)</b><em>매수</em></div><div><span>06</span><b>제출일자(다음달 25일). BK 관점: 64.매세 과세유형 …</b><em>2026-06-25</em></div><div><span>07</span><b>신고기간</b><em>2026-01-01 ~ 2026-12-31</em></div><div><span>08</span><b>사업장</b><em>본점</em></div></div></section>
+    <aside><b>신고 연계</b><p>매입자발행세금계산서합계표.</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>상호(법인명)·사업자등록번호 · 매수 · 공급가액 · 세액. 불러오기(64.매세 · 기존 삭제) · 제출일자(다음달 25일). BK 관점: 64.매세 과세유형 사용설정·발행요건 검증. · 신고기간</td></tr><tr><th>주 작업 영역</th><td>합계표 구조로 매입자발행세금계산서합계표의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>매세 전표 자동집계. 64.매세는 환경설정 과세유형추가설정에서 사용설정. 발행요건(건당 공급대가 10만~500만원 · 월 2건 이하 · 신청기간 내 · 정상 사업자 거래) 검증. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">매세 전표 자동집계. 64.매세는 환경설정 과세유형추가설정에…</span><span class="tag">월 2건 이하</span><span class="tag">신청기간 내</span><span class="tag">정상 사업자 거래) 검증.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">매입자발행세금계산서합계표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">매입매출전표(64.매세), 부가가치세신고서(SA-VAT-01…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 발행요건(금액·건수·기간) 검증을 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-47" data-screen-id="SA-VAT-47" data-layout="tax-declaration">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-47</span>
+    <div>
+      <h3>과세유흥장소 과표신고서(신)</h3>
+      <p>부가세/신고 · 25.15.4 · 신고서</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>개별소비세 과세표준을 작성하는 부속서류(전자신고 미지원, 매월 신고서 입력·출력, 납부서는 납부서작성(전세목))를 BK 개별소비세(부가세 부속) 모듈로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-declaration" data-blueprint="SA-VAT-47-tax-declaration">
+    <div class="mock-top"><strong>SA-VAT-47</strong><span>과세유흥장소 과표신고서(신)</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>과세유흥(1.62010 유흥주점/2.62020…</label><div>입력값</div><label>과세면세구분</label><div>입력값</div><label>유흥음식요금(개별소비세 과세표준)</label><div>입력값</div><label>세율(개소세 10%·교육세 30% 자동·수정가…</label><div>10%</div><label>산출세액(자동)</label><div>3,750,000</div><label>가산세액(가산세입력 탭 자동반영)</label><div>3,750,000</div><label>납부세액(산출+가산세). 조회용 불러오기(계정…</label><div>401 상품매출</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>과세유흥(1.62010 유흥주점/2.62020 외국인전용유흥…</b><em>과세유흥장소</em></div><div><span>02</span><b>과세면세구분</b><em>과표신고서</em></div><div><span>03</span><b>유흥음식요금(개별소비세 과세표준)</b><em>과세유흥</em></div><div><span>04</span><b>세율(개소세 10%·교육세 30% 자동·수정가능)</b><em>40%</em></div><div><span>05</span><b>산출세액(자동)</b><em>8,750,000</em></div><div><span>06</span><b>가산세액(가산세입력 탭 자동반영)</b><em>10,000,000</em></div><div><span>07</span><b>납부세액(산출+가산세). 조회용 불러오기(계정·유형·부가세/…</b><em>401 상품매출</em></div><div><span>08</span><b>인쇄설정(1.기한전/2.기한후/3.수정신고)</b><em>62030</em></div></div></section>
+    <aside><b>신고 연계</b><p>과세유흥장소 과표신고서, 납부세액.</p><p>신고서</p><p>전자신고 파일</p><p>검증 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>과세유흥(1.62010 유흥주점/2.62020 외국인전용유흥음식점/3.62030 유사장소) · 과세면세구분 · 유흥음식요금(개별소비세 과세표준) · 세율(개소세 10%·교육세 30% 자동·수정가능) · 산출세액(자동) · 가산세액(가산세입력 탭 자동반영) · 납부세액(산출+가산세). 조회용 불러오기(계정·유형·부가세/개소세 포함여부)</td></tr><tr><th>주 작업 영역</th><td>신고서 구조로 과세유흥장소 과표신고서(신)의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>유흥장소 코드별 과세표준 집계, 개소세 10%·교육세 30% 산출세액 자동계산, 가산세 반영. 전자신고 미지원(매월 입력·출… · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>세무/MRI 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">유흥장소 코드별 과세표준 집계, 개소세 10%·교육세 30%…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">과세유흥장소 과표신고서, 납부세액.</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">납부서 작성(전세목)(SA-VAT-49), 매입매출전표(계정…</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 유흥장소 코드·개소세/교육세 세율·전자신고 미지원을 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-48" data-screen-id="SA-VAT-48" data-layout="tax-declaration">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-48</span>
+    <div>
+      <h3>사업용계좌 개설신고서</h3>
+      <p>부가세/신고 · 25.15.5 · 신고서</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>사업자가 사업 관련 입출금 계좌를 신고하는 서식(복식부기의무자는 과세기간 개시일부터 6개월 이내 신고·통장사본 제출)을 BK 사업자 기초정보(계좌 마스터) 신고 서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-declaration" data-blueprint="SA-VAT-48-tax-declaration">
+    <div class="mock-top"><strong>SA-VAT-48</strong><span>사업용계좌 개설신고서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>계좌상태구분(1.개설/2.추가/3.폐지/4.환…</label><div>검증완료</div><label>개설은행명(거래처등록 금융거래처)</label><div>대한상사</div><label>예금종류명</label><div>입력값</div><label>계좌번호</label><div>2026-06-20-001</div><label>계좌신고유형</label><div>국민 123-456-789</div><label>개설(변경)신고 여부</label><div>입력값</div><label>세무서(회사등록 추가사항 사업장세무서 자동)</label><div>본점</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>계좌상태구분(1.개설/2.추가/3.폐지/4.환급겸용계좌)</b><em>검증완료</em></div><div><span>02</span><b>개설은행명(거래처등록 금융거래처)</b><em>청운제조</em></div><div><span>03</span><b>예금종류명</b><em>계좌상태구분</em></div><div><span>04</span><b>계좌번호</b><em>2026-06-20-004</em></div><div><span>05</span><b>계좌신고유형</b><em>국민 123-456-789</em></div><div><span>06</span><b>개설(변경)신고 여부</b><em>폐지</em></div><div><span>07</span><b>세무서(회사등록 추가사항 사업장세무서 자동)</b><em>본점</em></div><div><span>08</span><b>신고일자. 계좌 불러오기(사업용계좌 &quot;여&quot; 금융거래처)</b><em>2026-06-27</em></div></div></section>
+    <aside><b>신고 연계</b><p>사업용계좌 개설신고서.</p><p>신고서</p><p>전자신고 파일</p><p>검증 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>계좌상태구분(1.개설/2.추가/3.폐지/4.환급겸용계좌) · 개설은행명(거래처등록 금융거래처) · 예금종류명 · 계좌번호 · 계좌신고유형 · 개설(변경)신고 여부 · 세무서(회사등록 추가사항 사업장세무서 자동)</td></tr><tr><th>주 작업 영역</th><td>신고서 구조로 사업용계좌 개설신고서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>금융거래처 마스터와 사업장 차원별 사업용계좌 등록·신고. 사업장별 각각 신고, 변경·추가는 종합소득세 확정신고기한(다음해 5… · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">금융거래처 마스터와 사업장 차원별 사업용계좌 등록·신고. 사…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">사업용계좌 개설신고서.</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">거래처등록(금융거래처), 회사등록(사업장세무서), 사업장 차…</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 계좌상태 4구분·사업장별 신고를 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-49" data-screen-id="SA-VAT-49" data-layout="tax-payment">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-49</span>
+    <div>
+      <h3>납부서 작성(전세목)</h3>
+      <p>부가세/신고 · 25.15.6 · 납부/환급</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>모든 세목을 총괄하여 자진납부서·고지·체납분을 작성하고 일괄 출력하는 메뉴를 BK 전세목 납부서 출력 모듈로 구현한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>납부서 작성(전세목)의 입력 필드와 산출물을 기준으로 납부/환급 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock tax-payment" data-blueprint="SA-VAT-49-tax-payment">
+    <div class="mock-top"><strong>SA-VAT-49</strong><span>납부서 작성(전세목)</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>지급년월</label><div>3,750,000</div><label>회사명·구분(세목)</label><div>입력값</div><label>결정구분(1.확정/2.수시/3.예정/4.원천/…</label><div>입력값</div><label>수입징수관서·계좌번호(자동·수정)</label><div>3,750,000</div><label>세목</label><div>입력값</div><label>귀속연도·기분·월</label><div>입력값</div><label>납부금액</label><div>3,750,000</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>지급년월</b><em>3,750,000</em></div><div><span>02</span><b>회사명·구분(세목)</b><em>작성</em></div><div><span>03</span><b>결정구분(1.확정/2.수시/3.예정/4.원천/5.확정고지/6…</b><em>전세목</em></div><div><span>04</span><b>수입징수관서·계좌번호(자동·수정)</b><em>7,500,000</em></div><div><span>05</span><b>세목</b><em>회사명</em></div><div><span>06</span><b>귀속연도·기분·월</b><em>구분</em></div><div><span>07</span><b>납부금액</b><em>11,250,000</em></div><div><span>08</span><b>납부기한. 불러오기(전월 귀속 데이터 자동)</b><em>결정구분</em></div></div></section>
+    <aside><b>신고 연계</b><p>전세목 자진납부서·고지·체납분 납부서(일괄 출력).</p><p>마스터 데이터</p><p>변경 이력</p><p>연계 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>지급년월 · 회사명·구분(세목) · 결정구분(1.확정/2.수시/3.예정/4.원천/5.확정고지/6.수시고지/7.예정고지(중간예납)/8.원천고지) · 수입징수관서·계좌번호(자동·수정) · 세목 · 귀속연도·기분·월 · 납부금액</td></tr><tr><th>주 작업 영역</th><td>납부/환급 구조로 납부서 작성(전세목)의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>세목·결정구분(8종)별 납부서 생성, 전월 귀속 데이터 롤포워드 불러오기. 수입징수관서·계좌번호 자동. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">세목·결정구분(8종)별 납부서 생성, 전월 귀속 데이터 롤포…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">전세목 자진납부서·고지·체납분 납부서(일괄 출력).</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">과세유흥장소 과표신고서(SA-VAT-47) 납부서, 부가가치…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>Smart A 기능을 흡수. 결정구분 8종·전월 롤포워드를 기능 준거로 흡수.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-vat-50" data-screen-id="SA-VAT-50" data-layout="tax-declaration">
+  <div class="screen-head">
+    <span class="sid">SA-VAT-50</span>
+    <div>
+      <h3>사업양도신고서</h3>
+      <p>부가세/신고 · 25.15.7 · 신고서</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>부가세법에 따라 사업양도 사실을 신고하기 위한 부속서류를 BK 부가세 부속서식으로 생성한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock tax-declaration" data-blueprint="SA-VAT-50-tax-declaration">
+    <div class="mock-top"><strong>SA-VAT-50</strong><span>사업양도신고서</span><em>부가세/신고</em></div>
+    <div class="tax-layout">
+    <aside><div class="form-panel"><b>신고 조건</b><div class="form-grid"><label>양수자 인적사항(상호·사업자등록번호·대표자명·…</label><div>2026-06-20-001</div><label>사업양도내용(구분 01.양도되는 권리/02.양…</label><div>입력값</div><label>명세·양도금액·양도제외금액)</label><div>3,750,000</div><label>일괄삭제</label><div>입력값</div><label>신고일자(다음달 25일). BK 관점: 사업양…</label><div>2026-06-20</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div></div></div></aside>
+    <section><div class="tabs"><span class="active">기본사항</span><span class="">명세</span><span class="">집계</span><span class="">검증</span><span class="">전자신고</span></div><div class="tax-form"><div><span>01</span><b>양수자 인적사항(상호·사업자등록번호·대표자명·사업양도 연월일…</b><em>2026-06-20-001</em></div><div><span>02</span><b>사업양도내용(구분 01.양도되는 권리/02.양도되는 의무/0…</b><em>양수자</em></div><div><span>03</span><b>명세·양도금액·양도제외금액)</b><em>6,250,000</em></div><div><span>04</span><b>일괄삭제</b><em>상호</em></div><div><span>05</span><b>신고일자(다음달 25일). BK 관점: 사업양도 양수자·권리…</b><em>2026-06-24</em></div><div><span>06</span><b>신고기간</b><em>2026-01-01 ~ 2026-12-31</em></div><div><span>07</span><b>사업장</b><em>본점</em></div><div><span>08</span><b>수정차수</b><em>연월일</em></div></div></section>
+    <aside><b>신고 연계</b><p>사업양도신고서.</p><p>신고서</p><p>전자신고 파일</p><p>검증 결과</p><button>MRI 검증</button><button>신고서 반영</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>양수자 인적사항(상호·사업자등록번호·대표자명·사업양도 연월일·업태·종목·소재지) · 사업양도내용(구분 01.양도되는 권리/02.양도되는 의무/03.양도제외 권리/04.양도제외 의무 · 명세·양도금액·양도제외금액) · 일괄삭제 · 신고일자(다음달 25일). BK 관점: 사업양도 양수자·권리·의무 명세를 신고 데이터로 관리. · 신고기간 · 사업장</td></tr><tr><th>주 작업 영역</th><td>신고서 구조로 사업양도신고서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>사업양도 양수자·권리/의무(4구분) 명세 관리. 양도금액·양도제외금액 집계. · 불러오기 · MRI 검증 · 신고서 반영 · 전자신고</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">사업양도 양수자·권리/의무(4구분) 명세 관리. 양도금액·양…</span><span class="tag">불러오기</span><span class="tag">MRI 검증</span><span class="tag">신고서 반영</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">사업양도신고서.</span><span class="tag">신고서</span><span class="tag">전자신고 파일</span><span class="tag">검증 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">거래처(양수자), 부가가치세신고서(SA-VAT-01), 회사…</span><span class="tag">매입매출전표</span><span class="tag">부가세 보조부</span><span class="tag">전자신고</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). Smart A 양도내용 4구분을 반영.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-01" data-screen-id="SA-FA-01" data-layout="asset-register">
+  <div class="screen-head">
+    <span class="sid">SA-FA-01</span>
+    <div>
+      <h3>고정자산등록</h3>
+      <p>고정자산 · 25.16.1 · 자산 등록</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>유형·무형 고정자산을 테넌트별 마스터로 등록하여 감가상각비를 자동 산출하고, 회계기간 마감 후 차기 기수로 이월하는 기준 화면. 결산 시 고정자산관리대장 금액과 회계장부(총계정원장) 금액의 일치를 검증하고 누락분을 추가입력·수정한다. 멀티테넌시 SHARED+RLS 하에서 tenant_id 단위로 자산 마스터를 격리한다.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>마스터 화면은 목록, 상세 입력, 이력/연계 상태를 동시에 확인해야 하므로 업무 엔티티 중심의 관리 화면으로 설계했다.</p></div>
+    </div>
+    <div class="mock asset-register" data-blueprint="SA-FA-01-asset-register">
+    <div class="mock-top"><strong>SA-FA-01</strong><span>고정자산등록</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>- 헤더(조회/식별):</label><div>입력값</div><label>계정과목(F2 코드도움, 유형/무형자산 코드 …</label><div>401 상품매출</div><label>자산구분(미상각분/양도자산/업무용승용차/폐기자…</label><div>입력값</div><label>상각방법 구분(유형 정액·정률, 무형 정액 등…</label><div>401 상품매출</div><label>Code·계정과목(3자리·5자리),</label><div>401 상품매출</div><label>자산코드(숫자 6자리, 계정과목별 순차 자동부…</label><div>401 상품매출</div><label>자산명(한글·영문 40자),</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산코드</th><th>자산명</th><th>취득일</th><th>취득가액</th><th>사용부서</th><th>상각방법</th><th>상태</th></tr></thead><tbody><tr><td>FA01-001</td><td>고정자산등록</td><td>2026-06-20</td><td>고정자산등록</td><td>공사관리팀</td><td>고정자산등록</td><td>검증완료</td></tr><tr><td>FA01-002</td><td>헤더</td><td>2026-06-21</td><td>헤더</td><td>공사관리팀</td><td>헤더</td><td>대기</td></tr><tr><td>FA01-003</td><td>식별</td><td>2026-06-22</td><td>식별</td><td>공사관리팀</td><td>식별</td><td>오류확인</td></tr><tr><td>FA01-004</td><td>계정과목</td><td>2026-06-23</td><td>계정과목</td><td>공사관리팀</td><td>계정과목</td><td>승인</td></tr><tr><td>FA01-005</td><td>F2</td><td>2026-06-24</td><td>F2</td><td>공사관리팀</td><td>F2</td><td>검증완료</td></tr><tr><td>FA01-006</td><td>코드도움</td><td>2026-06-25</td><td>코드도움</td><td>공사관리팀</td><td>코드도움</td><td>대기</td></tr><tr><td>FA01-007</td><td>유형</td><td>2026-06-26</td><td>유형</td><td>공사관리팀</td><td>유형</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 헤더(조회/식별): · 계정과목(F2 코드도움, 유형/무형자산 코드 20200~25099, 토지 20100은 비상각자산으로 등록 차단), · 자산구분(미상각분/양도자산/업무용승용차/폐기자산/양도및폐기자산), · 상각방법 구분(유형 정액·정률, 무형 정액 등 계정과목 범위별), · Code·계정과목(3자리·5자리), · 자산코드(숫자 6자리, 계정과목별 순차 자동부여·직접수정 가능), · 자산명(한글·영문 40자),</td></tr><tr><th>주 작업 영역</th><td>자산 등록 구조로 고정자산등록의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>- 감가상각 자동산출(정률/정액 · 상각률·내용연수·월할). 법인 2016년 이후 취득 차량운반구가 업무용승용차여부 &quot;여&quot;이면서 정률법이면 정률법 붉은색 경고.… · 000원 중 적은 금액 · 차기 이월 시 당기말장부가액이 기초가액 5% 미만이면 당기에 1,000원만 남기고 일괄상각하여 당기상각범위액이 계산식보다 커… · 전기이월 데이터 불러오기(전년도 데이터 덮어쓰기, 양도/폐기일자 입력 자산 제외), · 전기말 부인액 불러오기, · 감가상각비재계산(연말/반기결산 기준, 사용자수정 포함 재계산·회사계상상각비 0 일괄재계산 옵션), · 전표 데이터 불러오기([일반전표]·[매입매출전표] 차변 유무형자산코드 분개 조회 → 자산명·상각방법·내용연수·경비구분·업종 …</td></tr><tr><th>상태/검증</th><td>코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">- 감가상각 자동산출(정률/정액</span><span class="tag">상각률·내용연수·월할). 법인 2016년 이후 취득 차량운반…</span><span class="tag">000원 중 적은 금액</span><span class="tag">차기 이월 시 당기말장부가액이 기초가액 5% 미만이면 당기에…</span><span class="tag">전기이월 데이터 불러오기(전년도 데이터 덮어쓰기, 양도/폐기…</span><span class="tag">전기말 부인액 불러오기,</span><span class="tag">감가상각비재계산(연말/반기결산 기준, 사용자수정 포함 재계산…</span><span class="tag">전표 데이터 불러오기([일반전표]·[매입매출전표] 차변 유무…</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">감가상각비 자동산출 결과, 고정자산 마스터. 후속 명세서·대…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[미상각분 감가상각계산 SA-FA-02]</span><span class="tag">[양도자산 감가상각계산 SA-FA-03]</span><span class="tag">[원가경비별 감가상각명세서 SA-FA-04]</span><span class="tag">[고정자산관리대장 SA-FA-05]</span><span class="tag">[현장/프로젝트/부서 자산명세서 SA-FA-06]</span><span class="tag">[월별 감가상각비 계상 SA-FA-07]</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 기존 v2.0 11.5 고정자산·AUX-09 보조부와 충돌 시 Smart A 기능을 흡수 — 자산구분·취득가액·상각방법·내용연수·경비구분·부인누계 필드를 AUX 보조부에 흡수하고 6차원을 추가등록사항 차원으로 확장.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-02" data-screen-id="SA-FA-02" data-layout="asset-depreciation">
+  <div class="screen-head">
+    <span class="sid">SA-FA-02</span>
+    <div>
+      <h3>미상각분 감가상각계산</h3>
+      <p>고정자산 · 25.16.2 · 상각 계산</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[고정자산등록 SA-FA-01] 입력내용을 반영하여 미상각분(전체양도일자·폐기일자 미입력) 자산의 감가상각계산 명세를 조회·출력. 유형자산/무형자산/총괄 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>미상각분 감가상각계산의 입력 필드와 산출물을 기준으로 상각 계산 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock asset-depreciation" data-blueprint="SA-FA-02-asset-depreciation">
+    <div class="mock-top"><strong>SA-FA-02</strong><span>미상각분 감가상각계산</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>유형자산 탭(유형 계정과목 직접입력·F2 코드…</label><div>401 상품매출</div><label>무형자산 탭(무형 계정과목 선택 시 미상각분 …</label><div>401 상품매출</div><label>총괄 탭(1.유형자산총괄/2.무형자산총괄 선택</label><div>입력값</div><label>계정과목별 합계 자동반영). BK 조회조건: …</label><div>2026-01-01 ~ 2026-12-31</div><label>자산상태 플래그(양도일·폐기일 미입력)=미상각.</label><div>검증완료</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>미상각분</td><td>미상각분</td><td>미상각분</td><td>미상각분</td><td>미상각분</td><td>미상각분</td><td>미상각분</td></tr><tr><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td></tr><tr><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td></tr><tr><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td></tr><tr><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td></tr><tr><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td></tr><tr><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>유형자산 탭(유형 계정과목 직접입력·F2 코드도움 시 미상각분 유형자산의 자산명·취득일·업종명·기초가액 등 반영) · 무형자산 탭(무형 계정과목 선택 시 미상각분 무형자산 영업권·개발비 등 반영) · 총괄 탭(1.유형자산총괄/2.무형자산총괄 선택 · 계정과목별 합계 자동반영). BK 조회조건: 회계기간(기수)·사업장·차원 필터 · 자산상태 플래그(양도일·폐기일 미입력)=미상각. · 코드 · 명칭</td></tr><tr><th>주 작업 영역</th><td>상각 계산 구조로 미상각분 감가상각계산의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>툴바 · 감가상각비수정('감가상각비수정'↔'감가상각비해제' 토글, 당기상각비란 더블클릭 수정, 유형/무형 탭에서만 가능), · 데이터 정렬(자산코드·자산명·취득일·입력순). BK 상각 시뮬레이션 엔진이 미상각 자산만 필터링하여 명세 산출. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>권한·RLS 스코프 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">툴바</span><span class="tag">감가상각비수정('감가상각비수정'↔'감가상각비해제' 토글, 당…</span><span class="tag">데이터 정렬(자산코드·자산명·취득일·입력순). BK 상각 시…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">미상각분 감가상각계산 명세서(유형/무형/총괄) 조회·출력물.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01] 데이터 기반, [원가경비별 …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 미상각/양도 구분은 자산 상태 플래그로 RLS 격리 테넌트 단위 산출.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-03" data-screen-id="SA-FA-03" data-layout="asset-depreciation">
+  <div class="screen-head">
+    <span class="sid">SA-FA-03</span>
+    <div>
+      <h3>양도자산 감가상각계산</h3>
+      <p>고정자산 · 25.16.3 · 상각 계산</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[고정자산등록 SA-FA-01]에서 전체양도일자가 입력된 양도자산을 조회·출력(전체폐기일자 입력 데이터는 제외). 유형/무형/총괄 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>양도자산 감가상각계산의 입력 필드와 산출물을 기준으로 상각 계산 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock asset-depreciation" data-blueprint="SA-FA-03-asset-depreciation">
+    <div class="mock-top"><strong>SA-FA-03</strong><span>양도자산 감가상각계산</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>유형자산 탭(유형 계정과목 선택 시 자산명·취…</label><div>401 상품매출</div><label>무형자산 탭(무형 계정과목 선택 시 자산명·취…</label><div>401 상품매출</div><label>총괄 탭(1.유형자산총괄/2.무형자산총괄</label><div>입력값</div><label>계정과목별 합계 자동반영). BK 조회조건: …</label><div>2026-01-01 ~ 2026-12-31</div><label>자산상태=전체양도(폐기 제외).</label><div>검증완료</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>양도자산</td><td>양도자산</td><td>양도자산</td><td>양도자산</td><td>양도자산</td><td>양도자산</td><td>양도자산</td></tr><tr><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td><td>감가상각계산</td></tr><tr><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td></tr><tr><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td></tr><tr><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td></tr><tr><td>선택</td><td>선택</td><td>선택</td><td>선택</td><td>선택</td><td>선택</td><td>선택</td></tr><tr><td>자산명</td><td>자산명</td><td>자산명</td><td>자산명</td><td>자산명</td><td>자산명</td><td>자산명</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>유형자산 탭(유형 계정과목 선택 시 자산명·취득일·업종명·기초가액 등 반영) · 무형자산 탭(무형 계정과목 선택 시 자산명·취득일·양도일·업종명·기초가액 등 반영) · 총괄 탭(1.유형자산총괄/2.무형자산총괄 · 계정과목별 합계 자동반영). BK 조회조건: 회계기간·사업장·차원 · 자산상태=전체양도(폐기 제외). · 코드 · 명칭</td></tr><tr><th>주 작업 영역</th><td>상각 계산 구조로 양도자산 감가상각계산의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>데이터 정렬(자산코드·자산명·취득일·입력순). 양도월까지 월할 상각 반영(고정자산등록 전체양도일자 기준). BK 결산 계산엔… · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>마감/잠금 기간 확인 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">데이터 정렬(자산코드·자산명·취득일·입력순). 양도월까지 월…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">양도자산 감가상각계산 명세서(유형/무형/총괄) 및 처분손익 …</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01], [월별 감가상각비 계상 S…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). 양도(처분) 이벤트별 상각 마감을 자산 라이프사이클 이벤트로 관리.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-04" data-screen-id="SA-FA-04" data-layout="asset-report">
+  <div class="screen-head">
+    <span class="sid">SA-FA-04</span>
+    <div>
+      <h3>원가경비별 감가상각명세서</h3>
+      <p>고정자산 · 25.16.4 · 자산 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[고정자산등록 SA-FA-01] 경비구분에서 선택한 사항을 계정과목별 또는 전체 범위에서 원가경비별 감가상각 내용을 조회·출력. 유형자산/무형자산/유형자산총괄/무형자산총괄 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock asset-report" data-blueprint="SA-FA-04-asset-report">
+    <div class="mock-top"><strong>SA-FA-04</strong><span>원가경비별 감가상각명세서</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>계정과목(직접입력·F2 코드도움),</label><div>401 상품매출</div><label>경비구분(전체/500번대/600번대/700번대…</label><div>입력값</div><label>자산구분(전체표시/양도자산표시/미상각분표시).…</label><div>2026-01-01 ~ 2026-12-31</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div><label>수정차수</label><div>입력값</div><label>서식구분</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>원가경비별</td><td>원가경비별</td><td>원가경비별</td><td>원가경비별</td><td>원가경비별</td><td>원가경비별</td><td>원가경비별</td></tr><tr><td>감가상각명세서</td><td>감가상각명세서</td><td>감가상각명세서</td><td>감가상각명세서</td><td>감가상각명세서</td><td>감가상각명세서</td><td>감가상각명세서</td></tr><tr><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td></tr><tr><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td></tr><tr><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td></tr><tr><td>코드도움</td><td>코드도움</td><td>코드도움</td><td>코드도움</td><td>코드도움</td><td>코드도움</td><td>코드도움</td></tr><tr><td>경비구분</td><td>경비구분</td><td>경비구분</td><td>경비구분</td><td>경비구분</td><td>경비구분</td><td>경비구분</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>계정과목(직접입력·F2 코드도움), · 경비구분(전체/500번대/600번대/700번대/800번대 → 고정자산등록 경비구분), · 자산구분(전체표시/양도자산표시/미상각분표시). 총괄 탭은 유형·무형별 총괄금액을 경비구분별로 조회. BK 조회조건: 회계기간… · 신고기간 · 사업장 · 수정차수 · 서식구분</td></tr><tr><th>주 작업 영역</th><td>자산 명세 구조로 원가경비별 감가상각명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>경비구분 값으로 자산 필터링 · 양도/미상각 표시 구분으로 자산구분 필터링. 500~800번대(원가: 제조/도급/분양 · 판관비) 경비코드를 BK 계정·코스트센터 매핑 규칙으로 변환하여 원가경비별 상각 집계. · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">경비구분 값으로 자산 필터링</span><span class="tag">양도/미상각 표시 구분으로 자산구분 필터링. 500~800번…</span><span class="tag">판관비) 경비코드를 BK 계정·코스트센터 매핑 규칙으로 변환…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">원가경비별 감가상각명세서 출력물(원가·판관비 경비별 상각비 …</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01], [결산자료입력]·[월별 감…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK 코스트센터/경비구분 차원과 고정자산대장을 결합한 집계 리포트로 통일.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-05" data-screen-id="SA-FA-05" data-layout="asset-report">
+  <div class="screen-head">
+    <span class="sid">SA-FA-05</span>
+    <div>
+      <h3>고정자산관리대장</h3>
+      <p>고정자산 · 25.16.5 · 자산 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[고정자산등록 SA-FA-01] 데이터를 반영한 관리대장 조회·출력. 자산별 양도/폐기/사용부서 이동 등 기중 변동내역 확인. 전체 탭·부분양도(폐기) 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>장부 화면은 조건 조회, 대량 그리드, 원전표 드릴다운, 집계/차액 확인이 핵심이므로 리포트·대사 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock asset-report" data-blueprint="SA-FA-05-asset-report">
+    <div class="mock-top"><strong>SA-FA-05</strong><span>고정자산관리대장</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>- 전체 탭:</label><div>입력값</div><label>항목(0.전체/1.유형자산/2.무형자산),</label><div>입력값</div><label>구분(전체고정자산/과목별고정자산 → 과목별 선…</label><div>401 상품매출</div><label>유형(0.전체/1.미상각/2.전체양도/3.전체…</label><div>공사관리팀</div><label>항목,</label><div>입력값</div><label>구분(전체/과목별),</label><div>401 상품매출</div><label>유형(0.전체/1.부분양도/2.부분폐기). -…</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>고정자산관리대장</td><td>고정자산관리대장</td><td>고정자산관리대장</td><td>고정자산관리대장</td><td>고정자산관리대장</td><td>고정자산관리대장</td><td>고정자산관리대장</td></tr><tr><td>항목</td><td>항목</td><td>항목</td><td>항목</td><td>항목</td><td>항목</td><td>항목</td></tr><tr><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td><td>유형자산</td></tr><tr><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td></tr><tr><td>구분</td><td>구분</td><td>구분</td><td>구분</td><td>구분</td><td>구분</td><td>구분</td></tr><tr><td>전체고정자산</td><td>전체고정자산</td><td>전체고정자산</td><td>전체고정자산</td><td>전체고정자산</td><td>전체고정자산</td><td>전체고정자산</td></tr><tr><td>과목별고정자산</td><td>과목별고정자산</td><td>과목별고정자산</td><td>과목별고정자산</td><td>과목별고정자산</td><td>과목별고정자산</td><td>과목별고정자산</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 전체 탭: · 항목(0.전체/1.유형자산/2.무형자산), · 구분(전체고정자산/과목별고정자산 → 과목별 선택 시 계정과목란 활성화), · 유형(0.전체/1.미상각/2.전체양도/3.전체폐기/4.신규취득/5.상각진행/6.상각완료). 자산변동사항(양도/폐기/사용부서·… · 항목, · 구분(전체/과목별), · 유형(0.전체/1.부분양도/2.부분폐기). - 라벨인쇄: 자산 체크 시 인쇄형태에서 라벨 인쇄(미체크 시 라벨 항목 미표시)…</td></tr><tr><th>주 작업 영역</th><td>자산 명세 구조로 고정자산관리대장의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>고정자산등록 상태(미상각/양도/폐기/신규/상각진행·완료) 기준 필터링. 변동 구분(양도/폐기/이동)을 자산 라이프사이클 이벤… · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">고정자산등록 상태(미상각/양도/폐기/신규/상각진행·완료) 기…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">고정자산관리대장 출력물, 자산 라벨(실사용 바코드/라벨).</span><span class="tag">조회 결과</span><span class="tag">집계표</span><span class="tag">원전표 링크</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01], 결산(총계정원장 대사), …</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK 고정자산대장(AUX) 원장·변동이력 조회 화면으로 통일.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-06" data-screen-id="SA-FA-06" data-layout="asset-report">
+  <div class="screen-head">
+    <span class="sid">SA-FA-06</span>
+    <div>
+      <h3>현장 / 프로젝트 / 부서 자산명세서</h3>
+      <p>고정자산 · 25.16.6 · 자산 명세</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>[고정자산등록 SA-FA-01] 추가등록사항의 사용부서·관리부서·프로젝트·현장 항목으로 고정자산을 조회·출력. 유형자산/무형자산 탭 구성. 계정과목 미선택 후 Enter 시 전체 고정자산 조회.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock asset-report" data-blueprint="SA-FA-06-asset-report">
+    <div class="mock-top"><strong>SA-FA-06</strong><span>현장 / 프로젝트 / 부서 자산명세서</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>유형/무형자산 계정과목(직접입력·F2 코드도움…</label><div>401 상품매출</div><label>조회구분(1.전체표시/2.양도자산표시/3.미상…</label><div>입력값</div><label>구분(1.사용부서/2.관리부서/3.프로젝트/4…</label><div>공사관리팀</div><label>구분 선택에 따라 조회옵션 연동). BK 조회…</label><div>2026-01-01 ~ 2026-12-31</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div><label>수정차수</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>현장</td><td>현장</td><td>현장</td><td>현장</td><td>현장</td><td>현장</td><td>현장</td></tr><tr><td>프로젝트</td><td>프로젝트</td><td>프로젝트</td><td>프로젝트</td><td>프로젝트</td><td>프로젝트</td><td>프로젝트</td></tr><tr><td>부서</td><td>부서</td><td>부서</td><td>부서</td><td>부서</td><td>부서</td><td>부서</td></tr><tr><td>자산명세서</td><td>자산명세서</td><td>자산명세서</td><td>자산명세서</td><td>자산명세서</td><td>자산명세서</td><td>자산명세서</td></tr><tr><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td><td>유형</td></tr><tr><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td><td>무형자산</td></tr><tr><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>유형/무형자산 계정과목(직접입력·F2 코드도움·Enter 전체), · 조회구분(1.전체표시/2.양도자산표시/3.미상각분표시/4.업무용승용차/5.폐기자산/6.양도및폐기자산), · 구분(1.사용부서/2.관리부서/3.프로젝트/4.현장/5.사용사원/6.관리사원 · 구분 선택에 따라 조회옵션 연동). BK 조회조건: 회계기간·사업장, 6차원 슬라이싱. · 신고기간 · 사업장 · 수정차수</td></tr><tr><th>주 작업 영역</th><td>자산 명세 구조로 현장 / 프로젝트 / 부서 자산명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>추가등록사항 차원 항목 기준 자산 필터링·집계. BK 6차원(사업장·코스트센터·부서·프로젝트·현장·사원) 중 프로젝트·현장·… · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">추가등록사항 차원 항목 기준 자산 필터링·집계. BK 6차원…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">현장/프로젝트/부서/사원별 자산명세서 출력물.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01] 추가등록사항 차원, Dime…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK 다차원 자산명세 리포트로 직접 대응.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-fa-07" data-screen-id="SA-FA-07" data-layout="asset-posting">
+  <div class="screen-head">
+    <span class="sid">SA-FA-07</span>
+    <div>
+      <h3>월별 감가상각비 계상</h3>
+      <p>고정자산 · 25.16.7 · 상각비 계상</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>결산시점별로 고정자산 감가상각비를 계상하고 자동전표(결산 시 결차/결대)를 생성. 결산기준 감가상각계상/월별감가상각비명세/월별감가상각비 자산별 총괄표 탭 구성.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>월별 감가상각비 계상의 입력 필드와 산출물을 기준으로 상각비 계상 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock asset-posting" data-blueprint="SA-FA-07-asset-posting">
+    <div class="mock-top"><strong>SA-FA-07</strong><span>월별 감가상각비 계상</span><em>고정자산</em></div>
+    <div class="asset-layout">
+    <aside><div class="form-panel"><b>자산 조건</b><div class="form-grid"><label>- 1) 결산기준 감가상각 계상:</label><div>입력값</div><label>결산월(월별·분기별</label><div>입력값</div><label>월별은 1월부터 순차 조회, [결산자료입력] …</label><div>입력값</div><label>전체양도·폐기일자 입력 자산은 양도·폐기월 이…</label><div>2026-06-20</div><label>경비구분(500~800번대</label><div>입력값</div><label>전체 시 경비구분별 합계). - 2) 조회월삭…</label><div>입력값</div><label>코드</label><div>BK-001</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>자산</th><th>취득가</th><th>전기상각</th><th>당기상각</th><th>상각누계</th><th>장부가</th><th>전표</th></tr></thead><tbody><tr><td>월별</td><td>월별</td><td>월별</td><td>월별</td><td>월별</td><td>월별</td><td>월별</td></tr><tr><td>감가상각비</td><td>감가상각비</td><td>감가상각비</td><td>감가상각비</td><td>감가상각비</td><td>감가상각비</td><td>감가상각비</td></tr><tr><td>계상</td><td>계상</td><td>계상</td><td>계상</td><td>계상</td><td>계상</td><td>계상</td></tr><tr><td>결산기준</td><td>결산기준</td><td>결산기준</td><td>결산기준</td><td>결산기준</td><td>결산기준</td><td>결산기준</td></tr><tr><td>감가상각</td><td>감가상각</td><td>감가상각</td><td>감가상각</td><td>감가상각</td><td>감가상각</td><td>감가상각</td></tr><tr><td>결산월</td><td>결산월</td><td>결산월</td><td>결산월</td><td>결산월</td><td>결산월</td><td>결산월</td></tr><tr><td>분기별</td><td>분기별</td><td>분기별</td><td>분기별</td><td>분기별</td><td>분기별</td><td>분기별</td></tr></tbody></table></section>
+    <aside><b>라이프사이클</b><p>취득</p><p>부서 이동</p><p>상각</p><p>양도/폐기</p><button>감가상각 계산</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>- 1) 결산기준 감가상각 계상: · 결산월(월별·분기별 · 월별은 1월부터 순차 조회, [결산자료입력] 12월 결산 시 1~12월 합계 반영 · 전체양도·폐기일자 입력 자산은 양도·폐기월 이후 상각 미계산), · 경비구분(500~800번대 · 전체 시 경비구분별 합계). - 2) 조회월삭제: 선택 월 내역 삭제(복구 불가) 후 재조회 시 고정자산등록에서 재산출. -… · 코드</td></tr><tr><th>주 작업 영역</th><td>상각비 계상 구조로 월별 감가상각비 계상의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>더보기 · 감가상각비 수정(누적감가상각비 수정, 수정 라인 파란색 · 불러오기 시 재계산 주의), · 월할상각 설정(상각완료자산 월할상각·폐기자산 월할상각 사용여부 · 전체양도자산은 설정 무관 양도월까지 월할), · 음수상각비 찾기(월별 순차 미조회 시 음수 발생분 검색). 엑셀변환. BK 자동전표: 결산 모듈의 월별 감가상각 계상 배치가… · 월할상각·음수보정 로직을 결산 계산엔진에 내장. · 조회</td></tr><tr><th>상태/검증</th><td>필수값 · 권한 · 저장 전 서버 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">더보기</span><span class="tag">감가상각비 수정(누적감가상각비 수정, 수정 라인 파란색</span><span class="tag">불러오기 시 재계산 주의),</span><span class="tag">월할상각 설정(상각완료자산 월할상각·폐기자산 월할상각 사용여부</span><span class="tag">전체양도자산은 설정 무관 양도월까지 월할),</span><span class="tag">음수상각비 찾기(월별 순차 미조회 시 음수 발생분 검색). …</span><span class="tag">월할상각·음수보정 로직을 결산 계산엔진에 내장.</span><span class="tag">조회</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">월별 감가상각비 명세·자산별 총괄표 출력물, 감가상각 자동전…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">[고정자산등록 SA-FA-01], [결산자료입력] '감가상각…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면). BK 결산 모듈 월별 계상·자동전표 배치로 통일.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+    </section>
+  </main>
+</body>
+</html>

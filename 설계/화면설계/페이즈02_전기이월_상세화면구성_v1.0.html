@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK Phase 2 상세화면구성 v1.0 - 전기이월·초기 데이터 이관</title>
+  <style>
+:root{--ink:#172033;--sub:#667085;--line:#d6dce8;--bg:#f4f6fa;--nav:#182235;--blue:#2454c6;--blue2:#e8eefc;--green:#08785f;--green2:#def5ee;--amber:#9a5b00;--amber2:#fff4d8;--red:#b42318;--red2:#fee4e2;--panel:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',Arial,sans-serif;font-size:13px;line-height:1.55}
+nav{position:fixed;inset:0 auto 0 0;width:292px;background:var(--nav);color:#d8e1f3;overflow:auto;padding:18px 14px}nav h1{margin:0 0 6px;color:#fff;font-size:16px;line-height:1.35}.meta{color:#9aa8bd;font-size:11px;margin-bottom:14px}.nav-title{margin:16px 0 7px;color:#8fe0cf;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.04em}nav a{display:block;text-decoration:none;color:#d8e1f3;border-radius:6px;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav a:hover,nav a.on{background:#2a3650;color:#fff}.phase-link{font-size:11.5px;color:#b3c7ff}
+main{margin-left:292px;padding:28px 36px 80px}.doc-head,.panel,.screen{background:var(--panel);border:1px solid var(--line);border-radius:8px}.doc-head{padding:24px 28px;margin-bottom:16px}.doc-head h2{font-size:25px;margin:5px 0 7px}.doc-head p{margin:4px 0;color:var(--sub)}.phase-badge,.pill,.tag{display:inline-block;border-radius:999px;font-weight:800;font-size:11px}.phase-badge{background:var(--blue2);color:var(--blue);padding:3px 10px}.pill{background:#eef2f8;color:#344054;padding:2px 8px}.tag{background:#eef2f8;color:#334155;margin:2px 4px 2px 0;padding:2px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;margin:16px 0}.stats div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.stats strong{display:block;font-size:24px}.stats span{color:var(--sub);font-size:11px}.panel{padding:20px 22px;margin:16px 0}.panel h2{font-size:18px;margin:0 0 12px;border-bottom:2px solid var(--blue);padding-bottom:8px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{background:#eef2f8;color:#344054;font-size:12px}td{font-size:12px}code{font-family:Consolas,'D2Coding',monospace;background:#eef2f8;border-radius:4px;padding:1px 5px}
+.screen{margin:22px 0;overflow:hidden}.screen-head{display:flex;align-items:center;gap:12px;background:#fbfcff;border-bottom:1px solid var(--line);padding:13px 15px}.sid{font-family:Consolas,'D2Coding',monospace;background:#172033;color:#fff;border-radius:6px;padding:5px 9px;font-weight:900}.screen-head h3{font-size:16px;margin:0}.screen-head p{margin:2px 0 0;color:var(--sub);font-size:12px}.screen-body{padding:15px}.brief-grid,.detail-grid,.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.brief,.detail-card{border:1px solid var(--line);border-radius:8px;background:#fcfdff;padding:11px}.brief p{margin:5px 0 0;color:#344054}.detail-card h4{font-size:13px;color:var(--blue);margin:0 0 8px}
+.mock{border:2px solid #8995aa;border-radius:9px;background:#f9fbff;margin:14px 0;overflow:hidden}.mock-top{display:flex;gap:10px;align-items:center;background:#253049;color:white;padding:7px 10px}.mock-top strong{font-family:Consolas,'D2Coding',monospace}.mock-top em{margin-left:auto;color:#c2cee2;font-style:normal;font-size:11px}
+.tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}.tabs span{border:1px solid var(--line);background:#fff;border-radius:6px 6px 0 0;padding:4px 10px;font-size:11px}.tabs .active{background:var(--blue2);color:var(--blue);font-weight:800}
+.form-grid{display:grid;grid-template-columns:minmax(95px,150px) 1fr;gap:5px}.form-grid label{background:#edf2f8;border:1px solid var(--line);padding:5px;color:#344054}.form-grid div{background:#fff;border:1px solid var(--line);padding:5px;min-height:27px}.form-panel{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.form-panel>b{display:block;color:var(--blue);margin-bottom:7px}
+.mock-grid th,.mock-grid td{font-size:11px;padding:6px}.mock-grid tbody tr:nth-child(even){background:#fbfcff}.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}.kpi-row div{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.kpi-row span{display:block;color:var(--sub);font-size:11px}.kpi-row strong{font-size:17px}
+button,.mock button{border:1px solid #8d99ae;background:#fff;border-radius:5px;padding:5px 9px;margin:3px;font-size:11px}.mock button:first-of-type{background:var(--blue);border-color:var(--blue);color:#fff}
+.tenant-search{display:grid;grid-template-columns:170px 1fr 80px;gap:8px;padding:10px;background:#eef2f8;border-bottom:1px solid var(--line)}.tenant-search span,.tenant-search b{background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px}.tenant-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}.tenant-cards div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}.tenant-cards span{display:inline-block;background:var(--green2);color:var(--green);border-radius:999px;padding:2px 8px;margin:5px 0}.context-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 10px 10px}.context-strip span{background:#fff;border:1px solid var(--line);border-radius:7px;padding:8px;color:var(--sub)}.context-strip b{display:block;color:var(--ink)}
+.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout{display:grid;grid-template-columns:210px 1fr 220px;gap:10px;padding:10px}.org-tree,.org-layout aside,.security-layout aside,.matrix-layout aside,.catalog-layout aside,.notification-layout aside,.menu-layout aside,.registration-layout aside,.employee-layout aside,.partner-layout aside,.coa-layout aside,.contract-layout aside,.vehicle-layout aside,.label-layout aside,.conversion-layout aside,.carry-layout aside,.statement-layout aside,.monthly-layout aside,.opening-ledger-layout aside,.voucher-layout aside,.ledger-layout aside,.closing-layout aside,.tax-layout aside,.asset-layout aside,.dataops-layout aside,.search-layout aside,.bulk-layout aside,.bill-layout aside{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}.org-tree ul{list-style:none;padding-left:0;line-height:1.9}.org-detail,.label-preview,.timeline{border:1px solid var(--line);background:#fff;border-radius:7px;padding:9px}
+.settings-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.settings-layout section{grid-column:1/-1}.setting-card{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px}.label-preview{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.label-preview div{border:1px dashed #98a2b3;background:#fff;padding:8px;min-height:58px}.label-preview span,.label-preview em{display:block;color:var(--sub);font-style:normal}
+.swimlane,.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:10px}.swimlane div,.pipeline div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:center}.swimlane span,.pipeline span{display:inline-block;margin-top:6px;border-radius:999px;background:var(--blue2);color:var(--blue);padding:2px 8px;font-size:11px}.infra-layout,.automation-layout,.finance-layout{padding-bottom:10px}.job-timeline{display:flex;gap:8px;padding:0 10px 10px}.job-timeline span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px}
+.toolbox-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}.toolbox-layout>div{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px}.toolbox-layout table{grid-column:1/-1}.tax-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tax-form div{display:grid;grid-template-columns:32px 1fr 120px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px}.tax-form span{background:#253049;color:#fff;border-radius:5px;text-align:center;padding:2px}.tax-form em{font-style:normal;text-align:right;color:var(--blue)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.timeline div{border-left:4px solid var(--blue);background:#f8fafc;border-radius:4px;padding:9px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px}.calendar div{min-height:62px;border:1px solid var(--line);border-radius:6px;padding:6px}.calendar b,.calendar span,.calendar em{display:block}.calendar em{color:var(--blue);font-style:normal}.job-console{border:1px solid var(--line);background:#fff;border-radius:7px;padding:10px;margin-bottom:8px}.progress{height:9px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green)}
+@media(max-width:1120px){nav{position:static;width:auto}main{margin-left:0;padding:18px}.stats,.brief-grid,.detail-grid,.two-col,.org-layout,.security-layout,.matrix-layout,.catalog-layout,.notification-layout,.menu-layout,.registration-layout,.employee-layout,.partner-layout,.coa-layout,.contract-layout,.vehicle-layout,.label-layout,.conversion-layout,.carry-layout,.statement-layout,.monthly-layout,.opening-ledger-layout,.voucher-layout,.ledger-layout,.closing-layout,.tax-layout,.asset-layout,.dataops-layout,.search-layout,.bulk-layout,.bill-layout,.settings-layout,.tenant-cards,.context-strip,.kpi-row,.swimlane,.pipeline,.calendar{grid-template-columns:1fr}}
+@media print{nav{display:none}main{margin-left:0}.screen{break-inside:avoid}}
+</style>
+</head>
+<body>
+  <nav>
+    <h1>BK 페이즈별 상세화면구성 v1.0</h1>
+    <div class="meta">기준: 설계/bk_설계서_v2.1.md<br>재생성일: 2026-06-20</div>
+    <div class="nav-title">10개 페이즈</div>
+    <a class="phase-link " href="페이즈01_기초정보_상세화면구성_v1.0.html">Phase 01 · 기초정보·조직·표준 설정</a>
+<a class="phase-link on" href="페이즈02_전기이월_상세화면구성_v1.0.html">Phase 02 · 전기이월·초기 데이터 이관</a>
+<a class="phase-link " href="페이즈03_전표자동전표_상세화면구성_v1.0.html">Phase 03 · 전표입력·자동전표 처리</a>
+<a class="phase-link " href="페이즈04_장부보조부_상세화면구성_v1.0.html">Phase 04 · 주요장부·보조장부</a>
+<a class="phase-link " href="페이즈05_결산재무제표_상세화면구성_v1.0.html">Phase 05 · 결산·재무제표·결산장부</a>
+<a class="phase-link " href="페이즈06_부가세주요신고_상세화면구성_v1.0.html">Phase 06 · 부가세 주요신고·기초 신고서류</a>
+<a class="phase-link " href="페이즈07_부가세첨부업종_상세화면구성_v1.0.html">Phase 07 · 부가세 첨부·업종별 신고서류</a>
+<a class="phase-link " href="페이즈08_영세율고정자산_상세화면구성_v1.0.html">Phase 08 · 부가세 영세율·기타서류·고정자산</a>
+<a class="phase-link " href="페이즈09_자금예산어음_상세화면구성_v1.0.html">Phase 09 · 자금·예산·예적금·어음</a>
+<a class="phase-link " href="페이즈10_데이터관리운영_상세화면구성_v1.0.html">Phase 10 · 데이터관리·운영 전환</a>
+    <div class="nav-title">현재 페이즈 화면</div>
+    <a href="#sa-opn-01"><code>SA-OPN-01</code> 전기분재무상태표</a>
+<a href="#sa-opn-02"><code>SA-OPN-02</code> 전기분손익계산서</a>
+<a href="#sa-opn-03"><code>SA-OPN-03</code> 전기분원가명세서</a>
+<a href="#sa-opn-04"><code>SA-OPN-04</code> 전기분이익잉여금처분계산서</a>
+<a href="#sa-opn-05"><code>SA-OPN-05</code> 전기분자본변동표</a>
+<a href="#sa-opn-06"><code>SA-OPN-06</code> 전기분현금흐름표</a>
+<a href="#sa-opn-07"><code>SA-OPN-07</code> 거래처별초기이월</a>
+<a href="#sa-opn-08"><code>SA-OPN-08</code> 부서/사원별초기이월</a>
+<a href="#sa-opn-09"><code>SA-OPN-09</code> 전기 기간별손익계산서</a>
+<a href="#sa-opn-10"><code>SA-OPN-10</code> 전기 기간별원가계산서(원가명세서)</a>
+<a href="#sa-opn-11"><code>SA-OPN-11</code> 전기 프로젝트손익현황</a>
+<a href="#sa-opn-12"><code>SA-OPN-12</code> 전기 프로젝트원가현황</a>
+<a href="#sa-opn-13"><code>SA-OPN-13</code> 프로젝트초기이월</a>
+<a href="#sa-opn-14"><code>SA-OPN-14</code> 전기 중단사업손익계산서</a>
+<a href="#sa-opn-15"><code>SA-OPN-15</code> 전기 중단사업원가명세서</a>
+<a href="#sa-opn-16"><code>SA-OPN-16</code> 중도시산표</a>
+<a href="#sa-opn-17"><code>SA-OPN-17</code> 미완성공사초기이월</a>
+<a href="#sa-opn-18"><code>SA-OPN-18</code> 외주처별초기이월</a>
+<a href="#sa-opn-19"><code>SA-OPN-19</code> 현장별/거래처별초기이월</a>
+  </nav>
+  <main>
+    <header class="doc-head">
+      <span class="phase-badge">Phase 02</span>
+      <h2>전기이월·초기 데이터 이관</h2>
+      <p>전기 재무제표, 월별 손익/원가, 거래처/부서/현장/프로젝트 초기이월을 입력·검증·자동반영하는 화면군이다.</p>
+      <p>각 화면의 와이어프레임은 설계서의 입력 필드·기능·산출물·연계 항목을 실제 화면 영역으로 배치했다. 동일 업무군 안에서도 신고서, 합계표, 명세서, 원장, 대사, 배치, 입력 화면은 서로 다른 구조로 설계했다.</p>
+    </header>
+    <section class="stats">
+      <div><strong>19</strong><span>이 페이즈 화면</span></div>
+      <div><strong>19</strong><span>SA 기능 화면</span></div>
+      <div><strong>0</strong><span>BF/JV/AUX 코어</span></div>
+      <div><strong>3</strong><span>화면 구조 유형</span></div>
+    </section>
+    <section class="panel">
+      <h2>페이즈 화면 인벤토리</h2>
+      <table>
+        <thead><tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>핵심 필드</th></tr></thead>
+        <tbody><tr><td><code>SA-OPN-01</code></td><td>전기분재무상태표</td><td>전기이월</td><td>25.2.1</td><td><span class="pill">전기 재무제표 입력</span></td><td>Code/계정과목(계정과목명 2글자 이상 또는 F2, 세목사용 시 5자리) · 차변/대변(우측 +키로 천원단위 &quot;000&quot; 입력). · 코드 · 명칭</td></tr>
+<tr><td><code>SA-OPN-02</code></td><td>전기분손익계산서</td><td>전기이월</td><td>25.2.2</td><td><span class="pill">전기 재무제표 입력</span></td><td>기간(전기 회계기간 · 다른 결산재무제표 전기 회계기간으로 반영, 비교표시·전기대비 분석 API 기준 기간) · Code/계정과목(2글자/F2, 세목 5자리) · 금액(+키 천원단위).</td></tr>
+<tr><td><code>SA-OPN-03</code></td><td>전기분원가명세서</td><td>전기이월</td><td>25.2.3</td><td><span class="pill">전기 재무제표 입력</span></td><td>Code/계정과목(2글자/F2, 세목 5자리) · 금액(+키 천원단위). · 신고기간 · 사업장</td></tr>
+<tr><td><code>SA-OPN-04</code></td><td>전기분이익잉여금처분계산서</td><td>전기이월</td><td>25.2.4</td><td><span class="pill">전기 재무제표 입력</span></td><td>계정과목 및 과목명(2글자/F2, 세목 5자리) · 금액(+키 천원단위, 결손금은 -) · 라인추가(집계항목 하위항목 추가) · 처분항목 제외/추가</td></tr>
+<tr><td><code>SA-OPN-05</code></td><td>전기분자본변동표</td><td>전기이월</td><td>25.2.5</td><td><span class="pill">전기 재무제표 입력</span></td><td>전기년도(전기·전전기 선택) · 직접입력(활성 란 금액 입력·수정) · 추가(집계항목 하위항목 추가) · 집계 화면(집계항목 표시유무 설정).</td></tr>
+<tr><td><code>SA-OPN-06</code></td><td>전기분현금흐름표</td><td>전기이월</td><td>25.2.6</td><td><span class="pill">전기 재무제표 입력</span></td><td>현금흐름분류(0.전체/1.영업/2.투자/3.재무) · 과목편집(소분류·계정과목 추가/삭제 · 과목추가=중분류에 소분류 추가, 삭제, 닫기, 전체초기화). · 코드</td></tr>
+<tr><td><code>SA-OPN-07</code></td><td>거래처별초기이월</td><td>전기이월</td><td>25.2.7</td><td><span class="pill">초기이월 보조부</span></td><td>Code/계정과목/금액(2글자/F2, 세목 5자리 · 툴바 불러오기로 전기분재무상태표 전 계정·금액 불러오기) · 상세 Code/거래처/금액(거래처명 2글자/F2, +키 천원단위) · 차액(좌측 재무상태표 계정금액 vs 우측 거래처별 합계 불일치 시)</td></tr>
+<tr><td><code>SA-OPN-08</code></td><td>부서/사원별초기이월</td><td>전기이월</td><td>25.2.8</td><td><span class="pill">초기이월 보조부</span></td><td>Code/계정과목/금액(2글자/F2, 세목 5자리) · 사원/부서/금액(사원명 2글자/F2 입력 시 부서 자동반영, 이월잔액 입력) · 거래처/금액(거래처명 2글자/F2 입력 시 자동반영, 이월잔액). · 코드</td></tr>
+<tr><td><code>SA-OPN-09</code></td><td>전기 기간별손익계산서</td><td>전기이월</td><td>25.3.1</td><td><span class="pill">월별 배분표</span></td><td>계정과목(SA-OPN-02 계정·금액 반영) · 손익계산서 금액(SA-OPN-02 입력 금액 반영, read-only 준거) · 차액(손익계산서 금액 vs 월별 합계 상이 시 붉은색) · 대분류 항목집계(분류 집계항목만 조회)</td></tr>
+<tr><td><code>SA-OPN-10</code></td><td>전기 기간별원가계산서(원가명세서)</td><td>전기이월</td><td>25.3.2</td><td><span class="pill">월별 배분표</span></td><td>더보기(기능모음): · 원가설정(매출원가-원가경비 연결, 계정과목 관계 메타데이터 재사용) · 대분류 항목집계 · 계정과목 코드보기.</td></tr>
+<tr><td><code>SA-OPN-11</code></td><td>전기 프로젝트손익현황</td><td>전기이월</td><td>25.3.3</td><td><span class="pill">월별 배분표</span></td><td>프로젝트명(2글자/F2) · Code/계정과목/금액(2글자/F2, 세목 5자리) · 계정과목복사(다른 프로젝트 계정·금액 복사). · 기간</td></tr>
+<tr><td><code>SA-OPN-12</code></td><td>전기 프로젝트원가현황</td><td>전기이월</td><td>25.3.4</td><td><span class="pill">월별 배분표</span></td><td>원가경비(원가설정 등록 순서대로 조회, 입력할 원가 선택) · 프로젝트명(2글자/F2) · Code/계정과목/금액(2글자/F2, 세목 5자리) · 불러오기(선택 프로젝트에 전기분원가명세서 계정과목 불러오기)</td></tr>
+<tr><td><code>SA-OPN-13</code></td><td>프로젝트초기이월</td><td>전기이월</td><td>25.3.5</td><td><span class="pill">초기이월 보조부</span></td><td>프로젝트 초기이월 탭(계정과목=프로젝트별 금액 입력, 부서/사원=계정과목 탭 입력 계정의 프로젝트별 부서/사원 금액, 거래처… · Code/계정과목/금액/차액(2글자/F2, 세목 5자리 · SA-OPN-01 금액 반영) · Code/프로젝트/금액(계정의 프로젝트별 금액 입력).</td></tr>
+<tr><td><code>SA-OPN-14</code></td><td>전기 중단사업손익계산서</td><td>전기이월</td><td>25.3.6</td><td><span class="pill">초기이월 보조부</span></td><td>중단사업부서(더보기&gt;중단사업코드설정&gt;중단부서 등록 시 조회) · Code/계정과목(2글자/F2, 세목 5자리) · 금액(계정 분류별 항목별 합계 반영) · 항목보기(매출액·매출원가·판관비 등 구성 계정 역조회).</td></tr>
+<tr><td><code>SA-OPN-15</code></td><td>전기 중단사업원가명세서</td><td>전기이월</td><td>25.3.7</td><td><span class="pill">초기이월 보조부</span></td><td>Code/계정과목(2글자/F2, 세목 5자리) · 금액(계정 분류별 항목별 합계 반영) · 원가설정(매출원가-원가경비 연결) · 중단사업 코드설정(중단사업 부서/PJT 설정)</td></tr>
+<tr><td><code>SA-OPN-16</code></td><td>중도시산표</td><td>전기이월</td><td>25.3.8</td><td><span class="pill">초기이월 보조부</span></td><td>Code/계정과목(2글자/F2, 세목 5자리) · 차변/대변(계정·금액 입력 시 분류별 차감 잔액이 항목별 합계표 집계) · 항목별 합계표(read-only 집계). · 코드</td></tr>
+<tr><td><code>SA-OPN-17</code></td><td>미완성공사초기이월</td><td>전기이월</td><td>25.3.9</td><td><span class="pill">초기이월 보조부</span></td><td>Code/현장명/금액(현장명 2글자/F2 · 해당 현장 총 공사비용 입력) · 분류명/금액(좌측 금액 입력 시 계정과목 분류별 집계 반영) · 상세입력(분류명 선택 후 더보기&gt;상세입력 팝업에서 항목별 상세 계정과목·금액 입력)</td></tr>
+<tr><td><code>SA-OPN-18</code></td><td>외주처별초기이월</td><td>전기이월</td><td>25.3.10</td><td><span class="pill">초기이월 보조부</span></td><td>외주처/현장(F2 · SA-BAS-11 등록 외주처·현장 조회) · 공사계약금액/선급금/외주비/잔액(입력 시 잔액 자동 계산). · 코드</td></tr>
+<tr><td><code>SA-OPN-19</code></td><td>현장별/거래처별초기이월</td><td>전기이월</td><td>25.3.11</td><td><span class="pill">초기이월 보조부</span></td><td>계정과목별 현장초기이월(F2로 전기분재무상태표 계정코드 선택→금액 반영, 우측 현장별 이월잔액 입력, 현장별 합계 vs 재무… · 현장별 거래처초기이월(계정과목·현장 자동반영, 거래처 코드 F2로 우측 거래처별 이월잔액 입력, 현장별 합계 vs 현장 거래… · 차액표시(&quot;여&quot; 선택 시 차액 란 생성, 전기분재무상태표 계정별 합계 vs 입력 현장별 계정 합계 비교). · 코드</td></tr></tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>화면별 상세 구성</h2>
+      <article class="screen" id="sa-opn-01" data-screen-id="SA-OPN-01" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-01</span>
+    <div>
+      <h3>전기분재무상태표</h3>
+      <p>전기이월 · 25.2.1 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도·전전년도·전전전년도 재무상태표를 입력하여 계정별 초기이월 및 비교식 재무상태표 전기 자료로 활용. BK의 기초잔액(opening balance) 엔티티(전기 재무상태표 스냅샷)로 계정×차원별 전기이월 금액을 저장. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영(직접 수정 가능).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기분재무상태표의 입력 필드와 산출물을 기준으로 전기 재무제표 입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-01-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-01</strong><span>전기분재무상태표</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분재무상태표</td><td>전기분재무상태표</td><td>전기분재무상태표</td><td>전기분재무상태표</td><td>검증완료</td></tr><tr><td>146 상품</td><td>Code</td><td>Code</td><td>Code</td><td>Code</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>계정과목명</td><td>계정과목명</td><td>계정과목명</td><td>계정과목명</td><td>승인</td></tr><tr><td>146 상품</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>이상</td><td>이상</td><td>이상</td><td>이상</td><td>대기</td></tr><tr><td>401 상품매출</td><td>또는</td><td>또는</td><td>또는</td><td>또는</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목(계정과목명 2글자 이상 또는 F2, 세목사용 시 5자리) · 차변/대변(우측 +키로 천원단위 &quot;000&quot; 입력). · 코드 · 명칭 · 구분 · 사용여부 · 사업장</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분재무상태표의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>항목보기(전체보기)(집계항목 구성 계정·금액 역조회) · 대표자설정(가지급금·가수금)(현금예금 잔액검토 전표전송용). 검증: 메뉴 종료 시 대차차액 발생하면 확인창(차액 0 강제 · 서버 측 대차균형 제약) · 대손충당금·감가상각누계액은 본 계정 바로 밑 계정으로 입력 · 가지급금·가수금은 대표/기타 분리 · 충당금·결손금은 -로 입력 안 함 · 법인 미처분이익잉여금=375 이월이익잉여금/미처리결손금=376 이월결손금(379 당기순이익·380 당기순손실 미입력) · 개인 자본금=기초자본금+대표자인출금+당기순이익 합계</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">항목보기(전체보기)(집계항목 구성 계정·금액 역조회)</span><span class="tag">대표자설정(가지급금·가수금)(현금예금 잔액검토 전표전송용).…</span><span class="tag">서버 측 대차균형 제약)</span><span class="tag">대손충당금·감가상각누계액은 본 계정 바로 밑 계정으로 입력</span><span class="tag">가지급금·가수금은 대표/기타 분리</span><span class="tag">충당금·결손금은 -로 입력 안 함</span><span class="tag">법인 미처분이익잉여금=375 이월이익잉여금/미처리결손금=37…</span><span class="tag">개인 자본금=기초자본금+대표자인출금+당기순이익 합계</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 재무상태표, 거래처별/부서사원별 초기이월(준거 금액)…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07(COA)·SA-BAS-14(차기 자동…</span><span class="tag">SA-OPN-04(정합성)</span><span class="tag">SA-OPN-07·08·13·19(초기이월 준거). 대표자설…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산/초기이월 영역과 충돌하나 Smart A 기능을 흡수 — 전기 재무상태표 스냅샷을 계정×차원 기초잔액 엔티티로 일반화하고 대차균형 검증을 서버 측 제약으로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-02" data-screen-id="SA-OPN-02" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-02</span>
+    <div>
+      <h3>전기분손익계산서</h3>
+      <p>전기이월 · 25.2.2 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도·전전년도·전전전년도 손익계산서를 입력하여 비교식 손익계산서 전기 자료로 활용. BK 기초잔액 엔티티 중 손익(P&amp;L) 전기 스냅샷으로 매핑. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기분손익계산서의 입력 필드와 산출물을 기준으로 전기 재무제표 입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-02-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-02</strong><span>전기분손익계산서</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분손익계산서</td><td>전기분손익계산서</td><td>전기분손익계산서</td><td>전기분손익계산서</td><td>검증완료</td></tr><tr><td>146 상품</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>회계기간</td><td>회계기간</td><td>회계기간</td><td>회계기간</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>다른</td><td>다른</td><td>다른</td><td>다른</td><td>승인</td></tr><tr><td>146 상품</td><td>결산재무제표</td><td>결산재무제표</td><td>결산재무제표</td><td>결산재무제표</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>회계기간으로</td><td>회계기간으로</td><td>회계기간으로</td><td>회계기간으로</td><td>대기</td></tr><tr><td>401 상품매출</td><td>반영</td><td>반영</td><td>반영</td><td>반영</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>기간(전기 회계기간 · 다른 결산재무제표 전기 회계기간으로 반영, 비교표시·전기대비 분석 API 기준 기간) · Code/계정과목(2글자/F2, 세목 5자리) · 금액(+키 천원단위). · 코드 · 명칭 · 구분</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분손익계산서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>항목보기(매출액·매출원가·판관비 등 구성 계정 역조회) · 전기분 포괄손익계산서 작성. 검증: 당기제품제조원가 금액은 전기분제조원가명세서 당기제품제조원가와 일치 · 당기순손익은 전기분이익잉여금처분계산서 금액과 일치. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">항목보기(매출액·매출원가·판관비 등 구성 계정 역조회)</span><span class="tag">전기분 포괄손익계산서 작성. 검증: 당기제품제조원가 금액은 …</span><span class="tag">당기순손익은 전기분이익잉여금처분계산서 금액과 일치.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 손익계산서, 전기분포괄손익계산서, 전기분이익잉여금처분…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07·SA-OPN-01(기말재고). 후행:…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산 영역과 충돌하나 Smart A 기능을 흡수 — 손익 전기값을 P&amp;L 스냅샷으로 일반화하고 전기 회계기간을 비교/전기대비 분석 기준 파라미터로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-03" data-screen-id="SA-OPN-03" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-03</span>
+    <div>
+      <h3>전기분원가명세서</h3>
+      <p>전기이월 · 25.2.3 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도·전전년도·전전전년도 원가명세서를 입력하여 비교식 제조원가명세서 전기 자료로 활용. BK 기초잔액 엔티티의 제조원가 전기 스냅샷으로 매핑. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-03-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-03</strong><span>전기분원가명세서</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분원가명세서</td><td>전기분원가명세서</td><td>전기분원가명세서</td><td>전기분원가명세서</td><td>검증완료</td></tr><tr><td>146 상품</td><td>Code</td><td>Code</td><td>Code</td><td>Code</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td><td>승인</td></tr><tr><td>146 상품</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>세목</td><td>세목</td><td>세목</td><td>세목</td><td>대기</td></tr><tr><td>401 상품매출</td><td>5자리</td><td>5자리</td><td>5자리</td><td>5자리</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목(2글자/F2, 세목 5자리) · 금액(+키 천원단위). · 신고기간 · 사업장 · 수정차수 · 서식구분 · 공급가액</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분원가명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>항목보기/전체보기(원재료비·부재료비·노무비 등 구성 계정 역조회) · 원가설정(매출원가-원가경비 연결 · 계정과목 관계 메타데이터 재사용 = 결산대체 규칙). 검증: 원재료비·부재료비 코드 입력 시 보조화면 · 기말재고액은 전기분재무상태표 금액 자동반영(501 원재료비→153 원재료 · 502 부재료비→162 부재료) · 기초재공품·타계정 대체액은 별도 계정 없어 직접 입력 · 당기제품제조원가는 전기분손익계산서와 일치. · 조회</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">항목보기/전체보기(원재료비·부재료비·노무비 등 구성 계정 역…</span><span class="tag">원가설정(매출원가-원가경비 연결</span><span class="tag">계정과목 관계 메타데이터 재사용 = 결산대체 규칙). 검증:…</span><span class="tag">기말재고액은 전기분재무상태표 금액 자동반영(501 원재료비→…</span><span class="tag">502 부재료비→162 부재료)</span><span class="tag">기초재공품·타계정 대체액은 별도 계정 없어 직접 입력</span><span class="tag">당기제품제조원가는 전기분손익계산서와 일치.</span><span class="tag">조회</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 제조원가명세서, 전기분손익계산서 당기제품제조원가.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07(원가설정)·SA-OPN-01(기말재고…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산 영역과 충돌하나 Smart A 기능을 흡수 — 제조원가 전기값을 스냅샷으로 일반화하고 원가설정을 계정과목 관계 메타데이터와 일관된 결산대체 규칙으로 재사용.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-04" data-screen-id="SA-OPN-04" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-04</span>
+    <div>
+      <h3>전기분이익잉여금처분계산서</h3>
+      <p>전기이월 · 25.2.4 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 당기순이익·처분내역 등 이익잉여금처분계산서를 입력하여 비교식 처분계산서 전기 자료로 활용. BK의 이익잉여금 처분 전기 스냅샷 엔티티로 매핑(개인사업자는 미존재). 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기분이익잉여금처분계산서의 입력 필드와 산출물을 기준으로 전기 재무제표 입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-04-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-04</strong><span>전기분이익잉여금처분계산서</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분이익잉여금처분계산서</td><td>전기분이익잉여금처분계산서</td><td>전기분이익잉여금처분계산서</td><td>전기분이익잉여금처분계산서</td><td>검증완료</td></tr><tr><td>146 상품</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>과목명</td><td>과목명</td><td>과목명</td><td>과목명</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td><td>승인</td></tr><tr><td>146 상품</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>세목</td><td>세목</td><td>세목</td><td>세목</td><td>대기</td></tr><tr><td>401 상품매출</td><td>5자리</td><td>5자리</td><td>5자리</td><td>5자리</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>계정과목 및 과목명(2글자/F2, 세목 5자리) · 금액(+키 천원단위, 결손금은 -) · 라인추가(집계항목 하위항목 추가) · 처분항목 제외/추가 · 초기화(전체 삭제). · 코드 · 명칭</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분이익잉여금처분계산서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>라인추가·처분항목 편집·초기화. 검증: 처분사항·이입액 추가 시 당기순이익(손실)/미처분이익잉여금(결손금) 란에 커서 두고 … · 결손금 -입력 · 이월이익잉여금(결손금)=전기분재무상태표 미처분이익잉여금(미처리결손금) 일치 · 당기순손익은 전기분손익계산서 자료 반영·일치. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">라인추가·처분항목 편집·초기화. 검증: 처분사항·이입액 추가…</span><span class="tag">결손금 -입력</span><span class="tag">이월이익잉여금(결손금)=전기분재무상태표 미처분이익잉여금(미처…</span><span class="tag">당기순손익은 전기분손익계산서 자료 반영·일치.</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 이익잉여금처분계산서, 전기분재무상태표(이월이익잉여금)…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-01(미처분이익잉여금)·SA-OPN-02(…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산 영역과 충돌하나 Smart A 기능을 흡수 — 처분계산서 전기값을 스냅샷 엔티티로 일반화하고 재무상태표·손익계산서와의 정합성 검증을 validation 규칙으로 보존(개인사업자 미존재).</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-05" data-screen-id="SA-OPN-05" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-05</span>
+    <div>
+      <h3>전기분자본변동표</h3>
+      <p>전기이월 · 25.2.5 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도·전전년도 자본변동표를 입력. BK 기초잔액 엔티티의 자본변동 전기 스냅샷으로 매핑하며 자본 항목 행 구성을 계정과목 자본 분류와 연계한 구성형 리포트로 구현. SA-BAS-14 자동반영(직접 수정 가능).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기분자본변동표의 입력 필드와 산출물을 기준으로 전기 재무제표 입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-05-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-05</strong><span>전기분자본변동표</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분자본변동표</td><td>전기분자본변동표</td><td>전기분자본변동표</td><td>전기분자본변동표</td><td>검증완료</td></tr><tr><td>146 상품</td><td>전기년도</td><td>전기년도</td><td>전기년도</td><td>전기년도</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>전전기</td><td>전전기</td><td>전전기</td><td>전전기</td><td>승인</td></tr><tr><td>146 상품</td><td>선택</td><td>선택</td><td>선택</td><td>선택</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>직접입력</td><td>대기</td></tr><tr><td>401 상품매출</td><td>활성</td><td>활성</td><td>활성</td><td>활성</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>전기년도(전기·전전기 선택) · 직접입력(활성 란 금액 입력·수정) · 추가(집계항목 하위항목 추가) · 집계 화면(집계항목 표시유무 설정). · 코드 · 명칭 · 구분</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분자본변동표의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>직접입력·라인 추가·집계 표시 설정. 검증: SA-BAS-14로 데이터 자동반영, 필요 시 직접 수정. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">직접입력·라인 추가·집계 표시 설정. 검증: SA-BAS-1…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">자본변동표(연도별 조회).</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07(자본 분류)·SA-BAS-14. 결산…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산 영역과 충돌하나 Smart A 기능을 흡수 — 자본변동 전기값을 스냅샷으로 일반화하고 행 구성을 계정과목 자본 분류 기반 구성형 리포트로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-06" data-screen-id="SA-OPN-06" data-layout="opening-statement">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-06</span>
+    <div>
+      <h3>전기분현금흐름표</h3>
+      <p>전기이월 · 25.2.6 · 전기 재무제표 입력</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도·전전년도 현금흐름표를 입력. BK 기초잔액 엔티티의 현금흐름 전기 스냅샷으로 매핑하며 영업/투자/재무 분류 구조를 현금흐름표 리포트 템플릿 매핑 테이블로 관리. SA-BAS-14 자동반영(직접 수정 가능).</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기분현금흐름표의 입력 필드와 산출물을 기준으로 전기 재무제표 입력 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-statement" data-blueprint="SA-OPN-06-opening-statement">
+    <div class="mock-top"><strong>SA-OPN-06</strong><span>전기분현금흐름표</span><em>전기이월</em></div>
+    <div class="statement-layout">
+    <aside><b>재무제표 항목</b><p>자산</p><p>부채</p><p>자본</p><p>수익/비용</p></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>전전전년</th><th>전전년</th><th>전년</th><th>차액</th><th>검증</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기분현금흐름표</td><td>전기분현금흐름표</td><td>전기분현금흐름표</td><td>전기분현금흐름표</td><td>검증완료</td></tr><tr><td>146 상품</td><td>현금흐름분류</td><td>현금흐름분류</td><td>현금흐름분류</td><td>현금흐름분류</td><td>대기</td></tr><tr><td>253 부가세예수금</td><td>영업</td><td>영업</td><td>영업</td><td>영업</td><td>오류확인</td></tr><tr><td>401 상품매출</td><td>투자</td><td>투자</td><td>투자</td><td>투자</td><td>승인</td></tr><tr><td>146 상품</td><td>재무</td><td>재무</td><td>재무</td><td>재무</td><td>검증완료</td></tr><tr><td>253 부가세예수금</td><td>과목편집</td><td>과목편집</td><td>과목편집</td><td>과목편집</td><td>대기</td></tr><tr><td>401 상품매출</td><td>소분류</td><td>소분류</td><td>소분류</td><td>소분류</td><td>오류확인</td></tr></tbody></table></section>
+    <aside><div class="form-panel"><b>정합성</b><div class="form-grid"><label>준거 금액</label><div>3,750,000</div><label>월별 배분</label><div>입력값</div><label>이월 출처</label><div>입력값</div><label>차기 자동반영</label><div>입력값</div><label>대표자 설정</label><div>입력값</div></div></div></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>현금흐름분류(0.전체/1.영업/2.투자/3.재무) · 과목편집(소분류·계정과목 추가/삭제 · 과목추가=중분류에 소분류 추가, 삭제, 닫기, 전체초기화). · 코드 · 명칭 · 구분 · 사용여부</td></tr><tr><th>주 작업 영역</th><td>전기 재무제표 입력 구조로 전기분현금흐름표의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>분류 조회·과목편집. 검증: SA-BAS-14로 자동반영, 직접 수정 가능. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">분류 조회·과목편집. 검증: SA-BAS-14로 자동반영, …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">현금흐름표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07·SA-BAS-14. 리포트 템플릿 매…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산 영역과 충돌하나 Smart A 기능을 흡수 — 현금흐름 전기값을 스냅샷으로 일반화하고 영업/투자/재무 분류 구조를 리포트 템플릿 매핑으로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-07" data-screen-id="SA-OPN-07" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-07</span>
+    <div>
+      <h3>거래처별초기이월</h3>
+      <p>전기이월 · 25.2.7 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 재무상태표 계정잔액에 대한 거래처별 채권채무 잔액을 입력하여 당해연도 거래처원장 전기이월로 반영. BK 거래처원장(보조부)의 전기이월 잔액으로 계정×거래처별 opening balance를 저장. 차원=거래처.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>거래처별초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-07-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-07</strong><span>거래처별초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>Code/계정과목/금액(2글자/F2, 세목 5…</label><div>401 상품매출</div><label>툴바 불러오기로 전기분재무상태표 전 계정·금액…</label><div>401 상품매출</div><label>상세 Code/거래처/금액(거래처명 2글자/F…</label><div>대한상사</div><label>차액(좌측 재무상태표 계정금액 vs 우측 거래…</label><div>대한상사</div><label>화면구성(차액·거래처별 합계 표시)</label><div>대한상사</div><label>어음등록(지급어음 등록: 수령일, 어음종류 1…</label><div>3,750,000</div><label>코드</label><div>BK-001</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN07-001</td><td>거래처별초기이월</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN07-002</td><td>Code</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN07-003</td><td>계정과목</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN07-004</td><td>금액</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN07-005</td><td>2글자</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN07-006</td><td>F2</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목/금액(2글자/F2, 세목 5자리 · 툴바 불러오기로 전기분재무상태표 전 계정·금액 불러오기) · 상세 Code/거래처/금액(거래처명 2글자/F2, +키 천원단위) · 차액(좌측 재무상태표 계정금액 vs 우측 거래처별 합계 불일치 시) · 화면구성(차액·거래처별 합계 표시) · 어음등록(지급어음 등록: 수령일, 어음종류 1.어음/2.당좌/3.가계/4.전자, 금융기관, 시작어음번호, 매수, 전자어음일괄… · 코드</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 거래처별초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>전기분재무상태표 불러오기 · 거래처별 잔액·관리내역 입력 · 어음등록. 검증: 일반 계정은 거래처+이월잔액 입력 · 자금관리 계정(110 받을어음·260 단기차입금·252 지급어음)은 거래처+이월잔액+관리내역(어음번호·은행명·만기일자·발행일… · 지급어음은 어음등록으로 발행 어음번호 선행 등록 · 좌우 차액 0 필요. · 마감 · 재이월</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">전기분재무상태표 불러오기</span><span class="tag">거래처별 잔액·관리내역 입력</span><span class="tag">어음등록. 검증: 일반 계정은 거래처+이월잔액 입력</span><span class="tag">자금관리 계정(110 받을어음·260 단기차입금·252 지급…</span><span class="tag">지급어음은 어음등록으로 발행 어음번호 선행 등록</span><span class="tag">좌우 차액 0 필요.</span><span class="tag">마감</span><span class="tag">재이월</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">거래처원장 전기이월, 받을어음/지급어음 관리내역.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-01(준거 금액)·SA-BAS-06(거래처…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 AUX(거래처원장) 영역과 충돌하나 Smart A 기능을 흡수 — 거래처별 전기이월을 계정×거래처 opening balance로 일반화하고 어음 관리내역을 어음 보조부 초기 데이터로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-08" data-screen-id="SA-OPN-08" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-08</span>
+    <div>
+      <h3>부서/사원별초기이월</h3>
+      <p>전기이월 · 25.2.8 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전기분 재무상태표 계정잔액에 대한 부서별·사원별 채권채무 잔액을 입력하여 계정별원장 부서별·사원별 탭의 전기이월로 반영. BK 계정별원장(보조부)의 부서·사원 차원별 전기이월로 계정×차원 키로 적재.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>부서/사원별초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-08-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-08</strong><span>부서/사원별초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>Code/계정과목/금액(2글자/F2, 세목 5…</label><div>401 상품매출</div><label>사원/부서/금액(사원명 2글자/F2 입력 시 …</label><div>공사관리팀</div><label>거래처/금액(거래처명 2글자/F2 입력 시 자…</label><div>대한상사</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div><label>사용여부</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN08-001</td><td>부서</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN08-002</td><td>사원별초기이월</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN08-003</td><td>Code</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN08-004</td><td>계정과목</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN08-005</td><td>금액</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN08-006</td><td>2글자</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목/금액(2글자/F2, 세목 5자리) · 사원/부서/금액(사원명 2글자/F2 입력 시 부서 자동반영, 이월잔액 입력) · 거래처/금액(거래처명 2글자/F2 입력 시 자동반영, 이월잔액). · 코드 · 명칭 · 구분 · 사용여부</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 부서/사원별초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>부서·사원·거래처별 잔액 입력. 검증: 전기분재무상태표 계정금액에 준하여 부서·사원별 입력. · 마감 · 재이월 · 마감취소 · 결과 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">부서·사원·거래처별 잔액 입력. 검증: 전기분재무상태표 계정…</span><span class="tag">마감</span><span class="tag">재이월</span><span class="tag">마감취소</span><span class="tag">결과 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">계정별원장 부서별·사원별 탭 전기이월.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-01(준거 금액)·SA-BAS-04(부서)…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 AUX(계정별원장) 영역과 충돌하나 Smart A 기능을 흡수 — 부서·사원 차원 전기이월을 계정×차원 opening balance로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-09" data-screen-id="SA-OPN-09" data-layout="monthly-spread">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-09</span>
+    <div>
+      <h3>전기 기간별손익계산서</h3>
+      <p>전기이월 · 25.3.1 · 월별 배분표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 월별 손익계산서를 입력하여 비교식 기간별손익계산서 전기 자료로 활용. BK 전기 스냅샷의 월별 손익 분배 데이터로, 연간 P&amp;L 전기값을 월별로 배분 저장하여 월별 비교 리포트 API에 공급. SA-OPN-02 계정금액에 준하여 월별 입력. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기 기간별손익계산서의 입력 필드와 산출물을 기준으로 월별 배분표 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock monthly-spread" data-blueprint="SA-OPN-09-monthly-spread">
+    <div class="mock-top"><strong>SA-OPN-09</strong><span>전기 기간별손익계산서</span><em>전기이월</em></div>
+    <div class="monthly-layout">
+    <aside><div class="form-panel"><b>기준 금액</b><div class="form-grid"><label>계정과목(SA-OPN-02 계정·금액 반영)</label><div>401 상품매출</div><label>손익계산서 금액(SA-OPN-02 입력 금액 …</label><div>3,750,000</div><label>차액(손익계산서 금액 vs 월별 합계 상이 시…</label><div>3,750,000</div><label>대분류 항목집계(분류 집계항목만 조회)</label><div>입력값</div><label>계정과목 코드보기.</label><div>401 상품매출</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>연간</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>차액</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td></tr><tr><td>146 상품</td><td>기간별손익계산서</td><td>기간별손익계산서</td><td>기간별손익계산서</td><td>기간별손익계산서</td><td>기간별손익계산서</td><td>기간별손익계산서</td></tr><tr><td>253 부가세예수금</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td><td>계정과목</td></tr><tr><td>401 상품매출</td><td>SA</td><td>SA</td><td>SA</td><td>SA</td><td>SA</td><td>SA</td></tr><tr><td>146 상품</td><td>OPN</td><td>OPN</td><td>OPN</td><td>OPN</td><td>OPN</td><td>OPN</td></tr><tr><td>253 부가세예수금</td><td>02</td><td>02</td><td>02</td><td>02</td><td>02</td><td>02</td></tr></tbody></table></section>
+    <aside><b>월별 배분</b><p>연간 합계와 월별 합계 대사</p><p>차액 붉은색 표시</p><button>자동 배분</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>계정과목(SA-OPN-02 계정·금액 반영) · 손익계산서 금액(SA-OPN-02 입력 금액 반영, read-only 준거) · 차액(손익계산서 금액 vs 월별 합계 상이 시 붉은색) · 대분류 항목집계(분류 집계항목만 조회) · 계정과목 코드보기. · 코드 · 명칭</td></tr><tr><th>주 작업 영역</th><td>월별 배분표 구조로 전기 기간별손익계산서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>월별 금액 입력·항목집계 조회. 검증: 손익계산서 금액과 월별 합계 불일치 시 합계란 붉은색 표시(정합성 검증). · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">월별 금액 입력·항목집계 조회. 검증: 손익계산서 금액과 월…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 기간별손익계산서, SA-BAS-14(전기 기간별손익계…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-02(준거 금액)·SA-BAS-14. 후행…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산/리포트 영역과 충돌하나 Smart A 기능을 흡수 — 연간 손익 전기값을 월별 분배 스냅샷으로 일반화하고 월별 합계 정합성 검증을 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-10" data-screen-id="SA-OPN-10" data-layout="monthly-spread">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-10</span>
+    <div>
+      <h3>전기 기간별원가계산서(원가명세서)</h3>
+      <p>전기이월 · 25.3.2 · 월별 배분표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 월별 원가명세서를 입력하여 비교식 기간별원가명세서 전기 자료로 활용. BK 전기 스냅샷의 월별 제조원가 분배 데이터로 매핑. SA-OPN-03 계정금액에 준하여 월별 입력. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock monthly-spread" data-blueprint="SA-OPN-10-monthly-spread">
+    <div class="mock-top"><strong>SA-OPN-10</strong><span>전기 기간별원가계산서(원가명세서)</span><em>전기이월</em></div>
+    <div class="monthly-layout">
+    <aside><div class="form-panel"><b>기준 금액</b><div class="form-grid"><label>더보기(기능모음):</label><div>입력값</div><label>원가설정(매출원가-원가경비 연결, 계정과목 관…</label><div>401 상품매출</div><label>대분류 항목집계</label><div>입력값</div><label>계정과목 코드보기.</label><div>401 상품매출</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>연간</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>차액</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td></tr><tr><td>146 상품</td><td>기간별원가계산서</td><td>기간별원가계산서</td><td>기간별원가계산서</td><td>기간별원가계산서</td><td>기간별원가계산서</td><td>기간별원가계산서</td></tr><tr><td>253 부가세예수금</td><td>원가명세서</td><td>원가명세서</td><td>원가명세서</td><td>원가명세서</td><td>원가명세서</td><td>원가명세서</td></tr><tr><td>401 상품매출</td><td>더보기</td><td>더보기</td><td>더보기</td><td>더보기</td><td>더보기</td><td>더보기</td></tr><tr><td>146 상품</td><td>기능모음</td><td>기능모음</td><td>기능모음</td><td>기능모음</td><td>기능모음</td><td>기능모음</td></tr><tr><td>253 부가세예수금</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td></tr></tbody></table></section>
+    <aside><b>월별 배분</b><p>연간 합계와 월별 합계 대사</p><p>차액 붉은색 표시</p><button>자동 배분</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>더보기(기능모음): · 원가설정(매출원가-원가경비 연결, 계정과목 관계 메타데이터 재사용) · 대분류 항목집계 · 계정과목 코드보기. · 신고기간 · 사업장 · 수정차수</td></tr><tr><th>주 작업 영역</th><td>월별 배분표 구조로 전기 기간별원가계산서(원가명세서)의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>월별 금액 입력·원가설정·항목집계. 검증: 원가명세서 금액과 월별 합계 불일치 시 합계란 붉은색 표시. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">월별 금액 입력·원가설정·항목집계. 검증: 원가명세서 금액과…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">비교식 기간별원가명세서, SA-BAS-14 자동반영.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-03(준거 금액)·SA-BAS-14. 후행…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산/리포트 영역과 충돌하나 Smart A 기능을 흡수 — 연간 제조원가 전기값을 월별 분배 스냅샷으로 일반화하고 원가설정을 계정과목 관계 메타데이터로 재사용.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-11" data-screen-id="SA-OPN-11" data-layout="monthly-spread">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-11</span>
+    <div>
+      <h3>전기 프로젝트손익현황</h3>
+      <p>전기이월 · 25.3.3 · 월별 배분표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 프로젝트별 손익항목을 입력하여 프로젝트손익현황 전기 자료로 활용. BK 전기 스냅샷의 프로젝트 차원(6차원 중 PROJECT) 손익 분배로 계정×프로젝트 차원 키로 전기값 적재, 프로젝트 손익 분석 리포트에 공급. SA-OPN-02 계정금액을 프로젝트별로 입력. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>장부 화면은 조건 조회, 대량 그리드, 원전표 드릴다운, 집계/차액 확인이 핵심이므로 리포트·대사 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock monthly-spread" data-blueprint="SA-OPN-11-monthly-spread">
+    <div class="mock-top"><strong>SA-OPN-11</strong><span>전기 프로젝트손익현황</span><em>전기이월</em></div>
+    <div class="monthly-layout">
+    <aside><div class="form-panel"><b>기준 금액</b><div class="form-grid"><label>프로젝트명(2글자/F2)</label><div>P-2026 본사리뉴얼</div><label>Code/계정과목/금액(2글자/F2, 세목 5…</label><div>401 상품매출</div><label>계정과목복사(다른 프로젝트 계정·금액 복사).</label><div>401 상품매출</div><label>기간</label><div>2026-01-01 ~ 2026-12-31</div><label>계정과목</label><div>401 상품매출</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>연간</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>차액</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td></tr><tr><td>146 상품</td><td>프로젝트손익현황</td><td>프로젝트손익현황</td><td>프로젝트손익현황</td><td>프로젝트손익현황</td><td>프로젝트손익현황</td><td>프로젝트손익현황</td></tr><tr><td>253 부가세예수금</td><td>프로젝트명</td><td>프로젝트명</td><td>프로젝트명</td><td>프로젝트명</td><td>프로젝트명</td><td>프로젝트명</td></tr><tr><td>401 상품매출</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td><td>2글자</td></tr><tr><td>146 상품</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td><td>F2</td></tr><tr><td>253 부가세예수금</td><td>Code</td><td>Code</td><td>Code</td><td>Code</td><td>Code</td><td>Code</td></tr></tbody></table></section>
+    <aside><b>월별 배분</b><p>연간 합계와 월별 합계 대사</p><p>차액 붉은색 표시</p><button>자동 배분</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>프로젝트명(2글자/F2) · Code/계정과목/금액(2글자/F2, 세목 5자리) · 계정과목복사(다른 프로젝트 계정·금액 복사). · 기간 · 계정과목 · 거래처 · 사업장</td></tr><tr><th>주 작업 영역</th><td>월별 배분표 구조로 전기 프로젝트손익현황의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>프로젝트별 손익 입력·계정과목 복사. 검증: 전기분손익계산서 계정금액에 준하여 프로젝트별 입력. · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">프로젝트별 손익 입력·계정과목 복사. 검증: 전기분손익계산서…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">프로젝트손익현황, SA-BAS-14(프로젝트(누적)손익현황)…</span><span class="tag">조회 결과</span><span class="tag">집계표</span><span class="tag">원전표 링크</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-02(준거 금액)·SA-BAS-09(프로젝…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산/리포트 영역과 충돌하나 Smart A 기능을 흡수 — 프로젝트별 전기 손익을 계정×프로젝트 차원 스냅샷으로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-12" data-screen-id="SA-OPN-12" data-layout="monthly-spread">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-12</span>
+    <div>
+      <h3>전기 프로젝트원가현황</h3>
+      <p>전기이월 · 25.3.4 · 월별 배분표</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 프로젝트별 원가항목을 입력하여 프로젝트원가현황 전기 자료로 활용. BK 전기 스냅샷의 프로젝트 차원 원가 분배로 원가경비별·계정×프로젝트 키로 적재. SA-OPN-03 계정금액을 프로젝트별로 입력. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>장부 화면은 조건 조회, 대량 그리드, 원전표 드릴다운, 집계/차액 확인이 핵심이므로 리포트·대사 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock monthly-spread" data-blueprint="SA-OPN-12-monthly-spread">
+    <div class="mock-top"><strong>SA-OPN-12</strong><span>전기 프로젝트원가현황</span><em>전기이월</em></div>
+    <div class="monthly-layout">
+    <aside><div class="form-panel"><b>기준 금액</b><div class="form-grid"><label>원가경비(원가설정 등록 순서대로 조회, 입력할…</label><div>입력값</div><label>프로젝트명(2글자/F2)</label><div>P-2026 본사리뉴얼</div><label>Code/계정과목/금액(2글자/F2, 세목 5…</label><div>401 상품매출</div><label>불러오기(선택 프로젝트에 전기분원가명세서 계정…</label><div>401 상품매출</div><label>원가설정</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>계정과목</th><th>연간</th><th>1월</th><th>2월</th><th>3월</th><th>4월</th><th>차액</th></tr></thead><tbody><tr><td>401 상품매출</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td><td>전기</td></tr><tr><td>146 상품</td><td>프로젝트원가현황</td><td>프로젝트원가현황</td><td>프로젝트원가현황</td><td>프로젝트원가현황</td><td>프로젝트원가현황</td><td>프로젝트원가현황</td></tr><tr><td>253 부가세예수금</td><td>원가경비</td><td>원가경비</td><td>원가경비</td><td>원가경비</td><td>원가경비</td><td>원가경비</td></tr><tr><td>401 상품매출</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td><td>원가설정</td></tr><tr><td>146 상품</td><td>순서대로</td><td>순서대로</td><td>순서대로</td><td>순서대로</td><td>순서대로</td><td>순서대로</td></tr><tr><td>253 부가세예수금</td><td>입력할</td><td>입력할</td><td>입력할</td><td>입력할</td><td>입력할</td><td>입력할</td></tr></tbody></table></section>
+    <aside><b>월별 배분</b><p>연간 합계와 월별 합계 대사</p><p>차액 붉은색 표시</p><button>자동 배분</button></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>원가경비(원가설정 등록 순서대로 조회, 입력할 원가 선택) · 프로젝트명(2글자/F2) · Code/계정과목/금액(2글자/F2, 세목 5자리) · 불러오기(선택 프로젝트에 전기분원가명세서 계정과목 불러오기) · 원가설정 · 계정과목 복사. · 기간</td></tr><tr><th>주 작업 영역</th><td>월별 배분표 구조로 전기 프로젝트원가현황의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>프로젝트별 원가 입력·불러오기·원가설정·복사. 검증: 전기분원가명세서 계정금액에 준하여 프로젝트별 입력. · 조회 · 드릴다운 · 인쇄 · 엑셀</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">프로젝트별 원가 입력·불러오기·원가설정·복사. 검증: 전기분…</span><span class="tag">조회</span><span class="tag">드릴다운</span><span class="tag">인쇄</span><span class="tag">엑셀</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">프로젝트원가현황, SA-BAS-14(프로젝트(누적)원가현황)…</span><span class="tag">조회 결과</span><span class="tag">집계표</span><span class="tag">원전표 링크</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-03(준거 금액)·SA-BAS-09(프로젝…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 결산/리포트 영역과 충돌하나 Smart A 기능을 흡수 — 프로젝트별 전기 원가를 원가경비별·계정×프로젝트 차원 스냅샷으로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-13" data-screen-id="SA-OPN-13" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-13</span>
+    <div>
+      <h3>프로젝트초기이월</h3>
+      <p>전기이월 · 25.3.5 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전기분재무상태표 계정과목·금액과 프로젝트를 반영하여 프로젝트별 계정금액을 입력. BK 계정별원장(보조부)의 프로젝트 차원 opening balance로, 부서/사원·거래처 하위 차원과의 다차원 초기이월을 계정×프로젝트×(부서/사원/거래처) 키로 적재. 계정과목·부서/사원·거래처 탭 구성. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>프로젝트초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-13-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-13</strong><span>프로젝트초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>프로젝트 초기이월 탭(계정과목=프로젝트별 금액…</label><div>공사관리팀</div><label>Code/계정과목/금액/차액(2글자/F2, 세…</label><div>401 상품매출</div><label>SA-OPN-01 금액 반영)</label><div>3,750,000</div><label>Code/프로젝트/금액(계정의 프로젝트별 금액…</label><div>401 상품매출</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN13-001</td><td>프로젝트초기이월</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN13-002</td><td>프로젝트</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN13-003</td><td>초기이월</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN13-004</td><td>계정과목</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN13-005</td><td>프로젝트별</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN13-006</td><td>금액</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>프로젝트 초기이월 탭(계정과목=프로젝트별 금액 입력, 부서/사원=계정과목 탭 입력 계정의 프로젝트별 부서/사원 금액, 거래처… · Code/계정과목/금액/차액(2글자/F2, 세목 5자리 · SA-OPN-01 금액 반영) · Code/프로젝트/금액(계정의 프로젝트별 금액 입력). · 코드 · 명칭 · 구분</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 프로젝트초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>다차원(프로젝트×부서/사원×거래처) 초기이월 입력. 검증: 전기분재무상태표 금액을 반영하여 프로젝트별 분개, 차액 표시로 정… · 마감 · 재이월 · 마감취소 · 결과 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">다차원(프로젝트×부서/사원×거래처) 초기이월 입력. 검증: …</span><span class="tag">마감</span><span class="tag">재이월</span><span class="tag">마감취소</span><span class="tag">결과 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">프로젝트별 전기이월(계정별원장 프로젝트 차원).</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-01(준거 금액)·SA-BAS-09(프로젝…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 AUX/차원 영역과 충돌하나 Smart A 기능을 흡수 — 프로젝트 차원 초기이월을 계정×프로젝트×하위차원 다차원 opening balance로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-14" data-screen-id="SA-OPN-14" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-14</span>
+    <div>
+      <h3>전기 중단사업손익계산서</h3>
+      <p>전기이월 · 25.3.6 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 중단 부서/중단 프로젝트별 손익계산서를 입력. BK 전기 스냅샷의 중단사업(부서 또는 프로젝트 차원 한정) 손익으로 매핑. SA-BAS-03&gt;회계 탭 중단사업코드설정 1.부서/2.PJT + 중소기업회계기준 0.사용안함 시 입력 가능(해당 차원을 중단사업 집합으로 태깅). 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>전기 중단사업손익계산서의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-14-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-14</strong><span>전기 중단사업손익계산서</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>중단사업부서(더보기&gt;중단사업코드설정&gt;중단부서 …</label><div>공사관리팀</div><label>Code/계정과목(2글자/F2, 세목 5자리)</label><div>401 상품매출</div><label>금액(계정 분류별 항목별 합계 반영)</label><div>401 상품매출</div><label>항목보기(매출액·매출원가·판관비 등 구성 계정…</label><div>401 상품매출</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN14-001</td><td>전기</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN14-002</td><td>중단사업손익계산서</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN14-003</td><td>중단사업부서</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN14-004</td><td>더보기</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN14-005</td><td>중단사업코드설정</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN14-006</td><td>중단부서</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>중단사업부서(더보기&gt;중단사업코드설정&gt;중단부서 등록 시 조회) · Code/계정과목(2글자/F2, 세목 5자리) · 금액(계정 분류별 항목별 합계 반영) · 항목보기(매출액·매출원가·판관비 등 구성 계정 역조회). · 코드 · 명칭 · 구분</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 전기 중단사업손익계산서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>중단사업부서/PJT별 손익 입력·항목보기. 검증: 환경설정 중단사업코드설정·중소기업회계기준 미적용 전제 충족 시 사용 가능. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">중단사업부서/PJT별 손익 입력·항목보기. 검증: 환경설정 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">중단사업손익계산서, SA-BAS-14 자동반영.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-03(중단사업코드·중소기업회계기준)·SA-…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면) — v2.0 인벤토리에 중단사업이 없어 Smart A 기능을 BK 모델로 신규 추가, 환경설정 중단사업코드 플래그로 부서/프로젝트 차원을 중단사업 집합으로 태깅.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-15" data-screen-id="SA-OPN-15" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-15</span>
+    <div>
+      <h3>전기 중단사업원가명세서</h3>
+      <p>전기이월 · 25.3.7 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>전년도 중단 부서/중단 프로젝트별 원가명세서를 입력. BK 전기 스냅샷의 중단사업 원가로 매핑하며 원가설정·중단사업 코드설정을 계정과목 관계·차원 태깅 메타데이터로 재사용. SA-BAS-03&gt;회계 탭 중단사업코드설정 1.부서/2.PJT + 중소기업회계기준 0.사용안함 시 입력 가능. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>세무 화면은 원천자료 불러오기, 신고서 본문, MRI 검증, 전자신고 반영 상태가 분리되어야 하므로 신고서 작업대 구조로 설계했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-15-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-15</strong><span>전기 중단사업원가명세서</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>Code/계정과목(2글자/F2, 세목 5자리)</label><div>401 상품매출</div><label>금액(계정 분류별 항목별 합계 반영)</label><div>401 상품매출</div><label>원가설정(매출원가-원가경비 연결)</label><div>3,750,000</div><label>중단사업 코드설정(중단사업 부서/PJT 설정)</label><div>공사관리팀</div><label>항목보기(원재료비·부재료비·노무비 등 역조회).</label><div>입력값</div><label>신고기간</label><div>2026-01-01 ~ 2026-12-31</div><label>사업장</label><div>본점</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN15-001</td><td>전기</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN15-002</td><td>중단사업원가명세서</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN15-003</td><td>Code</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN15-004</td><td>계정과목</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN15-005</td><td>2글자</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN15-006</td><td>F2</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목(2글자/F2, 세목 5자리) · 금액(계정 분류별 항목별 합계 반영) · 원가설정(매출원가-원가경비 연결) · 중단사업 코드설정(중단사업 부서/PJT 설정) · 항목보기(원재료비·부재료비·노무비 등 역조회). · 신고기간 · 사업장</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 전기 중단사업원가명세서의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>중단사업 원가 입력·원가설정·코드설정·항목보기. 검증: 환경설정 전제 충족 시 사용 가능. · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">중단사업 원가 입력·원가설정·코드설정·항목보기. 검증: 환경…</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">중단사업원가명세서, SA-BAS-14 자동반영.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-03(중단사업코드)·SA-OPN-03(준거…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면) — v2.0 인벤토리에 중단사업 원가가 없어 신규 추가, 원가설정·중단사업 코드설정을 계정 관계·차원 태깅 메타데이터로 재사용.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-16" data-screen-id="SA-OPN-16" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-16</span>
+    <div>
+      <h3>중도시산표</h3>
+      <p>전기이월 · 25.3.8 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>회계기간 중간부터 프로그램 사용 또는 기장 누락 시 재무제표 작성을 위해 회계자료를 시산표 형식으로 입력하여 일반전표입력에 반영. BK의 중도개시 시산표 입력 화면으로, 시산표 잔액을 자동전표(개시 분개, entryCode=DR/CR)로 변환하는 batch로 구현하며 분개화면 보기는 생성 전 미리보기.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>중도시산표의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-16-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-16</strong><span>중도시산표</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>Code/계정과목(2글자/F2, 세목 5자리)</label><div>401 상품매출</div><label>차변/대변(계정·금액 입력 시 분류별 차감 잔…</label><div>401 상품매출</div><label>항목별 합계표(read-only 집계).</label><div>입력값</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div><label>사용여부</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN16-001</td><td>중도시산표</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN16-002</td><td>Code</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN16-003</td><td>계정과목</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN16-004</td><td>2글자</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN16-005</td><td>F2</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN16-006</td><td>세목</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/계정과목(2글자/F2, 세목 5자리) · 차변/대변(계정·금액 입력 시 분류별 차감 잔액이 항목별 합계표 집계) · 항목별 합계표(read-only 집계). · 코드 · 명칭 · 구분 · 사용여부</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 중도시산표의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>조회모드/편집모드 전환 · 전표추가(조회모드→편집모드, [전표추가]로 일반전표입력 전송) · 임대주택 계정설정 · 분개화면 보기(일반전표입력 전송 분개 조회). 검증: 툴바 조회모드 클릭 후 시산표 형식 입력→일반전표입력 반영(전표추가). · 조회 · 저장 · 검증 · 이력 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">조회모드/편집모드 전환</span><span class="tag">전표추가(조회모드→편집모드, [전표추가]로 일반전표입력 전송)</span><span class="tag">임대주택 계정설정</span><span class="tag">분개화면 보기(일반전표입력 전송 분개 조회). 검증: 툴바 …</span><span class="tag">조회</span><span class="tag">저장</span><span class="tag">검증</span><span class="tag">이력 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">일반전표입력(전송된 개시 분개), 재무제표.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-07(COA). 후행: 일반전표입력(JV)…</span><span class="tag">재무제표. 더존식 전표번호(전표일자 단위 매일 001 리셋</span><span class="tag">복합키 (tenant_id</span><span class="tag">전표일자</span><span class="tag">전표번호))로 채번.</span><span class="tag">v2.1 설계서</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 JV/결산 영역과 충돌하나 Smart A 기능을 흡수 — 중도개시 시산표를 자동전표 개시 분개 생성 batch로 일반화하고 분개화면 보기를 생성 전 미리보기로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-17" data-screen-id="SA-OPN-17" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-17</span>
+    <div>
+      <h3>미완성공사초기이월</h3>
+      <p>전기이월 · 25.3.9 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>도급·분양 탭으로 구분하여 미완성공사 초기이월을 입력. BK 현장 차원(6차원 중 SITE) 보조부의 미완성공사 전기이월로, 도급/분양 구분 및 계정 분류별 상세를 현장×계정 키로 적재하여 공사원가집계표 전기값에 공급. 입력 내용은 현장별공사원가집계표 공사비 내역-전기 공사비 항목에 반영. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>미완성공사초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-17-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-17</strong><span>미완성공사초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>Code/현장명/금액(현장명 2글자/F2</label><div>BK-001</div><label>해당 현장 총 공사비용 입력)</label><div>강남 2공구</div><label>분류명/금액(좌측 금액 입력 시 계정과목 분류…</label><div>401 상품매출</div><label>상세입력(분류명 선택 후 더보기&gt;상세입력 팝업…</label><div>401 상품매출</div><label>원가경비 설정(매출원가-원가경비 연결).</label><div>3,750,000</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN17-001</td><td>미완성공사초기이월</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN17-002</td><td>Code</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN17-003</td><td>현장명</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN17-004</td><td>금액</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN17-005</td><td>2글자</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN17-006</td><td>F2</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>Code/현장명/금액(현장명 2글자/F2 · 해당 현장 총 공사비용 입력) · 분류명/금액(좌측 금액 입력 시 계정과목 분류별 집계 반영) · 상세입력(분류명 선택 후 더보기&gt;상세입력 팝업에서 항목별 상세 계정과목·금액 입력) · 원가경비 설정(매출원가-원가경비 연결). · 코드 · 명칭</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 미완성공사초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>도급/분양 탭별 현장 미완성공사 입력·상세입력·원가경비 설정. 검증: 도급/분양 탭별 입력, 분류별 집계 정합성. · 마감 · 재이월 · 마감취소 · 결과 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">도급/분양 탭별 현장 미완성공사 입력·상세입력·원가경비 설정…</span><span class="tag">마감</span><span class="tag">재이월</span><span class="tag">마감취소</span><span class="tag">결과 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">현장별공사원가집계표(전기 공사비), SA-BAS-14 자동반…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-08(현장)·SA-BAS-07(원가경비)·…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면) — v2.0 인벤토리에 미완성공사가 없어 신규 추가, 현장 차원 보조부의 현장×계정 전기이월로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-18" data-screen-id="SA-OPN-18" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-18</span>
+    <div>
+      <h3>외주처별초기이월</h3>
+      <p>전기이월 · 25.3.10 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>외주처별로 이월된 공사계약금액·선급금·외주비를 입력. BK 외주처 보조부의 전기이월로, 외주처×현장 키로 계약금액·선급금·외주비·잔액을 opening balance로 적재. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>외주처별초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-18-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-18</strong><span>외주처별초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>외주처/현장(F2</label><div>강남 2공구</div><label>SA-BAS-11 등록 외주처·현장 조회)</label><div>강남 2공구</div><label>공사계약금액/선급금/외주비/잔액(입력 시 잔액…</label><div>3,750,000</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div><label>사용여부</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN18-001</td><td>외주처별초기이월</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN18-002</td><td>외주처</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN18-003</td><td>현장</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN18-004</td><td>F2</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN18-005</td><td>SA</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN18-006</td><td>BAS</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>외주처/현장(F2 · SA-BAS-11 등록 외주처·현장 조회) · 공사계약금액/선급금/외주비/잔액(입력 시 잔액 자동 계산). · 코드 · 명칭 · 구분 · 사용여부</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 외주처별초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>외주처×현장별 계약·선급금·외주비 입력, 잔액 자동 계산. 검증: 외주처등록 선행, 공사계약금액-선급금-외주비로 잔액 산출. · 마감 · 재이월 · 마감취소 · 결과 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">외주처×현장별 계약·선급금·외주비 입력, 잔액 자동 계산. …</span><span class="tag">마감</span><span class="tag">재이월</span><span class="tag">마감취소</span><span class="tag">결과 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">외주대장, 외주처별 채권채무 관리, SA-BAS-14 자동반…</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-BAS-11(외주처)·SA-BAS-08(현장)·S…</span><span class="tag">v2.1 설계서</span><span class="tag">권한/감사</span><span class="tag">운영 로그</span></td></tr>
+          <tr><th>충돌 조정</th><td>충돌 없음(신규 기능 화면) — v2.0 인벤토리에 외주처 초기이월이 없어 신규 추가, 외주처×현장 opening balance로 일반화.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="screen" id="sa-opn-19" data-screen-id="SA-OPN-19" data-layout="opening-ledger">
+  <div class="screen-head">
+    <span class="sid">SA-OPN-19</span>
+    <div>
+      <h3>현장별/거래처별초기이월</h3>
+      <p>전기이월 · 25.3.11 · 초기이월 보조부</p>
+    </div>
+  </div>
+  <div class="screen-body">
+    <div class="brief-grid">
+      <div class="brief"><b>업무 목적</b><p>계정과목별 현장 초기이월 및 현장별 거래처 초기이월을 입력. BK 계정별원장(보조부)의 현장 차원 및 현장×거래처 다차원 opening balance로, 계정×현장(×거래처) 키로 전기이월 잔액을 적재하고 차액 검증을 서버 측 validation으로 enforce. 최초 작업년도에만 입력, 차기는 SA-BAS-14 자동반영.</p></div>
+      <div class="brief"><b>화면 설계 판단</b><p>현장별/거래처별초기이월의 입력 필드와 산출물을 기준으로 초기이월 보조부 구조를 적용했다.</p></div>
+    </div>
+    <div class="mock opening-ledger" data-blueprint="SA-OPN-19-opening-ledger">
+    <div class="mock-top"><strong>SA-OPN-19</strong><span>현장별/거래처별초기이월</span><em>전기이월</em></div>
+    <div class="opening-ledger-layout">
+    <aside><div class="form-panel"><b>초기이월 조건</b><div class="form-grid"><label>계정과목별 현장초기이월(F2로 전기분재무상태표…</label><div>401 상품매출</div><label>현장별 거래처초기이월(계정과목·현장 자동반영,…</label><div>대한상사</div><label>차액표시(&quot;여&quot; 선택 시 차액 란 생성, 전기…</label><div>401 상품매출</div><label>코드</label><div>BK-001</div><label>명칭</label><div>입력값</div><label>구분</label><div>입력값</div><label>사용여부</label><div>입력값</div></div></div></aside>
+    <section><table class="mock-grid"><thead><tr><th>대상코드</th><th>대상명</th><th>계정</th><th>전기잔액</th><th>차변</th><th>대변</th><th>검증</th></tr></thead><tbody><tr><td>PN19-001</td><td>현장별</td><td>401 상품매출</td><td>3,750,000</td><td>3,750,000</td><td>3,750,000</td><td>검증완료</td></tr><tr><td>PN19-002</td><td>거래처별초기이월</td><td>146 상품</td><td>5,000,000</td><td>5,000,000</td><td>5,000,000</td><td>대기</td></tr><tr><td>PN19-003</td><td>계정과목별</td><td>253 부가세예수금</td><td>6,250,000</td><td>6,250,000</td><td>6,250,000</td><td>오류확인</td></tr><tr><td>PN19-004</td><td>현장초기이월</td><td>401 상품매출</td><td>7,500,000</td><td>7,500,000</td><td>7,500,000</td><td>승인</td></tr><tr><td>PN19-005</td><td>F2로</td><td>146 상품</td><td>8,750,000</td><td>8,750,000</td><td>8,750,000</td><td>검증완료</td></tr><tr><td>PN19-006</td><td>전기분재무상태표</td><td>253 부가세예수금</td><td>10,000,000</td><td>10,000,000</td><td>10,000,000</td><td>대기</td></tr></tbody></table></section>
+    <aside><b>준거 대사</b><p>전기 재무상태표 금액</p><p>보조부 합계</p><p>차액 확인</p></aside>
+  </div>
+  </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <h4>주요 화면 영역</h4>
+        <table><tr><th>상단 컨텍스트</th><td>테넌트, 회계기간, 사업장, 권한, 마감상태를 표시하고 화면별 작업 범위를 고정한다.</td></tr><tr><th>입력/조회 조건</th><td>계정과목별 현장초기이월(F2로 전기분재무상태표 계정코드 선택→금액 반영, 우측 현장별 이월잔액 입력, 현장별 합계 vs 재무… · 현장별 거래처초기이월(계정과목·현장 자동반영, 거래처 코드 F2로 우측 거래처별 이월잔액 입력, 현장별 합계 vs 현장 거래… · 차액표시(&quot;여&quot; 선택 시 차액 란 생성, 전기분재무상태표 계정별 합계 vs 입력 현장별 계정 합계 비교). · 코드 · 명칭 · 구분 · 사용여부</td></tr><tr><th>주 작업 영역</th><td>초기이월 보조부 구조로 현장별/거래처별초기이월의 업무 입력값과 결과물을 같은 화면에서 확인한다.</td></tr><tr><th>처리 버튼</th><td>계정×현장×거래처 다차원 초기이월 입력·차액 표시. 검증: 전기분재무상태표 계정코드 기준, 현장별·거래처별 합계와 차액 정합… · 마감 · 재이월 · 마감취소 · 결과 확인</td></tr><tr><th>상태/검증</th><td>정합성·차액 검증 · 코드 중복 검증</td></tr></table>
+      </div>
+      <div class="detail-card">
+        <h4>검증·연계·산출물</h4>
+        <table>
+          <tr><th>처리 기능</th><td><span class="tag">계정×현장×거래처 다차원 초기이월 입력·차액 표시. 검증: …</span><span class="tag">마감</span><span class="tag">재이월</span><span class="tag">마감취소</span><span class="tag">결과 확인</span></td></tr>
+          <tr><th>산출물</th><td><span class="tag">계정별원장 현장별 탭, 현장별 잔액명세서 전기이월.</span><span class="tag">마스터 데이터</span><span class="tag">변경 이력</span><span class="tag">연계 결과</span></td></tr>
+          <tr><th>연계</th><td><span class="tag">선행 SA-OPN-01(준거 금액)·SA-BAS-08(현장)…</span><span class="tag">전표 화면</span><span class="tag">장부 조회</span><span class="tag">초기이월</span></td></tr>
+          <tr><th>충돌 조정</th><td>v2.0 AUX/차원 영역과 충돌하나 Smart A 기능을 흡수 — 현장 차원 및 현장×거래처 다차원 초기이월을 계정×현장(×거래처) opening balance로 일반화하고 차액 검증을 서버 측 validation으로 보존.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+    </section>
+  </main>
+</body>
+</html>
