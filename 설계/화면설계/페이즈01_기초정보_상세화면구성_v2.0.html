@@ -1,0 +1,1589 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 서비스 구현 화면설계서 — 페이즈01 기초정보·조직·표준 설정 v2.0</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:256px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:256px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:24px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+.wf-sel{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 18px 2px 8px;color:#33415e;font-size:11.3px;min-width:70px;position:relative;background-image:linear-gradient(45deg,transparent 50%,#7c879c 50%),linear-gradient(135deg,#7c879c 50%,transparent 50%);background-position:calc(100% - 9px) 9px,calc(100% - 5px) 9px;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.wf-in.wide{min-width:170px}
+.wf-in.full{display:block;width:100%;min-width:0}
+/* ---------- crumb (entry path) ---------- */
+.crumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#f0f4fc;border:1px solid #d8e0f3;border-radius:6px;padding:6px 12px;margin:8px 0 10px;font-size:12.2px;color:#33415e}
+.crumb b{color:#2554c7}
+.crumb .sep{color:#9aa6bd}
+/* ---------- business flow ---------- */
+.flow{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch;margin:12px 0;overflow-x:auto;padding-bottom:6px}
+.flow .step{flex:1 1 0;min-width:128px;border:1.5px solid var(--wf-line);border-radius:8px;background:#fff;padding:8px 10px;font-size:12px}
+.flow .step .n{display:inline-block;background:#2554c7;color:#fff;border-radius:50%;width:18px;height:18px;text-align:center;font-size:11px;line-height:18px;margin-right:5px}
+.flow .step .sc{display:block;font-family:Consolas,monospace;font-size:10.5px;color:#15803d;margin-top:4px}
+.flow .step .ds{display:block;color:#5b6478;font-size:11px;margin-top:2px}
+.flow .arr{display:flex;align-items:center;color:#7c879c;font-weight:700;font-size:16px;flex:0 0 auto}
+.flow.mini .step{min-width:96px;padding:5px 8px;font-size:11.3px}
+.flow.mini .step .n{width:16px;height:16px;line-height:16px;font-size:10px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head><body>
+<nav id="toc">
+  <h2>구현 화면설계서 v2.0</h2>
+  <div class="ver">페이즈 01 · 기초정보·조직·표준 설정 · 2026-06-20</div>
+  <a href="#s1">1. 문서 개요</a>
+  <a href="#s2">2. 공통 UI 표준</a>
+  <a class="sub" href="#s2-flow">2.3 업무 흐름(온보딩~운영)</a>
+  <a href="#s3">3. 화면 목록(인벤토리)</a>
+  <div class="g">4. 플랫폼·기초 (BF-*)</div>
+  <a class="sub" href="#bf-00">BF-00 이용회사 선택</a>
+  <a class="sub" href="#bf-01">BF-01 운영조직·IP 허용</a>
+  <a class="sub" href="#bf-02">BF-02 테넌트 운영 콘솔</a>
+  <a class="sub" href="#bf-03">BF-03 기장 설정·전환</a>
+  <a class="sub" href="#bf-04">BF-04 보안 사용자</a>
+  <a class="sub" href="#bf-05">BF-05 인증 정책</a>
+  <a class="sub" href="#bf-06">BF-06 접근 세션 감사</a>
+  <a class="sub" href="#bf-07">BF-07 권한 매트릭스</a>
+  <a class="sub" href="#bf-08">BF-08 표준 카탈로그</a>
+  <a class="sub" href="#bf-09">BF-09 차원·조직관리</a>
+  <a class="sub" href="#bf-10">BF-10 구독·청구</a>
+  <a class="sub" href="#bf-11">BF-11 알림 매트릭스</a>
+  <a class="sub" href="#bf-12">BF-12 메뉴 발행</a>
+  <div class="g">5. Smart A 기초정보 (SA-BAS-*)</div>
+  <a class="sub" href="#sa-bas-01">SA-BAS-01 회사등록</a>
+  <a class="sub" href="#sa-bas-02">SA-BAS-02 권한설정</a>
+  <a class="sub" href="#sa-bas-03">SA-BAS-03 환경설정</a>
+  <a class="sub" href="#sa-bas-04">SA-BAS-04 부서등록</a>
+  <a class="sub" href="#sa-bas-05">SA-BAS-05 사원등록</a>
+  <a class="sub" href="#sa-bas-06">SA-BAS-06 거래처등록</a>
+  <a class="sub" href="#sa-bas-07">SA-BAS-07 계정과목·적요</a>
+  <a class="sub" href="#sa-bas-08">SA-BAS-08 현장등록</a>
+  <a class="sub" href="#sa-bas-09">SA-BAS-09 프로젝트등록</a>
+  <a class="sub" href="#sa-bas-10">SA-BAS-10 업무용승용차</a>
+  <a class="sub" href="#sa-bas-11">SA-BAS-11 외주처등록</a>
+  <a class="sub" href="#sa-bas-12">SA-BAS-12 거래처DM인쇄</a>
+  <a class="sub" href="#sa-bas-13">SA-BAS-13 거래처등코드변환</a>
+  <a class="sub" href="#sa-bas-14">SA-BAS-14 마감후이월</a>
+  <div class="g">전체 페이즈</div>
+  <a class="sub" href="페이즈01_기초정보_상세화면구성_v2.0.html">P01 기초정보·조직</a>
+  <a class="sub" href="페이즈02_전기이월_상세화면구성_v2.0.html">P02 전기이월</a>
+  <a class="sub" href="페이즈03_전표자동전표_상세화면구성_v2.0.html">P03 전표·자동전표</a>
+  <a class="sub" href="페이즈04_장부보조부_상세화면구성_v2.0.html">P04 장부·보조부</a>
+  <a class="sub" href="페이즈05_결산재무제표_상세화면구성_v2.0.html">P05 결산·재무제표</a>
+  <a class="sub" href="페이즈06_부가세주요신고_상세화면구성_v2.0.html">P06 부가세 주요신고</a>
+  <a class="sub" href="페이즈07_부가세첨부업종_상세화면구성_v2.0.html">P07 부가세 첨부·업종</a>
+  <a class="sub" href="페이즈08_영세율고정자산_상세화면구성_v2.0.html">P08 영세율·고정자산</a>
+  <a class="sub" href="페이즈09_자금예산어음_상세화면구성_v2.0.html">P09 자금·예산·어음</a>
+  <a class="sub" href="페이즈10_데이터관리운영_상세화면구성_v2.0.html">P10 데이터관리·운영</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>페이즈 01 · 기초정보·조직·표준 설정</h1>
+  <p>BK 회계/세무 SaaS 구현 화면설계서 · Smart A 기준 · v2.0</p>
+  <p>작성일 2026-06-20 · 멀티테넌트(SHARED+RLS) · NestJS / React 18</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 페이즈 01 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>페이즈 01 구현 착수를 위해 <b>기초정보·조직·표준 설정</b> 화면별 레이아웃(와이어프레임)·입력 필드·액션/검증·연계 API·권한·상태를 구현 가능한 수준으로 정의한다. 플랫폼 기반(테넌트/인증/권한/표준)과 Smart A 기초정보(회사·환경·조직·거래처·계정과목·차원 마스터)를 하나의 페이즈로 묶어, 후행 전표·결산·신고 화면의 <b>부모 엔티티</b>를 모두 확정한다.</td></tr>
+  <tr><th>페이즈 정의</th><td>멀티테넌시(SHARED+RLS)·인증/2FA·운영 콘솔(테넌트/구독/표준)·권한 위임/가드레일·관리자 접근 로그·공통 표준 배포 + <b>회사등록·환경설정·6 관리차원 마스터(부서/사원/거래처/계정과목/현장/프로젝트)·차량·외주처·코드변환·마감후이월</b>. Smart A의 "기수 단일파일" 모델을 <code>tenant</code> + <code>fiscal_period</code> 모델로 일반화한다.</td></tr>
+  <tr><th>화면 구성</th><td><b>플랫폼/기초 BF-00~BF-12</b> 13화면(테넌트 스위처·운영조직·테넌트 콘솔·기장 워크플로우·보안 사용자·인증 정책·접근 감사·권한 매트릭스·표준 카탈로그·차원/조직·구독/청구·알림·메뉴 발행) + <b>Smart A 기초정보 SA-BAS-01~SA-BAS-14</b> 14화면 = 총 <b>27화면</b>.</td></tr>
+  <tr><th>표기 원칙</th><td>화면 ID는 본 문서 전용으로 <code>BF-xx</code>(플랫폼/기초)·<code>SA-BAS-xx</code>(Smart A 기초정보)를 사용하고, 설계서 <code>bk_설계서_v2.1.md</code> 0.2·25.1 절과 연결한다. 검증은 <span class="badge b-amber">경고</span>(저장가능)·<span class="badge b-red">차단</span>(저장불가) 2단계로 표기한다.</td></tr>
+</table>
+<div class="tip">본 페이즈는 <b>설정·마스터</b> 중심이므로, 화면 대부분이 <b>좌측 목록/트리 + 중앙 상세 입력(탭) + 우측 정책/검증 패널</b>의 3분할이거나 <b>매트릭스·콘솔·배치</b> 형태다. 입력 마스터 화면은 v2.1 전표 화면의 <b>핵심 그리드 + 우측 패널</b> 패턴을 응용해, 코드·명칭 등 필수만 그리드에 두고 차원·정책·연계는 우측 패널/탭으로 분리했다.</div>
+<div class="note"><b>페이즈 01 연계 핵심</b> — <code>SA-BAS-03</code> 환경설정의 <b>관리코드 사용여부</b>와 <code>SA-BAS-07</code> 계정과목별 <b>관리항목</b> 설정이 <b>전표(P03) 우측 「선택 라인 추가입력」 패널의 노출/필수</b>를 결정한다. 즉 본 페이즈에서 어떤 관리차원(사업장·코스트센터·부서·프로젝트·현장·사원)을 켜고, 어떤 계정에 관리항목을 붙이느냐가 이후 모든 전표 입력 UX를 좌우한다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 공통 UI 표준 (요약)</h2>
+<h3>2.1 화면 셸 · 마스터 입력 표준</h3>
+<ul>
+  <li><b>셸</b>: 상단 GNB(회사명·기장 모드 배지·알림·사용자) + 좌측 LNB(기초정보/전표/장부·결산/설정·운영) + 콘텐츠. 메뉴는 Role 메뉴권한(BF-12), 버튼은 행위권한(BF-07)으로 렌더링.</li>
+  <li><b>마스터 3분할</b>: 좌측 목록/조직 트리 + 중앙 상세 탭 입력 + 우측 정책·검증·연계 패널. 코드도움(<span class="kbd">F2</span>), 다음 행(<span class="kbd">Enter</span>), 저장(<span class="kbd">Ctrl+S</span>).</li>
+  <li><b>2단계 검증</b>: <span class="badge b-amber">Amber 경고</span>(저장 가능) / <span class="badge b-red">Red 차단</span>(저장 불가). 서버 검증 이중 유지.</li>
+  <li><b>마스킹(17장)</b>: 계좌·카드·주민번호 기본 마스킹, 👁 평문 조회는 Step-up 인증 + 사유 + 자동 재마스킹.</li>
+  <li><b>변경 이력</b>: 모든 마스터는 append-only 변경이력, 물리 삭제 금지. 사용여부 토글·유효일자로 논리 비활성(12.3).</li>
+  <li><b>RLS 스코프</b>: 회사권한(전체회사/관리회사)이 테넌트 행 수준 접근 범위를 결정(SA-BAS-02). 모든 마스터 조회·저장은 <code>tenant_id</code> RLS 필터를 통과.</li>
+  <li><b>6 관리차원</b>: 사업장(*기본필수)·코스트센터·부서·프로젝트·현장·사원. <code>DimensionConfig.required</code>로 회사별 필수/선택 조정(BF-09·SA-BAS-03·SA-BAS-04~09).</li>
+</ul>
+<h3>2.2 기초정보 데이터 모델 매핑 (PostgreSQL)</h3>
+<table>
+  <tr><th>화면 요소</th><th>엔티티 / 테이블</th><th>비고</th></tr>
+  <tr><td>회사·회계기간</td><td><code>tenant</code> / <code>fiscal_period</code></td><td>1 테넌트 N 기수(fiscal_period seq). 법인/개인·과세유형 플래그가 결산·세법 분기 파라미터(SA-BAS-01)</td></tr>
+  <tr><td>환경설정</td><td><code>tenant_config</code></td><td>계정코드 자리수·소수점·관리코드 사용여부(SA-BAS-03) — 전표/결산 분기 조건</td></tr>
+  <tr><td>관리차원</td><td><code>dimension_*</code> / <code>DimensionConfig</code></td><td>사업장·코스트센터·부서·프로젝트·현장·사원. <code>required</code>로 회사별 필수 제어(BF-09)</td></tr>
+  <tr><td>거래처/계정</td><td><code>partner</code> / <code>account(COA)</code></td><td>계정 관리항목 메타데이터가 전표 우측 패널 노출·필수 결정(SA-BAS-07)</td></tr>
+  <tr><td>권한/메뉴</td><td><code>role</code> / <code>menu</code> / <code>permission</code></td><td>RBAC + RLS + 메뉴 권한 비트맵(BF-07·BF-12·SA-BAS-02)</td></tr>
+  <tr><td>변경 이력</td><td><code>data_change_log</code></td><td>append-only, 물리 삭제 금지(12.3)</td></tr>
+</table>
+
+<h3 id="s2-flow">2.3 업무 흐름 (온보딩 ~ 운영 동선)</h3>
+<p>신규 이용회사 도입부터 정상 운영까지 페이즈 01 화면이 사용되는 순서. 각 단계의 <span class="sc" style="color:#15803d;font-family:Consolas,monospace">코드</span>는 해당 화면 ID이며, 1~2단계는 <b>관리회사 1회 설정(전역)</b>, 3~8단계는 <b>이용회사별 1회 셋업</b>, 9~11단계는 <b>반복 운영</b>이다.</p>
+<div class="flow">
+  <div class="step"><span class="n">1</span>관리회사·조직·IP<span class="sc">BF-01</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>공통표준 배포<span class="sc">BF-08</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>테넌트 생성·격리<span class="sc">BF-02</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>구독 활성<span class="sc">BF-10</span></div>
+</div>
+<div class="flow">
+  <div class="step"><span class="n">5</span>기장방식 합의·전환<span class="sc">BF-03</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">6</span>사용자·인증·정책<span class="sc">BF-04·BF-05</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">7</span>권한·결재선·배정<span class="sc">BF-07</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">8</span>차원·메뉴·알림<span class="sc">BF-09·BF-12·BF-11</span></div>
+</div>
+<div class="flow">
+  <div class="step"><span class="n">9</span>회사·환경·마스터 등록<span class="sc">SA-BAS-01~11</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">10</span>회사 선택·전표·신고<span class="sc">BF-00 → P03~P09</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">11</span>접근 감사·마감이월<span class="sc">BF-06·SA-BAS-14</span></div>
+</div>
+<div class="tip"><b>로그인 채널 흐름</b> · 로그인(PASSWORD→MFA, BF-05) → 채널 판별 → 운영자는 <b>이용회사 선택</b>(BF-00) 후 접근 모드 선택 → 업무 진입(접근 세션 시작, BF-06). 단일 테넌트 사용자는 회사 선택 단계 없이 자사 화면으로 직행한다.</div>
+</section>
+
+<section id="s3">
+<h2>3. 페이즈 01 화면 목록 (인벤토리)</h2>
+<table>
+<tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>상세</th></tr>
+<tr><td><code>BF-00</code></td><td>이용회사 선택(테넌트 스위처)</td><td>플랫폼/기초</td><td>0.2, 2.2</td><td><span class="badge b-blue">회사 선택 카드</span></td><td><a href="#bf-00">●</a></td></tr>
+<tr><td><code>BF-01</code></td><td>관리회사·운영조직·담당 테넌트·IP 허용목록</td><td>플랫폼/기초</td><td>0.2, 5장</td><td><span class="badge b-blue">운영조직 배정</span></td><td><a href="#bf-01">●</a></td></tr>
+<tr><td><code>BF-02</code></td><td>테넌트 목록·인프라·쿼터·스냅샷·비동기 잡</td><td>플랫폼/기초</td><td>0.2, 2·7장</td><td><span class="badge b-blue">테넌트 운영 콘솔</span></td><td><a href="#bf-02">●</a></td></tr>
+<tr><td><code>BF-03</code></td><td>기장 설정·전환 요청 워크플로우</td><td>플랫폼/기초</td><td>0.2, 21장</td><td><span class="badge b-blue">워크플로우 칸반</span></td><td><a href="#bf-03">●</a></td></tr>
+<tr><td><code>BF-04</code></td><td>사용자·계정상태·인증수단·SSO·세션·로그인 이력</td><td>플랫폼/기초</td><td>0.2, 3장</td><td><span class="badge b-blue">보안 사용자 관리</span></td><td><a href="#bf-04">●</a></td></tr>
+<tr><td><code>BF-05</code></td><td>인증 정책 편집</td><td>플랫폼/기초</td><td>0.2, 3.2</td><td><span class="badge b-blue">인증 정책 편집</span></td><td><a href="#bf-05">●</a></td></tr>
+<tr><td><code>BF-06</code></td><td>접근 세션 로그·긴급대행 동의/요청</td><td>플랫폼/기초</td><td>0.2, 5장</td><td><span class="badge b-blue">접근 세션 감사</span></td><td><a href="#bf-06">●</a></td></tr>
+<tr><td><code>BF-07</code></td><td>역할·역할 부여·가드레일·예외·결재선·기장 배정</td><td>플랫폼/기초</td><td>0.2, 4장</td><td><span class="badge b-blue">권한 매트릭스</span></td><td><a href="#bf-07">●</a></td></tr>
+<tr><td><code>BF-08</code></td><td>표준 카탈로그·버전·항목·테넌트 채택/확장</td><td>플랫폼/기초</td><td>0.2, 6장</td><td><span class="badge b-blue">표준 버전 관리</span></td><td><a href="#bf-08">●</a></td></tr>
+<tr><td><code>BF-09</code></td><td>차원·조직관리·사용정책</td><td>플랫폼/기초</td><td>0.2, 9장</td><td><span class="badge b-blue">조직/차원 관리</span></td><td><a href="#bf-09">●</a></td></tr>
+<tr><td><code>BF-10</code></td><td>구독 상세·사용량·청구/결제</td><td>플랫폼/기초</td><td>0.2, 7장</td><td><span class="badge b-blue">사용량/청구</span></td><td><a href="#bf-10">●</a></td></tr>
+<tr><td><code>BF-11</code></td><td>알림 수신 매트릭스·템플릿·D-N 스케줄·웹훅</td><td>플랫폼/기초</td><td>0.2, 18장</td><td><span class="badge b-blue">알림 매트릭스</span></td><td><a href="#bf-11">●</a></td></tr>
+<tr><td><code>BF-12</code></td><td>메뉴 마스터·권한 메뉴·발행/롤백</td><td>플랫폼/기초</td><td>0.2, 4.3</td><td><span class="badge b-blue">메뉴 발행</span></td><td><a href="#bf-12">●</a></td></tr>
+<tr><td><code>SA-BAS-01</code></td><td>회사등록</td><td>기초정보</td><td>25.1.1</td><td><span class="badge b-teal">회사 등록 탭</span></td><td><a href="#sa-bas-01">●</a></td></tr>
+<tr><td><code>SA-BAS-02</code></td><td>권한설정</td><td>기초정보</td><td>25.1.2</td><td><span class="badge b-teal">권한 매트릭스</span></td><td><a href="#sa-bas-02">●</a></td></tr>
+<tr><td><code>SA-BAS-03</code></td><td>환경설정</td><td>기초정보</td><td>25.1.3</td><td><span class="badge b-teal">환경 설정 콘솔</span></td><td><a href="#sa-bas-03">●</a></td></tr>
+<tr><td><code>SA-BAS-04</code></td><td>부서등록(회계)</td><td>기초정보</td><td>25.1.4</td><td><span class="badge b-teal">부서 조직도</span></td><td><a href="#sa-bas-04">●</a></td></tr>
+<tr><td><code>SA-BAS-05</code></td><td>사원등록(회계)</td><td>기초정보</td><td>25.1.5</td><td><span class="badge b-teal">사원 카드</span></td><td><a href="#sa-bas-05">●</a></td></tr>
+<tr><td><code>SA-BAS-06</code></td><td>거래처등록</td><td>기초정보</td><td>25.1.6</td><td><span class="badge b-teal">거래처 3탭</span></td><td><a href="#sa-bas-06">●</a></td></tr>
+<tr><td><code>SA-BAS-07</code></td><td>계정과목 및 적요등록(회계)</td><td>기초정보</td><td>25.1.7</td><td><span class="badge b-teal">계정과목 빌더</span></td><td><a href="#sa-bas-07">●</a></td></tr>
+<tr><td><code>SA-BAS-08</code></td><td>현장등록(회계)</td><td>기초정보</td><td>25.1.8</td><td><span class="badge b-teal">현장 계약</span></td><td><a href="#sa-bas-08">●</a></td></tr>
+<tr><td><code>SA-BAS-09</code></td><td>프로젝트등록(회계)</td><td>기초정보</td><td>25.1.9</td><td><span class="badge b-teal">프로젝트 예산</span></td><td><a href="#sa-bas-09">●</a></td></tr>
+<tr><td><code>SA-BAS-10</code></td><td>업무용승용차 등록</td><td>기초정보</td><td>25.1.10</td><td><span class="badge b-teal">차량 세무</span></td><td><a href="#sa-bas-10">●</a></td></tr>
+<tr><td><code>SA-BAS-11</code></td><td>외주처등록</td><td>기초정보</td><td>25.1.11</td><td><span class="badge b-teal">외주 계약</span></td><td><a href="#sa-bas-11">●</a></td></tr>
+<tr><td><code>SA-BAS-12</code></td><td>거래처DM인쇄</td><td>기초정보</td><td>25.1.12</td><td><span class="badge b-teal">DM 라벨 출력</span></td><td><a href="#sa-bas-12">●</a></td></tr>
+<tr><td><code>SA-BAS-13</code></td><td>거래처등코드변환</td><td>기초정보</td><td>25.1.13</td><td><span class="badge b-teal">코드 변환 마법사</span></td><td><a href="#sa-bas-13">●</a></td></tr>
+<tr><td><code>SA-BAS-14</code></td><td>마감후이월(회계)</td><td>기초정보</td><td>25.1.14</td><td><span class="badge b-teal">마감 후 이월</span></td><td><a href="#sa-bas-14">●</a></td></tr>
+</table>
+</section>
+
+<section id="s4">
+<h2>4. 플랫폼·기초 화면 (BF-00 ~ BF-12, 상세)</h2>
+
+<h4 id="bf-00"><span class="sid">BF-00</span>이용회사 선택 (테넌트 스위처)</h4>
+<table class="meta">
+<tr><th>용도</th><td>로그인 사용자가 접근 권한이 있는 이용회사(테넌트)를 선택하여 세션 컨텍스트를 확정한다. 선택 결과가 이후 모든 화면의 RLS 스코프를 결정한다.</td></tr>
+<tr><th>권한</th><td>전 사용자(역할 무관). 단, 노출되는 회사 카드는 <code>user↔tenant</code> 매핑과 BF-07 권한 매트릭스로 필터링.</td></tr>
+<tr><th>API</th><td><code>GET /api/me/tenants</code> · <code>POST /api/session/context</code> (tenant_id, fiscal_period_id)</td></tr>
+<tr><th>엔티티</th><td><code>Tenant</code> · <code>UserTenant</code> · <code>FiscalPeriod</code> · <code>SessionContext</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 회사 전환은 단순 화면 이동이 아니라 <b>세션 RLS 스코프 재설정</b>이다. 전환 즉시 모든 쿼리에 <code>tenant_id = :ctx</code> 가 강제 적용되며, 회계기간·기장모드·권한 스트립이 상단에 고정 노출된다. 연계: 2장(테넌시), 5장(보안), 21장(컨텍스트).</div>
+<div class="wf">
+  <div class="wf-cap">BF-00 · 이용회사 선택 카드</div>
+  <div class="wf-bar"><span>이용회사 선택</span><span class="sp"></span><span class="kbd">Ctrl+회사검색</span></div>
+  <div class="wf-tool"><span class="wf-in">🔍 회사명·사업자번호 검색</span><span class="wf-btn">즐겨찾기</span><span class="wf-btn">최근 접속</span></div>
+  <div class="wf-body">
+    <div class="wf-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div class="wf-panel pnl"><div class="pt">(주)가나무역 <span class="badge b-green">운영중</span></div>123-45-67890 · 법인 · 2026기 · 일반기장</div>
+      <div class="wf-panel pnl"><div class="pt">다라상사 <span class="badge b-red">마감잠금</span></div>211-88-12345 · 개인 · 2025기 · 간편기장</div>
+      <div class="wf-panel pnl"><div class="pt">마바건설(주) <span class="badge b-amber">전환대기</span></div>312-81-00021 · 법인 · 기장모드 전환 검토중</div>
+    </div>
+  </div>
+  <div class="wf-foot"><span>선택 회사 컨텍스트: 회계기간 2026-01-01~2026-12-31 · 일반기장 · 권한 [조회·입력·승인]</span><span class="sp"></span><button class="wf-btn pri">이 회사로 진입</button></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>회사 검색</td><td>회사명/사업자등록번호 부분일치 검색</td><td>권한 있는 테넌트만</td></tr>
+<tr><td>회사 카드</td><td>상태 배지(운영중/마감잠금/전환대기) + 회계기간·기장모드 표시</td><td>마감잠금은 조회만</td></tr>
+<tr><td>컨텍스트 스트립</td><td>선택 후 상단 고정: 회계기간·기장모드·권한 범위</td><td>RLS 스코프 시각화</td></tr>
+<tr><td>진입 버튼</td><td>세션 컨텍스트 갱신 후 메뉴 진입</td><td><code>POST /session/context</code></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>권한 없는 회사 진입</td><td>UserTenant 매핑 없으면 카드 미노출</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>마감잠금 회사 입력 시도</td><td>LOCKED 상태는 입력 메뉴 비활성</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-01"><span class="sid">BF-01</span>운영조직·IP 허용목록</h4>
+<table class="meta">
+<tr><th>용도</th><td>기장 운영조직(회계법인/세무사무소 등)을 정의하고 담당자·담당테넌트·접근 모드·IP 대역을 배정한다.</td></tr>
+<tr><th>권한</th><td>플랫폼 관리자 / 운영조직 관리자</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/org/units</code> · <code>PUT /api/org/ip-allowlist</code></td></tr>
+<tr><th>엔티티</th><td><code>OrgUnit</code> · <code>OrgMember</code> · <code>OrgTenantAssign</code> · <code>IpAllowlist</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · IP 허용목록에 등록되지 않은 대역에서의 접근은 인증 정책(BF-05)과 결합하여 <b>차단</b>되거나 MFA 강제로 전환된다. 유효기간 만료 대역은 자동 비활성.</div>
+<div class="wf">
+  <div class="wf-cap">BF-01 · 운영조직 배정</div>
+  <div class="wf-bar"><span>운영조직·IP 허용목록</span><span class="sp"></span><button class="wf-btn">신규 조직</button><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 32%">
+      <div class="pt">조직 트리</div>
+      ├ EY 세무본부<br>&nbsp;&nbsp;├ 법인기장 1팀<br>&nbsp;&nbsp;└ 개인기장 2팀
+    </div>
+    <div class="wf-panel pnl" style="flex:1">
+      <div class="pt">상세 · 법인기장 1팀</div>
+      <div class="wf-row"><label>조직코드 <span class="req">*</span></label><span class="wf-in">ORG-1001</span></div>
+      <div class="wf-row"><label>담당자 <span class="req">*</span></label><span class="wf-in">김회계 (선임)</span></div>
+      <div class="wf-row"><label>담당 테넌트</label><span class="wf-in">(주)가나무역 외 12사</span></div>
+      <div class="wf-row"><label>접근 모드</label><span class="wf-in">상시 / 대행 / 조회전용</span></div>
+      <div class="wf-row"><label>IP 대역 <span class="req">*</span></label><span class="wf-in">211.45.0.0/16, 10.0.0.0/8</span></div>
+      <div class="wf-row"><label>유효기간</label><span class="wf-in">2026-01-01 ~ 2026-12-31</span></div>
+      <div class="wf-row"><label>승인자</label><span class="wf-in">박파트너</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>조직 트리</td><td>운영조직 계층 + 드래그 이동</td><td></td></tr>
+<tr><td>담당 테넌트 배정</td><td>조직↔테넌트 N:M 매핑</td><td>RLS 접근 범위</td></tr>
+<tr><td>IP 대역</td><td>CIDR 표기, 다중 등록</td><td>유효기간 단위</td></tr>
+<tr><td>DimensionConfig</td><td>조직 단위 차원 사용/필수 기본값</td><td>BF-09 연계</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>IP 대역 형식</td><td>CIDR 유효성 검사</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>유효기간 역전</td><td>시작일 > 종료일</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>승인자 미지정</td><td>접근 모드=대행 시 승인자 필수</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-02"><span class="sid">BF-02</span>테넌트 운영 콘솔</h4>
+<table class="meta">
+<tr><th>용도</th><td>전체 테넌트의 DB 티어·사용량·스냅샷·백그라운드 잡 상태를 모니터링하고 운영 액션(티어전환·스냅샷·잡 재시도·쿼터 조정)을 수행한다.</td></tr>
+<tr><th>권한</th><td>플랫폼 운영자(SRE) 전용</td></tr>
+<tr><th>API</th><td><code>GET /api/ops/tenants</code> · <code>POST /api/ops/snapshot</code> · <code>POST /api/ops/job/retry</code></td></tr>
+<tr><th>엔티티</th><td><code>Tenant</code> · <code>DbTier</code> · <code>Snapshot</code> · <code>JobRun</code> · <code>Quota</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 멀티테넌트 SHARED+RLS 구조에서 특정 테넌트의 부하·용량을 개별 격리·조정할 수 있도록 운영 KPI를 한 화면에 집약한다.</div>
+<div class="wf">
+  <div class="wf-cap">BF-02 · 테넌트 운영 콘솔</div>
+  <div class="wf-bar"><span>테넌트 운영 콘솔</span><span class="sp"></span><span class="kbd">자동새로고침 30s</span></div>
+  <div class="wf-tool"><span class="wf-btn">DB 티어: 표준 142 · 프리미엄 18</span><span class="wf-btn">스냅샷 잡: 진행 3</span><span class="wf-btn dng">실패 잡: 1</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>테넌트</th><th>DB 티어</th><th class="r">전표/월</th><th class="r">사용량</th><th>스냅샷</th><th>액션</th></tr>
+      <tr><td>(주)가나무역</td><td>프리미엄</td><td class="r">12,400</td><td class="r">68%</td><td>02:00 완료</td><td><span class="wf-btn">티어전환</span></td></tr>
+      <tr><td>다라상사</td><td>표준</td><td class="r">980</td><td class="r">22%</td><td>02:00 완료</td><td><span class="wf-btn">스냅샷</span></td></tr>
+      <tr><td>마바건설(주)</td><td>표준</td><td class="r">3,210</td><td class="r">91%</td><td><span class="badge b-red">실패</span></td><td><span class="wf-btn dng">잡 재시도</span></td></tr>
+    </table>
+  </div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>KPI 스트립</td><td>DB 티어 분포·스냅샷·실패 잡 수</td><td>실시간</td></tr>
+<tr><td>테넌트 그리드</td><td>사용량·전표량·스냅샷 상태</td><td>정렬·필터</td></tr>
+<tr><td>운영 큐</td><td>대기/진행/실패 잡 목록</td><td>재시도</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>쿼터 초과 임박</td><td>사용량 ≥ 90%</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>스냅샷 실패</td><td>최근 백업 누락</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="bf-03"><span class="sid">BF-03</span>기장 설정·전환 워크플로우</h4>
+<table class="meta">
+<tr><th>용도</th><td>이용회사의 기장모드(일반/간편)·회계기간 전환을 요청→검토→승인→예약적용→잠금해제의 칸반 워크플로우로 처리한다.</td></tr>
+<tr><th>권한</th><td>운영조직 관리자(요청) / 플랫폼 관리자(승인)</td></tr>
+<tr><th>API</th><td><code>POST /api/ledger/transition</code> · <code>PUT /api/ledger/transition/:id/approve</code></td></tr>
+<tr><th>엔티티</th><td><code>LedgerTransition</code> · <code>FiscalPeriod</code> · <code>TransitionLog</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 기장모드/회계기간 전환은 전기이월·재무제표 산출 로직에 영향을 주므로 <b>예약적용</b> 시점에 기간 잠금이 동반된다. 적용 후 롤백은 별도 승인 필요.</div>
+<div class="wf">
+  <div class="wf-cap">BF-03 · 전환 워크플로우 칸반</div>
+  <div class="wf-bar"><span>기장 설정·전환</span><span class="sp"></span><button class="wf-btn pri">전환 요청</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">요청</div>다라상사 · 간편→일반</div>
+    <div class="wf-panel" style="flex:1"><div class="pt">검토</div>마바건설 · 회계기간 변경</div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">승인/예약</div>가나무역 · 2026기 적용예약 03-01</div>
+    <div class="wf-panel" style="flex:1"><div class="pt">잠금해제</div>—</div>
+  </div></div>
+  <div class="wf-foot"><span>전환 요청: 기장모드 [일반] · 회계기간 [2026] · 사유 [매출 규모 증가]</span><span class="sp"></span><button class="wf-btn pri">요청 제출</button></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>칸반 보드</td><td>요청/검토/승인·예약/잠금해제 단계</td><td>드래그 진행</td></tr>
+<tr><td>전환 요청 폼</td><td>기장모드·회계기간·전환사유</td><td></td></tr>
+<tr><td>이력</td><td>append-only 전환 로그</td><td>물리삭제 금지</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>미마감 기간 전환</td><td>직전 기간 미마감</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>승인 없는 적용</td><td>승인자 단계 미통과</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="bf-04"><span class="sid">BF-04</span>보안 사용자 (사용자·인증수단·SSO·세션·로그인 이력)</h4>
+<table class="meta">
+<tr><th>용도</th><td>플랫폼 사용자 계정의 상태·MFA/패스키·SSO·세션·위험도를 관리하고, 정책 조건별로 필터링하여 로그인·감사 이벤트를 추적한다.</td></tr>
+<tr><th>권한</th><td>보안 관리자</td></tr>
+<tr><th>API</th><td><code>GET /api/security/users</code> · <code>PUT /api/security/users/:id</code> · <code>GET /api/security/users/:id/sessions</code> · <code>GET /api/security/users/:id/audit</code></td></tr>
+<tr><th>엔티티</th><td><code>User</code>(계정·상태) · <code>MfaEnrollment</code>(OTP/패스키) · <code>SsoBinding</code>(IdP 연결) · <code>UserSession</code>(활성 세션) · <code>AuditEvent</code>(로그인·권한변경 이력)</td></tr>
+</table>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 보안 ▸ 사용자<span class="sep">·</span>접근 주체: 보안 관리자<span class="sep">·</span>회사 선택: 좌측 사용자 목록에서 행 선택 → 우측 탭 편집</div>
+<div class="tip"><b>설계 의도</b> · 한 사용자가 <b>5개 엔티티</b>(계정·MFA·SSO·세션·감사)에 걸쳐 있으므로, 화면은 <b>상단 전체폭 목록 그리드 + 하단 탭 상세</b>로 구성한다. 위험도(risk score)는 비정상 로그인·IP 이탈·권한 상승 시도를 종합한 지표로 임계 초과 시 Step-up 인증을 강제한다.</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>계정 초대·생성<span class="sc">User.INVITED</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>인증수단 등록<span class="sc">MfaEnrollment</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>SSO 연결<span class="sc">SsoBinding</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>로그인·세션<span class="sc">UserSession</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">5</span>감사·위험도<span class="sc">AuditEvent</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-04 · 사용자 목록 + 상세(계정/인증/SSO/세션/이력)</div>
+  <div class="wf-bar"><b>보안 ▸ 사용자</b><span class="sp"></span><span class="wf-in">🔍 이메일·이름</span><span class="wf-btn pri">+ 사용자 초대</span></div>
+  <div class="wf-tool"><span class="wf-sel">상태=전체</span><span class="wf-sel">MFA=전체</span><span class="wf-sel">SSO=전체</span><span class="wf-in">위험도 ≥ 70</span><span class="wf-btn">필터</span><span class="wf-btn">정책 일괄 적용</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>사용자</th><th>이름/역할</th><th>계정상태</th><th>MFA</th><th>SSO</th><th class="r">위험도</th><th>최근 로그인</th><th></th></tr>
+      <tr><td>kim@gana.co.kr</td><td>김회계 / 기장</td><td><span class="badge b-green">활성</span></td><td>OTP</td><td>EY SSO</td><td class="r">12</td><td>06-21 09:12</td><td><span class="wf-btn">편집</span></td></tr>
+      <tr><td>lee@dara.co.kr</td><td>이세무 / 검토</td><td><span class="badge b-amber">잠금예정</span></td><td><span class="badge b-red">미등록</span></td><td>—</td><td class="r">81</td><td>06-19 22:40</td><td><span class="wf-btn dng">잠금</span></td></tr>
+      <tr><td>park@maba.co.kr</td><td>박파트너 / 승인</td><td><span class="badge b-green">활성</span></td><td>패스키</td><td>EY SSO</td><td class="r">34</td><td>06-21 08:05</td><td><span class="wf-btn">편집</span></td></tr>
+    </table>
+    <div class="wf-tab"><span class="on">기본·계정(User)</span><span>인증수단(MFA·패스키)</span><span>SSO(SsoBinding)</span><span>세션(UserSession)</span><span>로그인 이력(AuditEvent)</span></div>
+    <div class="wf-split">
+      <div class="wf-panel"><div class="pt">계정·상태 · 선택: lee@dara.co.kr</div>
+        <div class="wf-row"><label>이메일 <span class="req">*</span></label><span class="wf-in wide">lee@dara.co.kr</span></div>
+        <div class="wf-row"><label>이름 <span class="req">*</span></label><span class="wf-in">이세무</span></div>
+        <div class="wf-row"><label>계정상태</label><span class="wf-sel">잠금예정</span> <span class="badge b-gray">활성/잠금예정/잠금/비활성</span></div>
+        <div class="wf-row"><label>위험도</label><span class="wf-in">81</span> <span class="badge b-red">임계 초과 → Step-up 강제</span></div>
+        <div class="wf-row"><label>마지막 비밀번호 변경</label><span class="wf-in">2025-09-01 (293일 경과)</span></div>
+      </div>
+      <div class="wf-panel pnl"><div class="pt">인증·세션 요약 (탭 전환 시 상세)</div>
+        <div class="wf-row"><label>MFA</label><span class="badge b-red">미등록</span> <span class="wf-btn">등록 요청 발송</span></div>
+        <div class="wf-row"><label>패스키</label><span class="wf-in">—</span></div>
+        <div class="wf-row"><label>SSO 연결</label><span class="wf-in">미연결 (로컬 로그인)</span></div>
+        <div class="wf-row"><label>활성 세션</label><span class="wf-in">2건</span> <span class="wf-btn dng">전체 강제 종료</span></div>
+        <div class="wf-row"><label>최근 감사</label><span class="wf-in">실패 로그인 5회 / 신규 IP</span></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:6px">계정은 물리 삭제하지 않고 <b>비활성(논리)</b> 처리 · 모든 인증·세션·권한 변경은 <code>AuditEvent</code> append-only 기록.</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">MFA 미등록 ∧ 정책 필수</span><span class="badge b-red">위험도≥80 Step-up</span><span class="badge b-gray">세션=강제종료 가능</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>필터 바</td><td>상태·MFA·SSO·위험도 조합 + 정책 일괄 적용</td><td><code>User</code></td></tr>
+<tr><td>사용자 그리드</td><td>계정상태/MFA/SSO/위험도/최근 로그인</td><td><code>User</code> 목록</td></tr>
+<tr><td>기본·계정 탭</td><td>이메일·이름·상태·위험도·비밀번호 경과</td><td><code>User</code></td></tr>
+<tr><td>인증수단 탭</td><td>OTP/패스키 등록·해제·재발급</td><td><code>MfaEnrollment</code></td></tr>
+<tr><td>SSO 탭</td><td>IdP 연결(EY SSO)·해제·강제 SSO</td><td><code>SsoBinding</code></td></tr>
+<tr><td>세션 탭</td><td>활성 세션·디바이스·IP·강제 종료</td><td><code>UserSession</code></td></tr>
+<tr><td>로그인 이력 탭</td><td>로그인 성공/실패·권한변경 이력</td><td><code>AuditEvent</code> append-only</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>MFA 미등록</td><td>정책상 MFA 필수 사용자</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>위험도 임계 초과</td><td>위험도 ≥ 80 → 저장 시 Step-up 미완료</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>계정 물리 삭제 시도</td><td>삭제 대신 비활성만 허용</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>비밀번호 만료 경과</td><td>정책 만료일(BF-05) 초과</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-05"><span class="sid">BF-05</span>인증 정책 편집</h4>
+<table class="meta">
+<tr><th>용도</th><td>정책 범위별로 MFA 강제·패스키·비밀번호 길이·만료·세션 시간·IP 제한을 설정한다.</td></tr>
+<tr><th>권한</th><td>보안 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/security/auth-policy</code></td></tr>
+<tr><th>엔티티</th><td><code>AuthPolicy</code> · <code>PolicyScope</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · IP 제한과 BF-01 운영조직 IP 허용목록은 AND 결합된다. 정책 변경은 즉시 전 세션에 적용되며, 진행 중 세션은 다음 검증 시점에 재평가된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 보안 ▸ 인증 정책<span class="sep">·</span>접근 주체: 보안 관리자<span class="sep">·</span>회사 선택: 좌측 정책 범위 트리에서 범위 선택</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>정책 범위 선택<span class="sc">전체/조직/역할</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>인증·세션 규칙 설정<span class="sc">AuthPolicy</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>저장·즉시 적용<span class="sc">PUT</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>세션 재평가<span class="sc">BF-04 세션</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-05 · 인증 정책 편집 (범위 + 규칙)</div>
+  <div class="wf-bar"><b>보안 ▸ 인증 정책</b><span class="sp"></span><span class="badge b-purple">적용 범위: 전체</span><button class="wf-btn pri">정책 저장</button></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div class="wf-panel" style="flex:0 0 30%"><div class="pt">정책 범위 (우선순위)</div>
+        <div class="wf-row"><span class="badge b-blue">1</span> 역할: 파트너</div>
+        <div class="wf-row"><span class="badge b-blue">2</span> 운영조직: 법인기장 1팀</div>
+        <div class="wf-row"><span class="badge b-gray">3</span> 전체(기본) <span class="badge b-green">선택</span></div>
+        <div class="note" style="margin-top:6px">좁은 범위 우선 적용(역할 &gt; 조직 &gt; 전체).</div>
+      </div>
+      <div class="wf-panel pnl" style="flex:1"><div class="pt">규칙 · 전체(기본)</div>
+        <div class="wf-split">
+          <div class="wf-panel" style="margin:0"><div class="pt">인증 · 비밀번호</div>
+            <div class="wf-row"><label>MFA 강제</label><span class="wf-sel">예(전 사용자)</span></div>
+            <div class="wf-row"><label>패스키 허용</label><span class="wf-sel">예(OTP 대체)</span></div>
+            <div class="wf-row"><label>비밀번호 최소 길이</label><span class="wf-in">12자</span></div>
+            <div class="wf-row"><label>비밀번호 만료</label><span class="wf-in">90일</span></div>
+            <div class="wf-row"><label>재사용 금지</label><span class="wf-in">최근 5개</span></div>
+          </div>
+          <div class="wf-panel" style="margin:0"><div class="pt">세션 · IP</div>
+            <div class="wf-row"><label>세션 시간</label><span class="wf-in">8시간</span></div>
+            <div class="wf-row"><label>유휴 만료</label><span class="wf-in">30분</span></div>
+            <div class="wf-row"><label>IP 제한</label><span class="wf-sel">허용목록 외 차단</span></div>
+            <div class="wf-row"><label>신규 IP</label><span class="wf-sel">Step-up 요구</span></div>
+            <div class="wf-row"><label>동시 세션</label><span class="wf-in">최대 3</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">BF-01 IP 허용목록과 AND 결합</span><span class="badge b-gray">저장 즉시 전 세션 재평가</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>정책 범위 트리</td><td>전체/운영조직/역할 단위, 좁은 범위 우선</td><td><code>PolicyScope</code></td></tr>
+<tr><td>인증·비밀번호 패널</td><td>MFA·패스키·길이·만료·재사용</td><td><code>AuthPolicy</code></td></tr>
+<tr><td>세션·IP 패널</td><td>세션 시간·유휴·IP 제한·동시 세션</td><td><code>AuthPolicy</code></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>비밀번호 길이 미달</td><td>최소 8자 미만 설정</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>MFA 강제 해제</td><td>강제 정책 해제 시</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>세션 시간 과대</td><td>세션 시간 &gt; 24시간</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-06"><span class="sid">BF-06</span>접근 세션 감사</h4>
+<table class="meta">
+<tr><th>용도</th><td>대행·긴급 접근 세션을 감사한다. 세션ID·접근자·이용회사·접근모드·동의자·사유·녹화·만료를 추적한다.</td></tr>
+<tr><th>권한</th><td>보안 관리자 / 감사인(조회)</td></tr>
+<tr><th>API</th><td><code>GET /api/audit/sessions</code> · <code>POST /api/audit/emergency-access</code></td></tr>
+<tr><th>엔티티</th><td><code>AccessSession</code> · <code>EmergencyGrant</code> · <code>SessionRecording</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 긴급 대행 접근은 고객(동의자) 사전 동의·사유 기록·세션 녹화를 전제로 한 시간제한 부여이며, 만료 시 자동 회수된다. 전 이력 append-only.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 보안 ▸ 접근 감사<span class="sep">·</span>접근 주체: 보안 관리자 / 감사인(조회)<span class="sep">·</span>회사 선택: 세션 행 선택 → 우측 상세·녹화</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>대행 요청<span class="sc">EmergencyGrant</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>고객 동의<span class="sc">동의자 서명</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>세션 시작·녹화<span class="sc">AccessSession</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>만료 자동 회수<span class="sc">expire</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-06 · 접근 세션 목록 + 상세(녹화/동의)</div>
+  <div class="wf-bar"><b>보안 ▸ 접근 감사</b><span class="sp"></span><span class="wf-sel">기간=오늘</span><span class="wf-sel">모드=전체</span><button class="wf-btn dng">긴급 대행 부여</button></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div class="wf-panel" style="flex:1"><div class="pt">접근 세션 (AccessSession)</div>
+        <table class="wf-grid">
+          <tr><th>세션ID</th><th>접근자</th><th>회사</th><th>모드</th><th>만료</th></tr>
+          <tr><td>S-20260621-01</td><td>김회계</td><td>가나무역</td><td>대행</td><td>18:00</td></tr>
+          <tr><td>S-20260621-07</td><td>이세무</td><td>마바건설</td><td><span class="badge b-purple">긴급</span></td><td>14:30</td></tr>
+        </table>
+      </div>
+      <div class="wf-panel pnl" style="flex:0 0 40%"><div class="pt">상세 · 선택: S-20260621-07</div>
+        <div class="wf-row"><label>접근자 / 모드</label><span class="wf-in">이세무 / <span class="badge b-purple">긴급</span></span></div>
+        <div class="wf-row"><label>동의자 <span class="req">*</span></label><span class="wf-in">실무 최OO (서명 06-21 14:01)</span></div>
+        <div class="wf-row"><label>사유 <span class="req">*</span></label><span class="wf-in wide">마감 오류 긴급 정정</span></div>
+        <div class="wf-row"><label>녹화</label><span class="badge b-green">화면+키입력 ON</span></div>
+        <div class="wf-row"><label>만료·회수</label><span class="wf-in">14:30 자동 회수</span> <span class="wf-btn dng">즉시 회수</span></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:6px">전 세션·부여·회수 이력은 <code>AuditEvent</code> append-only · 만료 시 권한 자동 회수 후 녹화 보관.</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-red">사유·동의자 필수</span><span class="badge b-green">녹화 강제</span><span class="badge b-gray">만료 자동회수</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>세션 그리드</td><td>접근자·회사·모드·만료</td><td><code>AccessSession</code></td></tr>
+<tr><td>상세 패널</td><td>동의자·사유·녹화·회수</td><td><code>EmergencyGrant</code>·<code>SessionRecording</code></td></tr>
+<tr><td>긴급 대행 부여</td><td>사유·동의자·기간 입력</td><td>녹화 강제</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>사유 미입력</td><td>긴급 대행 사유 필수</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>동의자 미지정</td><td>대행 모드 동의자 필수</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>녹화 비활성 부여</td><td>긴급 모드 녹화 OFF</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="bf-07"><span class="sid">BF-07</span>권한 매트릭스</h4>
+<table class="meta">
+<tr><th>용도</th><td>역할·사용자별 기능 권한(조회/입력/승인/마감)을 매트릭스로 정의하고 가드레일·예외를 관리한다.</td></tr>
+<tr><th>권한</th><td>보안 관리자 / 운영조직 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/security/permissions</code></td></tr>
+<tr><th>엔티티</th><td><code>Role</code> · <code>Permission</code> · <code>PermissionMatrix</code> · <code>Guardrail</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 마감(CLOSE) 권한은 가드레일에 의해 입력 권한과 분리 운영을 권고한다(직무분리). SA-BAS-02 회사 권한 스코프와 결합하여 RLS 범위가 결정된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 보안 ▸ 권한<span class="sep">·</span>접근 주체: 보안 관리자 / 운영조직 관리자<span class="sep">·</span>회사 선택: 역할 선택 → 매트릭스 편집</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>역할 정의<span class="sc">Role</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>권한 매트릭스<span class="sc">PermissionMatrix</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>가드레일 검사<span class="sc">Guardrail</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>결재선·기장 배정<span class="sc">ApprovalLine</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-07 · 권한 매트릭스 + 가드레일/결재선</div>
+  <div class="wf-bar"><b>보안 ▸ 권한</b><span class="sp"></span><span class="wf-sel">대상=역할</span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div class="wf-panel" style="flex:1"><div class="pt">역할 × 기능 매트릭스 (PermissionMatrix)</div>
+        <table class="wf-grid">
+          <tr><th>역할/사용자</th><th>조회</th><th>입력</th><th>승인</th><th>마감</th></tr>
+          <tr><td>기장 담당</td><td>✔</td><td>✔</td><td>—</td><td>—</td></tr>
+          <tr><td>검토 선임</td><td>✔</td><td>✔</td><td>✔</td><td>—</td></tr>
+          <tr><td>파트너</td><td>✔</td><td>—</td><td>✔</td><td>✔</td></tr>
+        </table>
+      </div>
+      <div class="wf-panel pnl" style="flex:0 0 36%"><div class="pt">가드레일 · 예외 · 결재선</div>
+        <div class="wf-row"><label>가드레일</label><span class="badge b-amber">입력∧마감 동시 경고</span></div>
+        <div class="wf-row"><label>예외 등록</label><span class="wf-in">박파트너(사유·승인)</span></div>
+        <div class="wf-row"><label>결재선</label><span class="wf-in wide">기장→검토선임→파트너</span></div>
+        <div class="wf-row"><label>기장 배정</label><span class="wf-in">김회계 → 가나무역 외 12사</span></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:6px">매트릭스 저장 시 가드레일 자동 검사 · 위반은 예외 승인(사유·승인자) 없이는 <b>경고</b> 잔류.</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">직무분리 위반 경고</span><span class="badge b-blue">SA-BAS-02 RLS 스코프 결합</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>권한 매트릭스</td><td>역할×기능(조회/입력/승인/마감)</td><td><code>PermissionMatrix</code></td></tr>
+<tr><td>가드레일</td><td>직무분리 위반 경고 규칙</td><td><code>Guardrail</code></td></tr>
+<tr><td>예외</td><td>가드레일 예외 승인 등록</td><td>사유·승인자</td></tr>
+<tr><td>결재선·기장 배정</td><td>전표 결재 라인·기장 담당 배정</td><td><code>ApprovalLine</code></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>직무분리 위반</td><td>입력∧마감 동시 부여(예외 미승인)</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>조회 없는 입력</td><td>입력 권한 ⊃ 조회 위반</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>결재선 순환</td><td>결재 라인 순환 참조</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="bf-08"><span class="sid">BF-08</span>표준 카탈로그</h4>
+<table class="meta">
+<tr><th>용도</th><td>표준 계정과목(COA)·적요·코드 카탈로그의 버전을 관리하고 테넌트 적용 시 차이 비교·배포·롤백한다.</td></tr>
+<tr><th>권한</th><td>표준 관리자</td></tr>
+<tr><th>API</th><td><code>GET /api/catalog/versions</code> · <code>POST /api/catalog/deploy</code> · <code>POST /api/catalog/rollback</code></td></tr>
+<tr><th>엔티티</th><td><code>Catalog</code> · <code>CatalogVersion</code> · <code>CatalogItem</code> · <code>DeployLog</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 표준 COA는 버전(예: COA v2026.1)으로 관리되며 테넌트별 커스터마이즈와 diff 비교 후 선택 배포한다. 롤백은 직전 버전 스냅샷 복원.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 표준 ▸ 카탈로그<span class="sep">·</span>접근 주체: 표준 관리자<span class="sep">·</span>회사 선택: 배포 시 대상 테넌트 다중 선택</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>버전 작성<span class="sc">CatalogVersion</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>diff 비교<span class="sc">신설/변경/폐지</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>대상 선택·배포<span class="sc">deploy</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>채택·롤백<span class="sc">rollback</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-08 · 표준 카탈로그 (버전 diff + 배포)</div>
+  <div class="wf-bar"><b>표준 ▸ 카탈로그</b><span class="sp"></span><span class="wf-sel">버전: COA v2026.1</span><span class="wf-sel">기준: v2026.0</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1">
+      <div class="pt">항목 diff (v2026.0 → v2026.1)</div>
+      <table class="wf-grid">
+        <tr><th>구분</th><th>코드</th><th>항목</th><th>내용</th></tr>
+        <tr><td><span class="badge b-green">신설</span></td><td>824</td><td>잡급</td><td>신규 비용계정</td></tr>
+        <tr><td><span class="badge b-amber">변경</span></td><td>811</td><td>복리후생비</td><td>적요 3건 추가</td></tr>
+        <tr><td><span class="badge b-red">폐지</span></td><td>998</td><td>가지급금</td><td>통합(→134)</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 36%">
+      <div class="pt">배포 (DeployLog)</div>
+      <div class="wf-row"><label>대상 테넌트</label><span class="wf-in wide">선택 12사</span></div>
+      <div class="wf-row"><label>충돌 처리</label><span class="wf-sel">커스텀 보존</span></div>
+      <div class="wf-row" style="gap:6px"><button class="wf-btn">차이 비교</button><button class="wf-btn pri">배포</button><button class="wf-btn dng">롤백</button></div>
+      <div class="note" style="margin-top:6px">롤백=직전 버전 스냅샷 복원.</div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>카탈로그 버전</td><td>버전 목록·발행일</td><td></td></tr>
+<tr><td>항목 diff</td><td>신설/변경/폐지 비교</td><td>배지 구분</td></tr>
+<tr><td>배포 패널</td><td>대상 선택·배포·롤백</td><td>이력 기록</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>사용 중 계정 폐지</td><td>전표 참조 계정 폐지 시도</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>미검토 배포</td><td>diff 미확인 배포</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-09"><span class="sid">BF-09</span>차원·조직관리</h4>
+<table class="meta">
+<tr><th>용도</th><td>6 관리차원(사업장·코스트센터·부서·프로젝트·현장·사원)의 사용/필수/기본값을 <code>DimensionConfig</code>로 정의한다.</td></tr>
+<tr><th>권한</th><td>표준 관리자 / 운영조직 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/dimension/config</code></td></tr>
+<tr><th>엔티티</th><td><code>DimensionConfig</code> · <code>OrgUnit</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 여기서 <code>required=true</code> 로 설정한 차원은 전표 입력 라인의 필수 입력 차원이 된다. SA-BAS-03 관리코드 사용여부와 SA-BAS-07 계정과목별 관리항목이 함께 작용하여 <b>전표 우측 패널 노출/필수</b>가 최종 결정된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 표준 ▸ 차원·조직<span class="sep">·</span>접근 주체: 표준 관리자 / 운영조직 관리자<span class="sep">·</span>회사 선택: 상단 테넌트 선택</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>차원 사용 설정<span class="sc">DimensionConfig</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>필수·기본값<span class="sc">required</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>조직 계층 구성<span class="sc">OrgUnit</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표 패널 반영<span class="sc">→ SA-BAS-03·07</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-09 · 차원 설정 + 조직 트리</div>
+  <div class="wf-bar"><b>표준 ▸ 차원·조직</b><span class="sp"></span><span class="wf-sel">테넌트: 마바건설(주)</span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">6 관리차원 (DimensionConfig)</div>
+      <table class="wf-grid">
+        <tr><th>차원</th><th>사용</th><th>필수</th><th>기본값</th></tr>
+        <tr><td>사업장</td><td>✔</td><td>✔</td><td>본점</td></tr>
+        <tr><td>코스트센터</td><td>✔</td><td>—</td><td>—</td></tr>
+        <tr><td>부서</td><td>✔</td><td>—</td><td>관리부</td></tr>
+        <tr><td>프로젝트</td><td>✔</td><td>—</td><td>—</td></tr>
+        <tr><td>현장</td><td>✔</td><td>✔(건설)</td><td>—</td></tr>
+        <tr><td>사원</td><td>✔</td><td>—</td><td>—</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel" style="flex:0 0 36%"><div class="pt">조직 트리 (OrgUnit · BF-01 연계)</div>
+      ├ 본점(사업장)<br>&nbsp;&nbsp;├ 경영지원본부<br>&nbsp;&nbsp;│&nbsp;&nbsp;└ 관리부(CC-100)<br>&nbsp;&nbsp;└ 건설본부<br>&nbsp;&nbsp;&nbsp;&nbsp;└ 강남현장(CC-210)
+      <div class="note" style="margin-top:6px">코스트센터·부서 계층은 조직 트리와 동기화.</div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>차원 그리드</td><td>6 차원 사용/필수/기본값</td><td><code>DimensionConfig</code></td></tr>
+<tr><td>조직 트리</td><td>코스트센터·부서 계층</td><td><code>OrgUnit</code> · BF-01 연계</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>필수∧미사용 모순</td><td>required=true ∧ enabled=false</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>전표 참조 차원 비활성</td><td>사용 중 차원 미사용 전환</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-10"><span class="sid">BF-10</span>구독·청구</h4>
+<table class="meta">
+<tr><th>용도</th><td>테넌트의 플랜·사용자수·저장소·전표건수·API 호출량을 기준으로 청구 주기·결제수단·미납을 관리한다.</td></tr>
+<tr><th>권한</th><td>플랫폼 관리자 / 청구 담당</td></tr>
+<tr><th>API</th><td><code>GET /api/billing/subscriptions</code> · <code>POST /api/billing/invoice</code></td></tr>
+<tr><th>엔티티</th><td><code>Subscription</code> · <code>Plan</code> · <code>UsageMeter</code> · <code>Invoice</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 사용량 미터(전표건수·API 호출·저장소)는 BF-02 운영 콘솔과 동일 소스를 사용해 청구 일관성을 보장한다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 구독·청구<span class="sep">·</span>접근 주체: 플랫폼 관리자 / 청구 담당<span class="sep">·</span>회사 선택: 구독 행 선택 → 우측 청구 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>플랜 구독<span class="sc">Subscription</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>사용량 측정<span class="sc">UsageMeter</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>청구서 발행<span class="sc">Invoice</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>결제·미납 관리<span class="sc">payment</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-10 · 구독 목록 + 청구 상세</div>
+  <div class="wf-bar"><b>구독·청구</b><span class="sp"></span><span class="wf-sel">청구주기: 월</span><span class="wf-sel">상태=전체</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">구독 (Subscription · UsageMeter)</div>
+      <table class="wf-grid">
+        <tr><th>테넌트</th><th>플랜</th><th class="r">사용자</th><th class="r">저장소</th><th class="r">전표건수</th><th>상태</th></tr>
+        <tr><td>가나무역</td><td>프리미엄</td><td class="r">24</td><td class="r">42GB</td><td class="r">12,400</td><td><span class="badge b-green">정상</span></td></tr>
+        <tr><td>다라상사</td><td>표준</td><td class="r">3</td><td class="r">2GB</td><td class="r">980</td><td><span class="badge b-red">미납</span></td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 36%"><div class="pt">청구 상세 · 선택: 다라상사</div>
+      <div class="wf-row"><label>플랜 / 청구액</label><span class="wf-in">표준 / 88,000원</span></div>
+      <div class="wf-row"><label>결제수단</label><span class="wf-in">카드 ****-1234 <span class="badge b-purple">마스킹</span></span></div>
+      <div class="wf-row"><label>미납</label><span class="badge b-red">2회 연체</span></div>
+      <div class="wf-row"><label>조치</label><span class="wf-btn">청구서 재발행</span> <span class="wf-btn dng">서비스 정지</span></div>
+      <div class="note" style="margin-top:6px">결제 처리는 외부 PG 위임 · 본 화면은 상태 조회·독촉만.</div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>구독 그리드</td><td>플랜·사용량 미터</td><td><code>Subscription</code>·<code>UsageMeter</code></td></tr>
+<tr><td>결제수단</td><td>카드/계좌이체</td><td>마스킹 표시</td></tr>
+<tr><td>미납 관리</td><td>연체·정지 처리</td><td><code>Invoice</code></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>미납 누적</td><td>2회 이상 미납</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>결제수단 만료</td><td>카드 유효기간 경과</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="bf-11"><span class="sid">BF-11</span>알림 매트릭스</h4>
+<table class="meta">
+<tr><th>용도</th><td>이벤트별 수신 역할·채널·템플릿·예약일·웹훅 URL·재시도 정책을 매트릭스로 정의한다.</td></tr>
+<tr><th>권한</th><td>플랫폼 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/notify/matrix</code> · <code>POST /api/notify/webhook/test</code></td></tr>
+<tr><th>엔티티</th><td><code>NotifyRule</code> · <code>NotifyTemplate</code> · <code>Webhook</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 웹훅 URL 등록·수정은 외부 연동 변경에 해당하므로 등록 시 서명 검증·테스트 발송을 거친다. 재시도는 지수 백오프.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 알림<span class="sep">·</span>접근 주체: 플랫폼 관리자<span class="sep">·</span>회사 선택: 이벤트 행 선택 → 우측 채널·웹훅 설정</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>이벤트 정의<span class="sc">NotifyRule</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>수신 역할·채널<span class="sc">앱/메일/SMS/웹훅</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>템플릿·D-N 스케줄<span class="sc">NotifyTemplate</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>발송·재시도<span class="sc">Webhook</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-11 · 알림 매트릭스 + 웹훅 설정</div>
+  <div class="wf-bar"><b>알림</b><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">이벤트 × 채널 (NotifyRule)</div>
+      <table class="wf-grid">
+        <tr><th>이벤트</th><th>수신 역할</th><th>채널</th><th>템플릿</th><th>재시도</th></tr>
+        <tr><td>마감 완료</td><td>파트너</td><td>이메일·푸시</td><td>TPL-CLOSE</td><td>3회</td></tr>
+        <tr><td>전표 반려</td><td>기장 담당</td><td>인앱</td><td>TPL-REJ</td><td>—</td></tr>
+        <tr><td>부가세 신고기한</td><td>전 담당</td><td>이메일·웹훅</td><td>TPL-VAT</td><td>5회</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 36%"><div class="pt">웹훅 · 선택: 부가세 신고기한</div>
+      <div class="wf-row"><label>URL <span class="req">*</span></label><span class="wf-in wide">https://hook.ey.com/vat</span></div>
+      <div class="wf-row"><label>서명키</label><span class="wf-in">whsec_*** <span class="badge b-purple">마스킹</span></span></div>
+      <div class="wf-row"><label>D-N 스케줄</label><span class="wf-in">D-7 · D-1 · 당일</span></div>
+      <div class="wf-row"><label>재시도</label><span class="wf-in">지수 백오프 5회</span></div>
+      <div class="wf-row"><span class="wf-btn">테스트 발송</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>이벤트 매트릭스</td><td>이벤트×역할×채널</td><td><code>NotifyRule</code></td></tr>
+<tr><td>템플릿</td><td>메시지 템플릿·변수 치환·D-N</td><td><code>NotifyTemplate</code></td></tr>
+<tr><td>웹훅</td><td>URL·서명·재시도</td><td><code>Webhook</code> · 테스트 발송</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>웹훅 URL 형식</td><td>https 필수·서명키</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>수신자 없음</td><td>이벤트 수신 역할 미지정</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="bf-12"><span class="sid">BF-12</span>메뉴 발행</h4>
+<table class="meta">
+<tr><th>용도</th><td>메뉴 트리(메뉴ID·상위메뉴·화면ID·권한·노출조건)를 버전 관리하고 발행·롤백한다.</td></tr>
+<tr><th>권한</th><td>플랫폼 관리자</td></tr>
+<tr><th>API</th><td><code>GET /api/menu/versions</code> · <code>POST /api/menu/publish</code> · <code>POST /api/menu/rollback</code></td></tr>
+<tr><th>엔티티</th><td><code>Menu</code> · <code>MenuVersion</code> · <code>MenuItem</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 메뉴 발행 버전과 BF-07 권한·SA-BAS-02 메뉴사용(비트맵)이 결합되어 사용자별 최종 노출 메뉴가 결정된다. 발행 단위 롤백 지원.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>운영 콘솔 GNB ▸ 메뉴<span class="sep">·</span>접근 주체: 플랫폼 관리자<span class="sep">·</span>회사 선택: 메뉴 항목 선택 → 우측 권한·노출 편집</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>메뉴 트리 편집<span class="sc">MenuItem</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>권한·노출조건<span class="sc">BF-07 결합</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>버전 발행<span class="sc">MenuVersion</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>롤백<span class="sc">rollback</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">BF-12 · 메뉴 발행 (트리 + 권한·노출)</div>
+  <div class="wf-bar"><b>메뉴</b><span class="sp"></span><span class="wf-sel">버전: MENU v3.2</span><button class="wf-btn pri">발행</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">메뉴 항목 (MenuItem)</div>
+      <table class="wf-grid">
+        <tr><th>메뉴ID</th><th>상위메뉴</th><th>화면ID</th><th>권한</th><th>노출조건</th></tr>
+        <tr><td>M-2510</td><td>기초정보</td><td>SA-BAS-07</td><td>입력</td><td>일반기장</td></tr>
+        <tr><td>M-3010</td><td>전표</td><td>JV-01</td><td>입력</td><td>—</td></tr>
+        <tr><td>M-9010</td><td>관리</td><td>BF-02</td><td>운영자</td><td>플랫폼</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 34%"><div class="pt">상세 · 선택: M-2510</div>
+      <div class="wf-row"><label>화면ID <span class="req">*</span></label><span class="wf-in">SA-BAS-07</span></div>
+      <div class="wf-row"><label>필요 권한</label><span class="wf-sel">입력</span></div>
+      <div class="wf-row"><label>노출조건</label><span class="wf-sel">일반기장</span></div>
+      <div class="wf-row"><label>미리보기</label><span class="wf-in">파트너=노출 / 기장=노출</span></div>
+      <div class="note" style="margin-top:6px">발행자·직전 버전(MENU v3.1) 기록 → 롤백 가능.</div>
+    </div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-blue">BF-07 권한·SA-BAS-02 비트맵 결합</span><span class="badge b-gray">버전 단위 롤백</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>메뉴 트리</td><td>메뉴ID·상위·화면ID·권한·조건</td><td><code>MenuItem</code></td></tr>
+<tr><td>권한·노출 패널</td><td>화면ID·필요권한·노출조건·미리보기</td><td>BF-07 결합</td></tr>
+<tr><td>발행/롤백</td><td>버전 단위 발행·복원</td><td><code>MenuVersion</code> 발행자 기록</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>존재하지 않는 화면ID</td><td>화면ID 미등록 참조</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>순환 상위메뉴</td><td>메뉴 트리 순환 참조</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+</section>
+
+<section id="s5">
+<h2>5. Smart A 기초정보 화면 (SA-BAS-01 ~ SA-BAS-14, 상세)</h2>
+
+<h4 id="sa-bas-01"><span class="sid">SA-BAS-01</span>회사등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>이용회사의 기본사항·회계기간·신고인·본지점·환급계좌를 등록한다. Smart A의 "기수 단일파일"을 <code>tenant + fiscal_period</code> 모델로 대체한다.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/company</code> · <code>GET/POST /api/company/fiscal-period</code></td></tr>
+<tr><th>엔티티</th><td><code>Tenant</code> · <code>FiscalPeriod</code> · <code>Reporter</code> · <code>BranchOffice</code> · <code>RefundAccount</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 기수는 <code>fiscal_period.seq</code> 로 관리하며 회계기간은 법인의 경우 정관상 1년 초과 불가, 개인은 1/1~12/31 고정. 법인등록번호(13자리)·사업자번호(체크섬)를 검증한다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 회사등록<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 좌측 회사 목록에서 선택 또는 [신규]</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>회사구분·기본<span class="sc">Tenant</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>회계기간·기수<span class="sc">FiscalPeriod</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>신고인·본지점<span class="sc">Reporter</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>환급계좌<span class="sc">RefundAccount</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-01 · 회사등록</div>
+  <div class="wf-bar"><span>회사등록</span><span class="sp"></span><button class="wf-btn">신규</button><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 30%">
+      <div class="pt">회사 목록</div>
+      (주)가나무역<br>다라상사<br>마바건설(주)
+    </div>
+    <div class="wf-panel pnl" style="flex:1">
+      <div class="wf-tab"><span class="on">기본사항</span><span>회계기간</span><span>신고인</span><span>본지점</span><span>환급계좌</span></div>
+      <div class="wf-row"><label>회사구분 <span class="req">*</span></label><span class="wf-in">법인 / 개인</span></div>
+      <div class="wf-row"><label>회사명 <span class="req">*</span></label><span class="wf-in">(주)가나무역</span></div>
+      <div class="wf-row"><label>사업자번호 <span class="req">*</span></label><span class="wf-in">123-45-67890</span></div>
+      <div class="wf-row"><label>법인등록번호</label><span class="wf-in">110111-1234567</span></div>
+      <div class="wf-row"><label>대표자 <span class="req">*</span></label><span class="wf-in">박대표 (공동대표 가능)</span></div>
+      <div class="wf-row"><label>기수 / 회계기간</label><span class="wf-in">제28기 · 2026-01-01~2026-12-31</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>회사구분</td><td>법인/개인 선택</td><td>검증·신고 분기</td></tr>
+<tr><td>사업자번호</td><td>체크섬 검증</td><td></td></tr>
+<tr><td>회계기간</td><td>법인=1년 초과불가 / 개인=1/1~12/31</td><td>fiscal_period</td></tr>
+<tr><td>본지점·환급계좌</td><td>본지점 매핑·환급 계좌(마스킹)</td><td>PII 암호화</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>사업자번호 체크섬</td><td>검증 알고리즘 불일치</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>법인 회계기간 초과</td><td>법인 기간 1년 초과</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>법인등록번호 자리수</td><td>13자리 아님</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-02"><span class="sid">SA-BAS-02</span>권한설정</h4>
+<table class="meta">
+<tr><th>용도</th><td>사원별 회사권한(전체/관리)·사용여부·메뉴사용(전체/선택)을 권한 매트릭스로 설정한다. 사원은 서비스 배포 시 <code>user↔tenant</code> 자동 반영.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/company/permissions</code></td></tr>
+<tr><th>엔티티</th><td><code>UserTenant</code> · <code>MenuPermission</code> · <code>Role</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 회사권한 <b>0.전체회사</b> 와 <b>1.관리회사</b> 가 RLS 스코프를 결정한다. 메뉴사용 "선택"은 메뉴 권한 비트맵으로 저장되며 BF-12 발행 메뉴와 결합된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 권한설정<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 사원 행 선택 → 우측 메뉴사용 비트맵</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>사원 배정<span class="sc">UserTenant</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>회사권한(RLS)<span class="sc">전체/관리</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>메뉴사용 비트맵<span class="sc">MenuPermission</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>BF-12 발행 결합<span class="sc">최종 노출</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-02 · 권한설정 (사원 + 메뉴 비트맵)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 권한설정</b><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">사원 권한 (UserTenant)</div>
+      <table class="wf-grid">
+        <tr><th>사원</th><th>회사권한</th><th>사용여부</th><th>메뉴사용</th></tr>
+        <tr><td>김회계</td><td>1.관리회사</td><td>사용</td><td>전체</td></tr>
+        <tr><td>이세무</td><td>1.관리회사</td><td>사용</td><td>선택(전표·장부)</td></tr>
+        <tr><td>박파트너</td><td>0.전체회사</td><td>사용</td><td>전체</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 36%"><div class="pt">메뉴사용 · 선택: 이세무</div>
+      <div class="wf-row"><label>회사권한</label><span class="wf-sel">1.관리회사</span> <span class="badge b-blue">RLS 스코프</span></div>
+      <div class="wf-row"><label>메뉴사용</label><span class="wf-sel">선택</span></div>
+      <div class="wf-row"><label>선택 메뉴</label><span class="wf-in wide">☑ 전표 ☑ 장부 ☐ 결산 ☐ 신고</span></div>
+      <div class="note" style="margin-top:6px">비트맵 → BF-12 발행 메뉴와 AND 결합.</div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>엔티티 · 비고</th></tr>
+<tr><td>회사권한</td><td>0.전체회사 / 1.관리회사</td><td>RLS 스코프</td></tr>
+<tr><td>사용여부</td><td>계정 활성/비활성</td><td><code>UserTenant</code></td></tr>
+<tr><td>메뉴사용</td><td>전체/선택 → 메뉴 비트맵</td><td><code>MenuPermission</code> · BF-12 결합</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>전체회사 권한 남용</td><td>0.전체회사 다수 부여</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>메뉴 미선택</td><td>메뉴사용=선택 ∧ 0건</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-bas-03"><span class="sid">SA-BAS-03</span>환경설정</h4>
+<table class="meta">
+<tr><th>용도</th><td>계정과목 코드체계·소수점 처리·관리코드 사용여부·단축키 등 회사 단위 환경을 설정한다.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/PUT /api/company/settings</code></td></tr>
+<tr><th>엔티티</th><td><code>CompanySetting</code> · <code>DimensionConfig</code> · <code>CoaScheme</code></td></tr>
+</table>
+<div class="note"><b>핵심 연계</b> · 관리코드 <b>사용여부</b>(프로젝트·자금·현장·제품·부서사원·거래처·차량)에서 "<b>1.사용함</b>" 으로 설정한 항목만 <b>전표 입력 시 우측 패널에 노출</b>된다. 이는 BF-09 <code>DimensionConfig.required</code> 및 SA-BAS-07 계정과목별 관리항목과 함께 전표 우측 패널 노출/필수를 최종 결정한다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 환경설정<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 상단 회사 컨텍스트 고정</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>코드체계·소수점<span class="sc">CoaScheme</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>관리코드 사용여부<span class="sc">DimensionConfig</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>계정별 관리항목<span class="sc">→ SA-BAS-07</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표 우측 패널<span class="sc">→ P03 입력</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-03 · 환경 설정 콘솔</div>
+  <div class="wf-bar"><span>환경설정</span><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel pnl" style="flex:1">
+      <div class="pt">코드·소수점</div>
+      <div class="wf-row"><label>계정과목 코드체계</label><span class="wf-in">5자리(세목) → COA 길이</span></div>
+      <div class="wf-row"><label>소수점 관리</label><span class="wf-in">절사 / 올림 / 반올림</span></div>
+      <div class="wf-row"><label>단축키</label><span class="wf-in">F2 조회 · Ctrl+F1 신규</span></div>
+    </div>
+    <div class="wf-panel" style="flex:1">
+      <div class="pt">관리코드 사용여부 (→ 전표 우측 패널)</div>
+      프로젝트 <span class="badge b-green">1.사용함</span> · 4자리<br>
+      자금 <span class="badge b-green">1.사용함</span><br>
+      현장 <span class="badge b-green">1.사용함</span> · 6자리<br>
+      제품 <span class="badge b-gray">0.미사용</span><br>
+      부서·사원 <span class="badge b-green">1.사용함</span><br>
+      거래처 <span class="badge b-green">1.사용함</span><br>
+      차량 <span class="badge b-green">1.사용함</span>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>계정 코드체계</td><td>3자리 / 5자리(세목)</td><td>COA 길이 결정</td></tr>
+<tr><td>소수점 관리</td><td>절사/올림/반올림</td><td>금액 라운딩</td></tr>
+<tr><td>관리코드 사용여부</td><td>7개 관리항목 사용/자리수</td><td><b>전표 우측 패널 노출 결정</b></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>코드체계 변경</td><td>전표 존재 후 자리수 변경</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>관리코드 사용 해제</td><td>참조 전표 존재 항목 해제</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-04"><span class="sid">SA-BAS-04</span>부서등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>부서 조직도를 등록한다. <code>DEPARTMENT</code> 독립 차원으로 코스트센터와 분리 운영 가능.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/dept</code></td></tr>
+<tr><th>엔티티</th><td><code>Department</code> (DEPARTMENT 차원)</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 부서코드는 4~8자리, 부서명은 한글 30/영문 60자. WEHAGO 조직도 연동 옵션을 제공한다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 부서등록<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 부서 행 선택 → 우측 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>부서 코드·명<span class="sc">Department</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>계층·순위<span class="sc">parent/sort</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>WEHAGO 연동<span class="sc">옵션</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표 차원 사용<span class="sc">DEPARTMENT</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-04 · 부서 조직도 (목록 + 상세)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 부서등록</b><span class="sp"></span><button class="wf-btn">조직도 연동</button><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">부서 목록 (Department)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>부서명</th><th class="r">순위</th><th>사용</th></tr>
+        <tr><td>1000</td><td>경영지원본부</td><td class="r">1</td><td>✔</td></tr>
+        <tr><td>1100</td><td>관리부</td><td class="r">2</td><td>✔</td></tr>
+        <tr><td>2000</td><td>영업본부</td><td class="r">3</td><td>✔</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 36%"><div class="pt">상세 · 선택: 관리부</div>
+      <div class="wf-row"><label>부서코드 <span class="req">*</span></label><span class="wf-in">1100 (4~8자리)</span></div>
+      <div class="wf-row"><label>부서명 <span class="req">*</span></label><span class="wf-in wide">관리부</span></div>
+      <div class="wf-row"><label>상위부서</label><span class="wf-sel">경영지원본부</span></div>
+      <div class="wf-row"><label>코스트센터</label><span class="wf-in">CC-100 매핑</span></div>
+      <div class="wf-row"><label>사용여부</label><span class="wf-sel">사용</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>부서 코드</td><td>4~8자리</td><td></td></tr>
+<tr><td>부서명</td><td>한글 30 / 영문 60자</td><td></td></tr>
+<tr><td>조직도 연동</td><td>WEHAGO 조직 동기화</td><td>옵션</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>코드 자리수</td><td>4~8자리 위반</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>중복 코드</td><td>부서코드 중복</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-bas-05"><span class="sid">SA-BAS-05</span>사원등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>사원을 등록한다. <code>EMPLOYEE</code> 차원. 주민번호는 PII 암호화·마스킹 저장한다.</td></tr>
+<tr><th>권한</th><td>회사 관리자 / 인사 담당</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/employee</code></td></tr>
+<tr><th>엔티티</th><td><code>Employee</code> (EMPLOYEE 차원)</td></tr>
+</table>
+<div class="note"><b>주의</b> · 사원코드(숫자/문자 10자)는 등록 후 <b>변경 불가</b>. 외국인은 단일세율(19%)·체류자격·국적 입력 필요. 주민번호는 마스킹 표시·Step-up 인증 시 전체 조회.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 사원등록<span class="sep">·</span>접근 주체: 회사 관리자 / 인사 담당<span class="sep">·</span>회사 선택: 사원 행 선택 → 우측 카드</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>사원코드·명<span class="sc">Employee</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>주민/외국인번호<span class="sc">PII 암호화</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>부서·입사<span class="sc">DEPARTMENT</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표 차원 사용<span class="sc">EMPLOYEE</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-05 · 사원 (목록 + 카드)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 사원등록</b><span class="sp"></span><span class="wf-in">🔍 사원명·코드</span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 38%"><div class="pt">사원 목록 (Employee)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>사원명</th><th>부서</th><th>구분</th></tr>
+        <tr><td>E000123</td><td>김직원</td><td>관리부</td><td>내국인</td></tr>
+        <tr><td>E000156</td><td>Nguyen V.</td><td>생산부</td><td>외국인</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">사원 카드 · 선택: 김직원</div>
+      <div class="wf-row"><label>사원코드 <span class="req">*</span></label><span class="wf-in">E000123</span> <span class="badge b-gray">변경불가</span></div>
+      <div class="wf-row"><label>사원명 <span class="req">*</span></label><span class="wf-in wide">김직원</span></div>
+      <div class="wf-row"><label>내/외국인</label><span class="wf-sel">내국인</span></div>
+      <div class="wf-row"><label>주민번호 <span class="req">*</span></label><span class="wf-in">900101-1****** 👁</span> <span class="badge b-purple">마스킹</span></div>
+      <div class="wf-row"><label>부서 / 입사일</label><span class="wf-sel">관리부</span> <span class="wf-in">2024-03-02</span></div>
+      <div class="wf-row"><label>체류자격·국적</label><span class="wf-in wide">외국인 시 필수 · 단일세율 19%</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>사원코드</td><td>숫자/문자 10자</td><td>변경불가</td></tr>
+<tr><td>주민번호</td><td>PII 암호화·마스킹</td><td>Step-up 조회</td></tr>
+<tr><td>외국인 정보</td><td>체류자격·국적·단일세율</td><td>외국인 19%</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>주민번호 형식</td><td>체크섬·생년월일 검증</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>외국인 체류자격 누락</td><td>외국인 ∧ 체류자격 미입력</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-06"><span class="sid">SA-BAS-06</span>거래처등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>거래처를 일반/금융/카드 3탭으로 등록한다. 국세청 휴폐업·진위확인 연동.</td></tr>
+<tr><th>권한</th><td>회사 관리자 / 기장 담당</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/partner</code> · <code>POST /api/partner/verify</code> (국세청)</td></tr>
+<tr><th>엔티티</th><td><code>Partner</code> · <code>PartnerBank</code> · <code>PartnerCard</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 거래처구분(매출/매입)·등록번호구분(사업자/주민/외국인)이 세금계산서·신고 분류에 사용된다. 금융·카드 탭의 계좌·카드번호는 마스킹.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 거래처등록<span class="sep">·</span>접근 주체: 회사 관리자 / 기장 담당<span class="sep">·</span>회사 선택: 거래처 행 선택 → 우측 3탭 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>거래처 기본<span class="sc">Partner</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>진위·휴폐업 확인<span class="sc">국세청</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>금융·카드 등록<span class="sc">PartnerBank/Card</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표·원장 연결<span class="sc">→ 거래처원장</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-06 · 거래처 (목록 + 3탭 상세)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 거래처등록</b><span class="sp"></span><button class="wf-btn">진위확인</button><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 36%"><div class="pt">거래처 목록 (Partner)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>거래처명</th><th>구분</th></tr>
+        <tr><td>P001023</td><td>(주)대한전자</td><td>매입</td></tr>
+        <tr><td>P001044</td><td>가나무역</td><td>매출</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">상세 · 선택: (주)대한전자</div>
+      <div class="wf-tab"><span class="on">일반</span><span>금융(PartnerBank)</span><span>카드(PartnerCard)</span></div>
+      <div class="wf-row"><label>거래처코드 <span class="req">*</span></label><span class="wf-in">P001023 (6~10)</span></div>
+      <div class="wf-row"><label>거래처명 <span class="req">*</span></label><span class="wf-in wide">(주)대한전자</span></div>
+      <div class="wf-row"><label>거래처구분</label><span class="wf-sel">매입</span></div>
+      <div class="wf-row"><label>등록번호구분</label><span class="wf-sel">사업자</span></div>
+      <div class="wf-row"><label>사업자번호 <span class="req">*</span></label><span class="wf-in">220-81-12345</span> <span class="badge b-green">정상(휴폐업 아님)</span></div>
+      <div class="wf-row"><label>사용여부</label><span class="wf-sel">사용</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>3탭</td><td>일반/금융/카드</td><td>계좌·카드 마스킹</td></tr>
+<tr><td>거래처구분</td><td>매출/매입</td><td>신고 분류</td></tr>
+<tr><td>진위확인</td><td>국세청 휴폐업 조회</td><td><code>partner_type</code></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>사업자번호 체크섬</td><td>검증 불일치</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>휴폐업 거래처</td><td>국세청 폐업 확인</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-07"><span class="sid">SA-BAS-07</span>계정과목·적요</h4>
+<table class="meta">
+<tr><th>용도</th><td>계정체계(자산/부채/자본/수익/비용·제조·도급·분양)별 계정과목을 등록하고 계정별 적요·관리항목을 설정한다.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/coa</code> · <code>GET/PUT /api/coa/:code/dimensions</code></td></tr>
+<tr><th>엔티티</th><td><code>ChartOfAccount</code> · <code>AccountSummary</code> · <code>AccountDimension</code></td></tr>
+</table>
+<div class="note"><b>핵심 연계</b> · 계정과목별 <b>관리항목</b> 설정이 전표 라인의 <b>필수 관리차원 및 전표 우측 패널 노출</b>을 결정한다. SA-BAS-03 관리코드 사용여부(회사 단위)와 본 화면의 관리항목(계정 단위)이 함께 작용한다. 검은색 계정은 수정 가능, 붉은색 계정은 Ctrl+F1로 신규 추가.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 계정과목·적요<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 계정체계 트리 → 계정 선택</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>계정체계 선택<span class="sc">자산~분양</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>계정·세목 등록<span class="sc">ChartOfAccount</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>적요·관계 설정<span class="sc">AccountSummary</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>관리항목 지정<span class="sc">→ 전표 우측 패널</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-07 · 계정과목 빌더</div>
+  <div class="wf-bar"><span>계정과목·적요</span><span class="sp"></span><span class="kbd">Ctrl+F1 신규</span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 30%">
+      <div class="pt">계정체계</div>
+      자산 · 부채 · 자본<br>수익 · 비용<br>제조 · 도급 · 분양
+    </div>
+    <div class="wf-panel pnl" style="flex:1">
+      <div class="wf-row"><label>계정코드 <span class="req">*</span></label><span class="wf-in">40100 (3/5자리 세목)</span></div>
+      <div class="wf-row"><label>계정과목 <span class="req">*</span></label><span class="wf-in">제품매출</span></div>
+      <div class="wf-row"><label>구분 / 사용</label><span class="wf-in">수익 / 사용</span></div>
+      <div class="wf-row"><label>관계(결산대체)</label><span class="wf-in">손익대체</span></div>
+      <div class="wf-row"><label>관리항목 <span class="req">*</span></label><span class="wf-in">거래처(필수)·부서·프로젝트 → 전표 우측 패널</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>계정체계</td><td>자산~비용·제조·도급·분양</td><td></td></tr>
+<tr><td>계정코드</td><td>3자리 / 5자리(세목)</td><td>SA-BAS-03 연동</td></tr>
+<tr><td>관리항목</td><td>계정별 필수 관리차원</td><td><b>전표 우측 패널 노출/필수 결정</b></td></tr>
+<tr><td>관계</td><td>결산대체 연결</td><td></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>표준 계정 코드 수정</td><td>붉은색 표준계정 직접 수정</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>관리항목 변경</td><td>전표 존재 계정 관리항목 변경</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-08"><span class="sid">SA-BAS-08</span>현장등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>건설 현장을 등록한다. <code>SITE</code> 차원. 현장구분(도급/분양)이 원가귀속·매출원가 결산대체 분기를 결정한다.</td></tr>
+<tr><th>권한</th><td>회사 관리자 (건설업)</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/site</code></td></tr>
+<tr><th>엔티티</th><td><code>Site</code> (SITE 차원)</td></tr>
+</table>
+<div class="note"><b>주의</b> · 현장코드 사용은 SA-BAS-03에서 현장 관리코드 "사용함" 전제. 현장구분 <b>0.도급</b> / <b>1.분양</b>에 따라 407 공사수입금 등 원가귀속·결산대체 로직이 분기된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 현장등록<span class="sep">·</span>접근 주체: 회사 관리자(건설업)<span class="sep">·</span>회사 선택: 현장 행 선택 → 우측 계약 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>현장 코드·명<span class="sc">Site</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>현장구분(도급/분양)<span class="sc">원가귀속 분기</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>공사기간·진행<span class="sc">공정률</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>전표 차원 사용<span class="sc">SITE</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-08 · 현장 (목록 + 계약 상세)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 현장등록</b><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 38%"><div class="pt">현장 목록 (Site)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>현장명</th><th>구분</th></tr>
+        <tr><td>S00012</td><td>강남 OO오피스텔</td><td>도급</td></tr>
+        <tr><td>S00015</td><td>판교 분양아파트</td><td>분양</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">계약 상세 · 선택: 강남 OO오피스텔</div>
+      <div class="wf-row"><label>현장코드 <span class="req">*</span></label><span class="wf-in">S00012</span></div>
+      <div class="wf-row"><label>현장명 <span class="req">*</span></label><span class="wf-in wide">강남 OO오피스텔 신축</span></div>
+      <div class="wf-row"><label>현장구분</label><span class="wf-sel">0.도급</span></div>
+      <div class="wf-row"><label>진행상황</label><span class="wf-in">진행중 (공정 62%)</span></div>
+      <div class="wf-row"><label>공사기간</label><span class="wf-in wide">2025-04-01 ~ 2027-03-31</span></div>
+      <div class="wf-row"><label>사용구분</label><span class="wf-sel">사용</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>현장구분</td><td>0.도급 / 1.분양</td><td>원가귀속 분기</td></tr>
+<tr><td>진행상황</td><td>진행/완료/보류·공정률</td><td></td></tr>
+<tr><td>공사기간</td><td>착공~준공</td><td></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>현장코드 미사용 설정</td><td>SA-BAS-03 현장 미사용</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>공사기간 역전</td><td>착공일 > 준공일</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-bas-09"><span class="sid">SA-BAS-09</span>프로젝트등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>프로젝트를 등록하고 예산을 관리한다. <code>PROJECT</code> 차원.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/project</code></td></tr>
+<tr><th>엔티티</th><td><code>Project</code> (PROJECT 차원)</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 프로젝트 예산금액은 장부·보조부에서 예산 대비 실적 집계의 기준이 된다. 조회조건(진행/완료/보류)으로 필터.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 프로젝트등록<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 프로젝트 행 선택 → 우측 예산 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>프로젝트 등록<span class="sc">Project</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>기간·예산<span class="sc">budget</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>전표 차원 사용<span class="sc">PROJECT</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>예산 대비 실적<span class="sc">→ 장부</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-09 · 프로젝트 (목록 + 예산)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 프로젝트등록</b><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-tool"><span class="wf-sel">조회조건: 진행</span><span class="wf-btn">조회</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:1"><div class="pt">프로젝트 목록 (Project)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>프로젝트명</th><th>시작</th><th>종료</th><th class="r">예산금액</th></tr>
+        <tr><td>PRJ001</td><td>차세대 ERP 구축</td><td>2026-01-01</td><td>2026-12-31</td><td class="r">350,000,000</td></tr>
+        <tr><td>PRJ002</td><td>물류센터 자동화</td><td>2026-03-01</td><td>2026-09-30</td><td class="r">120,000,000</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:0 0 34%"><div class="pt">상세 · 선택: 차세대 ERP 구축</div>
+      <div class="wf-row"><label>코드</label><span class="wf-in">PRJ001</span></div>
+      <div class="wf-row"><label>기간</label><span class="wf-in wide">2026-01-01 ~ 12-31</span></div>
+      <div class="wf-row"><label>예산금액</label><span class="wf-in">350,000,000</span></div>
+      <div class="wf-row"><label>집행(실적)</label><span class="wf-in">142,000,000</span> <span class="badge b-green">41%</span></div>
+      <div class="wf-row"><label>상태</label><span class="wf-sel">진행</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>조회조건</td><td>진행/완료/보류</td><td></td></tr>
+<tr><td>예산금액</td><td>프로젝트 예산</td><td>실적 대비</td></tr>
+<tr><td>시작/종료일</td><td>프로젝트 기간</td><td></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>기간 역전</td><td>시작일 > 종료일</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>예산 미입력</td><td>예산금액 0</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-10"><span class="sid">SA-BAS-10</span>업무용승용차</h4>
+<table class="meta">
+<tr><th>용도</th><td>업무용 승용차를 등록한다. 명의구분·임차기간·운행기록·보험을 관리하며 비용한도(800만원)·운행기록부 업무사용비율 산정 근거가 된다.</td></tr>
+<tr><th>권한</th><td>회사 관리자 / 세무 담당</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/vehicle</code></td></tr>
+<tr><th>엔티티</th><td><code>Vehicle</code> · <code>VehicleLog</code> (고정자산 연동)</td></tr>
+</table>
+<div class="note"><b>주의</b> · 명의구분(회사/렌트/리스)이 업무용승용차 비용명세서 작성을 분기한다. 업무전용 보험 미가입·운행기록부 미작성 시 비용 한도(연 800만원) 제한이 적용된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 업무용승용차<span class="sep">·</span>접근 주체: 회사 관리자 / 세무 담당<span class="sep">·</span>회사 선택: 차량 행 선택 → 우측 세무 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>차량 등록<span class="sc">Vehicle</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>명의구분·임차<span class="sc">회사/렌트/리스</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>보험·운행기록<span class="sc">VehicleLog</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>비용명세서·한도<span class="sc">800만원</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-10 · 차량 (목록 + 세무 상세)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 업무용승용차</b><span class="sp"></span><span class="kbd">Enter 코드자동</span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 36%"><div class="pt">차량 목록 (Vehicle)</div>
+      <table class="wf-grid">
+        <tr><th>코드</th><th>차량번호</th><th>명의</th></tr>
+        <tr><td>V001</td><td>12가3456</td><td>회사</td></tr>
+        <tr><td>V002</td><td>34나7890</td><td>리스</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">세무 상세 · 선택: 12가3456</div>
+      <div class="wf-row"><label>차량코드</label><span class="wf-in">V001 (Enter 자동)</span></div>
+      <div class="wf-row"><label>차량번호 / 차종</label><span class="wf-in wide">12가3456 / 카니발</span></div>
+      <div class="wf-row"><label>명의구분</label><span class="wf-sel">회사</span></div>
+      <div class="wf-row"><label>임차기간</label><span class="wf-in wide">2025-01-01 ~ 2027-12-31</span></div>
+      <div class="wf-row"><label>기초주행거리</label><span class="wf-in">12,500 km</span></div>
+      <div class="wf-row"><label>업무전용보험</label><span class="wf-in">가입 · 업무사용비율 92%</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>명의구분</td><td>회사/렌트/리스</td><td>비용명세서 분기</td></tr>
+<tr><td>보험·운행기록</td><td>업무전용보험·업무사용비율</td><td>한도 800만원</td></tr>
+<tr><td>고정자산 연동</td><td>회사 명의 차량 자산 연결</td><td></td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>업무전용보험 미가입</td><td>법인 차량 보험 미가입</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>운행기록 누락</td><td>비율 산정 근거 없음</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-11"><span class="sid">SA-BAS-11</span>외주처등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>외주 계약을 등록한다. 현장·거래처와 연결되며 회차별 계약금·선급금을 관리한다(외주대장).</td></tr>
+<tr><th>권한</th><td>회사 관리자 (건설업)</td></tr>
+<tr><th>API</th><td><code>GET/POST /api/subcontract</code></td></tr>
+<tr><th>엔티티</th><td><code>Subcontract</code> · <code>SubcontractPayment</code> (Site·Partner 연결)</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 외주처는 현장(SA-BAS-08)과 거래처(SA-BAS-06)를 연결한 계약 단위이며, 회차별 계약금/선급금이 외주대장·원가에 반영된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 외주처등록<span class="sep">·</span>접근 주체: 회사 관리자(건설업)<span class="sep">·</span>회사 선택: 외주 계약 행 선택 → 우측 회차 상세</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>현장·거래처 연결<span class="sc">Site×Partner</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>계약 등록<span class="sc">Subcontract</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>회차별 지급<span class="sc">SubcontractPayment</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>외주대장·원가<span class="sc">→ 원가</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-11 · 외주 (목록 + 계약·회차)</div>
+  <div class="wf-bar"><b>기초정보 ▸ 외주처등록</b><span class="sp"></span><button class="wf-btn pri">저장</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 38%"><div class="pt">외주 계약 (Subcontract)</div>
+      <table class="wf-grid">
+        <tr><th>현장</th><th>외주처</th><th class="r">계약금액</th></tr>
+        <tr><td>강남 오피스텔</td><td>(주)튼튼건설</td><td class="r">2,400,000,000</td></tr>
+        <tr><td>판교 아파트</td><td>대박설비(주)</td><td class="r">680,000,000</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">계약 상세 · 선택: (주)튼튼건설</div>
+      <div class="wf-row"><label>현장 / 거래처</label><span class="wf-in wide">강남 OO오피스텔 / (주)튼튼건설</span></div>
+      <div class="wf-row"><label>공사내용 / 면허</label><span class="wf-in wide">철근콘크리트 / 종합건설</span></div>
+      <div class="wf-row"><label>공사기간</label><span class="wf-in wide">2025-06-01 ~ 2026-08-31</span></div>
+      <div class="wf-row"><label>총계약금액</label><span class="wf-in">2,400,000,000</span></div>
+      <div class="wf-row"><label>회차별 계약금/선급</label><span class="wf-in wide">1회 선급 240,000,000 (10%)</span></div>
+    </div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>현장·거래처 연결</td><td>현장 + 외주처 매핑</td><td></td></tr>
+<tr><td>총계약금액</td><td>계약 총액</td><td></td></tr>
+<tr><td>회차별 지급</td><td>계약금/선급금 회차</td><td>외주대장</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>선급금 초과</td><td>회차 합 > 총계약금액</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>현장 미연결</td><td>외주처 ∧ 현장 미지정</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-12"><span class="sid">SA-BAS-12</span>거래처DM인쇄</h4>
+<table class="meta">
+<tr><th>용도</th><td>거래처 DM 라벨을 출력한다(read-only 뷰). 거래상태·주소 선택 후 라벨 미리보기·인쇄.</td></tr>
+<tr><th>권한</th><td>기장 담당 / 영업 담당</td></tr>
+<tr><th>API</th><td><code>GET /api/partner/dm-labels</code></td></tr>
+<tr><th>엔티티</th><td><code>Partner</code> (조회 전용)</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 데이터 변경이 없는 출력 전용 화면. 주소는 사업장 주소 또는 DB 주소 중 선택하며 라벨 규격 미리보기 후 인쇄.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 거래처DM인쇄<span class="sep">·</span>접근 주체: 기장 담당 / 영업 담당<span class="sep">·</span>회사 선택: 거래처 필터 후 라벨 미리보기 (read-only)</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>거래처 필터<span class="sc">구분·상태</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>주소 선택<span class="sc">사업장/DB</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>라벨 미리보기<span class="sc">규격</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>인쇄<span class="sc">print</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-12 · DM 라벨 출력</div>
+  <div class="wf-bar"><span>거래처DM인쇄</span><span class="sp"></span><button class="wf-btn">미리보기</button><button class="wf-btn pri">라벨 인쇄</button></div>
+  <div class="wf-tool"><span class="wf-in">구분: 매출</span><span class="wf-in">거래상태: 정상</span><span class="kbd">F2 거래처</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel" style="flex:0 0 40%"><div class="pt">주소 선택</div>사업장 주소 / DB 주소</div>
+    <div class="wf-panel pnl" style="flex:1"><div class="pt">라벨 미리보기</div>(주)대한전자<br>서울 강남구 테헤란로 ...<br>대표 홍길동 귀하</div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>구분·거래상태</td><td>매출/매입·정상/중지</td><td>필터</td></tr>
+<tr><td>주소 선택</td><td>사업장/DB 주소</td><td></td></tr>
+<tr><td>라벨 미리보기·인쇄</td><td>규격 미리보기 후 출력</td><td>read-only</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>주소 없음</td><td>선택 주소 미등록</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-bas-13"><span class="sid">SA-BAS-13</span>거래처등코드변환</h4>
+<table class="meta">
+<tr><th>용도</th><td>계정·거래처·품목 코드를 일괄 변환한다. 변환 전→후 코드 매핑 후 미리보기·변환 실행.</td></tr>
+<tr><th>권한</th><td>회사 관리자</td></tr>
+<tr><th>API</th><td><code>POST /api/code-convert/preview</code> · <code>POST /api/code-convert/execute</code></td></tr>
+<tr><th>엔티티</th><td><code>Journal</code> · <code>ChartOfAccount</code> · <code>Partner</code> (복합키 일괄 갱신)</td></tr>
+</table>
+<div class="note"><b>주의</b> · <b>자금항목 계정은 변환 불가</b>, <b>마감 기간은 변환 불가</b>(마감 상태 가드). 변환은 <code>(tenant_id, 전표일자, 전표번호)</code> 복합키 기준 일괄 갱신이며, 실행 전 미리보기로 영향 건수를 확인한다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 거래처등코드변환<span class="sep">·</span>접근 주체: 회사 관리자<span class="sep">·</span>회사 선택: 상단 회사·기간 컨텍스트 고정 (배치)</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>변환대상 선택<span class="sc">계정/거래처/품목</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>변환 전→후 매핑<span class="sc">F2 조회</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>미리보기(영향 건수)<span class="sc">preview</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>일괄 변환·가드<span class="sc">execute</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-13 · 코드 변환 마법사</div>
+  <div class="wf-bar"><span>거래처등코드변환</span><span class="sp"></span><button class="wf-btn">미리보기</button><button class="wf-btn dng">변환 실행</button></div>
+  <div class="wf-body"><div class="wf-panel pnl">
+    <div class="wf-row"><label>변환대상</label><span class="wf-in">계정 / 거래처 / 품목코드</span></div>
+    <div class="wf-row"><label>변환대상조건</label><span class="wf-in">사용중 · 미마감 기간</span></div>
+    <div class="wf-row"><label>변환 전 → 후</label><span class="wf-in">P001023 → P002500</span> <span class="kbd">F2</span></div>
+    <div class="wf-row"><label>전표구분</label><span class="wf-in">전체 / 매입 / 매출</span></div>
+    <div class="wf-row"><label>영향 건수(미리보기)</label><span class="wf-in">전표 482건 · 보조부 1,204건</span></div>
+  </div></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>변환대상</td><td>계정/거래처/품목코드</td><td></td></tr>
+<tr><td>변환 전→후</td><td>코드 매핑(F2 조회)</td><td></td></tr>
+<tr><td>미리보기/실행</td><td>영향 건수 확인 후 일괄 갱신</td><td>복합키</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>자금항목 계정 변환</td><td>자금 연결 계정 변환 시도</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>마감 기간 변환</td><td>마감(CLOSED) 전표 포함</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-bas-14"><span class="sid">SA-BAS-14</span>마감후이월 (회계)</h4>
+<table class="meta">
+<tr><th>용도</th><td>마감 기수의 재무제표·거래처·부서사원·현장·프로젝트·고정자산·차량 잔액을 이월 기수로 이월한다. <code>opening_balance</code> idempotent 적재.</td></tr>
+<tr><th>권한</th><td>회사 관리자 / 결산 담당</td></tr>
+<tr><th>API</th><td><code>POST /api/closing/carry-forward</code></td></tr>
+<tr><th>엔티티</th><td><code>FiscalPeriod</code> · <code>OpeningBalance</code> · <code>ClosingState</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 마감 상태(TEMP_CLOSED/CLOSED/LOCKED)가 전표 수정·코드 변환(SA-BAS-13)의 가드로 작용한다. 이월은 멱등(idempotent) 처리되어 재실행 시 중복 적재되지 않으며, 이월 완료 후 마감 기간은 잠금된다.</div>
+<div class="crumb"><b>진입</b><span class="sep">▸</span>기초정보 ▸ 마감후이월<span class="sep">·</span>접근 주체: 회사 관리자 / 결산 담당<span class="sep">·</span>회사 선택: 마감/이월 기수 선택 (배치)</div>
+<div class="flow mini">
+  <div class="step"><span class="n">1</span>마감 확인<span class="sc">CLOSED</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>이월 대상 선택<span class="sc">잔액·마스터</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>이월 실행(멱등)<span class="sc">OpeningBalance</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>기수 잠금<span class="sc">LOCKED</span></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">SA-BAS-14 · 마감 후 이월</div>
+  <div class="wf-bar"><span>마감후이월</span><span class="sp"></span><button class="wf-btn pri">이월 실행</button></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel pnl" style="flex:1">
+      <div class="pt">기수</div>
+      <div class="wf-row"><label>마감 기수 <span class="req">*</span></label><span class="wf-in">제27기 (2025) · CLOSED</span></div>
+      <div class="wf-row"><label>이월 기수 <span class="req">*</span></label><span class="wf-in">제28기 (2026)</span></div>
+    </div>
+    <div class="wf-panel" style="flex:1">
+      <div class="pt">이월 대상</div>
+      ☑ 재무제표 잔액 &nbsp; ☑ 거래처<br>☑ 부서·사원 &nbsp; ☑ 현장<br>☑ 프로젝트 &nbsp; ☑ 고정자산 &nbsp; ☑ 차량
+    </div>
+  </div></div>
+  <div class="wf-foot"><span>이월 후 마감 기수 잠금(LOCKED) · 멱등 적재(중복 방지)</span></div>
+</div>
+<table>
+<tr><th>화면 요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>마감/이월 기수</td><td>fiscal_period 선택</td><td></td></tr>
+<tr><td>이월 대상 체크</td><td>재무제표·거래처·부서사원·현장·프로젝트·고정자산·차량</td><td></td></tr>
+<tr><td>이월 실행</td><td>opening_balance 적재·기간 잠금</td><td>idempotent</td></tr>
+</table>
+<table>
+<tr><th>검증 항목</th><th>규칙</th><th>수준</th></tr>
+<tr><td>미마감 기수 이월</td><td>마감 기수 ≠ CLOSED</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>이월 재실행</td><td>이미 이월 완료 기수</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+</section>
+
+</main></body></html>

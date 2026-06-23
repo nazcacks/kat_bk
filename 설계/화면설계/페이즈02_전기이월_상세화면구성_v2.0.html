@@ -1,0 +1,725 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 서비스 구현 화면설계서 — 페이즈02 전기이월 v2.0</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:256px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:256px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:24px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head><body>
+<nav id="toc">
+  <h2>구현 화면설계서 v2.0</h2>
+  <div class="ver">페이즈 02 · 전기이월 · 2026-06-20</div>
+  <a href="#s1">1. 문서 개요</a>
+  <a href="#s2">2. 공통 UI 표준</a>
+  <a href="#s3">3. 화면 목록(인벤토리)</a>
+  <div class="g">4. 전기분 재무제표 입력 (SA-OPN-01~06)</div>
+  <a class="sub" href="#sa-opn-01">OPN-01 전기분재무상태표</a>
+  <a class="sub" href="#sa-opn-02">OPN-02 전기분손익계산서</a>
+  <a class="sub" href="#sa-opn-03">OPN-03 전기분원가명세서</a>
+  <a class="sub" href="#sa-opn-04">OPN-04 전기분이익잉여금처분</a>
+  <a class="sub" href="#sa-opn-05">OPN-05 전기분자본변동표</a>
+  <a class="sub" href="#sa-opn-06">OPN-06 전기분현금흐름표</a>
+  <div class="g">5. 관리항목별 초기이월 (OPN-07·08·13)</div>
+  <a class="sub" href="#sa-opn-07">OPN-07 거래처별초기이월</a>
+  <a class="sub" href="#sa-opn-08">OPN-08 부서/사원별초기이월</a>
+  <a class="sub" href="#sa-opn-13">OPN-13 프로젝트초기이월</a>
+  <div class="g">6. 전기 월별·프로젝트 배분 (OPN-09~12)</div>
+  <a class="sub" href="#sa-opn-09">OPN-09 전기 기간별손익계산서</a>
+  <a class="sub" href="#sa-opn-10">OPN-10 전기 기간별원가계산서</a>
+  <a class="sub" href="#sa-opn-11">OPN-11 전기 프로젝트손익현황</a>
+  <a class="sub" href="#sa-opn-12">OPN-12 전기 프로젝트원가현황</a>
+  <div class="g">7. 중단사업·중도시산 (OPN-14~16)</div>
+  <a class="sub" href="#sa-opn-14">OPN-14 전기 중단사업손익</a>
+  <a class="sub" href="#sa-opn-15">OPN-15 전기 중단사업원가</a>
+  <a class="sub" href="#sa-opn-16">OPN-16 중도시산표</a>
+  <div class="g">8. 건설·현장 초기이월 (OPN-17~19)</div>
+  <a class="sub" href="#sa-opn-17">OPN-17 미완성공사초기이월</a>
+  <a class="sub" href="#sa-opn-18">OPN-18 외주처별초기이월</a>
+  <a class="sub" href="#sa-opn-19">OPN-19 현장별/거래처별초기이월</a>
+  <div class="g">전체 페이즈</div>
+  <a class="sub" href="페이즈01_기초정보_상세화면구성_v2.0.html">P01 기초정보·조직</a>
+  <a class="sub" href="페이즈02_전기이월_상세화면구성_v2.0.html">P02 전기이월</a>
+  <a class="sub" href="페이즈03_전표자동전표_상세화면구성_v2.0.html">P03 전표·자동전표</a>
+  <a class="sub" href="페이즈04_장부보조부_상세화면구성_v2.0.html">P04 장부·보조부</a>
+  <a class="sub" href="페이즈05_결산재무제표_상세화면구성_v2.0.html">P05 결산·재무제표</a>
+  <a class="sub" href="페이즈06_부가세주요신고_상세화면구성_v2.0.html">P06 부가세 주요신고</a>
+  <a class="sub" href="페이즈07_부가세첨부업종_상세화면구성_v2.0.html">P07 부가세 첨부·업종</a>
+  <a class="sub" href="페이즈08_영세율고정자산_상세화면구성_v2.0.html">P08 영세율·고정자산</a>
+  <a class="sub" href="페이즈09_자금예산어음_상세화면구성_v2.0.html">P09 자금·예산·어음</a>
+  <a class="sub" href="페이즈10_데이터관리운영_상세화면구성_v2.0.html">P10 데이터관리·운영</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>페이즈 02 · 전기이월</h1>
+  <p>BK 회계/세무 SaaS 구현 화면설계서 · Smart A 기준 · v2.0</p>
+  <p>작성일 2026-06-20 · 멀티테넌트(SHARED+RLS) · NestJS / React 18</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 페이즈 02 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>페이즈 02 구현 착수를 위해 <b>전기이월·초기 데이터 이관</b> 화면별 레이아웃(와이어프레임)·입력 필드·액션/검증·연계 API·권한·상태를 구현 가능한 수준으로 정의한다. <b>전기분 재무제표</b>(재무상태표·손익계산서·제조원가명세서·이익잉여금처분계산서·자본변동표·현금흐름표) 입력으로 비교식 재무제표 전기값과 <b>당해연도 기초잔액(opening balance)</b>을 생성하고, 거래처·부서/사원·프로젝트·현장·외주처 등 <b>6 관리차원별 초기이월 명세</b>를 적재하여 후행 전표(P03)·장부(P04)·결산(P05) 화면의 출발점을 확정한다.</td></tr>
+  <tr><th>페이즈 정의</th><td>최초 작업년도(이관 첫 해)에만 입력하는 전기 스냅샷 + 차원별 opening balance 화면군. 차기 이후는 <code>SA-BAS-14 마감후이월</code>이 직전 기수의 마감 결과를 <code>fiscal_period</code> 경계로 자동 이월(직접 수정 가능)한다. Smart A의 "전기분 단일파일" 모델을 <code>tenant</code> + <code>fiscal_period</code> + <b>계정×차원 기초잔액 엔티티</b>로 일반화한다.</td></tr>
+  <tr><th>화면 구성</th><td><b>전기분 재무제표 입력 SA-OPN-01~06</b> 6화면 + <b>관리항목별 초기이월 SA-OPN-07·08·13</b> 3화면 + <b>전기 월별/프로젝트 배분 SA-OPN-09~12</b> 4화면 + <b>중단사업·중도시산 SA-OPN-14~16</b> 3화면 + <b>건설·현장 초기이월 SA-OPN-17~19</b> 3화면 = 총 <b>19화면</b>(전부 <code>SA-OPN-*</code> 기능 화면).</td></tr>
+  <tr><th>표기 원칙</th><td>화면 ID는 본 문서 전용으로 <code>SA-OPN-xx</code>를 사용하고, 설계서 <code>bk_설계서_v2.1.md</code> 25.2·25.3 절과 연결한다. 검증은 <span class="badge b-amber">경고</span>(저장가능)·<span class="badge b-red">차단</span>(저장불가) 2단계로 표기한다. 금액 우측칸 <span class="kbd">+</span>키는 천원단위 "000" 자동입력, 계정/거래처명 <b>2글자</b> 또는 <span class="kbd">F2</span> 코드도움.</td></tr>
+</table>
+<div class="tip">본 페이즈는 <b>입력·검증·정합성</b> 중심이므로 화면 대부분이 <b>좌측 계정/항목 그리드 + 우측 정합성·차액 검증 패널</b>의 마스터-디테일이거나, <b>월별·연도별 배분 매트릭스 그리드</b>다. 전기분 재무제표 4종은 상호 정합성(대차균형·당기제품제조원가 일치·당기순손익 일치·이월이익잉여금 일치)을 서버 측 제약으로 강제하고, 초기이월 보조부는 <b>좌측 재무상태표 준거금액 vs 우측 차원별 합계</b>의 차액 0을 검증한다.</div>
+<div class="note"><b>페이즈 02 연계 핵심</b> — 전기이월은 <code>SA-BAS-14 마감후이월</code> 및 <code>fiscal_period</code>와 연계된다. <code>SA-OPN-01</code> 전기분재무상태표가 모든 초기이월의 <b>준거 금액</b>(차원 합계가 일치해야 하는 기준)이며, <code>SA-OPN-02/03/04</code>는 당기제품제조원가·당기순손익·이월이익잉여금으로 서로 묶인다. 입력 결과는 계정×차원 <code>opening_balance</code>로 적재되어 P03 전표의 기초잔액·P04 보조부 전기이월·P05 비교식 재무제표 전기열에 공급된다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 공통 UI 표준 (요약)</h2>
+<h3>2.1 화면 셸 · 전기이월 입력 표준</h3>
+<ul>
+  <li><b>셸</b>: 상단 GNB(회사명·기장 모드 배지·회계기간·사용자) + 좌측 LNB(전기이월 그룹) + 콘텐츠. 메뉴는 Role 메뉴권한(BF-12), 버튼은 행위권한(BF-07)으로 렌더링.</li>
+  <li><b>최초년도 가드</b>: 전기분 입력은 <b>이관 첫 해</b>에만 활성. 차기부터 <code>SA-BAS-14</code> 자동반영 행은 <span class="badge b-gray">자동이월</span> 배지로 표시하고 직접 수정 시 변경이력 기록.</li>
+  <li><b>입력 단축키</b>: 계정/거래처명 <span class="kbd">2글자</span> 자동완성 또는 <span class="kbd">F2</span> 코드도움(세목 사용 시 5자리), 금액칸 <span class="kbd">+</span> 천원단위 "000", 다음 행 <span class="kbd">Enter</span>, 저장 <span class="kbd">Ctrl+S</span>.</li>
+  <li><b>2단계 검증</b>: <span class="badge b-amber">Amber 경고</span>(저장 가능) / <span class="badge b-red">Red 차단</span>(저장 불가). 대차차액·차원합계 불일치는 서버 측 제약으로 이중 검증.</li>
+  <li><b>마감 상태 가드</b>: 대상 <code>fiscal_period</code>가 TEMP_CLOSED/CLOSED/LOCKED면 해당 기간 전기이월 저장/이동 차단(조회만).</li>
+  <li><b>append-only</b>: 모든 초기이월·전기 스냅샷은 변경이력 append-only, 물리 삭제 금지. 초기화는 논리 삭제 + 감사로그.</li>
+  <li><b>6 관리차원</b>: 사업장(*기본필수)·코스트센터·부서·프로젝트·현장·사원. 초기이월 입력 가능 차원은 <code>DimensionConfig.required</code> 및 SA-BAS-03 관리코드 사용여부로 결정.</li>
+</ul>
+<h3>2.2 전기이월 데이터 모델 매핑 (PostgreSQL)</h3>
+<table>
+  <tr><th>화면 요소</th><th>엔티티 / 테이블</th><th>비고</th></tr>
+  <tr><td>전기분 재무제표</td><td><code>opening_statement</code> / <code>fs_snapshot</code></td><td>BS/PL/제조원가/처분/자본변동/현금흐름 6종. <code>(tenant_id, fiscal_period_id, fs_type)</code> 키</td></tr>
+  <tr><td>계정 기초잔액</td><td><code>opening_balance</code></td><td>계정×6차원 키. 전기이월 잔액(차변/대변). RLS 필터 통과</td></tr>
+  <tr><td>월별 배분</td><td><code>opening_period_alloc</code></td><td>연 P&amp;L/원가 전기값을 월(01~12)로 배분. 합계=연간값 검증</td></tr>
+  <tr><td>차원 초기이월</td><td><code>opening_dim_balance</code></td><td>거래처/부서/사원/프로젝트/현장/외주처 차원별 명세</td></tr>
+  <tr><td>중도시산 개시전표</td><td><code>journal(entryCode=DR/CR)</code></td><td>시산표 잔액→개시 자동전표 batch. 분개화면 미리보기</td></tr>
+  <tr><td>마감후이월 연계</td><td><code>SA-BAS-14 / fiscal_period</code></td><td>차기 자동반영 소스. 기간 경계로 이월 트리거</td></tr>
+  <tr><td>변경 이력</td><td><code>data_change_log</code></td><td>append-only, 물리 삭제 금지(12.3)</td></tr>
+</table>
+</section>
+
+<section id="s3">
+<h2>3. 페이즈 02 화면 목록 (인벤토리)</h2>
+<table>
+<tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>핵심 필드</th><th>상세</th></tr>
+<tr><td><code>SA-OPN-01</code></td><td>전기분재무상태표</td><td>전기 재무제표</td><td>25.2.1</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>Code/계정과목(2글자·F2, 세목 5자리)·차변/대변(+키 천원단위)</td><td><a href="#sa-opn-01">●</a></td></tr>
+<tr><td><code>SA-OPN-02</code></td><td>전기분손익계산서</td><td>전기 재무제표</td><td>25.2.2</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>기간(전기 회계기간)·Code/계정과목·금액(+키)</td><td><a href="#sa-opn-02">●</a></td></tr>
+<tr><td><code>SA-OPN-03</code></td><td>전기분원가명세서</td><td>전기 재무제표</td><td>25.2.3</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>Code/계정과목·금액·원가설정(매출원가-원가경비 연결)</td><td><a href="#sa-opn-03">●</a></td></tr>
+<tr><td><code>SA-OPN-04</code></td><td>전기분이익잉여금처분계산서</td><td>전기 재무제표</td><td>25.2.4</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>계정과목·금액(결손금 -)·라인추가·처분항목 제외/추가</td><td><a href="#sa-opn-04">●</a></td></tr>
+<tr><td><code>SA-OPN-05</code></td><td>전기분자본변동표</td><td>전기 재무제표</td><td>25.2.5</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>전기년도(전기·전전기)·직접입력·추가·집계 표시설정</td><td><a href="#sa-opn-05">●</a></td></tr>
+<tr><td><code>SA-OPN-06</code></td><td>전기분현금흐름표</td><td>전기 재무제표</td><td>25.2.6</td><td><span class="badge b-teal">전기 재무제표 입력</span></td><td>현금흐름분류(0전체/1영업/2투자/3재무)·과목편집</td><td><a href="#sa-opn-06">●</a></td></tr>
+<tr><td><code>SA-OPN-07</code></td><td>거래처별초기이월</td><td>초기이월 보조부</td><td>25.2.7</td><td><span class="badge b-blue">초기이월 보조부</span></td><td>Code/계정/금액(불러오기)·거래처/금액(2글자·F2)·차액</td><td><a href="#sa-opn-07">●</a></td></tr>
+<tr><td><code>SA-OPN-08</code></td><td>부서/사원별초기이월</td><td>초기이월 보조부</td><td>25.2.8</td><td><span class="badge b-blue">초기이월 보조부</span></td><td>Code/계정/금액·사원/부서/금액(사원명 2글자→부서 자동)</td><td><a href="#sa-opn-08">●</a></td></tr>
+<tr><td><code>SA-OPN-09</code></td><td>전기 기간별손익계산서</td><td>월별 배분</td><td>25.3.1</td><td><span class="badge b-purple">월별 배분 매트릭스</span></td><td>계정과목(OPN-02 반영)·월별 금액·차액(연간 vs 월합)</td><td><a href="#sa-opn-09">●</a></td></tr>
+<tr><td><code>SA-OPN-10</code></td><td>전기 기간별원가계산서(원가명세서)</td><td>월별 배분</td><td>25.3.2</td><td><span class="badge b-purple">월별 배분 매트릭스</span></td><td>원가설정·대분류 항목집계·계정과목 코드보기·월별 금액</td><td><a href="#sa-opn-10">●</a></td></tr>
+<tr><td><code>SA-OPN-11</code></td><td>전기 프로젝트손익현황</td><td>월별 배분</td><td>25.3.3</td><td><span class="badge b-purple">프로젝트 배분</span></td><td>프로젝트명(2글자·F2)·Code/계정/금액·계정과목복사</td><td><a href="#sa-opn-11">●</a></td></tr>
+<tr><td><code>SA-OPN-12</code></td><td>전기 프로젝트원가현황</td><td>월별 배분</td><td>25.3.4</td><td><span class="badge b-purple">프로젝트 배분</span></td><td>원가경비·프로젝트명·Code/계정/금액·불러오기</td><td><a href="#sa-opn-12">●</a></td></tr>
+<tr><td><code>SA-OPN-13</code></td><td>프로젝트초기이월</td><td>초기이월 보조부</td><td>25.3.5</td><td><span class="badge b-blue">초기이월 보조부(탭)</span></td><td>계정과목/부서·사원/거래처 탭·Code/프로젝트/금액·차액</td><td><a href="#sa-opn-13">●</a></td></tr>
+<tr><td><code>SA-OPN-14</code></td><td>전기 중단사업손익계산서</td><td>중단사업</td><td>25.3.6</td><td><span class="badge b-blue">초기이월 보조부</span></td><td>중단사업부서·Code/계정과목·금액·항목보기</td><td><a href="#sa-opn-14">●</a></td></tr>
+<tr><td><code>SA-OPN-15</code></td><td>전기 중단사업원가명세서</td><td>중단사업</td><td>25.3.7</td><td><span class="badge b-blue">초기이월 보조부</span></td><td>Code/계정과목·금액·원가설정·중단사업 코드설정</td><td><a href="#sa-opn-15">●</a></td></tr>
+<tr><td><code>SA-OPN-16</code></td><td>중도시산표</td><td>중도시산</td><td>25.3.8</td><td><span class="badge b-amber">시산표→개시전표 batch</span></td><td>Code/계정과목·차변/대변·항목별 합계표(read-only)</td><td><a href="#sa-opn-16">●</a></td></tr>
+<tr><td><code>SA-OPN-17</code></td><td>미완성공사초기이월</td><td>건설·현장</td><td>25.3.9</td><td><span class="badge b-blue">초기이월 보조부(도급/분양)</span></td><td>Code/현장명/금액(2글자·F2)·분류명/금액·상세입력</td><td><a href="#sa-opn-17">●</a></td></tr>
+<tr><td><code>SA-OPN-18</code></td><td>외주처별초기이월</td><td>건설·현장</td><td>25.3.10</td><td><span class="badge b-blue">초기이월 보조부</span></td><td>외주처/현장(F2)·계약금액/선급금/외주비/잔액(자동계산)</td><td><a href="#sa-opn-18">●</a></td></tr>
+<tr><td><code>SA-OPN-19</code></td><td>현장별/거래처별초기이월</td><td>건설·현장</td><td>25.3.11</td><td><span class="badge b-blue">초기이월 보조부(다차원)</span></td><td>계정별 현장초기이월·현장별 거래처초기이월·차액표시</td><td><a href="#sa-opn-19">●</a></td></tr>
+</table>
+</section>
+
+<section id="s4">
+<h2>4. 전기분 재무제표 입력 (SA-OPN-01~06)</h2>
+<p>최초 작업년도에 전기 스냅샷을 입력하는 6개 서식. 입력 결과는 비교식 재무제표(P05)의 <b>전기열</b>과 당기 <b>기초잔액</b>의 준거가 된다. 4종(BS·PL·제조원가·처분)은 상호 정합성을 서버 제약으로 강제한다.</p>
+
+<h4 id="sa-opn-01"><span class="sid">SA-OPN-01</span>전기분재무상태표</h4>
+<table class="meta">
+  <tr><th>용도</th><td>전기말 자산·부채·자본 잔액을 계정별로 입력 → 모든 초기이월의 <b>준거 금액</b>이자 당기 기초잔액 원천</td><th>API</th><td><code>GET/PUT /api/tenant/opening/bs</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=BS)</code> · <code>opening_balance</code></td></tr>
+</table>
+<div class="note"><b>대차 균형 강제</b> — 자산총계 = 부채+자본 총계가 일치하지 않으면 <span class="badge b-red">차단</span>(<code>BS_NOT_BALANCED</code>). 이월이익잉여금은 SA-OPN-04 처분계산서의 차기이월액과 일치해야 한다(<code>RE_MISMATCH</code> <span class="badge b-amber">경고</span>).</div>
+<div class="wf">
+  <div class="wf-cap">전기분재무상태표 — 좌측 계정 입력 그리드 + 우측 정합성 검증 패널</div>
+  <div class="wf-bar">전기이월 › 전기분재무상태표 <span class="sp"></span><span class="badge b-blue">최초년도</span><span>👤 홍길동 · 회계담당</span></div>
+  <div class="wf-tool">전기 회계기간 <span class="wf-in" style="min-width:150px">2024-01-01~12-31</span> <span class="wf-btn">불러오기</span><span class="wf-btn">세목보기</span><span class="sp" style="flex:1"></span><span class="wf-btn">행추가(Ins)</span><span class="wf-btn pri">저장(Ctrl+S)</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 62%">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정과목</th><th class="r">차변(자산)</th><th class="r">대변(부채·자본)</th></tr>
+      <tr><td class="r">101</td><td>현금</td><td class="r">12,400,000</td><td class="r"></td></tr>
+      <tr><td class="r">103</td><td>보통예금</td><td class="r">85,200,000</td><td class="r"></td></tr>
+      <tr><td class="r">108</td><td>외상매출금</td><td class="r">64,000,000</td><td class="r"></td></tr>
+      <tr><td class="r">251</td><td>외상매입금</td><td class="r"></td><td class="r">38,500,000</td></tr>
+      <tr><td class="r">331</td><td>자본금</td><td class="r"></td><td class="r">100,000,000</td></tr>
+      <tr><td class="r">375</td><td>이월이익잉여금</td><td class="r"></td><td class="r">22,300,000</td></tr>
+      <tr><td><span class="wf-in" style="min-width:48px">F2</span></td><td><span class="wf-in" style="min-width:120px">계정(2글자)…</span></td><td class="r"><span class="wf-in">+</span></td><td class="r"></td></tr>
+    </table>
+    </div>
+    <div style="flex:0 0 36%">
+      <div class="wf-panel pnl"><div class="pt">대차 정합성</div>
+        <div class="wf-row"><label>자산총계</label><b>161,600,000</b></div>
+        <div class="wf-row"><label>부채+자본</label><b>161,600,000</b></div>
+        <div class="wf-row"><label>차액</label><span class="badge b-green">0 · 균형</span></div>
+      </div>
+      <div class="wf-panel"><div class="pt">연계 검증</div>
+        <div class="wf-row"><label>이월이익잉여금</label><span class="badge b-green">처분계산서 일치</span></div>
+        <div class="wf-row"><label>당기 기초잔액</label><span class="badge b-gray">생성 대기</span></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">자산 <b>161,600,000</b> = 부채·자본 <b>161,600,000</b> <span class="badge b-green">대차 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장 후 기초잔액 생성</span></div>
+</div>
+<table>
+  <tr><th>요소 / 액션</th><th>처리 · 검증</th></tr>
+  <tr><td>계정 입력</td><td>Code 직접 또는 계정명 2글자 자동완성·<span class="kbd">F2</span> 코드도움(세목 5자리). 금액칸 <span class="kbd">+</span> 천원 자동.</td></tr>
+  <tr><td>불러오기</td><td>전년 마감 데이터가 있으면 SA-BAS-14 자동이월값을 prefill(<span class="badge b-gray">자동이월</span> 배지), 수정 시 변경이력 기록.</td></tr>
+  <tr><td>저장</td><td>대차 균형 통과 시에만 <code>opening_balance</code>(계정×차원) 생성. 마감기간이면 <code>PERIOD_CLOSED</code> 차단.</td></tr>
+</table>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>대차 균형</td><td>자산총계 ≠ 부채+자본</td><td><span class="badge b-red">차단</span> <code>BS_NOT_BALANCED</code></td></tr>
+  <tr><td>이월이익잉여금</td><td>OPN-04 차기이월액과 불일치</td><td><span class="badge b-amber">경고</span> <code>RE_MISMATCH</code></td></tr>
+  <tr><td>마감기간</td><td>fiscal_period CLOSED/LOCKED</td><td><span class="badge b-red">차단</span> 조회만</td></tr>
+</table>
+
+<h4 id="sa-opn-02"><span class="sid">SA-OPN-02</span>전기분손익계산서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>전기 수익·비용을 계정별 입력 → 당기순손익 산출, 처분계산서·자본변동표·월별배분(OPN-09)의 원천</td><th>API</th><td><code>GET/PUT /api/tenant/opening/pl</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=PL)</code></td></tr>
+</table>
+<div class="note"><b>당기제품제조원가 연결</b> — 매출원가 계정의 「당기제품제조원가」는 SA-OPN-03 원가명세서 합계와 일치해야 한다(<code>COGM_MISMATCH</code> <span class="badge b-red">차단</span>). 당기순손익은 OPN-04 처분계산서·OPN-05 자본변동표와 일치 검증.</div>
+<div class="wf">
+  <div class="wf-cap">전기분손익계산서 — 매출/원가/판관비/영업외 계층 입력</div>
+  <div class="wf-bar">전기이월 › 전기분손익계산서 <span class="sp"></span><span class="badge b-blue">최초년도</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">전기 기간 <span class="wf-in" style="min-width:150px">2024-01-01~12-31</span><span class="wf-btn">원가명세서 불러오기</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정과목</th><th>구분</th><th class="r">금액</th></tr>
+      <tr><td class="r">401</td><td>상품매출</td><td>매출</td><td class="r">820,000,000</td></tr>
+      <tr><td class="r">451</td><td>상품매출원가</td><td>매출원가</td><td class="r">560,000,000</td></tr>
+      <tr><td class="r">801</td><td>급여</td><td>판관비</td><td class="r">120,000,000</td></tr>
+      <tr><td class="r">811</td><td>복리후생비</td><td>판관비</td><td class="r">18,000,000</td></tr>
+      <tr><td class="r">901</td><td>이자수익</td><td>영업외수익</td><td class="r">1,200,000</td></tr>
+      <tr><td colspan="4" style="color:#8a94a8">… 매출총이익 260,000,000 · 영업이익 122,000,000 · 당기순이익 <b>98,400,000</b> …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">당기순이익 <b>98,400,000</b> <span class="badge b-green">처분계산서 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>당기제품제조원가</td><td>OPN-03 합계와 불일치</td><td><span class="badge b-red">차단</span> <code>COGM_MISMATCH</code></td></tr>
+  <tr><td>당기순손익</td><td>OPN-04/05와 불일치</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-opn-03"><span class="sid">SA-OPN-03</span>전기분원가명세서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>제조(또는 공사·분양) 원가요소(재료비·노무비·경비)와 재공품 증감을 입력 → 당기제품제조원가 산출, OPN-02 매출원가와 연결</td><th>API</th><td><code>GET/PUT /api/tenant/opening/cogm</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=COGM)</code></td></tr>
+</table>
+<div class="tip"><b>원가설정</b> — 매출원가 계정과 원가경비(제조/도급/분양) 코드를 연결한다. 복수 원가부문(제1제조·제2제조 등)이면 부문별 명세서를 탭으로 분리하고 합산한다.</div>
+<div class="wf">
+  <div class="wf-cap">전기분원가명세서 — 원가요소 입력 + 재공품 증감</div>
+  <div class="wf-bar">전기이월 › 전기분원가명세서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">원가설정</span> 원가부문 <span class="wf-in">제조 ▾</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정과목</th><th>원가요소</th><th class="r">금액</th></tr>
+      <tr><td class="r">501</td><td>원재료비</td><td>재료비</td><td class="r">240,000,000</td></tr>
+      <tr><td class="r">504</td><td>임금</td><td>노무비</td><td class="r">160,000,000</td></tr>
+      <tr><td class="r">515</td><td>가스수도료</td><td>경비</td><td class="r">22,000,000</td></tr>
+      <tr><td colspan="4" style="color:#8a94a8">… 당기총제조비용 422,000,000 ± 재공품증감 → 당기제품제조원가 <b>560,000,000</b> …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">당기제품제조원가 <b>560,000,000</b> <span class="badge b-green">OPN-02 매출원가 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>원가 합계</td><td>당기제품제조원가 ≠ OPN-02 매출원가 연결액</td><td><span class="badge b-red">차단</span> <code>COGM_MISMATCH</code></td></tr>
+</table>
+
+<h4 id="sa-opn-04"><span class="sid">SA-OPN-04</span>전기분이익잉여금처분계산서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>전기 미처분이익잉여금·처분내역(배당·적립)·차기이월액을 입력 → OPN-01 이월이익잉여금의 준거</td><th>API</th><td><code>GET/PUT /api/tenant/opening/re</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=RE)</code></td></tr>
+</table>
+<div class="note">전기이월미처분이익잉여금 + 당기순이익(OPN-02) − 처분액 = <b>차기이월미처분이익잉여금</b>. 이 값이 OPN-01 이월이익잉여금과 일치해야 한다. 결손금은 음수(-)로 입력한다.</div>
+<div class="wf">
+  <div class="wf-cap">전기분이익잉여금처분계산서 — 처분항목 입력</div>
+  <div class="wf-bar">전기이월 › 처분계산서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">처분항목 추가</span><span class="wf-btn">항목 제외</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th>항목</th><th class="r">금액</th></tr>
+      <tr><td>I</td><td>전기이월미처분이익잉여금</td><td class="r">12,000,000</td></tr>
+      <tr><td>II</td><td>당기순이익</td><td class="r">98,400,000</td></tr>
+      <tr><td>III</td><td>이익준비금적립</td><td class="r">5,000,000</td></tr>
+      <tr><td>III</td><td>현금배당</td><td class="r">30,000,000</td></tr>
+      <tr><td>IV</td><td><b>차기이월미처분이익잉여금</b></td><td class="r"><b>75,400,000</b></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">차기이월 <b>75,400,000</b> <span class="badge b-amber">OPN-01 22,300,000과 차이 확인</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>차기이월액</td><td>OPN-01 이월이익잉여금과 불일치</td><td><span class="badge b-amber">경고</span> <code>RE_MISMATCH</code></td></tr>
+</table>
+
+<h4 id="sa-opn-05"><span class="sid">SA-OPN-05</span>전기분자본변동표</h4>
+<table class="meta">
+  <tr><th>용도</th><td>자본금·자본잉여금·이익잉여금 등 자본항목의 전기·전전기 기초→증감→기말 변동을 입력</td><th>API</th><td><code>GET/PUT /api/tenant/opening/soce</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=SOCE)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기분자본변동표 — 자본항목 × 변동사유 매트릭스</div>
+  <div class="wf-bar">전기이월 › 자본변동표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">표시년도 <span class="wf-in">전기·전전기 ▾</span><span class="wf-btn">집계 표시설정</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>변동사유</th><th class="r">자본금</th><th class="r">자본잉여금</th><th class="r">이익잉여금</th><th class="r">합계</th></tr>
+      <tr><td>전기초 잔액</td><td class="r">100,000,000</td><td class="r">0</td><td class="r">12,000,000</td><td class="r">112,000,000</td></tr>
+      <tr><td>당기순이익</td><td class="r"></td><td class="r"></td><td class="r">98,400,000</td><td class="r">98,400,000</td></tr>
+      <tr><td>배당</td><td class="r"></td><td class="r"></td><td class="r">-30,000,000</td><td class="r">-30,000,000</td></tr>
+      <tr><td><b>전기말 잔액</b></td><td class="r">100,000,000</td><td class="r">0</td><td class="r"><b>80,400,000</b></td><td class="r"><b>180,400,000</b></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">기말 자본 = BS 자본총계 검증</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>기말 자본</td><td>OPN-01 자본총계와 불일치</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-opn-06"><span class="sid">SA-OPN-06</span>전기분현금흐름표</h4>
+<table class="meta">
+  <tr><th>용도</th><td>영업·투자·재무 활동별 현금흐름을 입력(간접법). 비교식 현금흐름표 전기열 공급</td><th>API</th><td><code>GET/PUT /api/tenant/opening/cf</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=CF)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기분현금흐름표 — 활동별 분류(0전체/1영업/2투자/3재무)</div>
+  <div class="wf-bar">전기이월 › 현금흐름표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">현금흐름분류 <span class="wf-in">0 전체 ▾</span><span class="wf-btn">과목편집</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th>과목</th><th class="r">금액</th></tr>
+      <tr><td>영업</td><td>당기순이익</td><td class="r">98,400,000</td></tr>
+      <tr><td>영업</td><td>감가상각비</td><td class="r">12,000,000</td></tr>
+      <tr><td>투자</td><td>유형자산 취득</td><td class="r">-40,000,000</td></tr>
+      <tr><td>재무</td><td>배당금 지급</td><td class="r">-30,000,000</td></tr>
+      <tr><td colspan="3" style="color:#8a94a8">… 현금증가 = 기말현금 − 기초현금 검증 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">현금증감 = BS 현금성자산 증감 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>현금증감</td><td>BS 현금성자산 기말−기초와 불일치</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+</section>
+
+<section id="s5">
+<h2>5. 관리항목별 초기이월 (SA-OPN-07·08·13)</h2>
+<p>재무상태표(OPN-01) 계정금액을 <b>준거</b>로, 거래처·부서/사원·프로젝트 등 차원별 명세를 입력한다. <b>좌측 BS 준거금액 vs 우측 차원합계</b>의 차액 0을 검증한다.</p>
+
+<h4 id="sa-opn-07"><span class="sid">SA-OPN-07</span>거래처별초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>외상매출금·외상매입금·받을어음 등 거래처 관리계정의 기초잔액을 <b>거래처별</b>로 분해 입력 → P04 거래처원장 전기이월</td><th>API</th><td><code>GET/PUT /api/tenant/opening/partner</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=PARTNER)</code></td></tr>
+</table>
+<div class="note"><b>차액 0 검증</b> — 좌측 계정 금액(OPN-01 불러오기) = 우측 거래처별 금액 합계여야 저장 가능. 불일치 시 <span class="badge b-red">차단</span> <code>DIM_SUM_MISMATCH</code>.</div>
+<div class="wf">
+  <div class="wf-cap">거래처별초기이월 — 좌측 계정 선택 + 우측 거래처별 금액</div>
+  <div class="wf-bar">전기이월 › 거래처별초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">계정 불러오기(OPN-01)</span><span class="sp" style="flex:1"></span><span class="wf-btn">행추가(Ins)</span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 40%">
+      <table class="wf-grid">
+        <tr><th>Code</th><th>계정과목</th><th class="r">준거금액</th></tr>
+        <tr style="background:#eef3ff"><td class="r">108</td><td>외상매출금</td><td class="r">64,000,000</td></tr>
+        <tr><td class="r">110</td><td>받을어음</td><td class="r">18,000,000</td></tr>
+        <tr><td class="r">251</td><td>외상매입금</td><td class="r">38,500,000</td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 58%">
+      <div style="font-weight:700;margin-bottom:3px">108 외상매출금 — 거래처별</div>
+      <table class="wf-grid">
+        <tr><th>거래처</th><th class="r">금액</th></tr>
+        <tr><td>(주)대한상사</td><td class="r">40,000,000</td></tr>
+        <tr><td>한빌딩</td><td class="r">24,000,000</td></tr>
+        <tr><td><span class="wf-in" style="min-width:90px">거래처(2글자·F2)</span></td><td class="r"><span class="wf-in">+</span></td></tr>
+        <tr><td><b>합계</b></td><td class="r"><b>64,000,000</b> <span class="badge b-green">차액 0</span></td></tr>
+      </table>
+    </div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-green">선택계정 차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>차원합계</td><td>거래처 합계 ≠ 준거금액</td><td><span class="badge b-red">차단</span> <code>DIM_SUM_MISMATCH</code></td></tr>
+  <tr><td>거래처 유효성</td><td>휴·폐업 또는 미등록 거래처</td><td><span class="badge b-amber">경고</span> 등록 유도</td></tr>
+</table>
+
+<h4 id="sa-opn-08"><span class="sid">SA-OPN-08</span>부서/사원별초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>가지급금·전도금 등 사원·부서 관리계정 기초잔액을 사원/부서별 분해 입력</td><th>API</th><td><code>GET/PUT /api/tenant/opening/empdept</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=EMP/DEPT)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">부서/사원별초기이월 — 사원명 2글자 입력 시 소속부서 자동</div>
+  <div class="wf-bar">전기이월 › 부서/사원별초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">계정 불러오기</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정</th><th>사원</th><th>부서(자동)</th><th class="r">금액</th></tr>
+      <tr><td class="r">134</td><td>가지급금</td><td>김영업</td><td>영업1팀</td><td class="r">1,500,000</td></tr>
+      <tr><td class="r">134</td><td>가지급금</td><td>이관리</td><td>경영지원팀</td><td class="r">800,000</td></tr>
+      <tr><td colspan="5" style="color:#8a94a8">… 사원명 2글자→부서 자동기입 · 준거 2,300,000 = 합계 2,300,000 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>차원합계</td><td>사원/부서 합계 ≠ 준거금액</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-opn-13"><span class="sid">SA-OPN-13</span>프로젝트초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>프로젝트 관리계정 기초잔액을 <b>계정과목/부서·사원/거래처 탭</b>으로 프로젝트별 분해 입력</td><th>API</th><td><code>GET/PUT /api/tenant/opening/project</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=PROJECT)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">프로젝트초기이월 — 탭(계정과목 / 부서·사원 / 거래처) × 프로젝트</div>
+  <div class="wf-bar">전기이월 › 프로젝트초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">계정과목별</span><span>부서·사원별</span><span>거래처별</span></div>
+    <table class="wf-grid">
+      <tr><th>Code</th><th>프로젝트</th><th class="r">금액</th></tr>
+      <tr><td class="r">108</td><td>A현장 신축</td><td class="r">28,000,000</td></tr>
+      <tr><td class="r">108</td><td>B리모델링</td><td class="r">36,000,000</td></tr>
+      <tr><td colspan="3" style="color:#8a94a8">… 프로젝트명 2글자·F2 · 계정과목복사 · 차액표시 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>차원합계</td><td>프로젝트 합계 ≠ 준거금액</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+</section>
+
+<section id="s6">
+<h2>6. 전기 월별·프로젝트 배분 (SA-OPN-09~12)</h2>
+<p>전기 연간 손익·원가(OPN-02/03)를 <b>월(01~12)</b> 또는 <b>프로젝트</b>로 배분하는 매트릭스 그리드. 월합·프로젝트합이 연간값과 일치해야 한다.</p>
+
+<h4 id="sa-opn-09"><span class="sid">SA-OPN-09</span>전기 기간별손익계산서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>OPN-02 손익 계정을 월별로 배분 → 비교식 월별 손익추이 전기값</td><th>API</th><td><code>GET/PUT /api/tenant/opening/pl-monthly</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_period_alloc</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 기간별손익계산서 — 계정 × 월 매트릭스 (차액=연간 vs 월합)</div>
+  <div class="wf-bar">전기이월 › 기간별손익계산서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">OPN-02 반영</span><span class="wf-btn">균등배분</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">1월</th><th class="r">2월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간</th><th class="r">차액</th></tr>
+      <tr><td>상품매출</td><td class="r">68,000</td><td class="r">70,000</td><td class="r">…</td><td class="r">72,000</td><td class="r">820,000</td><td class="r"><span class="badge b-green">0</span></td></tr>
+      <tr><td colspan="7" style="color:#8a94a8">… 단위 천원 · 월합 ≠ 연간이면 차액 강조 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">전 계정 차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>월합</td><td>월별 합계 ≠ 연간(OPN-02)</td><td><span class="badge b-red">차단</span> <code>ALLOC_SUM_MISMATCH</code></td></tr>
+</table>
+
+<h4 id="sa-opn-10"><span class="sid">SA-OPN-10</span>전기 기간별원가계산서(원가명세서)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>OPN-03 원가요소를 월별 배분. 원가설정·대분류 항목집계·계정 코드보기 지원</td><th>API</th><td><code>GET/PUT /api/tenant/opening/cogm-monthly</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_period_alloc(type=COGM)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 기간별원가계산서 — 원가요소 × 월 매트릭스</div>
+  <div class="wf-bar">전기이월 › 기간별원가계산서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">원가설정 <span class="wf-in">제조 ▾</span><span class="wf-btn">대분류 집계</span><span class="wf-btn">코드보기</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>원가요소</th><th class="r">1월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간</th><th class="r">차액</th></tr>
+      <tr><td>재료비</td><td class="r">19,000</td><td class="r">…</td><td class="r">21,000</td><td class="r">240,000</td><td class="r"><span class="badge b-green">0</span></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>월합</td><td>월별 합계 ≠ 연간(OPN-03)</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-opn-11"><span class="sid">SA-OPN-11</span>전기 프로젝트손익현황</h4>
+<table class="meta">
+  <tr><th>용도</th><td>OPN-02 손익을 프로젝트별 배분 → 프로젝트 손익 전기값</td><th>API</th><td><code>GET/PUT /api/tenant/opening/pl-project</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=PROJECT,type=PL)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 프로젝트손익현황 — 프로젝트 × 계정</div>
+  <div class="wf-bar">전기이월 › 프로젝트손익현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">프로젝트 <span class="wf-in">A현장 ▾</span><span class="wf-btn">계정과목복사</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정</th><th class="r">금액</th></tr>
+      <tr><td class="r">401</td><td>공사수익</td><td class="r">320,000,000</td></tr>
+      <tr><td class="r">451</td><td>공사원가</td><td class="r">240,000,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">프로젝트합 = 연간 검증</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>프로젝트합</td><td>≠ 연간(OPN-02)</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-opn-12"><span class="sid">SA-OPN-12</span>전기 프로젝트원가현황</h4>
+<table class="meta">
+  <tr><th>용도</th><td>OPN-03 원가경비를 프로젝트별 배분(불러오기 지원)</td><th>API</th><td><code>GET/PUT /api/tenant/opening/cogm-project</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=PROJECT,type=COGM)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 프로젝트원가현황 — 원가경비 × 프로젝트</div>
+  <div class="wf-bar">전기이월 › 프로젝트원가현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">원가경비 <span class="wf-in">제조 ▾</span> 프로젝트 <span class="wf-in">A현장 ▾</span><span class="wf-btn">불러오기</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>계정</th><th class="r">금액</th></tr>
+      <tr><td class="r">501</td><td>원재료비</td><td class="r">140,000,000</td></tr>
+      <tr><td class="r">504</td><td>임금</td><td class="r">80,000,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">프로젝트합 검증</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>프로젝트합</td><td>≠ 연간(OPN-03)</td><td><span class="badge b-amber">경고</span></td></tr></table>
+</section>
+
+<section id="s7">
+<h2>7. 중단사업·중도시산 (SA-OPN-14~16)</h2>
+
+<h4 id="sa-opn-14"><span class="sid">SA-OPN-14</span>전기 중단사업손익계산서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>중단사업부서의 전기 손익을 분리 입력 → 계속·중단 손익 구분 표시</td><th>API</th><td><code>GET/PUT /api/tenant/opening/pl-discontinued</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=PL_DISC)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 중단사업손익계산서</div>
+  <div class="wf-bar">전기이월 › 중단사업손익계산서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">중단사업부서 <span class="wf-in">유통사업부 ▾</span><span class="wf-btn">항목보기</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>Code</th><th>계정</th><th class="r">금액</th></tr>
+      <tr><td class="r">401</td><td>매출</td><td class="r">60,000,000</td></tr>
+      <tr><td class="r">451</td><td>매출원가</td><td class="r">52,000,000</td></tr></table>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">중단사업손익 8,000,000</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>부서 귀속</td><td>중단사업부서 미지정</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-opn-15"><span class="sid">SA-OPN-15</span>전기 중단사업원가명세서</h4>
+<table class="meta">
+  <tr><th>용도</th><td>중단사업의 원가명세를 분리 입력(원가설정·중단사업 코드설정)</td><th>API</th><td><code>GET/PUT /api/tenant/opening/cogm-discontinued</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_statement(fs_type=COGM_DISC)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전기 중단사업원가명세서</div>
+  <div class="wf-bar">전기이월 › 중단사업원가명세서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">원가설정</span><span class="wf-btn">중단사업 코드설정</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>Code</th><th>계정</th><th class="r">금액</th></tr>
+      <tr><td class="r">501</td><td>원재료비</td><td class="r">30,000,000</td></tr></table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">OPN-14 연결 검증</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>원가 연결</td><td>OPN-14 매출원가와 불일치</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-opn-16"><span class="sid">SA-OPN-16</span>중도시산표</h4>
+<table class="meta">
+  <tr><th>용도</th><td>기중(중도) 도입 시 시산표 잔액을 입력 → <b>개시 자동전표(batch)</b>로 변환. 분개 화면 미리보기 제공</td><th>API</th><td><code>POST /api/tenant/opening/midyear-trial</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>journal(entryCode=DR/CR)</code> batch</td></tr>
+</table>
+<div class="note">중도시산표는 입력 후 <b>개시전표 배치</b>로 전환된다. 차/대 합계 불일치 시 <span class="badge b-red">차단</span>(<code>TRIAL_NOT_BALANCED</code>). 생성된 개시전표는 P03/P04에서 전기이월 원천이 되며 append-only로 보존된다.</div>
+<div class="wf">
+  <div class="wf-cap">중도시산표 — 입력 그리드 + 개시전표 미리보기</div>
+  <div class="wf-bar">전기이월 › 중도시산표 <span class="sp"></span><span class="badge b-amber">개시전표 batch</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in" style="min-width:120px">2026-07-01</span><span class="wf-btn">항목별 합계표</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">개시전표 생성</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 60%">
+      <table class="wf-grid">
+        <tr><th>Code</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th></tr>
+        <tr><td class="r">101</td><td>현금</td><td class="r">9,000,000</td><td class="r"></td></tr>
+        <tr><td class="r">103</td><td>보통예금</td><td class="r">120,000,000</td><td class="r"></td></tr>
+        <tr><td class="r">251</td><td>외상매입금</td><td class="r"></td><td class="r">45,000,000</td></tr>
+        <tr><td class="r">331</td><td>자본금</td><td class="r"></td><td class="r">84,000,000</td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 38%">
+      <div class="wf-panel pnl"><div class="pt">개시전표 미리보기</div>
+        <div class="wf-row"><label>전표일자</label>2026-07-01</div>
+        <div class="wf-row"><label>구분</label>개시(자동)</div>
+        <div class="wf-row"><label>차변합</label><b>129,000,000</b></div>
+        <div class="wf-row"><label>대변합</label><b>129,000,000</b></div>
+        <div class="wf-row"><label>균형</label><span class="badge b-green">일치</span></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">차변 <b>129,000,000</b> = 대변 <b>129,000,000</b> <span class="badge b-green">대차 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">개시전표 생성</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>대차 균형</td><td>차변합 ≠ 대변합</td><td><span class="badge b-red">차단</span> <code>TRIAL_NOT_BALANCED</code></td></tr>
+  <tr><td>마감기간</td><td>기준일 fiscal_period CLOSED</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+</section>
+
+<section id="s8">
+<h2>8. 건설·현장 초기이월 (SA-OPN-17~19)</h2>
+
+<h4 id="sa-opn-17"><span class="sid">SA-OPN-17</span>미완성공사초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>도급·분양 현장의 미완성공사(재공품) 누적원가를 현장·분류별로 입력</td><th>API</th><td><code>GET/PUT /api/tenant/opening/wip</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=SITE,type=WIP)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">미완성공사초기이월 — 현장 × 분류(재료·노무·외주·경비)</div>
+  <div class="wf-bar">전기이월 › 미완성공사초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn">상세입력</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>Code</th><th>현장명</th><th>분류</th><th class="r">금액</th></tr>
+      <tr><td class="r">169</td><td>A현장 신축</td><td>재료비</td><td class="r">120,000,000</td></tr>
+      <tr><td class="r">169</td><td>A현장 신축</td><td>외주비</td><td class="r">85,000,000</td></tr>
+      <tr><td colspan="4" style="color:#8a94a8">… 현장명 2글자·F2 · 분류명/금액 · 현장합계 표시 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">미완성공사 준거 차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>차원합계</td><td>현장 합계 ≠ 준거(재공품 계정)</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-opn-18"><span class="sid">SA-OPN-18</span>외주처별초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>외주처·현장별 계약금액·선급금·기성외주비·잔액(자동계산) 이월</td><th>API</th><td><code>GET/PUT /api/tenant/opening/subcontractor</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=SUBCON)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">외주처별초기이월 — 잔액=계약−선급−기성 자동계산</div>
+  <div class="wf-bar">전기이월 › 외주처별초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">외주처 <span class="wf-in">(F2)</span> 현장 <span class="wf-in">(F2)</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>외주처</th><th>현장</th><th class="r">계약금액</th><th class="r">선급금</th><th class="r">기성외주비</th><th class="r">잔액(자동)</th></tr>
+      <tr><td>(주)신성건설</td><td>A현장</td><td class="r">200,000,000</td><td class="r">40,000,000</td><td class="r">90,000,000</td><td class="r">70,000,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">잔액 자동검증</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>잔액</td><td>계약−선급−기성 &lt; 0</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-opn-19"><span class="sid">SA-OPN-19</span>현장별/거래처별초기이월</h4>
+<table class="meta">
+  <tr><th>용도</th><td>다차원(계정×현장, 현장×거래처) 초기이월을 한 화면에서 입력·검증</td><th>API</th><td><code>GET/PUT /api/tenant/opening/site-partner</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:opening:write</code></td><th>엔티티</th><td><code>opening_dim_balance(dim=SITE×PARTNER)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">현장별/거래처별초기이월 — 다차원 매트릭스 + 차액표시</div>
+  <div class="wf-bar">전기이월 › 현장별/거래처별초기이월 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">계정별 현장초기이월</span><span>현장별 거래처초기이월</span></div>
+    <table class="wf-grid">
+      <tr><th>Code</th><th>현장</th><th>거래처</th><th class="r">금액</th><th class="r">차액</th></tr>
+      <tr><td class="r">108</td><td>A현장</td><td>(주)대한상사</td><td class="r">28,000,000</td><td class="r"><span class="badge b-green">0</span></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">전 차원 차액 0</span><span class="sp" style="flex:1"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>다차원 합계</td><td>현장·거래처 교차합 ≠ 준거</td><td><span class="badge b-red">차단</span> <code>DIM_SUM_MISMATCH</code></td></tr></table>
+</section>
+
+<section id="s9">
+<h2>9. 부록 · 정합성 검증 매트릭스</h2>
+<table>
+  <tr><th>검증명</th><th>대상 화면</th><th>규칙</th><th>처리</th></tr>
+  <tr><td>대차 균형</td><td>OPN-01·16</td><td>차변합 = 대변합</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>당기제품제조원가</td><td>OPN-02 ↔ 03</td><td>매출원가 연결액 = 원가명세서 합계</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>당기순손익</td><td>OPN-02 ↔ 04 ↔ 05</td><td>PL 순이익 = 처분계산서·자본변동표 순이익</td><td><span class="badge b-amber">경고</span></td></tr>
+  <tr><td>이월이익잉여금</td><td>OPN-01 ↔ 04</td><td>BS 이월이익잉여금 = 처분계산서 차기이월액</td><td><span class="badge b-amber">경고</span></td></tr>
+  <tr><td>차원합계</td><td>OPN-07·08·13·17~19</td><td>차원별 합계 = OPN-01 준거금액</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>월별/프로젝트 배분</td><td>OPN-09~12</td><td>월합·프로젝트합 = 연간값(OPN-02/03)</td><td><span class="badge b-red">차단</span> / <span class="badge b-amber">경고</span></td></tr>
+</table>
+<div class="tip">전체 화면 저장 결과는 계정×차원 <code>opening_balance</code>·<code>opening_period_alloc</code>로 적재되어 <b>P03 전표 기초잔액 · P04 보조부 전기이월 · P05 비교식 재무제표 전기열</b>에 공급된다. 차기 연도부터는 <code>SA-BAS-14 마감후이월</code>이 <code>fiscal_period</code> 경계에서 자동 생성한다.</div>
+</section>
+
+</main>
+</body>
+</html>

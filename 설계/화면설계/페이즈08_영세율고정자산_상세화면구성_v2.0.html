@@ -1,0 +1,744 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 서비스 구현 화면설계서 — 페이즈08 영세율·고정자산 v2.0</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:256px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:256px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:24px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head><body>
+<nav id="toc">
+  <h2>구현 화면설계서 v2.0</h2>
+  <div class="ver">페이즈 08 · 영세율·고정자산 · 2026-06-20</div>
+  <a href="#s1">1. 문서 개요</a>
+  <a href="#s2">2. 공통 UI 표준</a>
+  <a href="#s3">3. 화면 목록(인벤토리)</a>
+  <div class="g">4. 영세율·기타 신고서류 (SA-VAT-*)</div>
+  <a class="sub" href="#sa-vat-36">SA-VAT-36 숙박용역 환급실적</a>
+  <a class="sub" href="#sa-vat-37">SA-VAT-37 즉시환급 판매실적</a>
+  <a class="sub" href="#sa-vat-38">SA-VAT-38 외교관면세 기록표</a>
+  <a class="sub" href="#sa-vat-39">SA-VAT-39 재화·용역 공급기록표</a>
+  <a class="sub" href="#sa-vat-40">SA-VAT-40 공급가액확정명세서</a>
+  <a class="sub" href="#sa-vat-41">SA-VAT-41 선박 운송용역 일람표</a>
+  <a class="sub" href="#sa-vat-42">SA-VAT-42 외항선박 재화·용역</a>
+  <a class="sub" href="#sa-vat-43">SA-VAT-43 영세율매출명세서</a>
+  <a class="sub" href="#sa-vat-44">SA-VAT-44 과세전환 재고품등</a>
+  <a class="sub" href="#sa-vat-45">SA-VAT-45 과세전환 감가상각자산</a>
+  <a class="sub" href="#sa-vat-46">SA-VAT-46 매입자발행세금계산서</a>
+  <a class="sub" href="#sa-vat-47">SA-VAT-47 과세유흥장소 과표</a>
+  <a class="sub" href="#sa-vat-48">SA-VAT-48 사업용계좌 개설신고</a>
+  <a class="sub" href="#sa-vat-49">SA-VAT-49 납부서 작성(전세목)</a>
+  <a class="sub" href="#sa-vat-50">SA-VAT-50 사업양도신고서</a>
+  <div class="g">5. 고정자산 (SA-FA-*)</div>
+  <a class="sub" href="#sa-fa-01">SA-FA-01 고정자산등록</a>
+  <a class="sub" href="#sa-fa-02">SA-FA-02 미상각분 상각계산</a>
+  <a class="sub" href="#sa-fa-03">SA-FA-03 양도자산 상각계산</a>
+  <a class="sub" href="#sa-fa-04">SA-FA-04 원가경비별 명세서</a>
+  <a class="sub" href="#sa-fa-05">SA-FA-05 고정자산관리대장</a>
+  <a class="sub" href="#sa-fa-06">SA-FA-06 현장/부서 자산명세</a>
+  <a class="sub" href="#sa-fa-07">SA-FA-07 월별 감가상각비 계상</a>
+  <div class="g">6. 부록</div>
+  <a class="sub" href="#s6">부록 · 데이터 모델 매핑</a>
+  <div class="g">전체 페이즈</div>
+  <a class="sub" href="페이즈01_기초정보_상세화면구성_v2.0.html">P01 기초정보·조직</a>
+  <a class="sub" href="페이즈02_전기이월_상세화면구성_v2.0.html">P02 전기이월</a>
+  <a class="sub" href="페이즈03_전표자동전표_상세화면구성_v2.0.html">P03 전표·자동전표</a>
+  <a class="sub" href="페이즈04_장부보조부_상세화면구성_v2.0.html">P04 장부·보조부</a>
+  <a class="sub" href="페이즈05_결산재무제표_상세화면구성_v2.0.html">P05 결산·재무제표</a>
+  <a class="sub" href="페이즈06_부가세주요신고_상세화면구성_v2.0.html">P06 부가세 주요신고</a>
+  <a class="sub" href="페이즈07_부가세첨부업종_상세화면구성_v2.0.html">P07 부가세 첨부·업종</a>
+  <a class="sub" href="페이즈08_영세율고정자산_상세화면구성_v2.0.html">P08 영세율·고정자산</a>
+  <a class="sub" href="페이즈09_자금예산어음_상세화면구성_v2.0.html">P09 자금·예산·어음</a>
+  <a class="sub" href="페이즈10_데이터관리운영_상세화면구성_v2.0.html">P10 데이터관리·운영</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>페이즈 08 · 영세율·고정자산</h1>
+  <p>BK 회계/세무 SaaS 구현 화면설계서 · Smart A 기준 · v2.0</p>
+  <p>작성일 2026-06-20 · 멀티테넌트(SHARED+RLS) · NestJS / React 18</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 페이즈 08 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>페이즈 08 구현 착수를 위해 <b>부가세 영세율·기타 신고서류(SA-VAT-36~50)</b>와 <b>고정자산(SA-FA-01~07)</b> 화면별 레이아웃(와이어프레임)·입력 필드·액션/검증·연계 API·권한·상태를 구현 가능한 수준으로 정의한다. 영세율 매출 부속서식과 고정자산 등록·감가상각·처분·월별 상각비 계상을 하나의 페이즈로 묶어, <b>부가세신고서(P06)</b> 영세율 금액 정합과 <b>결산 감가상각 자동전표(P05)</b> 연계를 확정한다.</td></tr>
+  <tr><th>페이즈 정의</th><td>영세율 첨부서류(수출실적명세서·영세율매출명세서·외화획득명세서·내국신용장/구매확인서 전자발급명세서·영세율 첨부서류 제출명세서) + 외국인관광객·외교관·외항선박·항공 영세율 부속서식 + 과세유형 전환(재고품/감가상각자산) + 사업용계좌·납부서·사업양도 + <b>고정자산 마스터(취득가·내용연수·상각방법 정액/정률)·감가상각비 계산(월할/연할)·감가상각명세서·자산 양도/폐기/이동·세무상 상각범위액(K-IFRS vs 법인세법)·업무용승용차 한도</b>. Smart A "기수 단일파일" 모델을 <code>tenant</code>+<code>fiscal_period</code>로 일반화한다.</td></tr>
+  <tr><th>화면 구성</th><td><b>영세율·기타 신고서류 SA-VAT-36~50</b> 15화면(숙박/즉시환급/외교관면세/공급기록/공급가액확정/선박/외항선박/영세율매출명세/과세전환 재고품·감가상각자산/매입자발행/과세유흥/사업용계좌/납부서/사업양도) + <b>고정자산 SA-FA-01~07</b> 7화면(등록·미상각/양도 상각계산·원가경비별 명세·관리대장·현장/부서 명세·월별 계상) = 총 <b>22화면</b>.</td></tr>
+  <tr><th>표기 원칙</th><td>화면 ID는 본 문서 전용으로 <code>SA-VAT-xx</code>(부가세 영세율·기타)·<code>SA-FA-xx</code>(고정자산)를 사용하고, 설계서 <code>bk_설계서_v2.1.md</code> 25.14·25.15·25.16 절과 연결한다. 검증은 <span class="badge b-amber">경고</span>(저장가능)·<span class="badge b-red">차단</span>(저장불가) 2단계로 표기한다.</td></tr>
+</table>
+<div class="tip">본 페이즈는 <b>신고 작업대 + 고정자산 마스터/리포트</b> 중심이므로, SA-VAT 화면 대부분이 <b>좌측 신고조건 + 중앙 서식 본문(탭) + 우측 검증/전자신고 패널</b>의 3분할(신고서 작업대)이고, SA-FA 화면은 <b>좌측 조회조건 + 중앙 자산 그리드 + 우측 라이프사이클/연계 패널</b>이다. 영세율 첨부서류는 모두 <b>매입매출전표(12.영세/16.수출 계열)</b> 집계를 불러오기로 채운다.</div>
+<div class="note"><b>페이즈 08 연계 핵심</b> — <code>SA-VAT-43</code> 영세율매출명세서의 (13)영세율 적용 공급실적 총합계가 <b>부가세신고서(SA-VAT-01) 과세표준 영세율 금액</b>과 정합해야 하며, <code>SA-FA-07</code> 월별 감가상각비 계상이 생성하는 <b>결차/결대 자동전표가 결산(P05) 감가상각분개</b>로 흘러간다. 고정자산대장(SA-FA-05) 금액은 총계정원장 잔액과 대사된다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 공통 UI 표준 (요약)</h2>
+<h3>2.1 화면 셸 · 신고 작업대/자산 마스터 표준</h3>
+<ul>
+  <li><b>셸</b>: 상단 GNB(회사명·기장 모드 배지·알림·사용자) + 좌측 LNB(부가세 신고/고정자산/결산) + 콘텐츠. 메뉴는 Role 메뉴권한(BF-12), 버튼은 행위권한(BF-07)으로 렌더링.</li>
+  <li><b>신고 작업대 3분할</b>: 좌측 신고조건(신고기간·사업장·수정차수) + 중앙 서식 본문 탭(기본/명세/집계/검증/전자신고) + 우측 MRI 검증·전자신고 반영 패널. 코드도움(<span class="kbd">F2</span>), 다음 행(<span class="kbd">Enter</span>), 저장(<span class="kbd">Ctrl+S</span>).</li>
+  <li><b>2단계 검증</b>: <span class="badge b-amber">Amber 경고</span>(저장 가능) / <span class="badge b-red">Red 차단</span>(저장 불가). 서버 검증 이중 유지.</li>
+  <li><b>마스킹(17장)</b>: 계좌(사업용계좌)·사업자번호·여권번호 기본 마스킹, 👁 평문 조회는 Step-up 인증 + 사유 + 자동 재마스킹.</li>
+  <li><b>변경 이력</b>: 모든 신고서·자산 마스터는 append-only 변경이력, 물리 삭제 금지. 양도/폐기는 라이프사이클 이벤트로 논리 처리.</li>
+  <li><b>마감 가드</b>: 마감 상태(TEMP_CLOSED/CLOSED/LOCKED)인 기간의 신고서 저장·감가상각 재계산·월별 계상은 차단 또는 경고.</li>
+  <li><b>6 관리차원</b>: 사업장(*기본필수)·코스트센터·부서·프로젝트·현장·사원. 고정자산 추가등록사항에 부서·프로젝트·현장·사원을 배부(SA-FA-06).</li>
+</ul>
+<h3>2.2 페이즈 08 데이터 모델 매핑 (PostgreSQL)</h3>
+<table>
+  <tr><th>화면 요소</th><th>엔티티 / 테이블</th><th>비고</th></tr>
+  <tr><td>영세율 부속서식</td><td><code>vat_zero_form</code> / <code>vat_zero_line</code></td><td>매입매출전표(12.영세/16.수출) 집계 불러오기, 신고기간 단위(SA-VAT-36~43)</td></tr>
+  <tr><td>과세유형 전환</td><td><code>vat_conversion_inventory</code> / <code>vat_conversion_asset</code></td><td>재고매입세액(부가세 포함)·납부세액(부가세 제외)(SA-VAT-44~45)</td></tr>
+  <tr><td>사업용계좌/납부서</td><td><code>biz_account</code> / <code>tax_payment_slip</code></td><td>금융거래처 마스터·결정구분 8종(SA-VAT-48~49)</td></tr>
+  <tr><td>고정자산 마스터</td><td><code>fixed_asset</code> / <code>fa_depreciation</code></td><td>취득가·내용연수·상각방법·부인누계·6차원 배부(SA-FA-01)</td></tr>
+  <tr><td>감가상각 자동전표</td><td><code>fa_monthly_posting</code> / <code>journal(결차/결대)</code></td><td>월별 계상 → 결산(P05) 분개(SA-FA-07)</td></tr>
+  <tr><td>변경 이력</td><td><code>data_change_log</code></td><td>append-only, 물리 삭제 금지(12.3)</td></tr>
+</table>
+</section>
+
+<section id="s3">
+<h2>3. 페이즈 08 화면 목록 (인벤토리)</h2>
+<table>
+<tr><th>화면 ID</th><th>화면명</th><th>업무군</th><th>설계 기준</th><th>구조</th><th>상세</th></tr>
+<tr><td><code>SA-VAT-36</code></td><td>외국인관광객 숙박용역 환급실적명세서</td><td>부가세/신고</td><td>25.14.8</td><td><span class="badge b-blue">신고 작업대</span></td><td><a href="#sa-vat-36">●</a></td></tr>
+<tr><td><code>SA-VAT-37</code></td><td>외국인관광객 즉시환급 물품판매실적명세서</td><td>부가세/신고</td><td>25.14.9</td><td><span class="badge b-blue">신고 작업대</span></td><td><a href="#sa-vat-37">●</a></td></tr>
+<tr><td><code>SA-VAT-38</code></td><td>외국인물품(외교관면세) 판매기록표</td><td>부가세/신고</td><td>25.14.10</td><td><span class="badge b-blue">첨부 명세</span></td><td><a href="#sa-vat-38">●</a></td></tr>
+<tr><td><code>SA-VAT-39</code></td><td>재화·용역 공급기록표</td><td>부가세/신고</td><td>25.14.11</td><td><span class="badge b-blue">첨부 명세</span></td><td><a href="#sa-vat-39">●</a></td></tr>
+<tr><td><code>SA-VAT-40</code></td><td>공급가액확정명세서</td><td>부가세/신고</td><td>25.14.12</td><td><span class="badge b-blue">첨부 명세</span></td><td><a href="#sa-vat-40">●</a></td></tr>
+<tr><td><code>SA-VAT-41</code></td><td>선박에 의한 운송용역 공급가액일람표</td><td>부가세/신고</td><td>25.14.13</td><td><span class="badge b-blue">첨부 명세</span></td><td><a href="#sa-vat-41">●</a></td></tr>
+<tr><td><code>SA-VAT-42</code></td><td>외항선박등에 제공한 재화·용역 일람표</td><td>부가세/신고</td><td>25.14.14</td><td><span class="badge b-blue">첨부 명세</span></td><td><a href="#sa-vat-42">●</a></td></tr>
+<tr><td><code>SA-VAT-43</code></td><td>영세율매출명세서</td><td>부가세/신고</td><td>25.14.15</td><td><span class="badge b-teal">종합 명세</span></td><td><a href="#sa-vat-43">●</a></td></tr>
+<tr><td><code>SA-VAT-44</code></td><td>일반/간이과세 전환 시 재고품등 신고</td><td>부가세/신고</td><td>25.15.1</td><td><span class="badge b-blue">신고 작업대</span></td><td><a href="#sa-vat-44">●</a></td></tr>
+<tr><td><code>SA-VAT-45</code></td><td>과세사업전환 감가상각자산 신고서</td><td>부가세/신고</td><td>25.15.2</td><td><span class="badge b-blue">신고서</span></td><td><a href="#sa-vat-45">●</a></td></tr>
+<tr><td><code>SA-VAT-46</code></td><td>매입자발행세금계산서합계표</td><td>부가세/신고</td><td>25.15.3</td><td><span class="badge b-blue">합계표</span></td><td><a href="#sa-vat-46">●</a></td></tr>
+<tr><td><code>SA-VAT-47</code></td><td>과세유흥장소 과표신고서(신)</td><td>부가세/신고</td><td>25.15.4</td><td><span class="badge b-blue">신고서</span></td><td><a href="#sa-vat-47">●</a></td></tr>
+<tr><td><code>SA-VAT-48</code></td><td>사업용계좌 개설신고서</td><td>부가세/신고</td><td>25.15.5</td><td><span class="badge b-blue">신고서</span></td><td><a href="#sa-vat-48">●</a></td></tr>
+<tr><td><code>SA-VAT-49</code></td><td>납부서 작성(전세목)</td><td>부가세/신고</td><td>25.15.6</td><td><span class="badge b-blue">납부/환급</span></td><td><a href="#sa-vat-49">●</a></td></tr>
+<tr><td><code>SA-VAT-50</code></td><td>사업양도신고서</td><td>부가세/신고</td><td>25.15.7</td><td><span class="badge b-blue">신고서</span></td><td><a href="#sa-vat-50">●</a></td></tr>
+<tr><td><code>SA-FA-01</code></td><td>고정자산등록</td><td>고정자산</td><td>25.16.1</td><td><span class="badge b-teal">자산 등록</span></td><td><a href="#sa-fa-01">●</a></td></tr>
+<tr><td><code>SA-FA-02</code></td><td>미상각분 감가상각계산</td><td>고정자산</td><td>25.16.2</td><td><span class="badge b-teal">상각 계산</span></td><td><a href="#sa-fa-02">●</a></td></tr>
+<tr><td><code>SA-FA-03</code></td><td>양도자산 감가상각계산</td><td>고정자산</td><td>25.16.3</td><td><span class="badge b-teal">상각 계산</span></td><td><a href="#sa-fa-03">●</a></td></tr>
+<tr><td><code>SA-FA-04</code></td><td>원가경비별 감가상각명세서</td><td>고정자산</td><td>25.16.4</td><td><span class="badge b-teal">자산 명세</span></td><td><a href="#sa-fa-04">●</a></td></tr>
+<tr><td><code>SA-FA-05</code></td><td>고정자산관리대장</td><td>고정자산</td><td>25.16.5</td><td><span class="badge b-teal">자산 명세</span></td><td><a href="#sa-fa-05">●</a></td></tr>
+<tr><td><code>SA-FA-06</code></td><td>현장 / 프로젝트 / 부서 자산명세서</td><td>고정자산</td><td>25.16.6</td><td><span class="badge b-teal">자산 명세</span></td><td><a href="#sa-fa-06">●</a></td></tr>
+<tr><td><code>SA-FA-07</code></td><td>월별 감가상각비 계상</td><td>고정자산</td><td>25.16.7</td><td><span class="badge b-teal">상각비 계상</span></td><td><a href="#sa-fa-07">●</a></td></tr>
+</table>
+</section>
+
+<section id="s4">
+<h2>4. 영세율·기타 신고서류 화면 (SA-VAT-36 ~ SA-VAT-50, 상세)</h2>
+<p>영세율(0%) 적용 거래와 외국인 환급·과세전환·특수업종 신고서류다. 영세율 매출은 매입세액을 전액 공제받으므로 첨부서류로 영세율 적용근거를 입증해야 한다. 모든 명세는 전표(P03)의 영세율 세무구분(12)·영세율 첨부플래그를 원천으로 집계한다.</p>
+<div class="note"><b>영세율 입증</b> · 영세율 매출은 세금계산서·외화입금증명·수출신고필증·내국신용장 등 첨부서류 제출이 필수다. 첨부 누락 시 영세율 부인·가산세 위험이 있어 경고 처리한다.</div>
+
+<h4 id="sa-vat-36"><span class="sid">SA-VAT-36</span>외국인관광객 숙박용역 환급실적명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>외국인관광객에게 제공한 숙박용역의 부가세 환급실적을 집계·신고. 환급창구·여권번호별 명세.</td><th>API</th><td><code>GET /api/vat/foreign-lodging-refund?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>refund_record</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-36 · 숙박용역 환급실적명세서</div>
+  <div class="wf-bar">부가세/신고 › 숙박용역 환급실적 <span class="sp"></span><span class="badge b-blue">2026-2기</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>일자</th><th>여권번호</th><th class="r">숙박료</th><th class="r">환급세액</th></tr>
+    <tr><td>11-05</td><td>M1234***</td><td class="r">880,000</td><td class="r">80,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>환급건 24 · 환급세액 합계 1,920,000</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>여권 미기재</td><td>환급건 여권번호 누락</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-37"><span class="sid">SA-VAT-37</span>외국인관광객 즉시환급 물품판매실적명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>사후면세점의 외국인 즉시환급 물품판매 실적을 집계·신고.</td><th>API</th><td><code>GET /api/vat/instant-refund?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>refund_record</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-37 · 즉시환급 판매실적명세서</div>
+  <div class="wf-bar">부가세/신고 › 즉시환급 판매실적 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>판매일</th><th class="r">판매액</th><th class="r">즉시환급</th></tr>
+    <tr><td>11-10</td><td class="r">330,000</td><td class="r">30,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>즉시환급 한도(1회/총액) 검토</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>한도 초과</td><td>즉시환급 한도 초과</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-38"><span class="sid">SA-VAT-38</span>외국인물품(외교관면세) 판매기록표</h4>
+<table class="meta">
+<tr><th>용도</th><td>외교관 등 면세대상에게 공급한 재화의 판매기록을 집계. 면세승인번호·면세카드 기록.</td><th>API</th><td><code>GET /api/vat/diplomat-exempt?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-38 · 외교관면세 판매기록표</div>
+  <div class="wf-bar">부가세/신고 › 외교관면세 기록표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>면세카드</th><th>대상</th><th class="r">금액</th></tr>
+    <tr><td>DPL-0012</td><td>○○대사관</td><td class="r">2,200,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>외교관면세 영세율 적용 · 면세카드 검증</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>면세카드 누락</td><td>면세승인번호 미기재</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-39"><span class="sid">SA-VAT-39</span>재화·용역 공급기록표</h4>
+<table class="meta">
+<tr><th>용도</th><td>영세율 적용 재화·용역의 공급내역을 거래처·공급일별로 기록한 첨부 명세.</td><th>API</th><td><code>GET /api/vat/zero-supply-record?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code>(ZERO)</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-39 · 재화·용역 공급기록표</div>
+  <div class="wf-bar">부가세/신고 › 재화·용역 공급기록표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>거래처</th><th>공급일</th><th class="r">공급가액</th></tr>
+    <tr><td>해외바이어A</td><td>11-12</td><td class="r">30,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>영세율 공급 합계 · 영세율매출명세서 연계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>증빙 누락</td><td>영세율 적용근거 미첨부</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-40"><span class="sid">SA-VAT-40</span>공급가액확정명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>장기·계속 공급계약의 공급가액 확정내역을 명세화하여 신고기간 귀속을 명확히 한다.</td><th>API</th><td><code>GET /api/vat/supply-confirmation?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>contract</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-40 · 공급가액확정명세서</div>
+  <div class="wf-bar">부가세/신고 › 공급가액확정명세서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>계약</th><th class="r">계약금액</th><th class="r">당기확정</th></tr>
+    <tr><td>유지보수계약</td><td class="r">120,000,000</td><td class="r">30,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>당기 확정 공급가액 → 신고서 반영</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>확정 초과</td><td>누적확정 ＞ 계약금액</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-41"><span class="sid">SA-VAT-41</span>선박에 의한 운송용역 공급가액일람표</h4>
+<table class="meta">
+<tr><th>용도</th><td>외항·국제 선박 운송용역(영세율)의 공급가액을 항차·노선별로 집계.</td><th>API</th><td><code>GET /api/vat/ship-transport?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-41 · 선박 운송용역 일람표</div>
+  <div class="wf-bar">부가세/신고 › 선박 운송용역 일람표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>항차</th><th>노선</th><th class="r">운임</th></tr>
+    <tr><td>V-2026-08</td><td>부산-도쿄</td><td class="r">45,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>국제운송 영세율 적용 합계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>노선 누락</td><td>국제구간 미기재</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-42"><span class="sid">SA-VAT-42</span>외항선박등에 제공한 재화·용역 일람표</h4>
+<table class="meta">
+<tr><th>용도</th><td>외항선박·항공기에 공급한 재화·용역(선용품·정비 등)의 영세율 공급내역을 집계.</td><th>API</th><td><code>GET /api/vat/ocean-vessel-supply?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-42 · 외항선박 재화·용역 일람표</div>
+  <div class="wf-bar">부가세/신고 › 외항선박 재화·용역 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>선박</th><th>공급내역</th><th class="r">금액</th></tr>
+    <tr><td>한바다호</td><td>선용품</td><td class="r">12,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>외항선박 공급 영세율 합계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>선박 미등록</td><td>외항선박 식별정보 누락</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-43"><span class="sid">SA-VAT-43</span>영세율매출명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>영세율 적용 매출을 적용구분(수출·내국신용장·국외제공 등)별로 종합 집계한 핵심 명세서. 신고서 영세율 과세표준과 대사.</td><th>API</th><td><code>GET /api/vat/zero-rate-sales?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code>(ZERO)</td></tr>
+</table>
+<div class="tip">적용구분별(직수출·중계무역·내국신용장·구매확인서·국외용역·외화획득) 금액을 합산하며, 합계는 부가세신고서(P06 SA-VAT-01)의 영세율 과세표준과 일치해야 한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-43 · 영세율매출명세서</div>
+  <div class="wf-bar">부가세/신고 › 영세율매출명세서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">조회</span><span class="wf-btn">신고서 대사</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>적용구분</th><th class="r">금액</th></tr>
+    <tr><td>직수출</td><td class="r">200,000,000</td></tr>
+    <tr><td>내국신용장·구매확인서</td><td class="r">80,000,000</td></tr>
+    <tr><td>국외제공 용역</td><td class="r">30,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>영세율 합계 310,000,000 = 신고서 영세율 과세표준 <span class="badge b-teal">정상</span></span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>신고서 불일치</td><td>명세 합계 ≠ 신고서 영세율 과표</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>첨부 누락</td><td>적용구분 입증서류 미첨부</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-44"><span class="sid">SA-VAT-44</span>일반/간이과세 전환 시 재고품등 신고</h4>
+<table class="meta">
+<tr><th>용도</th><td>과세유형 전환(간이↔일반) 시점 보유 재고품·감가상각자산의 재고매입세액(공제) 또는 재고납부세액(가산)을 산출·신고.</td><th>API</th><td><code>POST /api/vat/stock-conversion/calc</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>vat_stock_conversion</code> · <code>fixed_asset</code></td></tr>
+</table>
+<div class="note"><b>전환구분</b> · 간이→일반은 재고매입세액 <b>공제</b>, 일반→간이는 재고납부세액 <b>가산</b>. 재고매입세액 = 취득가액 × 10/110 × 잔존율, 감가상각자산은 경과 과세기간별 체감률(기타 25%·건물 10%) 적용.</div>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-44 · 재고품등 전환 신고</div>
+  <div class="wf-bar">부가세/신고 › 재고품등 신고 <span class="sp"></span><span class="badge b-blue">간이→일반</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">전환일 <span class="wf-in">2026-01-01</span><span class="wf-btn">재고 불러오기</span><span class="wf-btn pri">세액 계산</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>구분</th><th>품명/자산</th><th class="r">취득가액</th><th class="r">잔존율</th><th class="r">재고매입세액</th></tr>
+    <tr><td>상품</td><td>의류 재고</td><td class="r">12,000,000</td><td class="r">100%</td><td class="r">1,090,909</td></tr>
+    <tr><td>비품</td><td>POS 단말기</td><td class="r">3,000,000</td><td class="r">80%</td><td class="r">218,182</td></tr>
+    <tr><td>건물</td><td>점포 인테리어</td><td class="r">40,000,000</td><td class="r">50%</td><td class="r">1,818,182</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>재고매입세액 합계 3,127,273 · 신고서 25.15.1 자동반영</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전환일 불일치</td><td>전환일 ≠ 과세유형 변경 승인일</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>취득증빙</td><td>세금계산서 미수취 품목 포함</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>잔존율 범위</td><td>잔존율 &lt; 0 또는 &gt; 100%</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-45"><span class="sid">SA-VAT-45</span>과세사업전환 감가상각자산 신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>면세사업 사용 감가상각자산을 과세사업으로 전환 시 잔존 취득가액 매입세액 공제를 위한 신고서 작성.</td><th>API</th><td><code>POST /api/vat/asset-conversion/calc</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>vat_asset_conversion</code> · <code>fixed_asset</code></td></tr>
+</table>
+<div class="tip"><b>연계</b> · 고정자산등록(SA-FA-01) ‘면세→과세 전환’ 플래그 자산을 자동 수집. 공제율 = 건물 (1−10%×경과), 기타 (1−25%×경과).</div>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-45 · 과세전환 감가상각자산</div>
+  <div class="wf-bar">부가세/신고 › 과세전환 감가상각자산 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">전환일 <span class="wf-in">2026-04-01</span><span class="wf-btn">전환자산 수집</span><span class="wf-btn pri">공제세액 계산</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산코드</th><th>자산명</th><th class="r">취득가액</th><th class="r">공제율</th><th class="r">공제세액</th></tr>
+    <tr><td>FA-2024-031</td><td>제조설비 A</td><td class="r">50,000,000</td><td class="r">25%</td><td class="r">1,250,000</td></tr>
+    <tr><td>FA-2022-008</td><td>공장 건물</td><td class="r">200,000,000</td><td class="r">20%</td><td class="r">3,636,364</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>공제세액 합계 4,886,364 · ‘그 밖의 공제매입세액’ 연계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>면세사용 입증</td><td>전환 전 면세사업 사용 증빙 미등록</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>중복 신고</td><td>동일 자산 이미 전환 공제 신고됨</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-46"><span class="sid">SA-VAT-46</span>매입자발행세금계산서합계표</h4>
+<table class="meta">
+<tr><th>용도</th><td>공급자 미발급 거래에 대해 매입자가 세무서장 확인을 받아 발행한 매입자발행세금계산서를 합계표로 집계·제출.</td><th>API</th><td><code>POST /api/vat/buyer-issued/aggregate</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>buyer_issued_tax_invoice</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-46 · 매입자발행세금계산서합계표</div>
+  <div class="wf-bar">부가세/신고 › 매입자발행 합계표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-1기</span><span class="wf-btn">거래 불러오기</span><span class="wf-btn pri">합계 집계</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>공급자번호</th><th>상호</th><th class="r">건수</th><th class="r">공급가액</th><th class="r">세액</th></tr>
+    <tr><td>214-81-12345</td><td>대성물산</td><td class="r">2</td><td class="r">5,000,000</td><td class="r">500,000</td></tr>
+    <tr><td>132-86-55421</td><td>한빛전자</td><td class="r">1</td><td class="r">1,800,000</td><td class="r">180,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>합계 3건 · 공급가액 6,800,000 · 세액 680,000 (매입세액 공제대상)</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>확인서 첨부</td><td>거래사실확인서 미첨부</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>발행기한</td><td>신고기한 경과 후 발행</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-47"><span class="sid">SA-VAT-47</span>과세유흥장소 과표신고서(신)</h4>
+<table class="meta">
+<tr><th>용도</th><td>개별소비세 과세유흥장소 사업자의 유흥음식 요금 과세표준·개별소비세·교육세 신고.</td><th>API</th><td><code>POST /api/excise/entertainment/submit</code></td></tr>
+<tr><th>권한</th><td><code>tenant:excise:write</code></td><th>엔티티</th><td><code>excise_entertainment_report</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-47 · 과세유흥장소 과표신고</div>
+  <div class="wf-bar">개별소비세 › 유흥장소 과표신고 <span class="sp"></span><span class="badge b-blue">강남점</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-05</span><span class="wf-btn pri">세액 계산</span><span class="wf-btn">전자신고 변환</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>항목</th><th class="r">과세표준</th><th class="r">세율</th><th class="r">세액</th></tr>
+    <tr><td>유흥음식요금</td><td class="r">80,000,000</td><td class="r">10%</td><td class="r">8,000,000</td></tr>
+    <tr><td>교육세</td><td class="r">8,000,000</td><td class="r">30%</td><td class="r">2,400,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>개별소비세 8,000,000 + 교육세 2,400,000 = 납부 10,400,000</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>과세장소 등록</td><td>과세유흥장소 사업자 등록정보 없음</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>봉사료 분리</td><td>봉사료가 과표에 포함</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-48"><span class="sid">SA-VAT-48</span>사업용계좌 개설신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>복식부기의무자의 사업용계좌를 관할 세무서에 신고. 계좌번호는 마스킹 표시.</td><th>API</th><td><code>POST /api/tax/business-account/register</code></td></tr>
+<tr><th>권한</th><td><code>tenant:tax:write</code></td><th>엔티티</th><td><code>business_account</code> · <code>bank_account</code>(마스킹)</td></tr>
+</table>
+<div class="note"><b>마스킹</b> · 계좌번호는 110-***-**1234 형식 표시. 평문 열람 시 Step-up 재인증 필요, 모든 열람은 append-only 감사로그 기록.</div>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-48 · 사업용계좌 개설신고</div>
+  <div class="wf-bar">세무관리 › 사업용계좌 개설신고 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">사업장 <span class="wf-in">본점</span><span class="wf-btn">계좌 불러오기</span><span class="wf-btn pri">신고서 작성</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>금융기관</th><th>계좌번호</th><th>용도</th><th>상태</th></tr>
+    <tr><td>국민은행</td><td>110-***-**1234</td><td>매출입금</td><td>신고대상</td></tr>
+    <tr><td>신한은행</td><td>140-***-**5678</td><td>경비지급</td><td>신고대상</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>신고대상 2건 · 신고기한: 과세기간 개시일부터 6개월 이내</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>예금주 일치</td><td>예금주 ≠ 사업자 상호/대표자</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>신고기한</td><td>개설일 기준 6개월 경과</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-49"><span class="sid">SA-VAT-49</span>납부서 작성(전세목)</h4>
+<table class="meta">
+<tr><th>용도</th><td>부가세·개별소비세·원천세 등 전 세목 납부서를 작성·출력하고 전자납부용 데이터를 생성. 자금 이체는 수행하지 않음.</td><th>API</th><td><code>POST /api/tax/payment-slip/generate</code></td></tr>
+<tr><th>권한</th><td><code>tenant:tax:write</code></td><th>엔티티</th><td><code>tax_payment_slip</code> · <code>tax_report</code></td></tr>
+</table>
+<div class="tip"><b>범위</b> · 본 화면은 납부서 작성·출력만 수행. 실제 이체·가상계좌 납부 실행은 별도 자금 결재(SA-FND) 승인 후 진행.</div>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-49 · 납부서 작성</div>
+  <div class="wf-bar">세무관리 › 납부서 작성 <span class="sp"></span><span class="badge b-blue">부가가치세</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">귀속 <span class="wf-in">2026-1기 예정</span><span class="wf-btn">신고세액 연계</span><span class="wf-btn pri">납부서 생성</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>세목</th><th>귀속기간</th><th class="r">납부세액</th><th>납부기한</th></tr>
+    <tr><td>부가가치세</td><td>2026-1기 예정</td><td class="r">12,450,000</td><td>2026-04-25</td></tr>
+    <tr><td>가산세</td><td>—</td><td class="r">0</td><td>2026-04-25</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>납부총액 12,450,000 · 전자납부번호 0126-1-12-345678 자동채번</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>신고 확정</td><td>연계 신고서가 미확정(임시저장)</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>납부기한</td><td>납부기한 경과 시 가산세 안내</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-50"><span class="sid">SA-VAT-50</span>사업양도신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>사업의 포괄적 양도(재화 공급으로 보지 않음)에 해당하는 거래를 신고하여 부가세 과세 제외 처리.</td><th>API</th><td><code>POST /api/vat/business-transfer/submit</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>business_transfer_report</code> · <code>counterparty</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-50 · 사업양도신고서</div>
+  <div class="wf-bar">부가세/신고 › 사업양도신고 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">양도일 <span class="wf-in">2026-06-30</span><span class="wf-btn pri">신고서 작성</span><span class="wf-btn">첨부 등록</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>구분</th><th>내용</th></tr>
+    <tr><td>양도자</td><td>(주)가나상사 (124-81-00000)</td></tr>
+    <tr><td>양수자</td><td>(주)다라산업 (220-81-11111)</td></tr>
+    <tr><td>양도대상</td><td>제조부문 사업 일체(자산·부채·고용 승계)</td></tr>
+    <tr><td>양도가액</td><td>1,500,000,000</td></tr>
+    <tr><td>포괄양도 요건</td><td>사업 동일성 유지·권리의무 포괄 승계 — 충족</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>재화 공급으로 보지 않음(과세 제외) · 사업양도양수계약서 첨부 필요</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>포괄승계 요건</td><td>포괄양도 요건 체크 미충족</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>계약서 첨부</td><td>양도양수계약서 미첨부</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>양수자 정보</td><td>양수자 사업자등록 상태 미확인</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+</section>
+
+<section id="s5">
+<h2>5. 고정자산 화면 (SA-FA-01 ~ SA-FA-07, 상세)</h2>
+<p>고정자산의 등록·감가상각 계산·관리대장·차원별 자산명세, 월별 감가상각비 결산 계상까지의 고정자산 라이프사이클 화면군이다. 상각방법(정액·정률), 내용연수, 월할상각, 세무상 상각범위액·업무용승용차 한도 등 세무 규정을 반영하며 결산 감가상각분개(페이즈05 P05)와 연계된다.</p>
+<div class="note"><b>세무 연계</b> · 회계상 감가상각비와 세무상 상각범위액의 차이는 세무조정(상각부인·시인부족액 추인) 대상이다. 업무용승용차는 감가상각비 800만원/년 한도가 적용되며 초과분은 이월된다.</div>
+
+<h4 id="sa-fa-01"><span class="sid">SA-FA-01</span>고정자산등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>유형·무형 고정자산의 취득 정보(취득일·취득가액·내용연수·상각방법·자산계정·관리차원)를 등록하고 면세→과세 전환·업무용승용차 등 세무 플래그를 관리.</td><th>API</th><td><code>POST /api/fa/assets</code> · <code>GET /api/fa/assets?bizPlaceId=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:write</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>fa_category</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>관리차원</b> · 자산별 사업장(필수)·코스트센터·부서·프로젝트·현장·사원 관리차원을 지정하면 SA-FA-06 차원별 자산명세서와 결산 분개의 비용 귀속이 자동 연계된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-01 · 고정자산등록</div>
+  <div class="wf-bar">고정자산 › 자산등록 <span class="sp"></span><span class="badge b-blue">본점</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">자산코드 <span class="wf-in">FA-2026-014</span><span class="wf-btn">신규</span><span class="wf-btn pri">저장</span><span class="wf-btn">복사등록</span></div>
+  <div class="wf-split">
+    <div class="wf-panel pnl">
+      <table class="wf-grid">
+        <tr><th>자산코드</th><th>자산명</th><th>취득일</th><th class="r">취득가액</th></tr>
+        <tr><td>FA-2026-012</td><td>업무용 차량(승용)</td><td>2026-03-02</td><td class="r">45,000,000</td></tr>
+        <tr><td>FA-2026-013</td><td>서버 장비</td><td>2026-04-10</td><td class="r">18,000,000</td></tr>
+        <tr><td>FA-2026-014</td><td>사무용 빌딩</td><td>2026-05-01</td><td class="r">800,000,000</td></tr>
+      </table>
+    </div>
+    <div class="wf-panel pnl">
+      <table class="wf-grid">
+        <tr><th>항목</th><th>값</th></tr>
+        <tr><td>자산계정</td><td>건물 (202)</td></tr>
+        <tr><td>상각방법</td><td>정액법</td></tr>
+        <tr><td>내용연수</td><td>40년</td></tr>
+        <tr><td>잔존가액</td><td>0</td></tr>
+        <tr><td>사업장/부서</td><td>본점 / 경영지원팀</td></tr>
+        <tr><td>업무용승용차</td><td>아니오</td></tr>
+        <tr><td>면세→과세 전환</td><td>아니오</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="wf-foot"><span>등록 자산 3 · 취득가액 합계 863,000,000 · 상각 개시: 사용가능일</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>사업장 필수</td><td>관리차원 사업장 미지정</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>내용연수 범위</td><td>세법 기준내용연수 ±25% 범위 초과</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>자산계정 일치</td><td>자산계정과 상각방법 부적합(예: 토지에 상각)</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-02"><span class="sid">SA-FA-02</span>미상각분 감가상각계산</h4>
+<table class="meta">
+<tr><th>용도</th><td>보유 자산의 당기 감가상각비를 상각방법·내용연수·월할기준으로 계산하고 세무상 상각범위액과 비교하여 시부인 대상액을 산출.</td><th>API</th><td><code>POST /api/fa/depreciation/calc?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:write</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>fa_depreciation</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-FA-02 · 미상각분 감가상각계산</div>
+  <div class="wf-bar">고정자산 › 감가상각계산 <span class="sp"></span><span class="badge b-blue">2026 결산</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-01~12</span><span class="wf-btn">대상 조회</span><span class="wf-btn pri">상각 계산</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산명</th><th>방법</th><th class="r">취득가액</th><th class="r">당기상각비</th><th class="r">상각범위액</th><th class="r">시부인</th></tr>
+    <tr><td>서버 장비</td><td>정률(0.451)</td><td class="r">18,000,000</td><td class="r">6,765,000</td><td class="r">6,765,000</td><td class="r">0</td></tr>
+    <tr><td>업무용 차량</td><td>정액(5년)</td><td class="r">45,000,000</td><td class="r">9,000,000</td><td class="r">8,000,000</td><td class="r">1,000,000</td></tr>
+    <tr><td>사무용 빌딩</td><td>정액(40년)</td><td class="r">800,000,000</td><td class="r">13,333,333</td><td class="r">13,333,333</td><td class="r">0</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>당기상각비 합계 29,098,333 · 상각부인 1,000,000(업무용승용차 한도초과) · 세무조정 연계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>승용차 한도</td><td>업무용승용차 상각 800만원/년 초과</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>상각 종료</td><td>미상각잔액 ≤ 잔존가액(상각 완료)</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>월할기준</td><td>취득월 미설정으로 월할 계산 불가</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-03"><span class="sid">SA-FA-03</span>양도자산 감가상각계산</h4>
+<table class="meta">
+<tr><th>용도</th><td>기중 양도·폐기 자산의 양도 시점까지 경과월수에 대한 감가상각비를 계산하고 처분손익(양도가액−상각후 장부가액)을 산출.</td><th>API</th><td><code>POST /api/fa/disposal/calc</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:write</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>fa_disposal</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-FA-03 · 양도자산 감가상각계산</div>
+  <div class="wf-bar">고정자산 › 양도자산 상각 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">양도일 <span class="wf-in">2026-08-31</span><span class="wf-btn">양도자산 조회</span><span class="wf-btn pri">처분손익 계산</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산명</th><th class="r">취득가액</th><th class="r">기초장부가</th><th class="r">당기상각(경과월)</th><th class="r">양도가액</th><th class="r">처분손익</th></tr>
+    <tr><td>구형 복합기</td><td class="r">3,000,000</td><td class="r">600,000</td><td class="r">400,000</td><td class="r">300,000</td><td class="r">100,000</td></tr>
+    <tr><td>영업용 차량</td><td class="r">28,000,000</td><td class="r">11,200,000</td><td class="r">3,733,333</td><td class="r">6,000,000</td><td class="r">-1,466,667</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>처분이익 100,000 · 처분손실 1,466,667 · 유형자산처분손익 전표 자동 생성 대상</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>양도일 범위</td><td>양도일이 취득일 이전</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>장부가 음수</td><td>경과상각 후 장부가액 &lt; 0</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>양도가액 미입력</td><td>양도가액 0 또는 미입력</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-fa-04"><span class="sid">SA-FA-04</span>원가경비별 감가상각명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>감가상각비를 제조원가·판관비 등 원가경비 귀속별로 집계한 명세서. 결산 시 제조원가명세서·손익계산서 비용 배부의 근거.</td><th>API</th><td><code>GET /api/fa/depreciation/by-cost?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:read</code></td><th>엔티티</th><td><code>fa_depreciation</code> · <code>cost_center</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-FA-04 · 원가경비별 감가상각명세서</div>
+  <div class="wf-bar">고정자산 › 원가경비별 명세 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026 결산</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>원가경비</th><th>자산계정</th><th class="r">취득가액</th><th class="r">당기상각비</th><th class="r">누계</th></tr>
+    <tr><td>제조원가</td><td>기계장치</td><td class="r">120,000,000</td><td class="r">15,200,000</td><td class="r">42,000,000</td></tr>
+    <tr><td>판관비</td><td>비품</td><td class="r">18,000,000</td><td class="r">6,765,000</td><td class="r">6,765,000</td></tr>
+    <tr><td>판관비</td><td>건물</td><td class="r">800,000,000</td><td class="r">13,333,333</td><td class="r">13,333,333</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>제조원가 15,200,000 · 판관비 20,098,333 · 손익계산서·제조원가명세서 배부 연계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>원가경비 미지정</td><td>자산에 원가경비 구분 미설정</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>배부 불일치</td><td>명세 합계 ≠ SA-FA-02 당기상각비 합계</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-05"><span class="sid">SA-FA-05</span>고정자산관리대장</h4>
+<table class="meta">
+<tr><th>용도</th><td>전 자산의 취득~상각~처분 이력을 자산별로 조회하는 관리대장. 취득가액·감가상각누계액·미상각잔액·상태(사용·처분·폐기)를 표시.</td><th>API</th><td><code>GET /api/fa/ledger?bizPlaceId=&amp;status=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:read</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>fa_depreciation</code> · <code>fa_disposal</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-FA-05 · 고정자산관리대장</div>
+  <div class="wf-bar">고정자산 › 관리대장 <span class="sp"></span><span class="badge b-blue">사용중</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">사업장 <span class="wf-in">전체</span> 상태 <span class="wf-in">사용중</span><span class="wf-btn pri">조회</span><span class="wf-btn">PDF</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산코드</th><th>자산명</th><th class="r">취득가액</th><th class="r">상각누계</th><th class="r">미상각잔액</th><th>상태</th></tr>
+    <tr><td>FA-2026-013</td><td>서버 장비</td><td class="r">18,000,000</td><td class="r">6,765,000</td><td class="r">11,235,000</td><td>사용중</td></tr>
+    <tr><td>FA-2026-012</td><td>업무용 차량</td><td class="r">45,000,000</td><td class="r">9,000,000</td><td class="r">36,000,000</td><td>사용중</td></tr>
+    <tr><td>FA-2024-031</td><td>제조설비 A</td><td class="r">50,000,000</td><td class="r">28,500,000</td><td class="r">21,500,000</td><td>사용중</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>사용중 자산 3 · 취득가액 113,000,000 · 미상각잔액 68,735,000</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>잔액 정합</td><td>취득가액 − 상각누계 ≠ 미상각잔액</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>처분자산 표시</td><td>처분/폐기 자산 필터 미적용 조회</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-fa-06"><span class="sid">SA-FA-06</span>현장 / 프로젝트 / 부서 자산명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>관리차원(현장·프로젝트·부서·코스트센터)별로 자산을 집계한 명세서. 차원별 자산 보유현황·상각비 귀속 분석.</td><th>API</th><td><code>GET /api/fa/by-dimension?dimType=&amp;dimId=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:read</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>dimension</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-FA-06 · 차원별 자산명세서</div>
+  <div class="wf-bar">고정자산 › 차원별 자산명세 <span class="sp"></span><span class="badge b-blue">프로젝트</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차원 <span class="wf-in">프로젝트</span> 대상 <span class="wf-in">A빌딩 신축</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>차원</th><th>자산명</th><th class="r">취득가액</th><th class="r">당기상각비</th><th class="r">미상각잔액</th></tr>
+    <tr><td>A빌딩 신축</td><td>건설중장비</td><td class="r">60,000,000</td><td class="r">10,000,000</td><td class="r">40,000,000</td></tr>
+    <tr><td>강남현장</td><td>가설자재</td><td class="r">8,000,000</td><td class="r">2,666,667</td><td class="r">5,333,333</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>프로젝트 A빌딩 신축 자산 1 · 취득가액 60,000,000 · 상각비 10,000,000</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>차원 미지정</td><td>선택 차원에 귀속 자산 없음</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>차원 권한</td><td>조회 권한 없는 차원 선택</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-07"><span class="sid">SA-FA-07</span>월별 감가상각비 계상</h4>
+<table class="meta">
+<tr><th>용도</th><td>월별 감가상각비를 계산하여 결산 감가상각 분개(차변 감가상각비 / 대변 감가상각누계액)를 자동 생성·계상. 페이즈05 결산 분개(P05)와 연계.</td><th>API</th><td><code>POST /api/fa/monthly-depreciation/post?yyyymm=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:fa:write</code> · <code>tenant:jv:write</code></td><th>엔티티</th><td><code>fa_depreciation</code> · <code>journal_voucher</code></td></tr>
+</table>
+<div class="note"><b>마감 가드</b> · 대상 월이 마감(CLOSED/LOCKED) 상태면 분개 계상이 차단된다. 이미 계상된 월을 재계상하면 기존 분개를 역분개 후 재생성하며 모든 처리는 append-only 감사로그에 기록된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-07 · 월별 감가상각비 계상</div>
+  <div class="wf-bar">고정자산 › 월별 상각비 계상 <span class="sp"></span><span class="badge b-blue">2026-05</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">대상월 <span class="wf-in">2026-05</span><span class="wf-btn">상각비 계산</span><span class="wf-btn pri">분개 계상</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>원가경비</th><th>차변 계정</th><th class="r">금액</th><th>대변 계정</th></tr>
+    <tr><td>제조원가</td><td>감가상각비(제조)</td><td class="r">1,266,667</td><td>감가상각누계액</td></tr>
+    <tr><td>판관비</td><td>감가상각비(판관)</td><td class="r">1,674,861</td><td>감가상각누계액</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>계상 분개 2건 · 차변 합계 2,941,528 · 전표 JV 자동 채번 · 결산 분개 연계 <span class="badge b-teal">정상</span></span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>마감 상태</td><td>대상 월이 CLOSED/LOCKED</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>중복 계상</td><td>해당 월 감가상각 분개 이미 존재</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>차대 불일치</td><td>차변 상각비 합계 ≠ 대변 누계액 합계</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+</section>
+
+<section id="s6">
+<h2>6. 부록 · 데이터 모델 매핑</h2>
+<p>본 페이즈 화면이 사용하는 주요 엔티티와 전표(P03)·결산(P05)·부가세(P06) 연계 관계를 요약한다.</p>
+<table>
+<tr><th>엔티티</th><th>주요 컬럼(요약)</th><th>연계</th></tr>
+<tr><td><code>vat_stock_conversion</code></td><td>tenant_id, biz_place_id, conv_date, conv_type, item_type, acquire_amt, residual_rate, stock_tax</td><td>부가세 신고서(P06) 25.15.1 · 고정자산</td></tr>
+<tr><td><code>vat_asset_conversion</code></td><td>tenant_id, asset_id, conv_date, acquire_amt, deduct_rate, deduct_tax</td><td>고정자산(SA-FA-01) · 부가세 매입세액</td></tr>
+<tr><td><code>buyer_issued_tax_invoice</code></td><td>tenant_id, supplier_biz_no, issue_date, supply_amt, tax_amt, ntsl_confirm</td><td>부가세 매입세액 공제</td></tr>
+<tr><td><code>business_account</code></td><td>tenant_id, biz_place_id, bank_code, account_no(마스킹), purpose, report_date</td><td>자금 계좌(SA-FND) · 감사로그</td></tr>
+<tr><td><code>business_transfer_report</code></td><td>tenant_id, transfer_date, transferee_id, transfer_amt, comprehensive_yn</td><td>거래처(counterparty)</td></tr>
+<tr><td><code>fixed_asset</code></td><td>tenant_id, asset_code, name, acquire_date, acquire_amt, method, useful_life, residual, dim(사업장/부서/PJT), car_yn, tax_convert_yn</td><td>관리차원 · 감가상각 · 처분</td></tr>
+<tr><td><code>fa_depreciation</code></td><td>tenant_id, asset_id, period, dep_amt, dep_limit, disallow, cost_type</td><td>결산 분개(P05) · 세무조정</td></tr>
+<tr><td><code>fa_disposal</code></td><td>tenant_id, asset_id, disposal_date, disposal_amt, book_value, gain_loss</td><td>유형자산처분손익 전표(P03)</td></tr>
+<tr><td><code>journal_voucher</code></td><td>tenant_id, jv_date, jv_no, debit/credit lines, dim</td><td>월별 상각비 계상(SA-FA-07) · 결산(P05)</td></tr>
+</table>
+<p class="tip">PK는 모두 <code>(tenant_id, ...)</code> 선두로 RLS(Row-Level Security) 격리되며, 전표·자산 관련 변경은 물리삭제 없이 append-only 감사로그로 보존된다.</p>
+</section>
+
+</main>
+</body>
+</html>
