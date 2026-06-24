@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 구현 화면설계서 v3.1 — 일반전표입력 (위하고 일반전표입력 1~4편 전면 반영)</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:262px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:262px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:23px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul,ol{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.src{background:#f0f9ff;border-left:4px solid var(--teal);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.3px;margin:10px 0;color:#0f5e57}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head>
+<body>
+<nav id="toc">
+  <h2>일반전표입력 화면설계서</h2>
+  <div class="ver">v3.1 · 위하고 일반전표입력 1~4편 전면 반영 · 2026-06-24</div>
+  <a href="#s1">1. 문서 개요 · 출처 · 범위</a>
+  <a href="#s2">2. 화면 골격 · 영역별 역할</a>
+  <div class="g">3. 일반전표입력 메인 화면</div>
+  <a class="sub" href="#wjv01">3.1 일반전표입력 WJV-01</a>
+  <a class="sub" href="#wjv-field">3.2 입력 필드별 상세</a>
+  <a class="sub" href="#wjv-gubun">3.3 전표 구분 코드(6종)</a>
+  <a class="sub" href="#wjv-keys">3.4 단축키 · 버튼 모음</a>
+  <a class="sub" href="#wjv-func">3.5 기능별 상세(거래처·적요·대체·묶기·삭제·인쇄)</a>
+  <div class="g">4. 관리항목 입력</div>
+  <a class="sub" href="#wjv02">4.1 관리항목 입력 WJV-02</a>
+  <a class="sub" href="#wjv-mgmt">4.2 관리항목별 사용법</a>
+  <a class="sub" href="#wjv-card">4.3 카드계좌 · 업무용승용차</a>
+  <a class="sub" href="#wjv-cond">4.4 조건검색</a>
+  <div class="g">5. 부가세 부속서류</div>
+  <a class="sub" href="#wjv03">5.1 부가세 부속서류 반영 WJV-03</a>
+  <a class="sub" href="#wjv-altacct">5.2 재고자산 타계정 대체</a>
+  <div class="g">6. 자금관리 항목</div>
+  <a class="sub" href="#wjv-fund">6.1 자금관리 큰 그림</a>
+  <a class="sub" href="#wjv04">6.2 받을어음 WJV-04</a>
+  <a class="sub" href="#wjv05">6.3 지급어음 WJV-05</a>
+  <a class="sub" href="#wjv06">6.4 차입금 WJV-06</a>
+  <a class="sub" href="#wjv-funddel">6.5 관리항목 전표 삭제</a>
+  <div class="g">7. 툴바 기능</div>
+  <a class="sub" href="#wjv-tool">차액전표보기·행고정·자동전표검증·데이터정렬</a>
+  <div class="g">8. 더보기 기능모음</div>
+  <a class="sub" href="#wjv-more">중복·분개설정·화면구성·일괄검색·일마감 외</a>
+  <div class="g">9. 가이드영역</div>
+  <a class="sub" href="#wjv-guide">안내·거래처코드·단축키·일정·작성자·메모</a>
+  <div class="g">10. 체크리스트 · BK 설계</div>
+  <a class="sub" href="#wjv-check">10.1 실무 체크리스트</a>
+  <a class="sub" href="#wjv-bk">10.2 BK 설계 반영 메모</a>
+  <a class="sub" href="#wjv-src">10.3 출처</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>BK 회계/세무 서비스 구현 화면설계서 v3.1 — 일반전표입력 (위하고 일반전표입력 1~4편 전면 반영)</h1>
+  <p>기준 화면 형태: <b>구현_화면_전표_v3.0.html</b>(BK 일반전표입력 형태 · 핵심 그리드 + 우측 입력 패널) · 반영 원천: <b>위하고전표_입력_1~4.md</b> (WEHAGO Smart A 10 「일반전표입력」 1~4편 영상 상세 정리)</p>
+  <p>작성일: 2026-06-24 · 문서 버전: <b>v3.1</b> · 범위: v3.0의 화면 골격(메타·설계의도·와이어프레임·요소/액션·검증 패턴)을 그대로 따르되, <b>위하고 일반전표입력 1~4편의 모든 내용</b>(입력 필드, 전표 구분 코드, 단축키, 거래처·적요·대체·묶기·삭제·인쇄, 관리항목·차량·자금, 부가세 부속서류, 받을어음·지급어음·차입금, 툴바·더보기·가이드영역, 실무 체크리스트, BK 설계 메모)을 <b>화면 단위로 재구성</b>해 빠짐없이 수록한다.</p>
+  <p style="color:#cdd9f6">기술 스택: 백엔드 <b>NestJS</b> / 프론트 <b>React 18</b> / DB <b>PostgreSQL 16</b>(SHARED+RLS·파티셔닝). 모든 그리드는 가상 스크롤·키보드 주도·실시간 검증을 전제로 한다.</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 출처 · 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>위하고(WEHAGO Smart A 10) 「일반전표입력」 1~4편의 화면 흐름·입력 칸·관리항목·자금항목·툴바·더보기·가이드영역을 <b>BK 일반전표입력 화면(v3.0 형태)</b>에 맞춰 재구성한다. 단순 입력 그리드가 아니라 <b>대차 차액·중복·자동전표 미확정·마감 잠금·작성자·메모·일정</b> 같은 운영 정보가 한 화면에 붙는 점을 그대로 반영한다.</td></tr>
+  <tr><th>원천(영상)</th><td>위하고 공식 채널 「일반전표입력」 <b>1편</b>(입력 칸·구분 코드·단축키·기본 기능) · <b>2편</b>(관리항목·차량·자금 기본 구조, 부가세 부속서류) · <b>3편</b>(자금관리: 받을어음·지급어음·차입금, 액션바) · <b>4편</b>(툴바·더보기·가이드영역). 영상 설명란 시간 구간·화면 흐름·WEHAGO 고객센터 문서·<code>kat_bk</code> 내 Smart A 분석 문서 기준으로 기능 중심 재구성.</td></tr>
+  <tr><th>화면 ID 체계</th><td>본 문서 전용 <code>WJV-xx</code>(위하고형 일반전표입력)를 사용하고, v3.0의 <code>JV-01</code>(일반전표입력)·<code>AUX-xx</code>(보조부)와 연결한다. 자금/관리항목은 v3.0 보조부(AUX) 모델과 매핑된다.</td></tr>
+  <tr><th>핵심 전제</th><td>일반전표입력 화면은 <b>① 전표 입력 그리드 + ② 상단 툴바 + ③ 더보기 기능모음 + ④ 가이드영역</b>으로 구성된다. 입력 칸은 슬림하게 두고(구분·계정·거래처·차변·대변·적요), 관리항목·자금·부가세·증빙은 선택 라인 기준 우측/하단에서 입력한다. 차변 합계=대변 합계, 마감 잠금, 작성자·승인자 분리(SOD)가 품질을 좌우한다.</td></tr>
+  <tr><th>표기</th><td><span class="badge b-green">반영</span> 설계 직접 반영 / <span class="badge b-blue">보완</span> 기능 확장 / <span class="badge b-amber">검토</span> 위험·주의 / <span class="badge b-red">차단</span> 저장·진행 불가. 단축키는 <span class="kbd">F2</span> 형태로 표기.</td></tr>
+</table>
+<div class="src"><b>원문 주의(공통)</b> — 본 문서는 위하고 사용법 정리를 BK 화면설계로 옮긴 것이며 BK 공식 스펙 확정본이 아니다. 각 화면 말미 「BK 설계 반영 메모」는 위하고 동작을 BK 도메인(<code>journals</code>·<code>integrations</code>·<code>closing</code>·관리차원·보조부)으로 연결하는 방향 제안이다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 화면 골격 · 영역별 역할</h2>
+<p>일반전표입력 화면은 단순 입력 그리드가 아니다. 전표 입력 그리드 외에 <b>상단 툴바</b>, <b>더보기 기능모음</b>, <b>하단 또는 우측 가이드영역</b>이 함께 제공된다. 툴바는 빠른 검토와 정렬을, 더보기는 설정과 일괄 처리를, 가이드영역은 현재 커서 위치에 맞는 안내와 전표 부가정보를 제공한다.</p>
+<table>
+  <tr><th>영역</th><th>역할</th><th>대표 기능</th></tr>
+  <tr><td><b>전표 입력 그리드</b></td><td>일자, 구분, 계정, 거래처, 금액, 적요, 관리항목 입력</td><td>일반전표 입력 · 수정 · 선택</td></tr>
+  <tr><td><b>툴바</b></td><td>입력 전표를 빠르게 검토하거나 화면 조회 방식을 바꿈</td><td>차액전표보기 · 행고정 · 자동전표검증 · 데이터정렬</td></tr>
+  <tr><td><b>더보기 기능모음</b></td><td>설정, 검색, 일괄삭제, 마감 같은 운영 기능 제공</td><td>중복전표검색 · 분개설정 · 화면구성 · 자동분개 일괄검색 · 일마감 · 코드변환 · 일괄적용 · 전표라인삽입 · 전표묶기 · 전표복사/이동 · 체크펜 · 어음등록 · 엑셀올리기</td></tr>
+  <tr><td><b>가이드영역</b></td><td>현재 커서 위치와 선택 전표에 대한 안내·부가정보 제공</td><td>안내메시지 · 단축키 · 전표번호/연동정보 · 선택전표소계 · 일정 · 작성자 · 메모</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">일반전표입력 전체 골격 — 툴바 / 입력 그리드 / 더보기 / 가이드영역</div>
+  <div class="wf-bar">전표/장부 › 일반전표입력 <span class="sp"></span><span class="badge b-blue">자가 기장 TENANT_LED</span> <span>👤 홍길동 · 회계담당</span></div>
+  <div class="wf-tool">
+    <b>툴바</b> <span class="wf-btn">차액전표보기 <span class="kbd">Shift+F10</span></span><span class="wf-btn">행고정</span><span class="wf-btn">자동전표검증</span><span class="wf-btn">데이터정렬</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">더보기 ▾</span>
+  </div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 70%">
+      <div style="font-weight:700;color:#27314d;margin-bottom:3px">전표 입력 그리드</div>
+      <table class="wf-grid">
+        <tr><th>일</th><th>구분</th><th>계정과목</th><th>거래처</th><th class="r">차변</th><th class="r">대변</th><th>코드/적요</th><th>관리</th></tr>
+        <tr style="background:#eef3ff"><td>18</td><td><span class="badge b-gray">3.차변</span></td><td>519 임차료</td><td>한빌딩</td><td class="r">3,000,000</td><td class="r"></td><td>6월 임차료</td><td>📋</td></tr>
+        <tr><td>18</td><td><span class="badge b-gray">4.대변</span></td><td>253 미지급금</td><td>한빌딩</td><td class="r"></td><td class="r">3,300,000</td><td>—</td><td>📋</td></tr>
+        <tr><td colspan="8" style="color:#8a94a8">… 가상 스크롤 · <span class="kbd">Enter</span> 다음 칸 · <span class="kbd">+</span> 천원 자동 · <span class="kbd">Insert</span> 전표라인삽입 …</td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 28%">
+      <div class="wf-panel pnl"><div class="pt">가이드영역</div>
+        안내메시지 · 단축키<br>전표번호/연동정보<br>선택전표소계 · 일정<br>작성자 · 메모
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">차변 <b>3,300,000</b> · 대변 <b>3,300,000</b> <span class="badge b-green">차대 일치</span><span class="sp" style="flex:1"></span><span class="badge b-gray">자동전표 미확정 0</span><span class="wf-btn pri">저장</span></div>
+</div>
+<div class="src"><b>출처(2편·4편)</b> — 핵심은 일반전표입력 화면이 대차 차액, 중복 전표, 자동전표 미확정, 마감 잠금, 작성자, 메모, 일정 같은 운영 정보를 같은 화면에 붙여 두고, 이 정보들이 전표 검토와 마감 품질을 좌우한다는 점이다.</div>
+</section>
+
+<section id="wjv01">
+<h2>3. 일반전표입력 메인 화면</h2>
+<h4 id="wjv01-h"><span class="sid">WJV-01</span>일반전표입력 (입금 · 출금 · 대체 · 결산 통합)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>모든 수기 전표의 단일 입력 화면. <b>일/거래일자 → 거래처 → 구분 → 계정과목 → 차변/대변 → 적요(코드) → 관리</b> 순으로 한 줄씩 분개를 입력한다. 입금·출금·대체·결산 전표를 「구분」 코드로 한 화면에서 처리</td><th>API</th><td><code>GET /api/tenant/journals?postingDate</code> · <code>POST /api/tenant/journals</code> (type=GENERAL)</td></tr>
+  <tr><th>권한</th><td><code>tenant:journal:write</code></td><th>식별</th><td>전표는 <b>(전표일자 + 전표번호)</b>로 식별, 번호는 일자별 001부터 리셋</td></tr>
+</table>
+<div class="tip"><b>입력 흐름(1편)</b> — 화면 상단에서 <b>월</b>을 고른 뒤 그리드에서 <b>일</b>을 입력하고, 거래처·구분·계정과목·차변/대변·적요·관리를 좌→우로 채운다. <span class="kbd">Enter</span>로 다음 칸, <span class="kbd">+</span>로 천원(000) 자동 입력, <span class="kbd">F2</span>로 코드도움(거래처·계정·적요)을 띄운다. 대체전표는 차변/대변을 여러 줄로 나눠 입력하고 <b>차변 합계 = 대변 합계</b>가 되어야 저장·확정된다.</div>
+<div class="wf">
+  <div class="wf-cap">일반전표입력 — 월 선택 + 일자별 그리드(구분·계정·거래처·차변·대변·적요·관리) + 우측 가이드</div>
+  <div class="wf-tool">
+    회계월 <span class="wf-in" style="min-width:80px">2026-06 ▾</span> <span class="wf-btn">◀ 전월</span><span class="wf-btn">익월 ▶</span> 사업장 <span class="wf-in" style="min-width:80px">전체 ▾</span> <span class="wf-btn pri">조회</span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">차액전표보기 <span class="kbd">Shift+F10</span></span><span class="wf-btn">전표묶기 <span class="kbd">F7</span></span><span class="wf-btn">새 전표 <span class="kbd">F8</span></span><span class="wf-btn">인쇄 <span class="kbd">F9</span></span><span class="wf-btn dng">삭제 <span class="kbd">F5</span></span><span class="wf-btn">더보기 ▾</span>
+  </div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 72%">
+    <table class="wf-grid">
+      <tr><th>일</th><th>거래처</th><th>구분</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th><th>Code/적요</th><th>관리</th></tr>
+      <tr><td>11</td><td>국민은행</td><td><span class="badge b-teal">2.입금</span></td><td>101 현금 / 901 이자수익</td><td class="r">15,000</td><td class="r"></td><td>01 예금이자</td><td>—</td></tr>
+      <tr style="background:#eef3ff"><td>18</td><td>한빌딩</td><td><span class="badge b-gray">3.차변</span></td><td>519 임차료</td><td class="r">3,000,000</td><td class="r"></td><td>6월 임차료</td><td>📋</td></tr>
+      <tr><td>18</td><td>한빌딩</td><td><span class="badge b-gray">3.차변</span></td><td>135 부가세대급금</td><td class="r">300,000</td><td class="r"></td><td>매입세액</td><td>📋</td></tr>
+      <tr><td>18</td><td>한빌딩</td><td><span class="badge b-gray">4.대변</span></td><td>253 미지급금</td><td class="r"></td><td class="r">3,300,000</td><td>—</td><td>📋</td></tr>
+      <tr><td><span class="wf-in" style="min-width:30px"></span></td><td><span class="wf-in" style="min-width:70px">거래처 F2</span></td><td><span class="wf-in" style="min-width:54px">구분 ▾</span></td><td><span class="wf-in" style="min-width:110px">계정 F2</span></td><td class="r"></td><td class="r"></td><td><span class="wf-in" style="min-width:70px">적요</span></td><td>—</td></tr>
+      <tr><td colspan="8" style="color:#8a94a8">… <span class="kbd">Enter</span> 다음 칸 · <span class="kbd">+</span> 천원 자동 · <span class="kbd">Insert</span> 전표라인삽입 · <span class="kbd">F4</span> 전표복사 · <span class="kbd">Ctrl+M</span> 전표이동 …</td></tr>
+    </table>
+    </div>
+    <div style="flex:0 0 26%">
+      <div class="wf-panel pnl"><div class="pt">선택전표 소계</div>차변 <b>3,300,000</b><br>대변 <b>3,300,000</b><br><span class="badge b-green">차대 일치</span></div>
+      <div class="wf-panel"><div class="pt">작성자 / 메모</div>작성자 홍길동<br>최종입력 06-18 14:22<br><span class="wf-btn">메모</span></div>
+    </div>
+  </div></div>
+  <div class="wf-foot">차변합계 <b>3,315,000</b> · 대변합계 <b>3,315,000</b> <span class="badge b-green">차대 일치</span><span class="sp" style="flex:1"></span><span class="wf-btn">임시저장</span><span class="wf-btn pri">결재요청(채번)</span></div>
+</div>
+
+<h3 id="wjv-field">3.2 입력 필드별 상세</h3>
+<table>
+  <tr><th>입력 칸</th><th>입력 내용</th><th>동작 · 검증</th></tr>
+  <tr><td><b>일 / 거래일자</b></td><td>전표의 거래일자(일)를 입력</td><td>상단에서 고른 회계월 안에서 일(day)만 입력. 증빙일자와 회계일자를 확인해야 하며, 마감일 이전 일자는 <span class="badge b-red">입력 제한</span>(일마감 시).</td></tr>
+  <tr><td><b>거래처명 / 코드</b></td><td>거래처 코드 또는 상호 입력</td><td><span class="kbd">F2</span> 코드도움으로 조회. 코드 없이 상호만 입력하면 거래처원장에서 <b>미등록거래처</b>로 조회되어 거래처별 채권채무 추적이 약해진다. 거래처가 필요한 계정은 코드 입력 권장.</td></tr>
+  <tr><td><b>구분</b></td><td>1.출금 / 2.입금 / 3.차변 / 4.대변 / 5.결차 / 6.결대</td><td>전표 성격을 결정. 입금/출금은 현금 한 변 고정, 차변/대변은 대체, 결차/결대는 결산정리분개. (3.3 참조)</td></tr>
+  <tr><td><b>계정과목</b></td><td>계정코드 또는 계정명 입력</td><td><span class="kbd">F2</span> 코드도움. 계정의 관리항목 설정에 따라 거래처·자금·수량 등 관리 입력 요건이 부여된다.</td></tr>
+  <tr><td><b>차변 / 대변</b></td><td>금액 입력</td><td><span class="kbd">+</span>로 천원(000) 자동. 입금/출금은 한 변만, 대체는 차변·대변을 나눠 입력. <b>차변 합계 = 대변 합계</b>여야 확정 가능.</td></tr>
+  <tr><td><b>Code / 적요</b></td><td>적요코드 또는 적요 문구</td><td>적요코드 입력 시 표준 적요 자동 표기. 일부 적요코드(06·07 등)는 부가세 부속서류 반영 트리거가 된다(5장).</td></tr>
+  <tr><td><b>관리</b></td><td>관리항목(부서·사원·현장·프로젝트·자금·제품·카드계좌·업무용승용차)</td><td>계정의 관리항목 설정에 따라 노출·필수. 미입력 시 보조부 누락 → 필수면 <span class="badge b-red">차단</span>(4장).</td></tr>
+  <tr><td><b>메모</b></td><td>전표 단위 내부 메모</td><td>장부 적요와 별개. 조건검색의 메모검색으로 다시 찾을 수 있다(9장).</td></tr>
+</table>
+
+<h3 id="wjv-gubun">3.3 전표 구분 코드(6종)</h3>
+<table>
+  <tr><th>코드</th><th>구분</th><th>의미</th><th>현금/대체</th></tr>
+  <tr><td><span class="badge b-gray">1</span></td><td>출금</td><td>현금이 나가는 거래. 대변에 현금 고정, 차변 상대계정만 입력</td><td>현금(고정)</td></tr>
+  <tr><td><span class="badge b-teal">2</span></td><td>입금</td><td>현금이 들어오는 거래. 차변에 현금 고정, 대변 상대계정만 입력</td><td>현금(고정)</td></tr>
+  <tr><td><span class="badge b-gray">3</span></td><td>차변</td><td>대체전표의 차변 라인</td><td>대체</td></tr>
+  <tr><td><span class="badge b-gray">4</span></td><td>대변</td><td>대체전표의 대변 라인</td><td>대체</td></tr>
+  <tr><td><span class="badge b-amber">5</span></td><td>결차</td><td>결산정리분개의 차변(결산차변). 제조원가·손익 결산 대체에 사용</td><td>결산</td></tr>
+  <tr><td><span class="badge b-amber">6</span></td><td>결대</td><td>결산정리분개의 대변(결산대변)</td><td>결산</td></tr>
+</table>
+<div class="note"><b>결차/결대(5·6)</b> — 결산정리분개(원가 대체·기말 재공품·제조원가 배부 등)는 결차/결대로 입력해야 제조원가명세서·손익계산서 원가에 반영된다. BK에서는 <code>JournalLine.entryCode</code>=CLOSING_DR/CLOSING_CR로 구분하고 결산 시즌·조정전표에서만 활성화한다.</div>
+
+<h3 id="wjv-keys">3.4 단축키 · 버튼 모음</h3>
+<table>
+  <tr><th>단축키</th><th>기능</th><th>비고</th></tr>
+  <tr><td><span class="kbd">F2</span></td><td>코드도움</td><td>거래처·계정과목·적요 조회</td></tr>
+  <tr><td><span class="kbd">+</span></td><td>천원 자동 입력</td><td>금액 칸에서 000 자동 추가</td></tr>
+  <tr><td><span class="kbd">F4</span></td><td>전표복사</td><td>선택 전표를 다른 일자로 복사</td></tr>
+  <tr><td><span class="kbd">F5</span></td><td>삭제</td><td>선택 전표 삭제</td></tr>
+  <tr><td><span class="kbd">F7</span></td><td>전표묶기</td><td>전표 묶기·분리·순서 조정</td></tr>
+  <tr><td><span class="kbd">F8</span></td><td>새 전표 생성</td><td>빈 전표 라인 추가</td></tr>
+  <tr><td><span class="kbd">F9</span></td><td>인쇄</td><td>선택 전표 출력</td></tr>
+  <tr><td><span class="kbd">Insert</span></td><td>전표라인삽입</td><td>같은 전표번호의 빈 라인 삽입</td></tr>
+  <tr><td><span class="kbd">Ctrl+M</span></td><td>전표이동</td><td>선택 전표를 지정 일자로 이동</td></tr>
+  <tr><td><span class="kbd">Ctrl+A</span></td><td>화면구성</td><td>전표번호보기·기본화면구성 등</td></tr>
+  <tr><td><span class="kbd">Shift+F3</span></td><td>코드변환</td><td>계정·거래처 등 코드 일괄 변환</td></tr>
+  <tr><td><span class="kbd">Shift+F6</span></td><td>자동분개 일괄검색/삭제</td><td>자동전표 검색 및 삭제</td></tr>
+  <tr><td><span class="kbd">Shift+F7</span></td><td>중복전표검색</td><td>일자·유형·계정·거래처·금액 기준</td></tr>
+  <tr><td><span class="kbd">Shift+F10</span></td><td>차액전표보기</td><td>대차 불일치 전표 조회</td></tr>
+</table>
+<div class="note"><b>단축키 안전(4편)</b> — 단축키는 반복 입력에는 강력하지만 삭제·이동처럼 데이터에 영향을 주는 기능도 포함한다. 공통 단축키는 환경설정에서 단축키 사용을 켜야 활용할 수 있다. BK에서는 권한·상태(마감 잠금)에 따라 단축키 실행 가능 여부를 제한하고, 단축키도 동일한 API 권한·마감·감사 검증을 거쳐야 한다.</div>
+
+<h3 id="wjv-func">3.5 기능별 상세(거래처 · 적요 · 대체 · 묶기 · 삭제 · 인쇄)</h3>
+<table>
+  <tr><th>기능</th><th>설명</th></tr>
+  <tr><td><b>거래처</b></td><td><span class="kbd">F2</span> 코드도움으로 등록 거래처 선택. 미등록 시 즉시 등록 가능. 코드 없이 상호만 입력하면 거래처원장에서 미등록거래처로 조회되므로, 채권채무 관리가 필요한 계정은 코드 입력이 원칙.</td></tr>
+  <tr><td><b>적요</b></td><td>적요코드로 표준 적요를 빠르게 입력. 적요항목 편집으로 자주 쓰는 적요를 등록·표준화. 특정 적요코드는 부가세 부속서류 반영 트리거.</td></tr>
+  <tr><td><b>대체전표</b></td><td>차변·대변을 여러 줄로 나눠 입력하는 전표. 같은 전표번호 안에서 차변 합계 = 대변 합계가 되어야 한다. 차액이 남으면 차액전표보기로 검토.</td></tr>
+  <tr><td><b>전표묶기 <span class="kbd">F7</span></b></td><td>여러 라인을 하나의 전표번호로 묶거나 분리. 같은 거래의 분개를 한 전표로 관리할 때 사용. 묶기/분리 후에는 차액전표보기로 대차 일치를 재확인.</td></tr>
+  <tr><td><b>삭제 <span class="kbd">F5</span></b></td><td>선택 전표 삭제. 관리항목·자금·증빙이 연결된 전표는 보조부 상태와 함께 정리해야 한다(6.5). 마감·승인 전표는 삭제 제한.</td></tr>
+  <tr><td><b>인쇄 <span class="kbd">F9</span></b></td><td>선택 전표 출력. 전표번호 표시 여부(화면구성)에 따라 인쇄 양식이 달라진다.</td></tr>
+</table>
+<div class="src"><b>출처(1편)</b> — 입력 필드별 정리, 전표 구분 코드, 단축키와 버튼 모음, 기능별 상세 메모(거래처·적요·대체전표·전표묶기·삭제·인쇄).</div>
+</section>
+
+<section id="wjv02">
+<h2>4. 관리항목 입력</h2>
+<h4 id="wjv02-h"><span class="sid">WJV-02</span>관리항목 입력 (관리 · 차량 · 자금)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>전표 라인의 <b>관리</b> 칸에서 계정 설정에 따라 부서·사원·현장·프로젝트·자금·제품·카드계좌·업무용승용차 등 보조항목을 입력한다. 입력한 관리항목은 보조부·원가집계·세무 부속서류로 집계된다</td><th>연계</th><td>v3.0 AUX-01~09 보조부 · SA-BAS-07 계정과목별 관리항목</td></tr>
+  <tr><th>노출 결정</th><td>계정의 관리항목 설정 + 환경설정 관리코드 사용여부로 자동 결정. 미설정 항목은 비활성</td><th>검증</th><td>필수 관리항목 미입력 시 <code>AUX_REQUIRED</code> <span class="badge b-red">차단</span></td></tr>
+</table>
+<div class="tip"><b>관리항목의 기본 구조(2편)</b> — 관리항목은 크게 <b>관리</b>(부서·사원·현장·프로젝트·자금·제품 등 일반 보조항목), <b>차량</b>(업무용승용차), <b>자금</b>(받을어음·지급어음·차입금 등 자금관리)으로 나뉜다. 전표 라인에서 계정과목을 입력하면 그 계정에 설정된 관리항목 칸이 열리고, 커서가 관리 칸으로 이동했을 때 코드도움으로 항목을 선택한다.</div>
+<table>
+  <tr><th>구분</th><th>관리항목</th><th>입력 위치 · 용도</th></tr>
+  <tr><td><b>관리</b></td><td>부서 · 사원 · 현장 · 프로젝트 · 자금 · 제품</td><td>비용·수익·재고·자금 계정의 라인 관리 칸. 부서별·사원별·현장별·프로젝트별 원가/수익 집계의 기준</td></tr>
+  <tr><td><b>차량</b></td><td>업무용승용차</td><td>업무용승용차 관련 비용 계정(차량유지비 등)에서 차량을 선택해 차량별 비용·운행기록·세무 한도 관리에 연결</td></tr>
+  <tr><td><b>자금</b></td><td>받을어음 · 지급어음 · 차입금 등</td><td>자금관리 계정의 라인에서 어음·차입금 항목을 선택해 자금 보조부(받을어음현황·지급어음현황·어음집계표·차입금스케줄/현황)로 연결(6장)</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">관리항목 입력 팝업 — 선택 라인(파란 행) 기준 관리·차량·자금 입력</div>
+  <div class="wf-modal">
+    <div class="mh">📋 관리항목 입력 — 2행 519 임차료 <span class="sp"></span><span class="kbd">Esc</span> 닫기</div>
+    <div class="wf-body">
+      <div class="wf-tab"><span class="on">관리</span><span>차량</span><span>자금</span></div>
+      <div class="wf-row"><label>부서</label><span class="wf-in">경영지원팀 ▾</span></div>
+      <div class="wf-row"><label>사원</label><span class="wf-in">— 선택 —</span></div>
+      <div class="wf-row"><label>현장</label><span class="wf-in">— 선택 —</span></div>
+      <div class="wf-row"><label>프로젝트</label><span class="wf-in">— 선택 —</span></div>
+      <div class="wf-row"><label>제품</label><span class="wf-in">— 선택 —</span></div>
+      <div class="wf-row"><label>자금</label><span class="wf-in">— (자금 탭에서 입력) —</span></div>
+    </div>
+    <div class="wf-foot"><span class="badge b-amber">계정 설정에 따라 노출·필수 결정</span><span class="sp" style="flex:1"></span><span class="wf-btn">취소</span><span class="wf-btn pri">적용</span></div>
+  </div>
+</div>
+
+<h3 id="wjv-mgmt">4.2 관리항목별 사용법</h3>
+<table>
+  <tr><th>관리항목</th><th>사용법 · 집계</th></tr>
+  <tr><td><b>프로젝트</b></td><td>프로젝트 단위 수익·비용 집계. 프로젝트별 손익·원가 분석에 사용. 계정에 프로젝트 관리항목이 설정된 경우 라인에서 프로젝트를 선택</td></tr>
+  <tr><td><b>자금</b></td><td>받을어음·지급어음·차입금 등 자금 항목을 라인에 연결. 자금 보조부와 자금일보/스케줄로 집계(6장)</td></tr>
+  <tr><td><b>현장</b></td><td>건설·공사 등 현장 단위 원가 집계. 현장별 투입 비용·자재 관리. 현장은 사업장에 귀속</td></tr>
+  <tr><td><b>제품</b></td><td>재고자산 계정에서 제품·상품 단위 수불 관리. 재고 수불부와 연계</td></tr>
+  <tr><td><b>부서 · 사원</b></td><td>부서별·사원별 비용 집계. 인건비·복리후생비·영업비용을 부서/사원 단위로 관리하고 원가 배부에 사용</td></tr>
+  <tr><td><b>카드계좌</b></td><td>카드 사용 거래에서 카드계좌를 선택. 카드 보조부·매입원장·부가세 공제구분과 연계(4.3)</td></tr>
+  <tr><td><b>업무용승용차</b></td><td>차량유지비 등에서 차량을 선택. 업무용승용차 운행기록·세무 한도(감가상각·임차료·유류비) 관리에 연결(4.3)</td></tr>
+</table>
+
+<h3 id="wjv-card">4.3 카드계좌 · 업무용승용차</h3>
+<table>
+  <tr><th>카드계좌 란 사용법</th><th>내용</th></tr>
+  <tr><td>입력 위치</td><td>카드 사용·결제 거래의 라인 관리 칸에서 카드계좌를 선택</td></tr>
+  <tr><td>연계</td><td>카드 수신내역 매칭 → 전표 자동생성 후보 및 매입원장 연계. 부가세 공제구분(공제/불공제) 보존</td></tr>
+  <tr><td>세금계산서 교부 후 카드결제</td><td>세금계산서를 먼저 받고 대금을 신용카드로 결제한 경우, 부가세는 <b>세금계산서 기준으로 한 번만</b> 공제하고 카드결제는 결제수단으로만 처리한다(이중공제 방지). 카드 매입세액 공제 대상에서 제외 처리</td></tr>
+</table>
+<table>
+  <tr><th>업무용승용차</th><th>내용</th></tr>
+  <tr><td>관리항목 위치</td><td>차량 관련 비용 계정(차량유지비·감가상각비·임차료 등)에서 업무용승용차 관리항목으로 차량을 선택</td></tr>
+  <tr><td>목적</td><td>차량별 비용 집계 + 운행기록부·업무사용비율에 따른 세무 한도(감가상각·임차료·유류비 등) 관리에 연결</td></tr>
+  <tr><td>BK 반영</td><td>차량 마스터와 운행기록·업무사용비율을 별도 엔티티로 두고, 전표 라인의 차량 관리항목이 이를 참조하도록 설계</td></tr>
+</table>
+
+<h3 id="wjv-cond">4.4 조건검색</h3>
+<p>입력된 전표를 다양한 조건으로 조회·검토한다. 조건검색은 데이터정렬·일괄처리 전에 현재 보이는 전표 범위를 좁히는 데 쓰인다.</p>
+<table>
+  <tr><th>조건</th><th>용도</th></tr>
+  <tr><td>일자 / 기간</td><td>특정 일자·기간의 전표 조회</td></tr>
+  <tr><td>거래처</td><td>거래처별 전표 검토(미등록거래처 포함 여부 확인)</td></tr>
+  <tr><td>계정과목</td><td>계정별 입력 오류·비용 계정 검토</td></tr>
+  <tr><td>금액</td><td>특정 금액 전표 조회(중복·이상 금액 점검)</td></tr>
+  <tr><td>적요 / 메모검색</td><td>적요·메모 문구로 전표 검색(검토 사유·확인 요청 메모 추적)</td></tr>
+  <tr><td>관리항목</td><td>부서·사원·현장·프로젝트·자금·차량 단위 조회</td></tr>
+</table>
+<div class="src"><b>출처(2편)</b> — 관리항목의 기본 구조, 조건검색 정리, 관리항목별 사용법, 카드계좌 란 사용법, 세금계산서 교부 후 신용카드 결제 처리, 업무용승용차 관리항목.</div>
+</section>
+
+<section id="wjv03">
+<h2>5. 부가세 부속서류</h2>
+<h4 id="wjv03-h"><span class="sid">WJV-03</span>부가세 부속서류 반영 (의제매입세액 · 재활용폐자원)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>일반전표입력 중 <b>재고자산 계정 + 특정 적요코드</b> 조합으로 입력하면 부가세 부속서류(의제매입세액공제신고서·재활용폐자원세액공제신고서)에 자동 반영된다</td><th>연계</th><td>부가세신고 부속서류 · v3.0 AUX-06 부가세 보조부</td></tr>
+  <tr><th>트리거 계정</th><td>146 상품 · 153 원재료 · 162 부재료 등 재고자산 계정</td><th>트리거 적요</th><td>06 의제매입세액 원재료 차감 · 07 재활용 폐자원매입세액</td></tr>
+</table>
+<div class="tip"><b>반영 규칙(2편)</b> — 면세 농수산물 등을 매입해 과세 재화의 원재료로 쓰면 일정 비율을 매입세액으로 의제공제한다. 일반전표입력에서 <b>재고자산 계정(146 상품·153 원재료·162 부재료)</b>에 <b>의제매입/재활용폐자원 적요코드</b>를 붙여 입력하면 해당 금액이 부속서류 집계 대상이 된다. 거래처 유형(53 면세·58 카면·60 면건·62 현면)이 함께 관리되어야 신고서가 정확히 작성된다.</div>
+<table>
+  <tr><th>부속서류</th><th>대상</th><th>입력 방법</th></tr>
+  <tr><td><b>의제매입세액공제신고서</b></td><td>면세 농수산물 등을 매입해 과세 원재료로 사용</td><td>재고자산 계정 + 적요코드 <b>06 의제매입세액 원재료 차감</b>. 매입 거래처 유형 <b>53 면세 · 58 카면(카드 면세) · 60 면건(면세 건별) · 62 현면(현금 면세)</b> 중 하나로 분류</td></tr>
+  <tr><td><b>재활용폐자원세액공제신고서</b></td><td>재활용 폐자원·중고품 매입</td><td>재고자산 계정 + 적요코드 <b>07 재활용 폐자원매입세액</b></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">의제매입세액 — 153 원재료 라인에 적요코드 06 입력 시 부속서류 자동 집계</div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일</th><th>거래처(유형)</th><th>구분</th><th>계정과목</th><th class="r">금액</th><th>Code/적요</th><th>부속서류</th></tr>
+      <tr style="background:#eef3ff"><td>15</td><td>나주농협 <span class="badge b-gray">53 면세</span></td><td><span class="badge b-gray">3.차변</span></td><td>153 원재료</td><td class="r">2,000,000</td><td>06 의제매입세액 원재료 차감</td><td><span class="badge b-blue">의제매입 집계</span></td></tr>
+      <tr><td>16</td><td>한국자원 <span class="badge b-gray">60 면건</span></td><td><span class="badge b-gray">3.차변</span></td><td>146 상품</td><td class="r">500,000</td><td>07 재활용 폐자원매입세액</td><td><span class="badge b-blue">재활용폐자원 집계</span></td></tr>
+      <tr><td colspan="7" style="color:#8a94a8">… 적요코드 06/07 + 재고자산 계정 조합이 부속서류 집계 트리거. 거래처 유형(53·58·60·62)이 신고서 분류 기준 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">공제율·한도는 부가세신고 단계에서 적용</span><span class="sp" style="flex:1"></span><span class="wf-btn">부가세 부속서류 보기</span></div>
+</div>
+
+<h3 id="wjv-altacct">5.2 재고자산 계정의 타계정 대체</h3>
+<p>재고자산(상품·원재료·부재료 등)을 매출원가가 아닌 다른 용도(견본·접대·폐기·자가소비 등)로 사용할 때는 <b>타계정 대체</b>로 처리한다. 일반전표입력에서 재고자산 계정을 대변으로, 상대 비용/자산 계정을 차변으로 입력하고 적요로 대체 사유를 남긴다.</p>
+<table>
+  <tr><th>상황</th><th>처리</th></tr>
+  <tr><td>견본·광고 제공</td><td>(차) 광고선전비 / (대) 상품(타계정 대체). 매출원가와 분리해 손익·재고를 정확히 표시</td></tr>
+  <tr><td>접대 제공</td><td>(차) 접대비 / (대) 상품. 접대비 한도·부가세 불공제 검토</td></tr>
+  <tr><td>폐기·감모</td><td>(차) 재고자산감모손실 등 / (대) 재고자산. 감모 사유·증빙 확보</td></tr>
+  <tr><td>자가소비</td><td>(차) 해당 비용/자산 / (대) 재고자산. 부가세 간주공급 여부 검토</td></tr>
+</table>
+<div class="note"><b>주의(2편)</b> — 타계정 대체는 매출원가 왜곡과 부가세 처리(간주공급·불공제)를 동반할 수 있으므로 적요로 사유를 명확히 남기고, 부가세 신고와의 정합성을 확인해야 한다.</div>
+<div class="src"><b>출처(2편)</b> — 부가세 부속서류 반영 규칙(의제매입세액공제신고서 — 유형 53 면세/58 카면/60 면건/62 현면; 재활용폐자원세액공제신고서), 재고자산 계정의 타계정 대체.</div>
+</section>
+
+<section id="wjv-fund">
+<h2>6. 자금관리 항목</h2>
+<h3>6.1 자금관리 큰 그림</h3>
+<p>자금관리 항목은 일반전표입력의 <b>자금 관리항목</b>으로 입력되며, 어음·차입금 등 자금 보조부로 집계되어 만기·상환·할인·배서 같은 후속 관리로 이어진다.</p>
+<table>
+  <tr><th>자금 항목</th><th>전표 입력 계정</th><th>연계 보조부</th><th>후속 관리</th></tr>
+  <tr><td><b>받을어음</b></td><td>110 받을어음</td><td>받을어음현황</td><td>보관 · 할인 · 배서 · 만기결제 · 부도</td></tr>
+  <tr><td><b>지급어음</b></td><td>252 지급어음</td><td>지급어음현황 · 어음집계표</td><td>발행 · 만기결제 · 회수</td></tr>
+  <tr><td><b>차입금</b></td><td>260 단기차입금 · 293 장기차입금 등</td><td>차입금스케줄관리 · 차입금현황</td><td>원금상환 · 이자 · 만기 · 담보보증 관리</td></tr>
+</table>
+
+<h4 id="wjv04"><span class="sid">WJV-04</span>받을어음 입력</h4>
+<table class="meta">
+  <tr><th>업무상황</th><td>매출 대금을 어음으로 받았을 때. 받을어음 계정 라인에 어음 정보를 등록하면 받을어음현황으로 집계되어 만기·할인·배서·부도 관리로 이어진다</td><th>연계</th><td>받을어음현황 · v3.0 AUX-02 어음 보조부</td></tr>
+</table>
+<div class="tip"><b>입력흐름(3편)</b> — (차) 받을어음 / (대) 외상매출금(또는 매출) 분개를 입력하고, 받을어음 라인의 자금 관리항목에서 <b>어음번호·발행인·발행일·만기일·지급은행·어음종류·금액</b>을 등록한다. 등록된 어음은 받을어음현황에서 상태별로 추적한다.</div>
+<table>
+  <tr><th>입력 필드</th><th>내용</th></tr>
+  <tr><td>어음번호</td><td>받을어음의 어음번호(고유 식별)</td></tr>
+  <tr><td>발행인 / 거래처</td><td>어음 발행 거래처</td></tr>
+  <tr><td>발행일 / 만기일</td><td>어음 발행일과 만기일(만기 관리 기준)</td></tr>
+  <tr><td>지급은행 / 지점</td><td>어음 지급 은행·지점</td></tr>
+  <tr><td>어음종류 / 금액</td><td>약속어음·전자어음 등 종류와 어음 금액</td></tr>
+</table>
+<table>
+  <tr><th>후속관리</th><th>처리</th></tr>
+  <tr><td><b>보관</b></td><td>어음 수령 후 보관 상태. 만기까지 받을어음현황에서 보유로 표시</td></tr>
+  <tr><td><b>할인</b></td><td>만기 전 은행 할인. (차) 보통예금/매출채권처분손실 / (대) 받을어음. 할인율(연)·할인일수·할인료·실수령액 산정</td></tr>
+  <tr><td><b>배서</b></td><td>제3자에게 배서양도. (차) 외상매입금 등 / (대) 받을어음. 배서 이력 기록</td></tr>
+  <tr><td><b>만기결제</b></td><td>만기에 정상 입금. (차) 보통예금 / (대) 받을어음. 어음 상태 결제로 갱신</td></tr>
+  <tr><td><b>부도</b></td><td>지급 거절. (차) 부도어음 등 / (대) 받을어음. 부도어음 관리·후속 회수 추적</td></tr>
+</table>
+
+<h4 id="wjv05"><span class="sid">WJV-05</span>지급어음 입력</h4>
+<table class="meta">
+  <tr><th>업무상황</th><td>매입 대금을 어음으로 발행했을 때. 지급어음 계정 라인에 어음 정보를 등록하면 지급어음현황·어음집계표로 집계되어 만기결제 관리로 이어진다</td><th>연계</th><td>지급어음현황 · 어음집계표 · v3.0 AUX-02</td></tr>
+</table>
+<div class="tip"><b>사전준비 · 입력흐름(3편)</b> — 지급어음은 발행 전 <b>어음집계표</b>(수령한 어음용지 관리)를 준비해 어음번호 범위를 등록해 둔다. (차) 외상매입금(또는 매입) / (대) 지급어음 분개를 입력하고, 지급어음 라인 자금 관리항목에서 어음번호·수취인·발행일·만기일·지급은행·금액을 등록한다.</div>
+<table>
+  <tr><th>입력 필드</th><th>내용</th></tr>
+  <tr><td>어음번호</td><td>어음집계표에 등록된 어음용지 번호에서 선택</td></tr>
+  <tr><td>수취인 / 거래처</td><td>어음을 받을 거래처</td></tr>
+  <tr><td>발행일 / 만기일</td><td>발행일과 만기일</td></tr>
+  <tr><td>지급은행 / 지점</td><td>결제 은행·지점</td></tr>
+  <tr><td>금액</td><td>지급어음 금액</td></tr>
+</table>
+<table>
+  <tr><th>후속관리</th><th>처리</th></tr>
+  <tr><td>만기결제</td><td>만기에 결제. (차) 지급어음 / (대) 보통예금. 어음집계표·지급어음현황 상태 갱신</td></tr>
+  <tr><td>어음집계표</td><td>수령·발행·잔여 어음용지 현황 관리. 발행 가능한 어음번호 통제</td></tr>
+</table>
+
+<h4 id="wjv06"><span class="sid">WJV-06</span>차입금 입력</h4>
+<table class="meta">
+  <tr><th>업무상황</th><td>금융기관 등에서 자금을 차입했을 때. 차입금 계정 라인에 차입 정보를 등록하면 차입금스케줄관리·차입금현황으로 집계되어 원금상환·이자·만기 관리로 이어진다</td><th>연계</th><td>차입금스케줄관리 · 차입금현황</td></tr>
+</table>
+<div class="tip"><b>입력흐름(3편)</b> — (차) 보통예금 / (대) 단기차입금(또는 장기차입금) 분개를 입력하고, 차입금 라인 자금 관리항목에서 차입금번호·차입처·차입기간·원금·상환구분·이자율·자금용도·담보보증을 등록한다. 등록된 차입금은 스케줄에 따라 원금·이자 상환 전표와 연결된다.</div>
+<table>
+  <tr><th>입력 필드</th><th>내용</th></tr>
+  <tr><td>차입금번호</td><td>차입 건 고유 식별번호</td></tr>
+  <tr><td>차입처</td><td>차입 금융기관·거래처</td></tr>
+  <tr><td>차입기간</td><td>차입 개시일~만기일</td></tr>
+  <tr><td>원금</td><td>차입 원금</td></tr>
+  <tr><td>상환구분</td><td>만기일시상환 · 분할상환 · 원리금균등 등</td></tr>
+  <tr><td>이자율</td><td>차입 이자율(연). 이자비용 전표 산정 기준</td></tr>
+  <tr><td>자금용도</td><td>운전자금·시설자금 등 차입 목적</td></tr>
+  <tr><td>담보보증</td><td>담보·보증 정보(부동산·보증인 등)</td></tr>
+</table>
+<table>
+  <tr><th>후속관리</th><th>처리</th></tr>
+  <tr><td>원금상환</td><td>(차) 차입금 / (대) 보통예금. 차입금현황 잔액 차감</td></tr>
+  <tr><td>이자</td><td>(차) 이자비용 / (대) 보통예금. 이자율·기간 기준 산정</td></tr>
+  <tr><td>스케줄 관리</td><td>차입금스케줄관리에서 상환 일정·잔액·이자 예정 추적</td></tr>
+</table>
+
+<h3 id="wjv-funddel">6.5 관리항목이 등록된 전표 삭제</h3>
+<p>받을어음·지급어음·차입금 같은 자금 관리항목이 등록된 전표는 단순 삭제로 끝나지 않는다. 보조부(어음현황·차입금현황)에 등록된 항목과 상태가 함께 정리되어야 한다.</p>
+<table>
+  <tr><th>단계</th><th>처리</th></tr>
+  <tr><td>1</td><td>해당 전표의 자금 관리항목이 무엇인지 확인(어음번호·차입금번호)</td></tr>
+  <tr><td>2</td><td>그 어음/차입금이 <b>후속 거래(할인·배서·만기결제·상환)</b>에 연결돼 있는지 확인. 연결된 경우 후속 전표부터 정리</td></tr>
+  <tr><td>3</td><td>보조부 상태(보관/할인/결제/부도, 차입/상환)를 되돌린 뒤 전표 삭제</td></tr>
+  <tr><td>4</td><td>마감·승인된 전표는 삭제 제한. 마감해제·권한·사유 기록 필요</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 자금항목 연결 전표는 물리 삭제보다 <b>취소·역분개·재등록 이력</b>으로 처리해 어음/차입금 상태머신과 정합성·추적성을 유지한다.</div>
+<div class="src"><b>출처(3편)</b> — 자금관리 항목의 큰 그림, 받을어음·지급어음·차입금 입력 방법(입력흐름·입력필드·후속관리), 관리항목이 등록된 전표 삭제 방법.</div>
+</section>
+
+<section id="wjv-tool">
+<h2>7. 툴바 기능</h2>
+<p>툴바는 입력된 전표를 빠르게 검토하거나 화면 조회 방식을 바꾸는 기능을 제공한다. 데이터를 직접 바꾸지 않는 검토·정렬 보조 기능이 중심이다.</p>
+
+<h4 id="wjv-tool-diff"><span class="sid">7.1</span>차액전표보기 <span class="kbd">Shift+F10</span></h4>
+<p>대차 차액이 발생한 전표를 찾아 보여준다. 대체전표는 같은 전표번호 안에서 차변 합계와 대변 합계가 일치해야 한다. 차액이 남으면 원장·재무제표에 정상 반영되지 않아 마감 전 검토 대상이 된다.</p>
+<table>
+  <tr><th>항목</th><th>내용</th></tr>
+  <tr><td>단축키</td><td><span class="kbd">Shift+F10</span></td></tr>
+  <tr><td>찾는 대상</td><td>차변 합계와 대변 합계가 맞지 않는 전표</td></tr>
+  <tr><td>주 사용 시점</td><td>대체전표 입력 후, 전표라인삽입 후, 전표묶기/분리 후, 마감 전 점검</td></tr>
+  <tr><td>확인 포인트</td><td>차액 원인, 빠진 상대계정, 금액 입력 위치, 잘못된 구분 코드</td></tr>
+</table>
+<div class="note"><b>차액 발견 시 확인 순서</b> — ① 전표번호 단위 차변·대변 합계 확인 → ② 구분 코드가 3.차변/4.대변으로 맞는지 → ③ 금액이 차변/대변 올바른 칸에 입력됐는지 → ④ 전표라인 삽입 후 빈 라인·빠진 상대계정 → ⑤ 분개설정의 금액자동분개·차대변 변환이 의도대로 동작했는지.</div>
+<div class="wf">
+  <div class="wf-cap">차액전표보기 — 대차 불일치 전표 목록</div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>전표일자-번호</th><th class="r">차변합계</th><th class="r">대변합계</th><th class="r">차액</th><th>원인 추정</th></tr>
+      <tr style="background:#fff5f5"><td>2026-06-18-005</td><td class="r">1,200,000</td><td class="r">1,100,000</td><td class="r"><span class="badge b-red">100,000</span></td><td>상대 대변 라인 누락</td></tr>
+      <tr style="background:#fff5f5"><td>2026-06-20-002</td><td class="r">500,000</td><td class="r">550,000</td><td class="r"><span class="badge b-red">-50,000</span></td><td>금액 입력 위치 오류</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-red">차액 전표 2건 — 마감 전 정리 필요</span></div>
+</div>
+
+<h4 id="wjv-tool-fix"><span class="sid">7.2</span>행고정</h4>
+<p>화면 스크롤 중에도 기준 행을 유지하는 기능. 검색된 전표의 첫 행부터 현재 커서 행까지 화면에 고정하고, 해제 기능으로 일반 스크롤 상태로 되돌린다.</p>
+<table>
+  <tr><th>활용 상황</th><th>설명</th></tr>
+  <tr><td>전표가 많은 기간 검토</td><td>월말처럼 전표가 많을 때 위쪽 기준 데이터를 유지한 채 아래쪽 전표 비교</td></tr>
+  <tr><td>특정 전표 묶음 비교</td><td>같은 일자·거래처 전표를 보면서 아래쪽 라인 확인</td></tr>
+  <tr><td>검토 기준 유지</td><td>제목 행 또는 기준 전표를 화면에 남긴 채 입력 오류 탐색</td></tr>
+</table>
+<div class="note"><b>주의</b> — 행고정은 데이터를 바꾸지 않는 화면 보조 기능이다. 다만 고정 영역 때문에 실제 선택된 행을 착각할 수 있으므로 삭제·일괄적용·전표묶기 전에는 체크된 행을 다시 확인한다.</div>
+
+<h4 id="wjv-tool-auto"><span class="sid">7.3</span>자동전표검증</h4>
+<p>자동전표처리 메뉴에서 일반전표입력으로 넘어온 전표의 확정 상태를 확인한다. 현재 회계기간의 신용카드·현금영수증·통장 메뉴에서 전송한 전표 중 <b>전표확정</b> 상태가 아닌 것을 검증한다.</p>
+<table>
+  <tr><th>원천</th><th>검증 의미</th><th>확인 포인트</th></tr>
+  <tr><td>신용카드 자동전표</td><td>카드 수집 자료가 일반전표로 전송됐지만 확정되지 않은 상태 확인</td><td>카드 사용내역 중복, 계정 추천 상태, 증빙 분류</td></tr>
+  <tr><td>현금영수증 자동전표</td><td>현금영수증 수집 자료의 전표 반영 상태 확인</td><td>거래처, 과세/비과세, 비용 계정</td></tr>
+  <tr><td>통장 자동전표</td><td>통장 거래내역 기반 자동분개 전표 상태 확인</td><td>입출금 성격, 상대 계정, 거래처, 중복 수기 입력</td></tr>
+</table>
+<div class="note"><b>의미</b> — 자동전표가 확정되지 않았는데 마감·보고를 진행하면 원장 금액과 원천 수집자료 상태가 어긋날 수 있다. BK에서는 외부 수집자료를 <b>원천 수집 → 추천 분개 → 전표 전송 → 승인/기표</b> 상태로 분리한 상태머신으로 추적한다(<code>integrations</code> ↔ <code>journals</code>).</div>
+
+<h4 id="wjv-tool-sort"><span class="sid">7.4</span>데이터정렬</h4>
+<p>현재 조회된 전표의 표시 순서를 바꾼다. 정렬은 화면 조회 순서만 바꾸므로, 일괄수정·삭제·인쇄 전에는 현재 정렬 기준과 체크 상태를 확인해야 한다.</p>
+<table>
+  <tr><th>정렬 기준</th><th>사용 목적</th><th>주의점</th></tr>
+  <tr><td>입력순</td><td>사용자가 입력한 순서대로 확인</td><td>입력 순서와 회계일자가 다를 수 있음</td></tr>
+  <tr><td>날짜순</td><td>거래일자 흐름대로 검토</td><td>같은 일자 안의 전표번호·묶임 상태 확인 필요</td></tr>
+  <tr><td>거래처코드순</td><td>거래처별 입력 누락·중복 확인</td><td>거래처코드 미입력 전표는 별도 확인</td></tr>
+  <tr><td>계정코드순</td><td>계정별 입력 오류·비용 계정 검토</td><td>같은 계정이라도 거래처·관리항목이 다를 수 있음</td></tr>
+  <tr><td>계정과목명순</td><td>계정명 기준으로 읽기 쉽게 확인</td><td>코드 체계와 다른 순서로 보일 수 있음</td></tr>
+</table>
+<div class="src"><b>출처(4편)</b> — 툴바 기능 상세: 차액전표보기, 행고정, 자동전표검증, 데이터정렬.</div>
+</section>
+
+<section id="wjv-more">
+<h2>8. 더보기 기능모음</h2>
+<p>더보기 기능모음은 설정·검색·일괄삭제·마감 같은 운영 기능을 제공한다. 입력 편의(4편)와 전표 운영(3편) 기능이 함께 모인다.</p>
+
+<h4 id="wjv-more-dup"><span class="sid">8.1</span>중복전표검색 <span class="kbd">Shift+F7</span></h4>
+<p>같은 거래가 두 번 들어갔을 가능성을 찾는다. 조건은 일자·유형·계정·거래처·금액 중에서 선택한다.</p>
+<table>
+  <tr><th>조건</th><th>중복 의심 예</th><th>검토 포인트</th></tr>
+  <tr><td>일자</td><td>같은 날짜에 같은 거래 반복 입력</td><td>실제 반복 거래인지, 중복 입력인지 확인</td></tr>
+  <tr><td>유형</td><td>같은 전표 구분으로 반복 입력</td><td>현금전표와 대체전표가 섞였는지 확인</td></tr>
+  <tr><td>계정</td><td>같은 계정으로 같은 금액 반복</td><td>비용 중복, 수수료 중복, 자동분개 중복</td></tr>
+  <tr><td>거래처</td><td>같은 거래처와 같은 금액 반복</td><td>거래처별 원장·증빙 대조</td></tr>
+  <tr><td>금액</td><td>동일 금액이 여러 번 등장</td><td>금액만 같고 거래가 다를 수 있어 적요·증빙 확인</td></tr>
+</table>
+<div class="note"><b>주의</b> — 검색 결과를 무조건 삭제하면 안 된다. 매월 반복 비용, 같은 금액의 여러 영수증, 같은 거래처 다건 거래는 정상일 수 있다. 삭제 전 증빙번호·거래일자·적요·자동전표 원천을 함께 확인한다. BK에서는 <code>sameDate + samePartner + sameAmount + sameEvidenceKey</code> 후보 규칙을 두고 정상 반복거래 예외 메모를 남길 수 있게 설계한다.</div>
+
+<h4 id="wjv-more-set"><span class="sid">8.2</span>분개설정</h4>
+<p>일반전표 입력 중 반복 입력을 줄이는 보조 설정. 금액자동분개·차대변 변환·거래처코드 복사를 다룬다.</p>
+<table>
+  <tr><th>설정</th><th>의미</th><th>사용 예</th><th>주의점</th></tr>
+  <tr><td>금액자동분개</td><td>상대계정 입력 시 차액을 자동 분개</td><td>차변 금액 먼저 입력 후 대변 상대계정 입력 시 남은 금액 반영</td><td>잘못된 금액 자동 반영 가능 → 소계 확인</td></tr>
+  <tr><td>차·대변 변환</td><td>대체전표 차액 발생 시 차변/대변 방향 보조 변환</td><td>상대 라인 구분을 자동으로 맞춤</td><td>의도와 다른 방향으로 잡히지 않았는지 확인</td></tr>
+  <tr><td>거래처코드 복사</td><td>거래처 Code 칸 엔터 시 코드/명 복사</td><td>상단 거래처 정보를 하단 라인에 반영</td><td>거래처 불필요 계정·다른 거래처 라인에 잘못 복사 가능</td></tr>
+</table>
+<div class="note"><b>주의</b> — 분개설정은 입력 속도를 높이지만 회계 판단을 대신하지 않는다. 자동으로 들어간 상대금액·거래처가 실제 증빙과 맞는지 마지막에 확인한다. BK에서는 <b>사용자 편의 설정</b>(금액자동분개)과 <b>회사 회계정책</b>(관리항목 필수 여부)을 구분한다.</div>
+
+<h4 id="wjv-more-screen"><span class="sid">8.3</span>화면구성 <span class="kbd">Ctrl+A</span></h4>
+<table>
+  <tr><th>설정</th><th>의미</th><th>후속 영향</th></tr>
+  <tr><td>전표번호보기</td><td>일반전표입력 화면의 번호 칸 표시 여부</td><td>전표묶기·분리·인쇄 전 확인 편의</td></tr>
+  <tr><td>기본화면구성</td><td>입력 화면의 기본 배치·기준</td><td>거래처원장·계정별원장 등 원장 메뉴의 전표수정 화면구성에도 반영 가능</td></tr>
+  <tr><td>자동분개 설정</td><td>기본화면구성 기준의 자동완성 동작</td><td>과거 입력 패턴·화면 기준 추천/자동완성에 영향</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 전표번호 표시 여부는 <b>사용자별 UI preference</b>, 자동분개 기준·관리항목 필수 여부는 <b>회사 정책/테넌트 설정</b>으로 분리한다. 입력 화면과 원장 전표수정 화면이 같은 구성 규칙을 공유할 수 있다.</div>
+
+<h4 id="wjv-more-autodel"><span class="sid">8.4</span>자동분개 일괄검색 및 삭제 <span class="kbd">Shift+F6</span></h4>
+<p>회계·급여·물류 모듈의 각 전표처리 메뉴에서 전송한 전표 데이터를 기간·항목 기준으로 검색·삭제한다.</p>
+<table>
+  <tr><th>항목</th><th>내용</th></tr>
+  <tr><td>검색 대상</td><td>회계·급여·물류 등 다른 메뉴에서 전표전송된 자동분개 데이터</td></tr>
+  <tr><td>검색 기준</td><td>기간, 삭제 또는 조회할 전표처리 항목</td></tr>
+  <tr><td>주요 사용 상황</td><td>잘못 전송된 자동전표 정리, 원천 모듈 재전송 준비, 기간별 자동전표 확인</td></tr>
+  <tr><td>위험 지점</td><td>원천 모듈 상태와 일반전표 삭제 상태가 어긋날 수 있음</td></tr>
+</table>
+<div class="note"><b>삭제 전 확인</b> — ① 자동전표 원천 메뉴 확인 → ② 기간 정확성 → ③ 삭제 대상이 수기 아닌 자동전송 전표인지 → ④ 삭제 후 원천 재전송 필요 여부 → ⑤ 마감 기간·승인 전표 포함 여부. <b>BK 반영</b>: 실제 삭제보다 원천 전송 상태와 전표 상태를 함께 되돌리는 <b>감사 가능한 보정 이벤트</b>로 설계(취소·반려·역분개·재전송 이력).</div>
+
+<h4 id="wjv-more-close"><span class="sid">8.5</span>일마감</h4>
+<p>특정 일자를 기준으로 그 이전 자료의 입력·수정·삭제를 제한한다. 마감해제로 풀 수 있으나 권한·사유 기록이 중요하다.</p>
+<table>
+  <tr><th>상태</th><th>의미</th><th>허용/제한</th></tr>
+  <tr><td>마감 전</td><td>일반 입력·수정 가능</td><td>회사 권한·전표 상태에 따라 처리</td></tr>
+  <tr><td>일마감</td><td>마감일자 이전 자료 잠금</td><td>입력·수정·삭제 제한</td></tr>
+  <tr><td>마감해제</td><td>잠금 해제</td><td>권한·사유·감사로그 필요</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 일마감은 <code>closing</code> 도메인의 기간 잠금으로 모델링하고, 전표 저장·수정·삭제·자동전표 전송·코드변환·전표이동 시 모두 마감 잠금을 공통 검증한다.</div>
+
+<h4 id="wjv-more-conv"><span class="sid">8.6</span>코드변환 <span class="kbd">Shift+F3</span></h4>
+<p>입력된 전표의 계정·거래처 등 코드를 일괄 변환한다.</p>
+<table>
+  <tr><th>구분</th><th>내용</th></tr>
+  <tr><td>변환 가능 코드</td><td>계정과목 코드, 거래처 코드, 적요/관리항목 코드 등 — 잘못 입력된 코드를 대상 코드로 일괄 치환</td></tr>
+  <tr><td>제한과 위험</td><td>마감·승인·부가세신고 확정 전표는 변환 제한. 변환은 다수 전표·원장에 동시 영향을 주므로 범위·대상 코드를 반드시 확인. 변환 전 백업·검토 권장</td></tr>
+</table>
+
+<h4 id="wjv-more-misc"><span class="sid">8.7</span>일괄적용 · 전표라인삽입 · 전표묶기 · 전표복사/이동 · 체크펜</h4>
+<table>
+  <tr><th>기능</th><th>설명</th></tr>
+  <tr><td><b>일괄적용</b></td><td>선택한 다건 전표/라인에 공통 값(거래처·적요·관리항목 등)을 한 번에 적용. 현재 정렬·체크 상태를 확인 후 실행</td></tr>
+  <tr><td><b>전표라인삽입 <span class="kbd">Insert</span></b></td><td>같은 전표번호 안에 빈 라인을 삽입. 삽입 후 대차가 어긋날 수 있으므로 차액전표보기로 재확인</td></tr>
+  <tr><td><b>전표묶기 <span class="kbd">F7</span></b></td><td>여러 라인을 하나의 전표번호로 묶기, 또는 묶인 전표를 분리. 같은 거래의 분개를 한 전표로 관리</td></tr>
+  <tr><td><b>전표복사 <span class="kbd">F4</span></b></td><td>선택 전표를 다른 일자로 복사. 반복 거래 입력에 사용. 복사 후 일자·금액·거래처 확인</td></tr>
+  <tr><td><b>전표이동 <span class="kbd">Ctrl+M</span></b></td><td>선택 전표를 지정 일자로 이동. 대상 일자가 마감·잠금이면 차단. 이동 시 전표번호 재채번(일자별 리셋)</td></tr>
+  <tr><td><b>체크펜</b></td><td>검토한 전표에 체크 표시를 남겨 검토 진행 상태를 시각적으로 관리. 데이터를 바꾸지 않는 검토 보조</td></tr>
+  <tr><td><b>어음등록</b></td><td>받을/지급어음을 자금 보조부에 등록(6장 연계)</td></tr>
+  <tr><td><b>엑셀올리기</b></td><td>외부 엑셀 자료를 전표로 일괄 업로드. 매핑·검증 후 반영</td></tr>
+</table>
+
+<h3>8.8 자금항목과 액션바 기능 제한</h3>
+<table>
+  <tr><th>기능</th><th>자금항목(어음·차입금) 연결 전표에서의 제한</th></tr>
+  <tr><td>코드변환</td><td>자금 보조부 연결 코드는 변환 제한(어음/차입금 식별 무결성 보호)</td></tr>
+  <tr><td>전표복사</td><td>복사 시 어음번호·차입금번호는 그대로 복사되지 않음(중복 식별 방지) — 재등록 필요</td></tr>
+  <tr><td>전표이동</td><td>이동 시 자금 보조부 상태·일자 정합성 재확인 필요</td></tr>
+  <tr><td>삭제</td><td>후속 거래(할인·결제·상환) 연결 시 후속 전표부터 정리 후 삭제(6.5)</td></tr>
+  <tr><td>일괄적용</td><td>자금 식별 항목(어음번호 등)은 일괄적용 대상에서 제외</td></tr>
+</table>
+<div class="src"><b>출처(3편·4편)</b> — 더보기: 중복전표검색·분개설정·화면구성·자동분개 일괄검색·일마감(4편); 코드변환·일괄적용·전표라인삽입·전표묶기·전표복사/이동·체크펜·자금항목과 액션바 기능 제한(3편).</div>
+</section>
+
+<section id="wjv-guide">
+<h2>9. 가이드영역</h2>
+<p>가이드영역은 현재 커서 위치와 선택 전표에 대한 안내·부가정보를 제공한다. 안내메시지·단축키·전표번호/연동정보·선택전표소계·일정·작성자·메모로 구성된다.</p>
+
+<h4 id="wjv-guide-msg"><span class="sid">9.1</span>안내 메시지 영역</h4>
+<p>마우스 커서가 위치한 항목에 대한 기본 가이드를 제공한다. 커서가 놓인 칸에 따라 계정과목·거래처·적요·관리항목·단축키 안내가 달라진다.</p>
+<table>
+  <tr><th>커서 위치</th><th>안내 내용 예</th><th>입력자에게 주는 도움</th></tr>
+  <tr><td>거래일자</td><td>거래전표의 일자를 입력하라는 안내</td><td>증빙일자와 회계일자 확인</td></tr>
+  <tr><td>거래처</td><td>거래처 코드도움, 자동완성, 코드 표시 방식 안내</td><td>거래처 미등록·코드 누락 방지</td></tr>
+  <tr><td>계정과목</td><td>계정과목 코드도움, 계정명 검색 안내</td><td>계정 선택 오류 감소</td></tr>
+  <tr><td>적요</td><td>적요코드 도움, 적요항목 편집 안내</td><td>반복 적요 표준화</td></tr>
+  <tr><td>관리항목</td><td>부서·사원·현장·프로젝트·자금 등 입력 안내</td><td>보조부 누락 방지</td></tr>
+</table>
+<div class="note">안내 영역은 초보자 설명에 그치지 않고, 전표 입력 중 어떤 필드가 원장·보조장부·신고서식에 영향을 주는지 즉시 알려 준다.</div>
+
+<h4 id="wjv-guide-partner"><span class="sid">9.2</span>거래처코드 입력방법 설정</h4>
+<table>
+  <tr><th>설정/상황</th><th>의미</th><th>실무 영향</th></tr>
+  <tr><td>거래처코드 보이기 ON</td><td>거래처 Code 칸을 표시하고 자동완성 설정 가능</td><td>거래처원장·채권채무 관리에 유리</td></tr>
+  <tr><td>거래처코드 보이기 OFF</td><td>거래처 코드 칸 제거, 자동완성 비활성/제한</td><td>화면은 단순하지만 코드 기반 추적이 약해짐</td></tr>
+  <tr><td>거래처명만 입력</td><td>Code 없이 상호만 직접 입력</td><td>거래처원장 조회 어렵고 미등록거래처로 조회될 수 있음</td></tr>
+  <tr><td>분개설정 거래처코드 복사</td><td>엔터 입력 시 상단 거래처 정보를 하단 라인으로 복사</td><td>반복 입력은 빠르나 잘못 복사된 거래처 확인 필요</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 거래처를 이름만 입력하면 거래처별 원장·채권채무 잔액·미수/미지급 관리에서 추적성이 떨어진다. 거래처가 필요한 계정은 거래처코드 필수 검증 규칙을 둔다.</div>
+
+<h4 id="wjv-guide-keys"><span class="sid">9.3</span>공통 단축키 안내</h4>
+<p>공통 단축키는 환경설정의 단축키 설정을 사용으로 둔 뒤 활용한다. 메뉴별 단축키는 툴바 버튼에 마우스를 올리거나 더보기 기능모음에서 확인한다(단축키 전체 표는 3.4 참조).</p>
+<div class="note">단축키는 반복 입력에 강력하지만 삭제·이동처럼 데이터에 영향을 주는 기능도 포함하므로, 권한·상태에 따라 실행 가능 여부를 제한하는 것이 안전하다.</div>
+
+<h4 id="wjv-guide-cal"><span class="sid">9.4</span>일정관리</h4>
+<p>가이드영역의 일정 영역에서 WEHAGO 일정관리 서비스에 등록된 정보를 확인한다. 일정 클릭 후 더보기로 일정관리 서비스를 실행할 수 있다.</p>
+<table>
+  <tr><th>활용 상황</th><th>예시</th></tr>
+  <tr><td>월마감 일정 확인</td><td>특정일까지 전표 입력 마감, 검토 마감, 세무 신고 자료 마감</td></tr>
+  <tr><td>증빙 회수 일정</td><td>거래처별 증빙 요청 또는 미수 증빙 확인 일정</td></tr>
+  <tr><td>내부 검토 일정</td><td>담당자 검토, 승인자 확인, 마감해제 승인 일정</td></tr>
+  <tr><td>신고 일정</td><td>부가세·원천세·법인세 등 신고 관련 준비 일정</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 일정을 직접 만들지 않더라도 마감 캘린더·업무 할당·검토 기한과 연결한다.</div>
+
+<h4 id="wjv-guide-author"><span class="sid">9.5</span>작성자</h4>
+<p>커서가 위치한 전표의 작성자 정보와 최종 입력 시간을 보여준다. 누가 언제 전표를 입력·수정했는지 확인하는 최소 운영 정보다.</p>
+<table>
+  <tr><th>표시 정보</th><th>의미</th><th>활용</th></tr>
+  <tr><td>작성자</td><td>전표를 입력한 사용자</td><td>오류 문의, 담당자 확인, SOD 검토</td></tr>
+  <tr><td>최종입력시간</td><td>마지막 입력·수정 시각</td><td>마감 직전 변경 추적, 검토 순서 판단</td></tr>
+  <tr><td>연동정보와 함께 확인</td><td>전표복사/이동 또는 타 메뉴 전표처리 정보</td><td>수기 입력인지 자동전송인지 구분</td></tr>
+</table>
+<div class="note"><b>BK 반영</b> — 작성자 표시를 넘어 <code>createdBy</code>·<code>updatedBy</code>·<code>postedBy</code>·<code>approvedBy</code>·<code>sourceSystem</code>·<code>sourceReference</code>를 분리하고, 작성자=승인자를 차단하는 SOD 규칙을 둔다.</div>
+
+<h4 id="wjv-guide-memo"><span class="sid">9.6</span>메모</h4>
+<p>커서가 위치한 전표에 상세 메모를 남긴다. 입력한 메모는 조건검색의 메모검색으로 다시 찾을 수 있다.</p>
+<table>
+  <tr><th>메모 사용 예</th><th>내용</th></tr>
+  <tr><td>증빙 확인</td><td>원본 영수증 미도착, 거래처 확인 필요, 세금계산서 재발행 요청</td></tr>
+  <tr><td>회계 판단</td><td>자산화 여부 검토, 비용 귀속 부서 확인, 계정 변경 후보</td></tr>
+  <tr><td>마감 이슈</td><td>마감 전 확인 필요, 다음 월 조정 예정, 승인 보류 사유</td></tr>
+  <tr><td>자동전표 이슈</td><td>통장 자동분개 중복 의심, 카드 자료 재수집 필요</td></tr>
+  <tr><td>고객 확인 요청</td><td>이용회사 담당자에게 확인 필요한 거래</td></tr>
+</table>
+<div class="note"><b>적요와 구분</b> — 적요는 거래 내용을 장부에 남기는 필드, 메모는 검토·운영을 위한 내부 설명이다. 신고서·원장 노출 문구와 내부 검토 문구를 분리해 저장하고, 메모는 검색 가능하되 보고서 노출 범위는 별도 통제한다.</div>
+<div class="src"><b>출처(4편)</b> — 가이드영역 상세: 안내 메시지, 거래처코드 입력방법 설정, 공통 단축키 안내, 일정관리, 작성자, 메모.</div>
+</section>
+
+<section id="wjv-check">
+<h2>10. 체크리스트 · BK 설계</h2>
+<h3>10.1 실무 체크리스트</h3>
+<h4 id="check-before"><span class="sid">입력 전</span></h4>
+<ul>
+  <li>회계월·사업장이 맞는지, 마감(일마감) 일자가 어디까지인지 확인한다.</li>
+  <li>거래처코드 입력방법(코드 보이기/자동완성)과 분개설정(금액자동분개·거래처코드 복사)을 확인한다.</li>
+  <li>관리항목이 필요한 계정인지(부서·사원·현장·프로젝트·자금·차량·카드계좌) 미리 파악한다.</li>
+  <li>증빙(세금계산서·영수증·통장)과 자동전표 수집 자료가 준비됐는지 확인한다.</li>
+  <li>어음·차입금 거래는 어음집계표·차입처 정보 등 사전 준비가 됐는지 확인한다.</li>
+</ul>
+<h4 id="check-during"><span class="sid">입력 중</span></h4>
+<ul>
+  <li>구분(1.출금~6.결대)을 거래 성격에 맞게 선택한다. 결산정리분개는 결차/결대.</li>
+  <li>차변/대변 금액을 올바른 칸에 입력하고 <span class="kbd">+</span>로 천원을 빠르게 입력한다.</li>
+  <li>거래처는 코드로 입력해 미등록거래처 발생을 막는다.</li>
+  <li>관리항목(보조부) 필수 칸을 빠뜨리지 않는다(어음·자금·차량·카드계좌).</li>
+  <li>재고자산 + 적요코드(06·07) 조합으로 부가세 부속서류 반영이 필요한지 확인한다.</li>
+</ul>
+<h4 id="check-after"><span class="sid">입력 후 검토</span></h4>
+<ul>
+  <li><b>차액전표보기</b>로 대차 불일치 전표가 없는지 확인한다.</li>
+  <li><b>중복전표검색</b>으로 같은 증빙이 이중 입력되지 않았는지 확인한다.</li>
+  <li><b>자동전표검증</b>으로 자동전표처리에서 넘어온 자료 중 미확정 상태가 없는지 확인한다.</li>
+  <li><b>선택전표소계</b>에서 커서 위치 전표번호의 차변/대변 합계를 확인한다.</li>
+  <li>거래처코드 없이 이름만 입력된 전표가 없는지 확인한다.</li>
+</ul>
+<h4 id="check-batch"><span class="sid">일괄 처리 전</span></h4>
+<ul>
+  <li>현재 데이터정렬 기준을 확인한다.</li>
+  <li>조건검색이 걸려 일부 전표만 보이는 상태인지 확인한다.</li>
+  <li>체크된 전표가 실제 처리 대상인지 확인한다.</li>
+  <li>자동전표·증빙·자금항목·업무용승용차·카드계좌 연결 정보가 있는지 확인한다.</li>
+  <li>마감된 기간의 전표가 포함되어 있지 않은지 확인한다.</li>
+</ul>
+<h4 id="check-close"><span class="sid">마감 전</span></h4>
+<ul>
+  <li>일마감 대상 일자·기간을 확인한다.</li>
+  <li>자동전표 미확정 자료를 정리한다.</li>
+  <li>차액전표와 중복전표 후보를 확인한다.</li>
+  <li>작성자·최종 입력 시간이 비정상적으로 마감 직전에 몰려 있지 않은지 본다.</li>
+  <li>메모에 남은 확인 요청 사항이 해결됐는지 확인한다.</li>
+</ul>
+
+<h3 id="wjv-bk">10.2 BK 설계 반영 메모</h3>
+<div class="note">본 문서는 위하고 사용법 정리이며 BK 공식 스펙은 아니다. <code>kat_bk</code> 설계와 연결할 때 참고할 포인트.</div>
+<table>
+  <tr><th>위하고 기능</th><th>BK 설계 방향</th></tr>
+  <tr><td>차액전표보기</td><td><code>journal-balance</code> 검증 결과 화면으로 모델링. 승인·기표·마감 전 차대 불일치는 차단.</td></tr>
+  <tr><td>자동전표검증</td><td>외부 수집자료·자동분개 추천·전표전송·전표확정 상태를 분리한 상태머신으로 구현(<code>integrations</code>↔<code>journals</code>).</td></tr>
+  <tr><td>중복전표검색</td><td>일자·거래처·계정·금액·증빙키·원천 시스템 참조값을 조합한 중복 후보 탐지로 확장. 정상 반복거래 예외 메모 허용.</td></tr>
+  <tr><td>분개설정</td><td>사용자 편의 설정(금액자동분개)과 회사 회계정책(관리항목 필수)을 구분.</td></tr>
+  <tr><td>화면구성</td><td>사용자별 preference로 관리하되 원장 전표수정 화면과 입력 화면이 같은 구성 규칙 공유.</td></tr>
+  <tr><td>자동분개 일괄검색/삭제</td><td>실제 삭제보다 원천 전송 상태·전표 상태를 함께 되돌리는 감사 가능한 보정 이벤트.</td></tr>
+  <tr><td>일마감</td><td><code>closing</code> 도메인 기간 잠금. 입력·수정·삭제·전표이동·코드변환·자동전표 전송 시 공통 잠금 검증.</td></tr>
+  <tr><td>작성자/최종입력시간</td><td>작성·수정·승인·기표·마감 행위자를 모두 분리(<code>createdBy</code>·<code>updatedBy</code>·<code>postedBy</code>·<code>approvedBy</code>). 작성자=승인자 차단 SOD.</td></tr>
+  <tr><td>메모</td><td>내부 검토 메모와 장부 적요를 분리 저장. 검색 가능하되 보고서 노출 범위 별도 통제.</td></tr>
+  <tr><td>일정관리</td><td>마감 캘린더·업무 할당·고객 확인 요청 기한과 연결.</td></tr>
+  <tr><td>관리항목(거래처·증빙·결제)</td><td><code>legalEvidenceFlag</code>·<code>evidenceExclusionCode</code>·<code>paymentEvidenceType</code>로 적격증빙·증빙제외·결제수단 유형을 구분 관리.</td></tr>
+  <tr><td>자금항목(어음·차입금)</td><td>어음/차입금 상태머신(보관·할인·배서·결제·부도 / 차입·상환)으로 모델링. 연결 전표 삭제는 물리 삭제 대신 취소·역분개·재등록 이력.</td></tr>
+  <tr><td>부가세 부속서류</td><td>재고자산 계정 + 적요코드(06·07) + 거래처 유형(53·58·60·62)을 의제매입·재활용폐자원 부속서류 집계로 연결.</td></tr>
+  <tr><td>단축키</td><td>UI 단축키도 동일한 API 권한·마감·감사 검증을 거치게 해 우회 금지.</td></tr>
+</table>
+
+<h3 id="wjv-src">10.3 출처</h3>
+<ul>
+  <li>위하고전표_입력_1.md — 일반전표입력(1): 입력 칸·전표 구분 코드·단축키·기본 기능</li>
+  <li>위하고전표_입력_2.md — 일반전표입력(2): 관리항목·차량·자금 기본 구조, 부가세 부속서류, 재고자산 타계정 대체, 카드계좌·업무용승용차</li>
+  <li>위하고전표_입력_3.md — 일반전표입력(3): 자금관리(받을어음·지급어음·차입금), 액션바, 자금항목과 기능 제한</li>
+  <li>위하고전표_입력_4.md — 일반전표입력(4): 툴바·더보기·가이드영역</li>
+  <li>화면 형태 기준: 구현_화면_전표_v3.0.html (BK 일반전표입력 형태 · 핵심 그리드 + 우측 입력 패널)</li>
+  <li>YouTube: [WEHAGO l Smart A 10] 일반전표입력 1~4편 · WEHAGO 고객센터 「일반전표입력」</li>
+  <li>저장소 참고: 설계/SmartA10분석/01_전표관리.md · 설계/SmartA분석/02_전표_자동전표(Ch04-05).md · 설계/bk_설계서_v2.0.md</li>
+</ul>
+</section>
+
+</main>
+</body>
+</html>

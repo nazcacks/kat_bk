@@ -1,0 +1,320 @@
+
+<section id="g-vat-zero-etc">
+<h2>M-WS-08 세무 ▸ 영세율·기타 신고서류 (SA-VAT-36 ~ SA-VAT-50)</h2>
+<div class="crumb"><b>채널 ② 회사 작업공간</b><span class="sep">›</span>M-WS-08 세무<span class="sep">›</span>부가세<span class="sep">›</span><b>영세율·기타 신고서류</b></div>
+<p>영세율 적용 업종(숙박·외교관면세·외국항행·선박)·과세사업전환·매입자발행·개별소비세·사업용계좌·납부서·사업양도 등 부가세 신고 시 첨부·제출되는 기타 명세서를 일괄 관리한다. 대부분 전표·증빙(P2)·매입매출장(P3)에서 자동 집계되며, 본 화면은 집계 확인·서식 출력·전자신고 파일(SA-VAT-07) 첨부를 담당한다.</p>
+
+<h4 id="sa-vat-36"><span class="sid">SA-VAT-36</span>외국인관광객 숙박용역 환급실적명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>환급창구운영사업자(거래처)·숙박용역일련번호(20자리·불러오기 시 1부터 순차)·외국인관광객 인적사항별 숙박용역 공급가액·환급세액을 집계하여 영세율(환급) 실적을 신고한다.</td><th>API</th><td><code>GET /api/vat/lodging-refund?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>refund_record</code> · <code>partner(환급창구)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-36 · 외국인관광객 숙박용역 환급실적명세서</div>
+  <div class="wf-bar">부가세/신고 › 숙박용역 환급실적 <span class="sp"></span><span class="badge b-amber">환급</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span> 환급창구 <span class="wf-in">LDG-0007 ▾</span><span class="wf-btn pri">불러오기</span><span class="wf-btn">서식 출력</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>숙박용역일련번호</th><th>관광객(여권)</th><th>숙박일</th><th class="r">공급가액</th><th class="r">환급세액</th></tr>
+    <tr><td>26LDG0000000000000001</td><td>P77***</td><td>2026-08-12</td><td class="r">880,000</td><td class="r">80,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>일련번호 1부터 순차 · 환급창구운영사업자(거래처) 검증 · 환급세액 합계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>일련번호 자리수</td><td>숙박용역일련번호 20자리 위반</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>환급창구사업자 미설정</td><td>거래처등록(환급창구) 미연결</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-37"><span class="sid">SA-VAT-37</span>외국인관광객 즉시환급 판매실적명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>사후환급이 아닌 즉시환급(판매장 현장환급) 대상 판매건의 판매일련번호·즉시환급 한도(건별/누계) 관리, 판매·환급세액 집계.</td><th>API</th><td><code>GET /api/vat/instant-refund?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>refund_record</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-37 · 즉시환급 판매실적명세서</div>
+  <div class="wf-bar">부가세/신고 › 즉시환급 판매실적 <span class="sp"></span><span class="badge b-amber">즉시환급</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>판매일련번호</th><th>판매일</th><th class="r">판매가액</th><th class="r">즉시환급세액</th><th>한도</th></tr>
+    <tr><td>26INS00000000000000001</td><td>2026-09-05</td><td class="r">450,000</td><td class="r">40,000</td><td><span class="badge b-green">한도내</span></td></tr>
+  </table></div>
+  <div class="wf-foot"><span>건별 즉시환급 한도·누계 한도 검증 · 환급세액 합계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>즉시환급 한도초과</td><td>건별/누계 즉시환급 한도 초과</td><td><span class="badge b-red">차단</span> 사후환급 전환 안내</td></tr>
+<tr><td>중복판매</td><td>동일 일련번호 중복</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-38"><span class="sid">SA-VAT-38</span>외교관 등에 대한 면세판매기록표</h4>
+<table class="meta">
+<tr><th>용도</th><td>주한 외교공관·외교관 등 면세대상에 공급한 재화·용역의 면세판매기록(외교관면세카드번호·공관명·판매일·금액)을 작성하여 영세율 첨부서류로 제출.</td><th>API</th><td><code>GET /api/vat/diplomat-sales?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>partner(공관)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-38 · 외교관 등 면세판매기록표</div>
+  <div class="wf-bar">부가세/신고 › 외교관면세 판매기록 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>면세카드번호</th><th>공관/외교관</th><th>판매일</th><th class="r">공급가액</th></tr>
+    <tr><td>DPL-2026-0123</td><td>○○대사관</td><td>2026-07-20</td><td class="r">1,200,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>외교관면세카드번호 형식 검증 · 영세율 매출 연동</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>면세카드번호 형식</td><td>면세카드번호 형식 위반</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>영세율 매출 불일치</td><td>매입매출장 영세율 매출과 차이</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-39"><span class="sid">SA-VAT-39</span>외교관 등에 대한 재화·용역 공급기록표</h4>
+<table class="meta">
+<tr><th>용도</th><td>SA-VAT-38과 연계하여 외교관 면세 공급 중 재화·용역 구분별 상세 공급기록(품목·수량·단가·금액)을 작성하는 부속 기록표.</td><th>API</th><td><code>GET /api/vat/diplomat-supply?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-39 · 외교관 등 재화·용역 공급기록표</div>
+  <div class="wf-bar">부가세/신고 › 외교관 공급기록 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span> 구분 <span class="wf-in">재화 ▾</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>면세카드번호</th><th>구분</th><th>품목</th><th class="r">수량</th><th class="r">공급가액</th></tr>
+    <tr><td>DPL-2026-0123</td><td>재화</td><td>사무용품</td><td class="r">50</td><td class="r">1,200,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>SA-VAT-38 판매기록표 합계와 대사 · 재화/용역 구분 집계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>판매기록 대사</td><td>SA-VAT-38 금액 합계와 불일치</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-40"><span class="sid">SA-VAT-40</span>공급가액확정명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>영세율 등 잠정 공급가액으로 신고한 거래의 공급가액이 사후 확정된 경우, 확정 공급가액과 당초 신고가액의 차액을 정리하여 신고하는 명세서.</td><th>API</th><td><code>GET /api/vat/value-finalize?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>vat_adjustment</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-40 · 공급가액확정명세서</div>
+  <div class="wf-bar">부가세/신고 › 공급가액확정 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>거래</th><th class="r">당초 신고가액</th><th class="r">확정 공급가액</th><th class="r">차액</th></tr>
+    <tr><td>수출 INV-0091</td><td class="r">10,000,000</td><td class="r">10,250,000</td><td class="r"><b style="color:#2563eb">+250,000</b></td></tr>
+  </table></div>
+  <div class="wf-foot"><span>당초 신고분 대비 차액 자동 산출 · 영세율 매출 조정 반영</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>당초 신고분 부재</td><td>참조 당초 신고 건 없음</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>과다 차액</td><td>차액률 큰 거래</td><td><span class="badge b-amber">경고</span> 사유 확인</td></tr>
+</table>
+
+<h4 id="sa-vat-41"><span class="sid">SA-VAT-41</span>선박·항공기 운송용역 공급가액 일람표</h4>
+<table class="meta">
+<tr><th>용도</th><td>외국항행 선박·항공기에 의한 여객·화물 운송용역(영세율) 공급가액을 노선·항차별로 집계한 일람표.</td><th>API</th><td><code>GET /api/vat/transport-list?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-41 · 선박·항공기 운송용역 공급가액 일람표</div>
+  <div class="wf-bar">부가세/신고 › 운송용역 일람표 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span> 구분 <span class="wf-in">화물 ▾</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>항차/노선</th><th>운송구분</th><th>출항일</th><th class="r">공급가액</th></tr>
+    <tr><td>V-2609 부산→상해</td><td>화물</td><td>2026-09-02</td><td class="r">25,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>외국항행 영세율 요건 검증 · 노선·항차별 집계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>국내구간 포함</td><td>외국항행 요건 미충족 구간</td><td><span class="badge b-amber">경고</span> 과세분리 검토</td></tr>
+</table>
+
+<h4 id="sa-vat-42"><span class="sid">SA-VAT-42</span>외국항행선박 등에 제공한 재화·용역 일람표</h4>
+<table class="meta">
+<tr><th>용도</th><td>외국항행 선박·항공기에 공급(급유·선용품·수리 등)한 재화·용역의 영세율 적용분을 거래처·품목별로 집계.</td><th>API</th><td><code>GET /api/vat/ship-supply?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-42 · 외국항행선박 등 재화·용역 공급 일람표</div>
+  <div class="wf-bar">부가세/신고 › 외항선박 공급 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>선박명</th><th>품목</th><th>공급일</th><th class="r">공급가액</th></tr>
+    <tr><td>M/V HANBADA</td><td>선박용 연료</td><td>2026-09-08</td><td class="r">18,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>영세율 증빙(외항선박 공급) 첨부 검증 · 거래처·품목별 집계</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>영세율 증빙 누락</td><td>외항선박 공급 증빙 미첨부</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-43"><span class="sid">SA-VAT-43</span>영세율매출명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>부가세법·조특법 조문별 영세율 매출(수출·국내영세율 등)을 근거 조문·구분별로 집계하여 신고서 영세율란과 대사하는 통합 명세서.</td><th>API</th><td><code>GET /api/vat/zero-rate-sales?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher</code> · <code>vat_return</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-43 · 영세율매출명세서</div>
+  <div class="wf-bar">부가세/신고 › 영세율매출명세서 <span class="sp"></span><span class="badge b-blue">영세율</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span><span class="wf-btn">신고서 대사</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>근거조문</th><th>구분</th><th class="r">공급가액</th></tr>
+    <tr><td>법 §21</td><td>직수출</td><td class="r">120,000,000</td></tr>
+    <tr><td>법 §24</td><td>국내영세율(내국신용장)</td><td class="r">35,000,000</td></tr>
+    <tr><th>합계</th><th></th><th class="r">155,000,000</th></tr>
+  </table></div>
+  <div class="wf-foot"><span>신고서(SA-VAT-01) 영세율 과표와 자동 대사 · 차이 표시</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>신고서 대사 불일치</td><td>영세율 합계 ≠ 신고서 영세율 과표</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-44"><span class="sid">SA-VAT-44</span>과세사업전환 재고품 및 감가상각자산 신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>면세사업자가 과세사업으로 전환 시 보유 재고품에 대한 매입세액 공제(취득가·전환일·공제세액)를 신고하는 재고품 부분 명세서.</td><th>API</th><td><code>GET /api/vat/conversion-inventory?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_conversion</code> · <code>inventory_item</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-44 · 과세전환 재고품 신고서</div>
+  <div class="wf-bar">부가세/신고 › 과세전환 재고품 <span class="sp"></span><span class="badge b-amber">매입세액</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">전환일 <span class="wf-in">2026-07-01</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>재고품목</th><th class="r">취득가액</th><th class="r">재고금액</th><th class="r">공제세액</th></tr>
+    <tr><td>원재료 A</td><td class="r">10,000,000</td><td class="r">4,000,000</td><td class="r">400,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>전환일 현재 재고 평가 · 공제세액 = 재고금액 × 10/110</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전환일 오류</td><td>전환일 ≠ 사업자 과세전환일</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-45"><span class="sid">SA-VAT-45</span>과세사업전환 감가상각자산 신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>면세→과세 전환 시 보유 감가상각자산의 경과기간(체감률) 반영 후 잔존 매입세액 공제액을 산정하는 감가상각자산 부분 명세서. 고정자산대장(SA-FA-05) 연동.</td><th>API</th><td><code>GET /api/vat/conversion-asset?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_conversion</code> · <code>fixed_asset</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-45 · 과세전환 감가상각자산 신고서</div>
+  <div class="wf-bar">부가세/신고 › 과세전환 감가상각자산 <span class="sp"></span><span class="badge b-amber">매입세액</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">전환일 <span class="wf-in">2026-07-01</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산명</th><th>취득일</th><th class="r">취득가액</th><th>경과율</th><th class="r">공제세액</th></tr>
+    <tr><td>제조설비</td><td>2024-03-01</td><td class="r">50,000,000</td><td>40%(체감)</td><td class="r">3,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>경과기간 체감률(건물 5%·기타 25%/과세기간) 적용 · 고정자산대장 연동</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>고정자산 미연결</td><td>SA-FA-01 자산 매칭 실패</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>경과기간 초과</td><td>체감기간 경과(공제대상 아님)</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-46"><span class="sid">SA-VAT-46</span>매입자발행세금계산서 합계표</h4>
+<table class="meta">
+<tr><th>용도</th><td>공급자가 세금계산서를 발급하지 않은 경우 매입자가 관할세무서 확인을 받아 발행한 매입자발행세금계산서의 거래처별 합계를 집계하여 매입세액 공제 근거로 제출.</td><th>API</th><td><code>GET /api/vat/buyer-issued?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>vat_voucher(buyer_issued)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-46 · 매입자발행세금계산서 합계표</div>
+  <div class="wf-bar">부가세/신고 › 매입자발행세금계산서 <span class="sp"></span><span class="badge b-amber">매입세액</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>공급자</th><th>확인번호</th><th class="r">공급가액</th><th class="r">세액</th></tr>
+    <tr><td>미발급상사</td><td>BIT-2026-007</td><td class="r">3,000,000</td><td class="r">300,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>관할세무서 확인번호 검증 · 거래처별 합계 · 매입세액 공제 연동</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>세무서 확인번호 누락</td><td>확인번호 공란</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-47"><span class="sid">SA-VAT-47</span>과세유흥장소 과세표준 신고</h4>
+<table class="meta">
+<tr><th>용도</th><td>개별소비세 과세유흥장소(유흥주점 등) 영업자의 과세표준(유흥음식요금)·세목별(개소세·교육세) 세액을 집계하여 신고하는 명세서. 부가세 신고와 연계.</td><th>API</th><td><code>GET /api/excise/entertainment?period=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:read</code></td><th>엔티티</th><td><code>excise_return</code> · <code>journal_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-47 · 과세유흥장소 과세표준 신고</div>
+  <div class="wf-bar">신고 › 과세유흥장소 과표 <span class="sp"></span><span class="badge b-amber">개별소비세</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-09월</span><span class="wf-btn pri">불러오기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>구분</th><th class="r">과세표준</th><th class="r">개별소비세</th><th class="r">교육세</th></tr>
+    <tr><td>유흥음식요금</td><td class="r">40,000,000</td><td class="r">4,000,000</td><td class="r">1,200,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>세목별(개소세 10%·교육세 30%) 자동 계산 · 납부서(SA-VAT-49) 연동</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>업종 불일치</td><td>회사등록 업종이 과세유흥장소 아님</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-vat-48"><span class="sid">SA-VAT-48</span>사업용계좌 개설신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>복식부기의무자·전문직 등이 사업 관련 거래대금을 결제하는 사업용계좌를 관할세무서에 신고하는 서식. 등록 계좌는 자금·은행매칭(P3 FND-BNK-01)에 사용.</td><th>API</th><td><code>GET /api/biz-account?</code> · <code>POST /api/biz-account</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>biz_bank_account</code> · <code>company</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-48 · 사업용계좌 개설신고서</div>
+  <div class="wf-bar">신고 › 사업용계좌 개설신고 <span class="sp"></span><span class="badge b-blue">신고</span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-btn pri">계좌 추가</span><span class="wf-btn">전자신고 파일</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>은행</th><th>계좌번호</th><th>개설일</th><th>신고일</th><th>상태</th></tr>
+    <tr><td>○○은행</td><td>123-45-6789**</td><td>2024-01-10</td><td>2024-01-25</td><td><span class="badge b-green">신고완료</span></td></tr>
+  </table></div>
+  <div class="wf-foot"><span>계좌번호 마스킹 표시 · 신고기한(과세기간 개시 6개월 내) 경보</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>신고기한 경과</td><td>개설 후 신고기한 초과</td><td><span class="badge b-amber">경고</span> 가산세 안내</td></tr>
+<tr><td>계좌 중복</td><td>동일 계좌 중복 신고</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-vat-49"><span class="sid">SA-VAT-49</span>납부서 작성 (전 세목)</h4>
+<table class="meta">
+<tr><th>용도</th><td>부가세·개별소비세·교육세·농어촌특별세 등 전 세목의 납부서를 세목·납부구분(자진납부/고지)별로 작성·출력하고 전자납부(가상계좌·이체) 연계하는 통합 납부서 화면.</td><th>API</th><td><code>GET /api/payment-slip?period=&tax=</code> · <code>POST /api/payment-slip</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>payment_slip</code> · <code>vat_return</code> · <code>excise_return</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-49 · 납부서 작성 (전 세목)</div>
+  <div class="wf-bar">신고 › 납부서 작성 <span class="sp"></span><span class="badge b-amber">납부</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-2기</span> 세목 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">납부서 생성</span><span class="wf-btn">출력</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>세목</th><th>전자납부번호</th><th class="r">납부세액</th><th>납부기한</th><th>상태</th></tr>
+    <tr><td>부가가치세</td><td>0126-2-...-001</td><td class="r">12,500,000</td><td>2027-01-25</td><td><span class="badge b-amber">미납</span></td></tr>
+    <tr><td>개별소비세</td><td>0226-9-...-007</td><td class="r">5,200,000</td><td>2026-10-25</td><td><span class="badge b-green">납부완료</span></td></tr>
+  </table></div>
+  <div class="wf-foot"><span>신고서(SA-VAT-01/47)에서 세액 자동 연동 · 전자납부 가상계좌 발급</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>신고 미확정</td><td>해당 세목 신고서 미확정</td><td><span class="badge b-red">차단</span> 신고 완료 후 작성</td></tr>
+<tr><td>납부기한 임박</td><td>기한 3일 이내 미납</td><td><span class="badge b-amber">경고</span> 알림 발송</td></tr>
+</table>
+
+<h4 id="sa-vat-50"><span class="sid">SA-VAT-50</span>사업양도신고서</h4>
+<table class="meta">
+<tr><th>용도</th><td>포괄적 사업양수도(재화의 공급으로 보지 않는 사업양도) 시 양도인·양수인 정보, 양도 자산·부채 명세, 양도일·대가를 신고하는 서식. 부가세 면제 요건 검증.</td><th>API</th><td><code>GET /api/biz-transfer?</code> · <code>POST /api/biz-transfer</code></td></tr>
+<tr><th>권한</th><td><code>tenant:vat:write</code></td><th>엔티티</th><td><code>biz_transfer</code> · <code>partner(양수인)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">SA-VAT-50 · 사업양도신고서</div>
+  <div class="wf-bar">신고 › 사업양도신고 <span class="sp"></span><span class="badge b-blue">신고</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">양도일 <span class="wf-in">2026-09-30</span><span class="wf-btn pri">신고서 작성</span><span class="wf-btn">전자신고</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>구분</th><th>내용</th><th class="r">금액</th></tr>
+    <tr><td>양수인</td><td>○○산업(주)</td><td class="r">—</td></tr>
+    <tr><td>양도자산</td><td>사업 일체(자산·부채·종업원 승계)</td><td class="r">800,000,000</td></tr>
+    <tr><td>양도대가</td><td>현금+채무인수</td><td class="r">800,000,000</td></tr>
+  </table></div>
+  <div class="wf-foot"><span>포괄양도 요건(권리·의무 일괄승계) 체크 · 충족 시 부가세 면제 처리</span></div>
+</div>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>포괄양도 요건 미충족</td><td>일부 자산만 양도(개별 자산 매각)</td><td><span class="badge b-red">차단</span> 과세거래 처리 안내</td></tr>
+<tr><td>양수인 사업자 미확인</td><td>양수인 사업자등록 검증 실패</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+</section>

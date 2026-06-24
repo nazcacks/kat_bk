@@ -417,7 +417,7 @@ li{margin:3px 0}
 
 <h4 id="aux06"><span class="sid">AUX-06</span>부가세 보조원장 (매입/매출 세액 집계)</h4>
 <table class="meta">
-  <tr><th>용도</th><td>부가세대급금/예수금을 매입/매출 세금계산서·세무구분별로 집계(위하고 스타일). 사업장·프로젝트·부서 필터, 과세유형별(과세/영세/면세) 분류</td><th>API</th><td><code>GET /api/tenant/ledger/vat</code></td></tr>
+  <tr><th>용도</th><td>부가세대급금/예수금을 매입/매출 세금계산서·세무구분별로 집계. 사업장·프로젝트·부서 필터, 과세유형별(과세/영세/면세) 분류</td><th>API</th><td><code>GET /api/tenant/ledger/vat</code></td></tr>
   <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>purchase_sales_ledger_line</code></td></tr>
 </table>
 <div class="note">NTS 전송상태(PENDING/SENT/ACCEPTED)를 표기한다. 본 보조원장은 P06 부가세 신고서·합계표의 집계 원천이다.</div>
@@ -647,7 +647,7 @@ li{margin:3px 0}
 
 <h4 id="sa-ldg-09"><span class="sid">SA-LDG-09</span>매입매출장</h4>
 <table class="meta">
-  <tr><th>용도</th><td>세금계산서·계산서·카드·현금영수증 매입/매출을 세무구분별로 나열(부가세 신고 원천, 위하고식)</td><th>API</th><td><code>GET /api/tenant/ledger/purchase-sales</code></td></tr>
+  <tr><th>용도</th><td>세금계산서·계산서·카드·현금영수증 매입/매출을 세무구분별로 나열(부가세 신고 원천)</td><th>API</th><td><code>GET /api/tenant/ledger/purchase-sales</code></td></tr>
   <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>purchase_sales_ledger_line</code></td></tr>
 </table>
 <div class="note">세무구분(11~25 매출/51~64 매입)별 집계가 P06 부가세 신고서·합계표에 직접 공급된다.</div>

@@ -93,6 +93,14 @@ li{margin:3px 0}
 .flow .arr{display:flex;align-items:center;color:#7c879c;font-weight:700;font-size:16px;flex:0 0 auto}
 .flow.mini .step{min-width:96px;padding:5px 8px;font-size:11.3px}
 .flow.mini .step .n{width:16px;height:16px;line-height:16px;font-size:10px}
+/* ---------- menu catalog tree ---------- */
+.menu{border:1.5px solid var(--wf-line);border-radius:8px;background:#fff;padding:0;overflow:hidden;margin:10px 0}
+.menu .mtop{background:#27314d;color:#fff;padding:6px 12px;font-weight:700;font-size:12px}
+.menu ul{list-style:none;margin:0;padding:6px 0}
+.menu li{margin:0;padding:3px 14px;font-size:12.4px;border-bottom:1px dashed #eef1f6}
+.menu li.grp{font-weight:700;color:#27314d;background:#f5f7fb}
+.menu li .lv2{padding-left:18px;color:#33415e;font-weight:400}
+.menu .lk{color:#2554c7;font-family:Consolas,monospace;font-size:11px;background:#eaf0fd;border-radius:4px;padding:0 6px;margin-left:6px}
 @media print{
   nav#toc{display:none} main{margin-left:0;max-width:none}
   section{break-inside:avoid;border:none;padding:10px 0}
@@ -106,6 +114,7 @@ li{margin:3px 0}
   <a href="#s1">1. 문서 개요</a>
   <a href="#s2">2. 공통 UI 표준</a>
   <a class="sub" href="#s2-flow">2.3 업무 흐름(온보딩~운영)</a>
+  <a href="#s-menu">2.4 전체 화면 메뉴 카탈로그(트리)</a>
   <a href="#s3">3. 화면 목록(인벤토리)</a>
   <div class="g">4. 플랫폼·기초 (BF-*)</div>
   <a class="sub" href="#bf-00">BF-00 이용회사 선택</a>
@@ -219,6 +228,88 @@ li{margin:3px 0}
   <div class="step"><span class="n">11</span>접근 감사·마감이월<span class="sc">BF-06·SA-BAS-14</span></div>
 </div>
 <div class="tip"><b>로그인 채널 흐름</b> · 로그인(PASSWORD→MFA, BF-05) → 채널 판별 → 운영자는 <b>이용회사 선택</b>(BF-00) 후 접근 모드 선택 → 업무 진입(접근 세션 시작, BF-06). 단일 테넌트 사용자는 회사 선택 단계 없이 자사 화면으로 직행한다.</div>
+</section>
+
+<section id="s-menu">
+<h2>2.4 전체 화면 메뉴 카탈로그(트리) — 채널별(OP/TN) 통합</h2>
+<p>구현 화면설계서(<code>구현_화면_기초</code> §8.1 전체 메뉴 카탈로그)와 동일하게 <b>채널 ① 운영 콘솔(OP)</b>과 <b>채널 ② 회사 작업공간(TN)</b>으로 나누어, 전 페이즈(P01~P10) 상세화면구성 v3.0의 <b>모든 화면</b>을 두 채널의 메뉴 트리(<span class="lk">M-OP-*</span>/<span class="lk">M-WS-*</span>) 아래 매핑한다. 각 메뉴 그룹 하위의 <span class="lk">BF-xx</span>/<span class="lk">SA-*</span>/<span class="lk">JV-*</span>/<span class="lk">OPN-*</span>는 해당 페이즈 문서의 실제 구현 화면 ID다.</p>
+
+<div class="wf-split">
+  <div class="menu"><div class="mtop">채널 ① 운영 콘솔 (OP) — 운영자·외부 파트너 GNB/LNB</div>
+    <ul>
+      <li>🏠 <span class="lk">M-OP-00</span> 운영 대시보드 (플랫폼)</li>
+      <li>🏢 <span class="lk">M-OP-01</span> 관리회사·조직
+        <div class="lv2">└ BF-01 운영조직·IP 허용</div></li>
+      <li>👥 <span class="lk">M-OP-02</span> 이용회사(테넌트)
+        <div class="lv2">├ BF-02 테넌트 운영 콘솔</div>
+        <div class="lv2">└ BF-00 이용회사 선택 → 작업공간 진입</div></li>
+      <li>📚 <span class="lk">M-OP-03</span> 공통 표준 카탈로그
+        <div class="lv2">└ BF-08 표준 카탈로그</div></li>
+      <li>💳 <span class="lk">M-OP-04</span> 구독·요금
+        <div class="lv2">└ BF-10 구독·청구</div></li>
+      <li>🛡 <span class="lk">M-OP-05</span> 접근 거버넌스
+        <div class="lv2">└ BF-06 접근 세션 감사</div></li>
+      <li>🔐 <span class="lk">M-OP-06</span> 보안
+        <div class="lv2">└ BF-05 인증 정책(전역)</div></li>
+      <li>🧑‍💼 <span class="lk">M-OP-07</span> 운영자·권한
+        <div class="lv2">├ BF-04 보안 사용자</div>
+        <div class="lv2">├ BF-07 권한 매트릭스·결재선·배정</div>
+        <div class="lv2">└ BF-12 메뉴 발행</div></li>
+      <li>🔗 <span class="lk">M-OP-08</span> 외부 연계 볼트 (플랫폼)</li>
+      <li>🖥 <span class="lk">M-OP-09</span> 시스템 운영 (플랫폼·배치)</li>
+      <li>🧰 <span class="lk">M-OP-10</span> 기장 워크벤치 (담당 회사 큐·마감/신고 진행판)</li>
+    </ul>
+  </div>
+  <div class="menu"><div class="mtop">채널 ② 회사 작업공간 (TN) — 회사 선택 후 GNB/LNB</div>
+    <ul>
+      <li>🏠 <span class="lk">M-WS-00</span> 회사 대시보드 (플랫폼)</li>
+      <li>⚙ <span class="lk">M-WS-01</span> 회사 설정·기초정보
+        <div class="lv2">├ 회사 환경 — BF-03 기장 설정·전환 · BF-09 차원·조직관리 · BF-08 표준 채택 · BF-05 인증 정책(테넌트) · BF-11 알림 설정</div>
+        <div class="lv2">├ 기초정보 마스터 — SA-BAS-01 회사등록 · 02 권한설정 · 03 환경설정 · 04 부서등록 · 05 사원등록 · 06 거래처등록 · 07 계정과목·적요 · 08 현장등록 · 09 프로젝트등록 · 10 업무용승용차 · 11 외주처등록 · 12 거래처DM인쇄 · 13 거래처등코드변환 · 14 마감후이월</div>
+        <div class="lv2">├ 전기·초기이월 — OPN-01 전기분재무상태표 · 02 전기분손익계산서 · 03 전기분원가명세서 · 04 전기분이익잉여금처분 · 05 전기분자본변동표 · 06 전기분현금흐름표 · 07 거래처별초기이월 · 08 부서/사원별초기이월 · 09 전기 기간별손익계산서 · 10 전기 기간별원가계산서 · 11 전기 프로젝트손익현황 · 12 전기 프로젝트원가현황 · 13 프로젝트초기이월 · 14 전기 중단사업손익 · 15 전기 중단사업원가 · 16 중도시산표 · 17 미완성공사초기이월 · 18 외주처별초기이월 · 19 현장별/거래처별초기이월</div>
+        <div class="lv2">└ 데이터 관리·기수 운영 — SA-DAT-01 삭제전표복구 · 02 데이터백업/복구(기수별) · 03 BK 내보내기(기수별) · 04 BK 내보내기(월·분기) · 05 데이터올리기(전체기수) · 06 데이터올리기(월·분기) · 07 기수변경</div></li>
+      <li>👤 <span class="lk">M-WS-02</span> 사용자·권한
+        <div class="lv2">├ BF-04 사용자</div>
+        <div class="lv2">├ BF-07 역할·결재선·가드레일</div>
+        <div class="lv2">└ BF-12 메뉴 권한(역할 매핑)</div></li>
+      <li>📒 <span class="lk">M-WS-03</span> 전표·장부
+        <div class="lv2">├ 전표 입력 — JV-01 일반전표입력 · 02 현금 간편입력(입금) · 03 현금 간편입력(출금) · 04 매입전표 입력 · 05 매출전표 입력 · 06 전표 도구 · 07 전표 검색 목록 · 08 다건/일괄 전표 · SA-JNL-01 일반전표입력 · 02 매입매출전표입력 · 03 정기청구입력 · 04 물류전표처리</div>
+        <div class="lv2">├ 보조부 — AUX-01 거래처별 · 02 어음 · 03 예금 · 04 카드 · 05 가지급금·가수금 · 06 부가세 · 07 현금출납장 · 08 재고 수불부(P2) · 09 고정자산대장(기초)</div>
+        <div class="lv2">└ 장부 — SA-LDG-01 전표출력 · 02 분개장 · 03 일/월계표 · 04 총계정원장 · 05 현금출납장 · 06 계정별원장 · 07 거래처원장 · 08 총괄원장 · 09 매입매출장 · 10 총계정관리원장 · 11 (세금)계산서 발급·수취현황 · 12 신용카드매출전표 발행현황 · 13 적요별원장 · 14 전도금원장 · 15 공사대장 · 16 외주대장 · 17 운행기록부 · 18 차량비용현황 · 19 원가안분 · 20 원가현황 · 21 손익안분 · 22 손익현황 · 23 원가손익 · 24 공사원가집계표 · 25 공사비용현황 · 26 현장별 잔액명세서 · 27 차원 거래처원장 · 28 프로젝트 누적손익 · 29 프로젝트 누적원가</div></li>
+      <li>📎 <span class="lk">M-WS-04</span> 증빙·전자문서 (자동전표·자료수집)
+        <div class="lv2">└ SA-ATX-01 수집정보등록 · 02 전자세금계산서 · 03 전자계산서 · 04 신용카드 · 05 현금영수증 · 06 통장 · 07 자료수집현황 · 08 전표전송현황 · 09 국세청자료검증 · 10 ScrappingBoard</div></li>
+      <li>📅 <span class="lk">M-WS-05</span> 회계기간·마감 (가/본마감·마감 해제 — 결산 M-WS-07 · 마감후이월 SA-BAS-14 연계)</li>
+      <li>🏦 <span class="lk">M-WS-06</span> 자금·채권채무
+        <div class="lv2">├ 자금 일보·내역 — SA-FND-01 일일자금명세/경리일보 · 02 자금계획입력 · 03 일일자금현황 · 04 자금일월보 · 05 자금입출금내역 · 06 자금계획서</div>
+        <div class="lv2">├ 예적금·차입금 — SA-DEP-01 예적금현황 · 02 차입금스케줄관리 · 03 차입금현황</div>
+        <div class="lv2">└ 어음·당좌 — SA-BIL-01 받을어음현황 · 02 지급어음현황 · 03 어음집계표 · 04 당좌수표현황</div></li>
+      <li>🧮 <span class="lk">M-WS-07</span> 결산
+        <div class="lv2">├ 결산처리·검토 — SA-CLS-01 결산자료입력 · 09 결산부속명세서 · 10 현금및예금잔액검토 · 11 카드·상품권 사용검토 · 12 AI 합계잔액시산표</div>
+        <div class="lv2">├ 재무제표 본표 — SA-CLS-02 합계잔액시산표 · 03 재무상태표 · 04 손익계산서 · 05 제조원가명세서</div>
+        <div class="lv2">├ 자본·현금흐름 — SA-CLS-06 이익잉여금처분계산서 · 07 자본변동표 · 08 현금흐름표</div>
+        <div class="lv2">└ 출력·명세·기간 — SA-CLS-13 재무제표 일괄출력 · 14 경영정보 분석 · 15 영수증수취명세서 · 16 경비등의송금명세서 · 17 지출증명서류합계표 · 18 기간별손익계산서 · 19 기간별원가명세서 · 20 중단사업손익계산서 · 21 중단사업원가명세서</div></li>
+      <li>🧾 <span class="lk">M-WS-08</span> 세무
+        <div class="lv2">├ 부가세 신고·검증 — SA-VAT-01 부가가치세신고서 · 02 세무리스크 검증(MRI) · 03 세금계산서합계표 · 04 신용카드수령명세서 · 05 신용카드발행집계표 · 06 계산서합계표 · 07 부가가치세 전자신고 · 08 부가가치세 납부서</div>
+        <div class="lv2">├ 첨부·공제 명세 — SA-VAT-09 부동산임대공급가액명세서 · 10 건물관리명세서 · 11 의제매입세액공제신고서 · 12 재활용폐자원세액공제 · 13 구리스크랩등 매입세액공제 · 14 현금매출명세서 · 15 동물진료용역매출명세서</div>
+        <div class="lv2">├ 업종·면세 첨부 — SA-VAT-16 면세유류공급명세서(갑) · 17 월별판매액합계표 · 18 농어업기자재 환급신청 · 19 전자화폐결제명세서 · 20 전자신고세액공제 · 21 보세판매장 공급실적</div>
+        <div class="lv2">├ 매입세액·자산/수정신고 — SA-VAT-22 공제받지못할매입세액 · 23 건물등감가상각자산취득 · 24 대손세액공제신고서 · 25 사업장별 납부/환급명세 · 26 사업자단위과세 사업장별 · 27 과표수정·추가납부계산서 · 28 과표·세액 경정청구서</div>
+        <div class="lv2">├ 영세율 첨부 — SA-VAT-29 수출실적명세서 · 30 영세율첨부서류제출명세 · 31 내국신용장/구매확인서 · 32 외화획득명세서 · 33 관세환급금등명세서 · 34 외국인관광객 면세판매·환급 · 35 미용성형 의료용역 환급실적</div>
+        <div class="lv2">├ 영세율·기타 신고서류 — SA-VAT-36 숙박용역 환급실적 · 37 즉시환급 판매실적 · 38 외교관면세 기록표 · 39 재화·용역 공급기록표 · 40 공급가액확정명세서 · 41 선박 운송용역 일람표 · 42 외항선박 재화·용역 · 43 영세율매출명세서 · 44 과세전환 재고품등 · 45 과세전환 감가상각자산 · 46 매입자발행세금계산서 · 47 과세유흥장소 과표 · 48 사업용계좌 개설신고 · 49 납부서 작성(전세목) · 50 사업양도신고서</div>
+        <div class="lv2">└ 고정자산 — SA-FA-01 고정자산등록 · 02 미상각분 상각계산 · 03 양도자산 상각계산 · 04 원가경비별 명세서 · 05 고정자산관리대장 · 06 현장/부서 자산명세 · 07 월별 감가상각비 계상</div></li>
+      <li>📰 <span class="lk">M-WS-09</span> 공시 (재무제표 공시·주석·XBRL — 후속 Phase)</li>
+      <li>🌐 <span class="lk">M-WS-10</span> 다중기준·외화 (병행원장·이중통화·외화환산 — 후속 Phase)</li>
+      <li>📊 <span class="lk">M-WS-11</span> 관리회계·보고
+        <div class="lv2">└ 예산 편성·실적(예실) — SA-FND-07 예산입력 · 08 당기예산 월별 실적 · 09 당기예산 분기/반기 실적 · 10 전기실행액입력 · 11 전기예산 월별 실적 · 12 전기예산 분기/반기 실적 · 13 차기예산입력 · 14 추정예산</div></li>
+      <li>🤖 <span class="lk">M-WS-12</span> AI 어시스트 (SA-CLS-12 AI 시산표 · SA-VAT-02 세무리스크(MRI) 연계)</li>
+      <li>💬 <span class="lk">M-WS-13</span> 협업·미결항목 (질의·Open Items — 후속 Phase)</li>
+      <li>💳 <span class="lk">M-WS-14</span> 구독·청구(자사)
+        <div class="lv2">└ BF-10 구독·청구</div></li>
+      <li>🔔 <span class="lk">M-WS-15</span> 알림함
+        <div class="lv2">└ BF-11 알림 매트릭스</div></li>
+    </ul>
+  </div>
+</div>
+<div class="note">채널·메뉴 코드(<span class="lk">M-OP-*</span>/<span class="lk">M-WS-*</span>)와 그룹 체계는 §8.1과 동일하며, 그 하위에 전 페이즈(P01~P10)의 실제 구현 화면을 매핑했다. <b>BF-04·05·07·08·10·12</b> 등 일부 화면은 §8.1과 같이 두 채널에 공통 노출된다. 공시(M-WS-09)·다중기준/외화(M-WS-10)·협업(M-WS-13) 등은 후속 Phase 범위로 본 페이즈 구현 화면이 없다. 화면 총계: <b>BF 13 · SA-BAS 14 · OPN 19 · 전표(JV/SA-JNL) 12 · 자동전표 SA-ATX 10 · 보조부 AUX 9 · 장부 SA-LDG 29 · 결산 SA-CLS 21 · 부가세 SA-VAT 50 · 고정자산 SA-FA 7 · 자금/예산/어음 SA-FND·DEP·BIL 27 · 데이터 SA-DAT 7</b>. 화면 단위 상세(레이아웃·필드·검증·API)는 각 페이즈 v3.0 문서를 참조한다.</div>
 </section>
 
 <section id="s3">

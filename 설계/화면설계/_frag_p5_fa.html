@@ -1,0 +1,238 @@
+
+<section id="g-fa">
+<h2>M-WS-08 세무 ▸ 고정자산 (SA-FA-01 ~ SA-FA-07)</h2>
+<div class="crumb"><b>채널 ② 회사 작업공간</b><span class="sep">›</span>M-WS-08 세무<span class="sep">›</span><b>고정자산</b></div>
+<p>고정자산의 등록·감가상각 계산(미상각/양도)·원가경비 구분·관리대장·차원별 명세·월별 상각비 계상을 관리한다. 세무상 상각방법(정액·정률)·내용연수, 회계상 상각을 함께 산정하고 세무조정(P5 결산·법인세 연계)·과세전환(SA-VAT-45) 매입세액 산정에 연동한다.</p>
+
+<h4 id="sa-fa-01"><span class="sid">SA-FA-01</span>고정자산등록</h4>
+<table class="meta">
+<tr><th>용도</th><td>유형·무형 고정자산을 자산코드·자산분류·취득일·취득가액·내용연수·상각방법(정액/정률)·잔존가액·관리차원(부서/현장/프로젝트)별로 등록하고 자본적지출·부분처분 이력을 관리하는 자산 마스터.</td><th>API</th><td><code>GET /api/asset</code> · <code>POST /api/asset</code> · <code>PUT /api/asset/{id}</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:write</code> (조회 <code>tenant:asset:read</code>)</td><th>엔티티</th><td><code>fixed_asset</code> · <code>asset_class</code> · <code>asset_capex</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 좌측 자산분류 트리 + 자산 목록, 중앙 자산 상세 입력(취득·상각·차원·자본적지출 탭), 우측 상각 미리보기. 자산분류 선택 시 기준 내용연수·상각방법이 기본 제공되고, 취득가·취득일 입력 시 연도별 상각 스케줄을 즉시 미리보기한다. 등록 자산은 SA-FA-02~07·과세전환(SA-VAT-45)의 원천이 된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-01 · 고정자산등록 — 분류 트리 + 자산 상세(탭) + 상각 미리보기</div>
+  <div class="wf-bar">고정자산 › 고정자산등록 <span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">분류 <span class="wf-in">기계장치 ▾</span><span class="wf-btn pri">신규</span><span class="wf-btn">저장</span><span class="wf-btn">자본적지출 추가</span><span class="wf-btn">처분</span></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div style="flex:0.8"><div class="wf-panel pnl"><div class="pt">자산 목록</div>
+        <div class="wf-row"><label>20240301 제조설비A (선택)</label></div>
+        <div class="wf-row"><label>20250115 운반차량</label></div>
+        <div class="wf-row"><label>20260520 측정기기</label></div>
+      </div></div>
+      <div style="flex:1.6"><div class="wf-panel pnl"><div class="pt">자산 상세</div>
+        <div class="wf-row"><label>자산코드</label><span class="wf-in">FA-2024-0001</span></div>
+        <div class="wf-row"><label>자산명</label><span class="wf-in">제조설비A</span></div>
+        <div class="wf-row"><label>취득일</label><span class="wf-in">2024-03-01</span></div>
+        <div class="wf-row"><label>취득가액</label><span class="wf-in">50,000,000</span></div>
+        <div class="wf-row"><label>상각방법</label><span class="wf-in">정률 ▾</span></div>
+        <div class="wf-row"><label>내용연수</label><span class="wf-in">8년 (상각률 0.250)</span></div>
+        <div class="wf-row"><label>관리차원</label><span class="wf-in">제조1팀 / 현장A ▾</span></div>
+        <div class="wf-row"><label>경비구분</label><span class="wf-in">제조경비 ▾</span></div>
+      </div></div>
+      <div style="flex:1"><div class="wf-panel pnl"><div class="pt">상각 미리보기</div>
+        <div class="wf-row"><label>2024 상각</label><span class="wf-in">10,417,000</span></div>
+        <div class="wf-row"><label>2025 상각</label><span class="wf-in">9,896,000</span></div>
+        <div class="wf-row"><label>2026 상각</label><span class="wf-in">7,422,000</span></div>
+        <div class="wf-row"><label>기말 장부가</label><span class="wf-in">22,265,000</span></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">상각중</span><span class="sp"></span><span class="wf-btn">상각스케줄 출력</span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>자산분류 선택</td><td>분류별 기준 내용연수·상각방법 기본값 제공(세법 기준내용연수표)</td></tr>
+<tr><td>상각 미리보기</td><td>취득가·취득일·방법·내용연수로 연도별 상각 스케줄 즉시 계산</td></tr>
+<tr><td>자본적지출</td><td>자산 가치증가 지출 추가 시 잔존내용연수 재계산·상각액 갱신</td></tr>
+<tr><td>처분</td><td>처분일·처분가액 입력 → SA-FA-03 양도자산 상각으로 이관</td></tr>
+<tr><td>연계</td><td><code>SA-BAS-07 계정과목</code> · <code>SA-FA-02~07</code> · <code>SA-VAT-45 과세전환</code> · <code>SA-CLS 결산(세무조정)</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>내용연수 범위</td><td>세법 기준내용연수 ±25% 범위 위반</td><td><span class="badge b-amber">경고</span> 신고내용연수 확인</td></tr>
+<tr><td>취득일 미래</td><td>취득일 > 회계기간 종료일</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>자산코드 중복</td><td>기존 자산코드와 중복</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-02"><span class="sid">SA-FA-02</span>미상각분 상각계산</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 보유(미처분) 자산의 회계연도 감가상각비를 자산별로 계산하여 당기상각·감가상각누계·기말장부가를 산출하는 화면. 세무상 상각범위액과 회계상 상각액의 차이(시인·부인액)도 함께 표시.</td><th>API</th><td><code>GET /api/asset/depreciation?fy=&status=active</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:read</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>depreciation_calc</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 등록 자산(SA-FA-01) 중 당기 보유분의 상각액을 일괄 계산한다. 정액/정률, 월할(취득·자본적지출 월 기준) 계산을 적용하고, 세무 상각범위액 대비 회계 계상액의 한도초과(부인) 금액을 표시하여 세무조정 자료로 활용한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-02 · 미상각분 상각계산 — 자산별 당기상각·세무 시부인</div>
+  <div class="wf-bar">고정자산 › 미상각분 상각계산 <span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 분류 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">일괄 계산</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산명</th><th class="r">취득가액</th><th class="r">기초장부가</th><th class="r">당기상각</th><th class="r">상각범위액</th><th class="r">부인액</th><th class="r">기말장부가</th></tr>
+    <tr><td>제조설비A</td><td class="r">50,000,000</td><td class="r">29,687,000</td><td class="r">7,422,000</td><td class="r">7,422,000</td><td class="r">0</td><td class="r">22,265,000</td></tr>
+    <tr><td>운반차량</td><td class="r">30,000,000</td><td class="r">24,000,000</td><td class="r">9,600,000</td><td class="r">8,400,000</td><td class="r"><b style="color:#c0392b">1,200,000</b></td><td class="r">14,400,000</td></tr>
+    <tr><th>합계</th><th class="r">80,000,000</th><th class="r">53,687,000</th><th class="r">17,022,000</th><th class="r">15,822,000</th><th class="r">1,200,000</th><th class="r">36,665,000</th></tr>
+  </table></div>
+  <div class="wf-foot"><span class="badge b-amber">상각부인 1건</span><span class="sp"></span><span class="wf-btn">세무조정 반영</span><span class="wf-btn pri">일괄 계산</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>일괄 계산</td><td>보유 자산 전체 당기상각·범위액 자동 산출(월할 적용)</td></tr>
+<tr><td>시부인</td><td>회계 계상액 − 세무 상각범위액 = 부인(한도초과)/시인부족 산출</td></tr>
+<tr><td>세무조정 반영</td><td>부인액을 결산 세무조정(SA-CLS) 자료로 전송</td></tr>
+<tr><td>연계</td><td><code>SA-FA-01 자산</code> · <code>SA-FA-07 월별 계상</code> · <code>SA-CLS 세무조정</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>상각부인 발생</td><td>회계 상각 > 세무 범위액</td><td><span class="badge b-amber">경고</span> 손금불산입 조정 안내</td></tr>
+<tr><td>기말장부가 음수</td><td>잔존가액 미만 상각</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fa-03"><span class="sid">SA-FA-03</span>양도자산 상각계산</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 중 처분(양도·폐기)된 자산의 처분일까지의 상각액을 월할 계산하고, 처분가액·장부가액 비교로 유형자산처분손익을 산출하는 화면.</td><th>API</th><td><code>GET /api/asset/depreciation?fy=&status=disposed</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:read</code></td><th>엔티티</th><td><code>fixed_asset(disposed)</code> · <code>depreciation_calc</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FA-01에서 처분 처리된 자산을 대상으로 처분일까지 월할 상각 후 장부가를 확정하고, 처분손익(처분가−처분시점 장부가)을 계산한다. 처분손익은 전표(유형자산처분손익) 자동분개 후보로 제공된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-03 · 양도자산 상각계산 — 처분일 월할상각 + 처분손익</div>
+  <div class="wf-bar">고정자산 › 양도자산 상각계산 <span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span><span class="wf-btn pri">계산</span><span class="wf-btn">처분손익 분개</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산명</th><th>처분일</th><th class="r">처분시 장부가</th><th class="r">처분가액</th><th class="r">처분손익</th></tr>
+    <tr><td>측정기기</td><td>2026-05-31</td><td class="r">3,200,000</td><td class="r">4,000,000</td><td class="r"><b style="color:#2563eb">+800,000</b></td></tr>
+    <tr><td>구형서버</td><td>2026-04-15</td><td class="r">1,500,000</td><td class="r">500,000</td><td class="r"><b style="color:#c0392b">-1,000,000</b></td></tr>
+  </table></div>
+  <div class="wf-foot"><span>처분일까지 월할상각 후 장부가 확정 · 처분손익 합계 -200,000</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>월할 상각</td><td>기초~처분월까지 상각액 월할 계산하여 처분시점 장부가 확정</td></tr>
+<tr><td>처분손익 분개</td><td>처분가−장부가 = 처분손익, 유형자산처분손익 자동분개 후보 생성</td></tr>
+<tr><td>연계</td><td><code>SA-FA-01 처분 처리</code> · <code>[일반전표] 처분 분개</code> · <code>SA-CLS 결산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>처분일 오류</td><td>처분일 < 취득일</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>처분가액 미입력</td><td>처분가액 공란(폐기 제외)</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-fa-04"><span class="sid">SA-FA-04</span>원가경비별 명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>감가상각비를 경비구분(제조경비/판매관리비/공사원가 등)별로 집계하여 원가계산·손익 귀속의 근거자료로 제공하는 명세서. 제조원가명세서·손익계산서 상각비란과 대사.</td><th>API</th><td><code>GET /api/asset/depreciation/by-cost?fy=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:read</code></td><th>엔티티</th><td><code>depreciation_calc</code> · <code>cost_class</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 자산별 경비구분(SA-FA-01)에 따라 당기상각비를 제조/판관/공사원가로 집계한다. 제조분은 제조원가명세서·원가안분(SA-LDG-19)으로, 판관분은 손익계산서로 흐르며, 결산(SA-CLS) 상각비 계상과 일치해야 한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-04 · 원가경비별 명세서 — 경비구분별 상각비 집계</div>
+  <div class="wf-bar">고정자산 › 원가경비별 명세서 <span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 기준 <span class="wf-in">연간 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>경비구분</th><th class="r">자산수</th><th class="r">취득가액</th><th class="r">당기상각비</th></tr>
+    <tr><td>제조경비</td><td class="r">12</td><td class="r">320,000,000</td><td class="r">48,000,000</td></tr>
+    <tr><td>판매관리비</td><td class="r">8</td><td class="r">95,000,000</td><td class="r">14,200,000</td></tr>
+    <tr><td>공사원가</td><td class="r">3</td><td class="r">60,000,000</td><td class="r">9,500,000</td></tr>
+    <tr><th>합계</th><th class="r">23</th><th class="r">475,000,000</th><th class="r">71,700,000</th></tr>
+  </table></div>
+  <div class="wf-foot"><span>제조원가명세서·손익계산서 상각비란과 자동 대사</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>경비구분 집계</td><td>자산별 경비구분에 따라 상각비를 제조/판관/공사원가로 합산</td></tr>
+<tr><td>대사</td><td>결산 상각비 계상·제조원가명세서와 차이 검증</td></tr>
+<tr><td>연계</td><td><code>SA-FA-02 상각계산</code> · <code>SA-LDG-19 원가안분</code> · <code>SA-CLS 결산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>경비구분 미지정</td><td>자산 경비구분 공란</td><td><span class="badge b-amber">경고</span> 미분류 별도 표시</td></tr>
+</table>
+
+<h4 id="sa-fa-05"><span class="sid">SA-FA-05</span>고정자산관리대장</h4>
+<table class="meta">
+<tr><th>용도</th><td>전 보유·처분 자산의 취득~당기까지 누적 상각·장부가·처분이력을 자산별로 망라한 관리대장. 자산실사·감사·세무신고(감가상각비조정명세서) 기초자료로 사용.</td><th>API</th><td><code>GET /api/asset/ledger?asof=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:read</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>depreciation_calc</code> · <code>asset_capex</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 자산 단위 전 생애주기(취득가·자본적지출·연도별 상각·감가상각누계·기말장부가·처분)를 한 행에 표시하고, 행 클릭 시 연도별 상각이력을 펼친다. 자산실사 라벨(QR) 출력과 차원·분류 필터를 제공한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-05 · 고정자산관리대장 — 자산별 누적 상각·장부가 대장</div>
+  <div class="wf-bar">고정자산 › 고정자산관리대장 <span class="sp"></span><span class="badge b-blue">2026-12-31 기준</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in">2026-12-31</span> 분류 <span class="wf-in">전체 ▾</span> 상태 <span class="wf-in">보유 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">실사라벨 출력</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>자산코드</th><th>자산명</th><th>취득일</th><th class="r">취득가액</th><th class="r">상각누계</th><th class="r">장부가액</th><th>상태</th></tr>
+    <tr><td>FA-2024-0001</td><td>제조설비A</td><td>2024-03-01</td><td class="r">50,000,000</td><td class="r">27,735,000</td><td class="r">22,265,000</td><td><span class="badge b-green">보유</span></td></tr>
+    <tr><td>FA-2025-0007</td><td>운반차량</td><td>2025-01-15</td><td class="r">30,000,000</td><td class="r">15,600,000</td><td class="r">14,400,000</td><td><span class="badge b-green">보유</span></td></tr>
+    <tr><th>합계</th><th></th><th></th><th class="r">80,000,000</th><th class="r">43,335,000</th><th class="r">36,665,000</th><th></th></tr>
+  </table></div>
+  <div class="wf-foot"><span>행 클릭 시 연도별 상각이력 펼침 · 자산실사 QR 라벨 출력</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>대장 조회</td><td>기준일 현재 취득가·상각누계·장부가 표시, 처분자산 포함 옵션</td></tr>
+<tr><td>상각이력 펼침</td><td>행 클릭 → 연도별 상각·자본적지출 이력 드릴다운</td></tr>
+<tr><td>실사라벨 출력</td><td>자산코드 QR 라벨 출력(자산실사·위치관리용)</td></tr>
+<tr><td>연계</td><td><code>SA-FA-01 자산</code> · <code>SA-FA-06 차원별 명세</code> · 감가상각비조정명세서</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>장부가 대사</td><td>대장 장부가 합계 ≠ 총계정원장 유형자산</td><td><span class="badge b-amber">경고</span> 차이 명세 제공</td></tr>
+</table>
+
+<h4 id="sa-fa-06"><span class="sid">SA-FA-06</span>차원별 자산명세서</h4>
+<table class="meta">
+<tr><th>용도</th><td>고정자산을 관리차원(부서/현장/프로젝트)별로 집계하여 차원별 자산 보유현황·상각비 부담을 분석하는 명세서. 현장·프로젝트 원가 귀속과 부서별 자산관리에 활용.</td><th>API</th><td><code>GET /api/asset/by-dimension?asof=&dim=</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:read</code></td><th>엔티티</th><td><code>fixed_asset</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 차원(부서/현장/프로젝트) 기준으로 자산을 그룹핑하여 차원별 취득가·장부가·당기상각비를 집계한다. 현장/프로젝트 차원은 SA-LDG-24~29 원가·손익 분석과 연동되어 자산 상각비의 원가 귀속 근거가 된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-06 · 차원별 자산명세서 — 부서/현장/프로젝트별 자산·상각비</div>
+  <div class="wf-bar">고정자산 › 차원별 자산명세서 <span class="sp"></span><span class="badge b-blue">2026-12-31</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차원 <span class="wf-in">현장 ▾</span> 기준일 <span class="wf-in">2026-12-31</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>차원(현장)</th><th class="r">자산수</th><th class="r">취득가액</th><th class="r">장부가액</th><th class="r">당기상각비</th></tr>
+    <tr><td>현장A</td><td class="r">8</td><td class="r">180,000,000</td><td class="r">120,000,000</td><td class="r">28,000,000</td></tr>
+    <tr><td>현장B</td><td class="r">5</td><td class="r">95,000,000</td><td class="r">62,000,000</td><td class="r">15,500,000</td></tr>
+    <tr><th>합계</th><th class="r">13</th><th class="r">275,000,000</th><th class="r">182,000,000</th><th class="r">43,500,000</th></tr>
+  </table></div>
+  <div class="wf-foot"><span>차원 미배부 자산 별도 표시 · 현장/프로젝트 원가 연동</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>차원 집계</td><td>부서/현장/프로젝트 차원별 자산·상각비 그룹 집계</td></tr>
+<tr><td>원가 연동</td><td>현장/프로젝트 상각비를 SA-LDG 원가분석으로 전달</td></tr>
+<tr><td>연계</td><td><code>SA-FA-01 차원</code> · <code>SA-LDG-24~29 원가·손익</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>차원 미배부</td><td>차원 미지정 자산 존재</td><td><span class="badge b-amber">경고</span> 미배부 합계 표시</td></tr>
+</table>
+
+<h4 id="sa-fa-07"><span class="sid">SA-FA-07</span>월별 감가상각비 계상</h4>
+<table class="meta">
+<tr><th>용도</th><td>연간 상각비를 월별로 안분하여 매월 감가상각비를 전표로 자동 계상(분개 생성)하는 화면. 월 결산 시 상각비를 정기적으로 인식한다.</td><th>API</th><td><code>GET /api/asset/monthly-dep?ym=</code> · <code>POST /api/asset/monthly-dep/post</code></td></tr>
+<tr><th>권한</th><td><code>tenant:asset:write</code></td><th>엔티티</th><td><code>depreciation_calc</code> · <code>journal_entry</code> · <code>cost_class</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 당기 연간상각(SA-FA-02)을 월할 배분하여 해당 월 감가상각비 분개(차변 감가상각비/대변 감가상각누계액)를 경비구분별로 생성한다. 계상 완료 월은 잠금되며, 월별 결산(SA-CLS) 절차에 포함된다. 중복 계상 방지.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FA-07 · 월별 감가상각비 계상 — 월 상각비 분개 생성·계상</div>
+  <div class="wf-bar">고정자산 › 월별 감가상각비 계상 <span class="sp"></span><span class="badge b-blue">2026-06월</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">대상월 <span class="wf-in">2026-06 ▾</span><span class="wf-btn pri">상각비 계상</span><span class="wf-btn">계상 취소</span><span class="wf-btn">분개 미리보기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>경비구분</th><th>차변 계정</th><th class="r">상각비</th><th>대변 계정</th><th>상태</th></tr>
+    <tr><td>제조경비</td><td>감가상각비(제조)</td><td class="r">4,000,000</td><td>감가상각누계액</td><td><span class="badge b-green">계상완료</span></td></tr>
+    <tr><td>판매관리비</td><td>감가상각비(판관)</td><td class="r">1,183,000</td><td>감가상각누계액</td><td><span class="badge b-amber">미계상</span></td></tr>
+  </table></div>
+  <div class="wf-foot"><span class="badge b-amber">미계상 1건</span><span class="sp"></span><span class="wf-btn">전표 조회</span><span class="wf-btn pri">상각비 계상</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>상각비 계상</td><td>월 상각비를 경비구분별 분개로 생성·전기(차변 감가상각비/대변 누계액)</td></tr>
+<tr><td>분개 미리보기</td><td>계상 전 생성될 전표 라인 미리보기</td></tr>
+<tr><td>계상 취소</td><td>해당 월 상각 분개 역분개·삭제(권한 필요)</td></tr>
+<tr><td>연계</td><td><code>SA-FA-02 연간상각</code> · <code>[일반전표]</code> · <code>SA-CLS 월결산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>중복 계상</td><td>이미 계상된 월 재계상</td><td><span class="badge b-red">차단</span> 취소 후 재계상</td></tr>
+<tr><td>마감월 계상</td><td>마감된 월 상각 계상</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+</section>

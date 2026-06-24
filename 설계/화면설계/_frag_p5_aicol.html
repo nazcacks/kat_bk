@@ -1,0 +1,171 @@
+
+<section id="g-ai">
+<h2>M-WS-12 AI 어시스트 (AI-01 ~ AI-02)</h2>
+<div class="crumb"><b>채널 ② 회사 작업공간</b><span class="sep">›</span>M-WS-12<span class="sep">›</span><b>AI 어시스트</b></div>
+<p>전표·장부 데이터를 학습·분석하여 이상거래를 탐지하고, 자연어 질의로 회계·세무 데이터를 조회하는 AI 보조 기능. 모든 AI 출력은 <b>제안(보조)</b> 수준이며 확정·전기·신고 등 부작용 행위는 담당자 검토·승인을 거친다(휴먼인더루프).</p>
+
+<h4 id="ai-01"><span class="sid">AI-01</span>이상거래 탐지</h4>
+<table class="meta">
+<tr><th>용도</th><td>전표·증빙·자금 데이터에서 통계·규칙·ML 기반으로 이상징후(금액 급증, 중복전표, 비정상 적요, 주말·심야 입력, 거래처 패턴 이탈, 계정 오분류 의심)를 탐지하여 검토 큐로 제시하는 화면.</td><th>API</th><td><code>GET /api/ai/anomaly?period=&type=</code> · <code>POST /api/ai/anomaly/{id}/feedback</code></td></tr>
+<tr><th>권한</th><td><code>tenant:ai:read</code> · 피드백 <code>tenant:ai:feedback</code></td><th>엔티티</th><td><code>ai_anomaly</code> · <code>journal_entry</code> · <code>ai_model_version</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 좌측 탐지 규칙·심각도 필터, 중앙 이상거래 카드 목록(점수·근거), 우측 선택 항목 상세·원본 전표. 각 항목은 위험점수(0~100)와 탐지 근거(규칙명·유사거래 비교)를 제시하고, 담당자는 정상/이상/보류로 피드백하여 모델을 개선한다. 자동 수정은 하지 않으며 검토·조정 전표 연결만 제공.</div>
+<div class="wf">
+  <div class="wf-cap">AI-01 · 이상거래 탐지 — 규칙 필터 + 이상거래 카드 + 상세·피드백</div>
+  <div class="wf-bar">AI 어시스트 › 이상거래 탐지 <span class="sp"></span><span class="badge b-amber">탐지 18건</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06 ▾</span> 심각도 <span class="wf-in">높음 ▾</span> 유형 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">재탐지</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div style="flex:1.6"><table class="wf-grid">
+        <tr><th>점수</th><th>유형</th><th>전표</th><th class="r">금액</th><th>탐지근거</th><th>상태</th></tr>
+        <tr><td><b style="color:#c0392b">92</b></td><td>중복전표 의심</td><td>JV-20260612-031</td><td class="r">8,800,000</td><td>동일거래처·금액·일자 2건</td><td><span class="badge b-amber">검토대기</span></td></tr>
+        <tr><td><b style="color:#c0392b">85</b></td><td>금액 급증</td><td>JV-20260618-077</td><td class="r">25,000,000</td><td>해당계정 평균 +480%</td><td><span class="badge b-amber">검토대기</span></td></tr>
+        <tr><td>71</td><td>계정 오분류 의심</td><td>JV-20260620-104</td><td class="r">1,200,000</td><td>적요-계정 패턴 불일치</td><td><span class="badge b-green">정상확인</span></td></tr>
+      </table></div>
+      <div style="flex:1"><div class="wf-panel pnl"><div class="pt">선택 항목 상세</div>
+        <div class="wf-row"><label>전표</label><span class="wf-in">JV-20260612-031</span></div>
+        <div class="wf-row"><label>위험점수</label><span class="wf-in">92 / 100</span></div>
+        <div class="wf-row"><label>유사거래</label><span class="wf-in">JV-20260612-018 비교</span></div>
+        <div class="wf-row"><label>피드백</label><span class="wf-in">정상 / 이상 / 보류 ▾</span></div>
+        <div class="wf-row"><span class="wf-btn">원본 전표 열기</span><span class="wf-btn">질의 등록(COL-01)</span></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">모델 v2.3</span><span class="sp"></span><span class="wf-btn">규칙 설정</span><span class="wf-btn pri">피드백 저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>재탐지</td><td>기간·규칙 기준으로 이상거래 재스캔, 위험점수 산정</td></tr>
+<tr><td>피드백</td><td>정상/이상/보류 라벨링으로 모델 학습 데이터 축적(휴먼인더루프)</td></tr>
+<tr><td>질의 등록</td><td>이상항목을 COL-01 Open Items 보드 질의로 전환</td></tr>
+<tr><td>연계</td><td><code>[일반전표]·[매입매출전표]</code> · <code>COL-01 협업</code> · <code>OP-SYS 모델 버전</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>자동 수정 시도</td><td>AI 결과로 전표 직접 변경</td><td><span class="badge b-red">차단</span> 담당자 검토·조정 전표만 허용</td></tr>
+<tr><td>학습데이터 부족</td><td>탐지 표본 부족 기간</td><td><span class="badge b-amber">경고</span> 규칙기반만 적용 표시</td></tr>
+</table>
+
+<h4 id="ai-02"><span class="sid">AI-02</span>조회 챗봇</h4>
+<table class="meta">
+<tr><th>용도</th><td>자연어 질문("6월 판관비 전월대비 증감", "거래처 대한상사 미수금 잔액")을 해석하여 장부·재무·세무 데이터를 조회·요약하고 근거 화면·전표로 링크하는 대화형 조회 어시스턴트.</td><th>API</th><td><code>POST /api/ai/chat</code> · <code>GET /api/ai/chat/history</code></td></tr>
+<tr><th>권한</th><td><code>tenant:ai:read</code> (사용자 권한 범위 내 데이터만 조회)</td><th>엔티티</th><td><code>ai_chat_session</code> · 조회 대상 뷰(읽기전용)</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 좌측 대화 이력, 중앙 채팅 스트림(질문→요약답변+근거 링크+표/차트), 우측 추천 질문·데이터 범위. 답변은 사용자 권한(RLS) 범위 데이터만 사용하고 항상 근거 화면(SA-LDG/재무제표)으로 드릴다운 링크를 제공한다. 조회 전용이며 데이터 변경·신고 등 부작용 행위는 수행하지 않는다.</div>
+<div class="wf">
+  <div class="wf-cap">AI-02 · 조회 챗봇 — 대화 이력 + 채팅 스트림 + 근거 링크</div>
+  <div class="wf-bar">AI 어시스트 › 조회 챗봇 <span class="sp"></span><span class="badge b-blue">읽기전용</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">데이터 범위 <span class="wf-in">2026 회계연도 ▾</span><span class="wf-btn">대화 초기화</span></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div style="flex:0.8"><div class="wf-panel pnl"><div class="pt">대화 이력</div>
+        <div class="wf-row"><label>· 6월 판관비 분석</label></div>
+        <div class="wf-row"><label>· 거래처 미수금 Top5</label></div>
+      </div></div>
+      <div style="flex:2"><div class="wf-panel pnl"><div class="pt">채팅</div>
+        <div class="wf-row"><label>👤</label><span class="wf-in">6월 판관비 전월대비 증감 알려줘</span></div>
+        <div class="wf-row"><label>🤖</label><span class="wf-in">6월 판관비 89.5백만(전월 84.0백만, +6.5%). 증가 주요인: 광고선전비 +3.2백만. [근거: SA-LDG-04 ▸]</span></div>
+        <div class="wf-row"><span class="wf-in" style="flex:1">질문을 입력하세요…</span><span class="wf-btn pri">전송</span></div>
+      </div></div>
+      <div style="flex:1"><div class="wf-panel pnl"><div class="pt">추천 질문</div>
+        <div class="wf-row"><label>· 당월 부가세 예상납부세액</label></div>
+        <div class="wf-row"><label>· 현금 잔액 추이</label></div>
+        <div class="wf-row"><label>· 90일 초과 채권</label></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">근거 링크 제공</span><span class="sp"></span><span>RLS 권한범위 데이터만 조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>자연어 질의</td><td>질문 해석 → 데이터 조회 → 요약답변 + 근거 화면 링크 생성</td></tr>
+<tr><td>근거 드릴다운</td><td>답변의 수치를 SA-LDG/재무제표 화면·전표로 직접 링크</td></tr>
+<tr><td>권한 적용</td><td>사용자 RLS 권한 범위 내 데이터만 조회·응답</td></tr>
+<tr><td>연계</td><td><code>SA-LDG 장부</code> · <code>SA-CLS 재무제표</code> · <code>SA-VAT 신고</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>권한 외 데이터</td><td>사용자 권한 밖 데이터 요청</td><td><span class="badge b-red">차단</span> 권한범위 안내</td></tr>
+<tr><td>부작용 행위 요청</td><td>전표 수정·신고 등 변경 요청</td><td><span class="badge b-red">차단</span> 해당 기능 화면 안내</td></tr>
+<tr><td>모호한 질의</td><td>해석 신뢰도 낮음</td><td><span class="badge b-amber">경고</span> 재질문·옵션 제시</td></tr>
+</table>
+
+</section>
+
+<section id="g-col">
+<h2>M-WS-13 협업·미결항목 (COL-01 ~ COL-02)</h2>
+<div class="crumb"><b>채널 ② 회사 작업공간</b><span class="sep">›</span>M-WS-13<span class="sep">›</span><b>협업·미결항목</b></div>
+<p>기장 담당자와 이용회사(고객) 간 질의·자료요청·확인을 추적하는 협업 도구. 미결항목(Open Items)을 보드로 관리하고, 회사 확인이 필요한 항목은 확인(Ack) 대기함으로 전달하여 마감·신고 전 미결 0건을 보장한다.</p>
+
+<h4 id="col-01"><span class="sid">COL-01</span>질의·Open Items 보드</h4>
+<table class="meta">
+<tr><th>용도</th><td>전표·증빙·결산 과정에서 발생한 질의·자료요청·확인필요 항목을 칸반(접수→진행→회신대기→완료)으로 관리하고, 담당자·기한·연결 전표/화면을 추적하는 미결항목 보드.</td><th>API</th><td><code>GET /api/collab/items?status=&assignee=</code> · <code>POST /api/collab/items</code> · <code>PATCH /api/collab/items/{id}</code></td></tr>
+<tr><th>권한</th><td><code>tenant:collab:write</code></td><th>엔티티</th><td><code>open_item</code> · <code>open_item_comment</code> · <code>attachment</code> · <code>user</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 컬럼형 칸반으로 미결항목 상태 흐름을 시각화한다. 각 카드는 유형(질의/자료요청/확인)·담당·기한·연결 전표를 갖고, 댓글·첨부로 협의 이력을 남긴다. AI-01 이상거래·결산 체크리스트·증빙 누락에서 항목이 자동 생성될 수 있다. 마감(SA-CLS)·신고(SA-VAT) 전 미결 0건 게이트와 연동.</div>
+<div class="wf">
+  <div class="wf-cap">COL-01 · 질의·Open Items 보드 — 상태별 칸반 + 카드 상세</div>
+  <div class="wf-bar">협업 › Open Items 보드 <span class="sp"></span><span class="badge b-amber">미결 7건</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">담당 <span class="wf-in">전체 ▾</span> 기한 <span class="wf-in">이번주 ▾</span><span class="wf-btn pri">항목 추가</span><span class="wf-btn">내보내기</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>접수(3)</th><th>진행(2)</th><th>회신대기(1)</th><th>완료(12)</th></tr>
+    <tr>
+      <td>· 6/18 증빙누락 전표 확인 <span class="badge b-red">D-1</span></td>
+      <td>· 카드매입 계정분류 협의</td>
+      <td>· 대표 가지급금 소명 <span class="badge b-amber">회사</span></td>
+      <td>· 외화환율 적용 확인 ✓</td>
+    </tr>
+    <tr>
+      <td>· 미수금 잔액 대사요청</td>
+      <td>· 고정자산 취득 증빙</td>
+      <td></td>
+      <td>· 부가세 신고전 검토 ✓</td>
+    </tr>
+  </table></div>
+  <div class="wf-foot"><span class="badge b-red">기한임박 1건</span><span class="sp"></span><span>카드 클릭 → 댓글·첨부·연결전표 / 마감 게이트 연동</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>항목 추가</td><td>유형·담당·기한·연결 전표/화면 지정하여 미결항목 생성</td></tr>
+<tr><td>상태 이동</td><td>카드 드래그로 접수→진행→회신대기→완료 전환, 이력 기록</td></tr>
+<tr><td>댓글·첨부</td><td>협의 코멘트·증빙 파일 첨부, 회사 확인 요청 시 COL-02로 전달</td></tr>
+<tr><td>연계</td><td><code>AI-01 이상거래</code> · <code>COL-02 확인 대기함</code> · <code>SA-CLS/SA-VAT 마감 게이트</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>미결 잔존</td><td>마감·신고 시점 미완료 항목 존재</td><td><span class="badge b-amber">경고</span> 마감 게이트 경보(필수항목은 차단)</td></tr>
+<tr><td>기한 경과</td><td>기한 초과 미완료</td><td><span class="badge b-amber">경고</span> 알림 발송·에스컬레이션</td></tr>
+</table>
+
+<h4 id="col-02"><span class="sid">COL-02</span>확인(Ack) 대기함</h4>
+<table class="meta">
+<tr><th>용도</th><td>회사(고객) 또는 상급자의 확인·승인이 필요한 항목(가지급금 소명, 자료 확인, 결산 승인 등)을 수신자별로 모아 확인(Ack) 여부·기한을 추적하는 대기함.</td><th>API</th><td><code>GET /api/collab/ack?assignee=&status=</code> · <code>POST /api/collab/ack/{id}/confirm</code></td></tr>
+<tr><th>권한</th><td><code>tenant:collab:ack</code></td><th>엔티티</th><td><code>ack_request</code> · <code>open_item</code> · <code>user</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · COL-01에서 "확인 요청"된 항목이 수신자별 대기함에 도착한다. 수신자는 확인(Ack)·반려·코멘트로 응답하며, 응답 시 원 항목 상태가 갱신된다. 미확인 항목은 기한 알림(BF-11 알림 매트릭스)으로 리마인드하고, 결산·신고 승인 흐름과 연동한다.</div>
+<div class="wf">
+  <div class="wf-cap">COL-02 · 확인(Ack) 대기함 — 수신자별 확인 요청 목록</div>
+  <div class="wf-bar">협업 › 확인 대기함 <span class="sp"></span><span class="badge b-amber">대기 4건</span><span>👤 대표이사</span></div>
+  <div class="wf-tool">상태 <span class="wf-in">미확인 ▾</span> 기한 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">선택 확인</span><span class="wf-btn">반려</span></div>
+  <div class="wf-body"><table class="wf-grid">
+    <tr><th>요청항목</th><th>요청자</th><th>유형</th><th>기한</th><th>상태</th></tr>
+    <tr><td>대표 가지급금 소명</td><td>김기장</td><td>확인</td><td>2026-06-25</td><td><span class="badge b-amber">미확인</span></td></tr>
+    <tr><td>5월 결산 승인</td><td>김기장</td><td>승인</td><td>2026-06-22</td><td><span class="badge b-red">기한초과</span></td></tr>
+    <tr><td>외주비 증빙 확인</td><td>이회계</td><td>확인</td><td>2026-06-26</td><td><span class="badge b-green">확인완료</span></td></tr>
+  </table></div>
+  <div class="wf-foot"><span class="badge b-red">기한초과 1건</span><span class="sp"></span><span>확인 시 COL-01 원항목 상태 자동 갱신</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>확인(Ack)</td><td>확인 처리 → 원 Open Item 상태 갱신·이력 기록(누가·언제)</td></tr>
+<tr><td>반려</td><td>사유 코멘트와 함께 반려, 요청자에게 재작업 통보</td></tr>
+<tr><td>리마인드</td><td>미확인·기한임박 항목 알림(BF-11) 자동 발송</td></tr>
+<tr><td>연계</td><td><code>COL-01 보드</code> · <code>BF-11 알림 매트릭스</code> · <code>SA-CLS 결산승인</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>권한 외 확인</td><td>지정 수신자 아닌 사용자가 확인 시도</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>기한 초과</td><td>확인 기한 경과</td><td><span class="badge b-amber">경고</span> 에스컬레이션</td></tr>
+</table>
+
+</section>

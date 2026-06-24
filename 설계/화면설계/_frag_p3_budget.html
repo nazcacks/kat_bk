@@ -1,0 +1,321 @@
+
+<section id="s-bdg">
+<h2>M-WS-11 예산 편성·실적 (예실) — SA-FND-07~14</h2>
+<div class="tip"><b>그룹 개요</b> · 예산(Budget)은 계정과목 × 관리차원(부서/현장/프로젝트) × 월(月) 단위로 편성하고, 전표 발생액(실적)과 대비하여 예실(豫實) 차이를 분석한다. 당기예산(편성·실적)·전기예산(실행액·실적)·차기예산·추정예산의 4축으로 구성되며, 월별/분기·반기 두 집계 레벨을 제공한다. 실적은 <code>journal_line</code> 발생액을 예산 편성 차원과 동일 키로 집계하여 자동 산출한다.</div>
+
+<h4 id="sa-fnd-07"><span class="sid">SA-FND-07</span>예산입력 (당기 편성)</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 회계연도의 예산을 계정과목 × 관리차원(부서/현장/프로젝트) × 월별로 편성·입력하는 BK 예산편성 화면. 연간 총액 배분(균등/비율/전기실적 연동)과 월별 수기 조정을 지원한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code> (조회 <code>tenant:budget:read</code>) · 확정 <code>tenant:budget:confirm</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget?fy=&dim=&type=current</code> · <code>POST /api/budget/bulk</code> · <code>POST /api/budget/allocate</code> · <code>POST /api/budget/confirm</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_header(fy,type,dim,status)</code> · <code>budget_line(account,dim,month,amount)</code> · <code>account</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 좌측 계정·차원 트리, 중앙 월별(1~12월) 매트릭스 그리드, 우측 배분 도구의 3분할. 연간 총액을 입력하면 균등/비율/전기실적 패턴으로 12개월에 자동 배분 후 셀 단위 수기 조정한다. 확정(Confirm) 시 잠금되어 SA-FND-08 실적대비의 기준선이 된다. 미확정 예산은 실적대비에서 "초안" 표시.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-07 · 예산입력 — 계정/차원 트리 + 월별 편성 매트릭스 + 배분도구</div>
+  <div class="wf-bar"><span>예산 › 예산입력</span><span class="sp"></span><span class="badge b-blue">FY2026 당기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 차원 <span class="wf-in">부서: 영업부 ▾</span> 단위 <span class="wf-in">천원 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">예산 확정</span><span class="wf-btn">엑셀 업로드</span></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div style="flex:0.8">
+        <div class="wf-panel pnl"><div class="pt">계정·차원 트리</div>
+          <div class="wf-row"><label>▸ 매출액</label></div>
+          <div class="wf-row"><label>▾ 판매비와관리비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 급여 (선택)</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 복리후생비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 여비교통비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 광고선전비</label></div>
+        </div>
+      </div>
+      <div style="flex:2">
+        <table class="wf-grid">
+          <tr><th>계정/월</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간계</th></tr>
+          <tr><td>급여</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">…</td><td class="r">14,000</td><td class="r">150,000</td></tr>
+          <tr><td>복리후생비</td><td class="r">1,500</td><td class="r">1,500</td><td class="r">1,800</td><td class="r">…</td><td class="r">2,000</td><td class="r">20,000</td></tr>
+          <tr><td>여비교통비</td><td class="r">800</td><td class="r">800</td><td class="r">1,200</td><td class="r">…</td><td class="r">900</td><td class="r">12,000</td></tr>
+          <tr><th>합계</th><th class="r">14,300</th><th class="r">14,300</th><th class="r">15,000</th><th class="r">…</th><th class="r">16,900</th><th class="r">182,000</th></tr>
+        </table>
+      </div>
+      <div style="flex:1">
+        <div class="wf-panel pnl"><div class="pt">연간총액 배분</div>
+          <div class="wf-row"><label>연간 총액</label><span class="wf-in">150,000</span></div>
+          <div class="wf-row"><label>배분 방식</label><span class="wf-in">균등 ▾</span></div>
+          <div class="wf-row"><label>참조</label><span class="wf-in">전기실적 ×1.05 ▾</span></div>
+          <div class="wf-row"><span class="wf-btn pri">배분 실행</span></div>
+          <div class="pt" style="margin-top:8px">상태</div>
+          <div class="wf-row"><span class="badge b-amber">초안(미확정)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">편성률 82%</span><span class="sp"></span><span class="wf-btn">초기화</span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>연간총액 배분</td><td>균등(÷12)·비율(월별 가중치)·전기실적연동(전기 월별실적×증감률)로 12개월 자동 분배</td></tr>
+<tr><td>셀 편집</td><td>월별 셀 직접 입력 시 연간계·합계 실시간 재계산, 변경셀 하이라이트</td></tr>
+<tr><td>엑셀 업로드</td><td>계정×월 템플릿 양식으로 대량 입력, 계정코드 매칭 검증 후 반영</td></tr>
+<tr><td>예산 확정</td><td>편성 완료분 잠금, 차원·계정 합계 검증 후 status=확정, SA-FND-08 기준선 설정</td></tr>
+<tr><td>연계</td><td><code>SA-BAS-07 계정과목</code> · <code>SA-BAS-04/08/09 차원</code> · <code>SA-FND-08/09 실적대비</code> · <code>SA-FND-13 차기예산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>차원 미선택</td><td>관리차원 미지정 상태로 편성</td><td><span class="badge b-red">차단</span> 차원(부서/현장) 선택 요구</td></tr>
+<tr><td>배분 잔액</td><td>월별 합계 ≠ 연간 총액</td><td><span class="badge b-amber">경고</span> 차액 자동 12월 조정 옵션</td></tr>
+<tr><td>확정 후 수정</td><td>확정 예산 셀 편집 시도</td><td><span class="badge b-red">차단</span> 확정 해제 권한 필요</td></tr>
+<tr><td>음수 예산</td><td>비용계정 음수 입력</td><td><span class="badge b-amber">경고</span> 환입 의도 확인</td></tr>
+</table>
+
+<h4 id="sa-fnd-08"><span class="sid">SA-FND-08</span>당기예산 월별실적 (예실 대비)</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 편성예산(SA-FND-07) 대비 월별 실적(전표 발생액)을 비교하여 달성률·차이·차이율을 분석하는 BK 당기 예실대비(월별) 화면.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=&type=current&grain=month&dim=&account=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line</code> · <code>journal_line(집계)</code> · <code>account</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 계정×월 매트릭스에 예산/실적/차이/달성률 4값을 표시한다. 차이율 ±10% 초과 셀은 색상 강조(초과지출=적색, 절감=청색). 누계(YTD) 열과 잔여예산(연간−누계실적) 열을 제공하여 예산 소진 속도를 모니터링한다. 셀 더블클릭 시 해당 월·계정 전표 드릴다운.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-08 · 당기예산 월별실적 — 예산/실적/차이 매트릭스 + 누계·달성률</div>
+  <div class="wf-bar"><span>예산 › 당기예산 월별실적</span><span class="sp"></span><span class="badge b-blue">FY2026 1~6월</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 차원 <span class="wf-in">부서: 영업부 ▾</span> 표시 <span class="wf-in">예산/실적/차이 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">구분</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">누계(YTD)</th><th class="r">연간예산</th><th class="r">달성률</th></tr>
+      <tr><td rowspan="3">급여</td><td>예산</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">36,000</td><td class="r">150,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">12,000</td><td class="r">12,500</td><td class="r">12,000</td><td class="r">36,500</td><td class="r">—</td><td class="r">24.3%</td></tr>
+      <tr><td>차이</td><td class="r">0</td><td class="r"><b style="color:#c0392b">+500</b></td><td class="r">0</td><td class="r"><b style="color:#c0392b">+500</b></td><td class="r">잔여 113,500</td><td class="r">—</td></tr>
+      <tr><td rowspan="2">여비교통비</td><td>예산</td><td class="r">800</td><td class="r">800</td><td class="r">1,200</td><td class="r">2,800</td><td class="r">12,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">650</td><td class="r">700</td><td class="r">1,500</td><td class="r">2,850</td><td class="r">—</td><td class="r">23.8%</td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">예실 요약</div>판관비 누계 달성률 <b>24.1%</b> (정상범위) · 차이율 +10% 초과 계정 <b>1건</b>(3월 여비교통비) · 예산 조기소진 경보 <b>0건</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">초과 1건</span><span class="sp"></span><span class="wf-btn">차이분석 리포트</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>실적 집계</td><td>전표 발생액을 예산 편성 차원·계정 키로 월별 집계(확정·미확정 전표 옵션)</td></tr>
+<tr><td>차이·차이율</td><td>차이=실적−예산, 차이율=차이/예산. ±10% 초과 색상 강조</td></tr>
+<tr><td>전표 드릴다운</td><td>셀 더블클릭 → 해당 월·계정·차원 전표 라인 조회</td></tr>
+<tr><td>잔여예산</td><td>연간예산−YTD실적, 소진속도(월평균실적×잔여월) 초과 시 경보</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 편성</code> · <code>SA-LDG-04 총계정원장</code> · <code>SA-FND-09 분기·반기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>미확정 예산</td><td>편성예산 status=초안</td><td><span class="badge b-amber">경고</span> "초안 기준" 라벨 표시</td></tr>
+<tr><td>예산 조기소진</td><td>소진속도 기준 연간예산 초과 예상</td><td><span class="badge b-amber">경고</span> 적색 경보 표시</td></tr>
+<tr><td>차원 불일치</td><td>실적 차원이 편성 차원과 매칭 안됨</td><td><span class="badge b-amber">경고</span> 미배부 실적 별도 표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-09"><span class="sid">SA-FND-09</span>당기예산 분기/반기실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 예산·실적을 분기(1~4Q) 및 반기(상/하반기) 단위로 집계하여 대비하는 BK 당기 예실대비(분기·반기) 화면. SA-FND-08 월별 데이터를 상위 기간으로 롤업한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=&type=current&grain=quarter|half&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line</code> · <code>journal_line(집계)</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 월별실적(SA-FND-08)을 분기/반기로 합산한 요약 뷰. 경영보고용으로 차트(예산 vs 실적 막대) + 그리드를 함께 제공하고, 분기 누적 달성률 추이를 보여준다. 집계 레벨 토글(분기↔반기)을 지원한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-09 · 당기예산 분기/반기실적 — 분기 집계 그리드 + 달성률 차트</div>
+  <div class="wf-bar"><span>예산 › 당기예산 분기/반기실적</span><span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 집계 <span class="wf-in">분기 ▾</span> 차원 <span class="wf-in">전사 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">경영보고 출력</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th class="r">1분기 예산</th><th class="r">1분기 실적</th><th class="r">달성률</th><th class="r">2분기 예산</th><th class="r">2분기 실적</th><th class="r">달성률</th></tr>
+      <tr><td>매출액</td><td class="r">300,000</td><td class="r">312,000</td><td class="r"><b style="color:#2563eb">104%</b></td><td class="r">320,000</td><td class="r">298,000</td><td class="r">93%</td></tr>
+      <tr><td>판관비</td><td class="r">42,900</td><td class="r">43,200</td><td class="r">101%</td><td class="r">45,000</td><td class="r">44,100</td><td class="r">98%</td></tr>
+      <tr><td>영업이익</td><td class="r">120,000</td><td class="r">128,000</td><td class="r"><b style="color:#2563eb">107%</b></td><td class="r">130,000</td><td class="r">118,000</td><td class="r">91%</td></tr>
+    </table>
+    <div class="wf-panel">[차트] 분기별 예산 vs 실적 막대그래프 · 누적 달성률 추이선 (1Q 104% → 2Q 98%)</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">상반기 달성 99%</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>분기/반기 롤업</td><td>월별 예산·실적을 분기(3개월)·반기(6개월) 합산, 집계 토글</td></tr>
+<tr><td>차트 연동</td><td>예산/실적 막대 + 달성률 추이선, 분기 클릭 시 SA-FND-08 월별 드릴다운</td></tr>
+<tr><td>경영보고 출력</td><td>분기·반기 요약표 + 차트를 보고서 양식(PDF)으로 생성</td></tr>
+<tr><td>연계</td><td><code>SA-FND-08 월별실적</code> · <code>SA-CLS 결산</code> · <code>경영보고 대시보드</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>분기 미완료</td><td>진행 중 분기(미경과 월 포함)</td><td><span class="badge b-amber">경고</span> "진행중" 표시·부분 집계</td></tr>
+<tr><td>합계 불일치</td><td>분기합 ≠ 월별합</td><td><span class="badge b-red">차단</span> 재집계</td></tr>
+</table>
+
+<h4 id="sa-fnd-10"><span class="sid">SA-FND-10</span>전기실행액입력</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기(직전 회계연도)의 실적(실행액)을 계정×차원×월별로 입력·확정하여 당기 예산편성의 참조기준 및 전기 예실대비의 실적원천으로 사용하는 BK 전기실행액 입력 화면. 전기 전표가 시스템에 없거나 외부 이관 시 수기 입력에 사용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/prior-actual?fy=</code> · <code>POST /api/budget/prior-actual/bulk</code> · <code>POST /api/budget/prior-actual/import</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_prior_actual(fy,account,dim,month,amount)</code> · <code>account</code> · <code>journal_line(전기, 자동연동 옵션)</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 전기 전표가 시스템에 존재하면 자동 집계로 채우고(읽기전용), 없으면 수기/엑셀 입력한다. SA-FND-07 예산입력의 "전기실적 연동" 배분과 SA-FND-11 전기 예실대비의 실적값이 된다. 자동/수기 출처(source) 플래그를 보존한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-10 · 전기실행액입력 — 계정×월 실적 입력 그리드 + 자동연동 토글</div>
+  <div class="wf-bar"><span>예산 › 전기실행액입력</span><span class="sp"></span><span class="badge b-blue">FY2025 전기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 출처 <span class="wf-in">전표 자동연동 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">전표에서 가져오기</span><span class="wf-btn">엑셀 업로드</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간계</th><th>출처</th></tr>
+      <tr><td>급여</td><td class="r">11,500</td><td class="r">11,500</td><td class="r">11,500</td><td class="r">…</td><td class="r">13,000</td><td class="r">142,000</td><td><span class="badge b-green">전표</span></td></tr>
+      <tr><td>복리후생비</td><td class="r">1,400</td><td class="r">1,400</td><td class="r">1,600</td><td class="r">…</td><td class="r">1,900</td><td class="r">18,500</td><td><span class="badge b-amber">수기</span></td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">가져오기 안내</div>전기 전표 자동집계 가능 계정 <b>48</b> · 수기입력 필요 <b>6</b> · 마지막 동기화 2026-01-15</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">자동 48 / 수기 6</span><span class="sp"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전표에서 가져오기</td><td>전기 회계연도 전표 발생액을 계정×차원×월 집계하여 자동 채움(source=전표)</td></tr>
+<tr><td>수기/엑셀 입력</td><td>전표 부재 계정은 직접 입력 또는 양식 업로드(source=수기)</td></tr>
+<tr><td>출처 보존</td><td>자동/수기 플래그로 데이터 신뢰도 구분, 자동분은 읽기전용</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 전기실적 연동</code> · <code>SA-FND-11 전기 월별실적</code> · 전기 전표</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전기 마감 미완</td><td>전기 결산 미확정</td><td><span class="badge b-amber">경고</span> 잠정 실적 표시</td></tr>
+<tr><td>중복 입력</td><td>자동연동분 수기 덮어쓰기</td><td><span class="badge b-amber">경고</span> 출처 변경 확인</td></tr>
+</table>
+
+<h4 id="sa-fnd-11"><span class="sid">SA-FND-11</span>전기예산 월별실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기 편성예산 대비 전기 실행액(SA-FND-10)을 월별로 대비하여 전기 예실 달성도를 분석하는 BK 전기 예실대비(월별) 화면. 당기 예산 편성의 정확도 검증과 추세 비교에 활용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=prior&grain=month&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line(전기)</code> · <code>budget_prior_actual</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-08과 동일한 월별 예실 매트릭스이나 전기 데이터를 대상으로 한다. 당기와 나란히 비교(전기 vs 당기 달성률)할 수 있는 비교모드를 제공하여 예측 정확도 개선에 활용한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-11 · 전기예산 월별실적 — 전기 예산/실적/차이 매트릭스</div>
+  <div class="wf-bar"><span>예산 › 전기예산 월별실적</span><span class="sp"></span><span class="badge b-blue">FY2025 전기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 차원 <span class="wf-in">전사 ▾</span> 비교 <span class="wf-in">당기대비 □</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">구분</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">누계</th><th class="r">연간</th><th class="r">달성률</th></tr>
+      <tr><td rowspan="2">판관비</td><td>예산</td><td class="r">14,000</td><td class="r">14,000</td><td class="r">14,500</td><td class="r">42,500</td><td class="r">175,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">13,800</td><td class="r">14,100</td><td class="r">14,200</td><td class="r">42,100</td><td class="r">170,500</td><td class="r">97%</td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">전기 종합</div>전기 판관비 연간 달성률 <b>97.4%</b> · 예측 정확도(MAPE) <b>3.2%</b> · 당기 편성 신뢰도 양호</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">정확도 양호</span><span class="sp"></span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전기 예실 대비</td><td>전기 편성예산 대비 전기 실행액(SA-FND-10) 월별 차이·달성률 산출</td></tr>
+<tr><td>당기대비 모드</td><td>전기·당기 달성률 병렬 비교, 추세 분석</td></tr>
+<tr><td>예측 정확도</td><td>MAPE(평균절대오차율) 산출로 편성 정확도 평가</td></tr>
+<tr><td>연계</td><td><code>SA-FND-10 전기실행액</code> · <code>SA-FND-08 당기 월별실적</code> · <code>SA-FND-12 분기·반기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전기 데이터 결측</td><td>전기 실행액 미입력 월 존재</td><td><span class="badge b-amber">경고</span> 결측월 0 처리·표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-12"><span class="sid">SA-FND-12</span>전기예산 분기/반기실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기 예산·실행액을 분기·반기로 집계하여 대비하는 BK 전기 예실대비(분기·반기) 화면. 전기 경영성과 분기 추이 분석 및 당기 분기 대비에 활용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=prior&grain=quarter|half&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line(전기)</code> · <code>budget_prior_actual</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-09(당기 분기·반기)의 전기 버전. 전기 분기 실적 추이 차트와 함께 당기 동분기 비교(YoY) 컬럼을 제공한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-12 · 전기예산 분기/반기실적 — 전기 분기 집계 + YoY 비교</div>
+  <div class="wf-bar"><span>예산 › 전기예산 분기/반기실적</span><span class="sp"></span><span class="badge b-blue">FY2025</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 집계 <span class="wf-in">반기 ▾</span> YoY <span class="wf-in">☑</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th class="r">상반기 예산</th><th class="r">상반기 실적</th><th class="r">달성률</th><th class="r">당기 상반기</th><th class="r">YoY 증감</th></tr>
+      <tr><td>매출액</td><td class="r">600,000</td><td class="r">595,000</td><td class="r">99%</td><td class="r">610,000</td><td class="r"><b style="color:#2563eb">+2.5%</b></td></tr>
+      <tr><td>영업이익</td><td class="r">240,000</td><td class="r">232,000</td><td class="r">97%</td><td class="r">246,000</td><td class="r"><b style="color:#2563eb">+6.0%</b></td></tr>
+    </table>
+    <div class="wf-panel">[차트] 전기 분기 실적 추이 + 당기 동분기 비교 막대</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">YoY 매출 +2.5%</span><span class="sp"></span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전기 분기/반기 롤업</td><td>전기 월별을 분기·반기 합산</td></tr>
+<tr><td>YoY 비교</td><td>전기 동분기 vs 당기 동분기 증감률 산출</td></tr>
+<tr><td>연계</td><td><code>SA-FND-11 전기 월별</code> · <code>SA-FND-09 당기 분기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>당기 진행중</td><td>당기 동분기 미완료</td><td><span class="badge b-amber">경고</span> YoY 부분비교 표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-13"><span class="sid">SA-FND-13</span>차기예산입력</h4>
+<table class="meta">
+<tr><th>용도</th><td>차기(다음 회계연도) 예산을 계정×차원×월별로 사전 편성·시뮬레이션하는 BK 차기예산 입력 화면. 당기 실적·전기 추세 기반 자동 제안(증감률 적용)과 수기 조정, 다중 시나리오(보수/기본/공격) 관리를 지원한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code> · 이관(차기→당기) <code>tenant:budget:rollover</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget?fy=next&scenario=</code> · <code>POST /api/budget/next/propose</code> · <code>POST /api/budget/next/rollover</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_header(type=next,scenario)</code> · <code>budget_line</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-07과 유사 매트릭스이나 차기연도 대상이며 시나리오(보수/기본/공격) 탭으로 다중안을 관리한다. "당기실적×증감률" 자동제안 후 조정한다. 연초 차기예산을 당기예산으로 이관(rollover)하면 SA-FND-07 당기 편성으로 승격된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-13 · 차기예산입력 — 시나리오 탭 + 월별 편성 + 자동제안</div>
+  <div class="wf-bar"><span>예산 › 차기예산입력</span><span class="sp"></span><span class="badge b-blue">FY2027 차기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">차기연도 <span class="wf-in">2027 ▾</span> 제안기준 <span class="wf-in">당기실적 ×1.08 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">자동제안</span><span class="wf-btn">당기로 이관</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">기본안</span><span>보수안</span><span>공격안</span></div>
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">당기실적</th><th class="r">증감률</th><th class="r">차기 연간</th><th class="r">월평균</th></tr>
+      <tr><td>매출액</td><td class="r">1,210,000</td><td class="r">+8%</td><td class="r">1,306,800</td><td class="r">108,900</td></tr>
+      <tr><td>판관비</td><td class="r">178,000</td><td class="r">+5%</td><td class="r">186,900</td><td class="r">15,575</td></tr>
+      <tr><th>영업이익</th><th class="r">520,000</th><th class="r">+12%</th><th class="r">582,400</th><th class="r">48,533</th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">시나리오 비교</div>보수안 영업이익 540,000 · 기본안 582,400 · 공격안 640,000 · 선택안 <b>기본안</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">기본안 선택</span><span class="sp"></span><span class="wf-btn">시나리오 복제</span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>자동제안</td><td>당기실적·전기추세에 증감률 적용하여 차기 초안 생성</td></tr>
+<tr><td>시나리오 관리</td><td>보수/기본/공격 다중안 복제·비교, 선택안 지정</td></tr>
+<tr><td>당기로 이관</td><td>연초 선택 시나리오를 SA-FND-07 당기 편성예산으로 승격(rollover)</td></tr>
+<tr><td>연계</td><td><code>SA-FND-08 당기실적</code> · <code>SA-FND-07 당기편성(이관 대상)</code> · <code>SA-FND-14 추정예산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>당기 미마감 이관</td><td>당기 실적 미확정 상태 이관</td><td><span class="badge b-amber">경고</span> 잠정실적 기준 안내</td></tr>
+<tr><td>중복 이관</td><td>이미 당기예산 존재</td><td><span class="badge b-red">차단</span> 덮어쓰기 확인 필요</td></tr>
+<tr><td>시나리오 미선택</td><td>이관 시 선택안 없음</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-14"><span class="sid">SA-FND-14</span>추정예산</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 누계 실적과 잔여기간 추정치를 합산하여 연말 착지 전망(연간 추정실적)을 산출하는 BK 추정예산(Forecast/Outlook) 화면. 확정실적(경과월) + 추정실적(잔여월)로 연간 전망을 갱신하고 편성예산 대비 착지 차이를 조기 경보한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/forecast?fy=&asof=</code> · <code>POST /api/budget/forecast</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_forecast(fy,asof,account,month,amount,basis)</code> · <code>budget_line</code> · <code>journal_line</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 기준월(as-of)까지는 확정실적(잠금), 이후 월은 추정(편성예산/직전추세/수기 중 선택)으로 채워 연간 착지(Full-Year Outlook)를 만든다. 편성예산 대비 착지차이를 표시하여 연말 초과·미달을 조기 경보한다. 추정 스냅샷을 월별로 보관하여 추정 정확도 추적.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-14 · 추정예산 — 확정실적+추정 연간착지 + 편성대비 차이</div>
+  <div class="wf-bar"><span>예산 › 추정예산</span><span class="sp"></span><span class="badge b-blue">FY2026 6월 기준</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 기준월 <span class="wf-in">6월 ▾</span> 추정기준 <span class="wf-in">편성예산 ▾</span><span class="wf-btn pri">추정 생성</span><span class="wf-btn">스냅샷 저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">확정(1~6월)</th><th class="r">추정(7~12월)</th><th class="r">연간 착지</th><th class="r">편성예산</th><th class="r">착지차이</th></tr>
+      <tr><td>매출액</td><td class="r">610,000</td><td class="r">650,000</td><td class="r">1,260,000</td><td class="r">1,240,000</td><td class="r"><b style="color:#2563eb">+20,000</b></td></tr>
+      <tr><td>판관비</td><td class="r">89,500</td><td class="r">95,000</td><td class="r">184,500</td><td class="r">182,000</td><td class="r"><b style="color:#c0392b">+2,500</b></td></tr>
+      <tr><th>영업이익</th><th class="r">270,000</th><th class="r">285,000</th><th class="r">555,000</th><th class="r">540,000</th><th class="r"><b style="color:#2563eb">+15,000</b></th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">착지 전망</div>연간 영업이익 착지 <b>555,000</b> (편성 대비 +2.8%) · 매출 초과착지 · 판관비 소폭 초과 · 6월 기준 스냅샷</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">착지 +2.8%</span><span class="sp"></span><span class="wf-btn">스냅샷 비교</span><span class="wf-btn pri">추정 생성</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>추정 생성</td><td>경과월=확정실적, 잔여월=추정기준(편성/추세/수기)으로 연간 착지 산출</td></tr>
+<tr><td>착지차이</td><td>연간 착지 − 편성예산, 초과·미달 색상 강조</td></tr>
+<tr><td>스냅샷 저장/비교</td><td>월별 추정 스냅샷 보관, 추정치 변화 추적·정확도 평가</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 편성</code> · <code>SA-FND-08 실적</code> · <code>SA-FND-13 차기예산</code> · 경영보고</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>기준월 실적 미마감</td><td>as-of 월 전표 미확정</td><td><span class="badge b-amber">경고</span> 잠정실적 기준 추정</td></tr>
+<tr><td>착지 미달 경보</td><td>영업이익 착지 < 편성예산 −10%</td><td><span class="badge b-amber">경고</span> 적색 경보·원인분석 안내</td></tr>
+</table>
+
+</section>

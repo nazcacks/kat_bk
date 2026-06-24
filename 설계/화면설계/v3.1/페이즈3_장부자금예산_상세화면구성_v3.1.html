@@ -1,0 +1,1902 @@
+<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 SaaS 구현 화면설계서 — 페이즈 3 장부·보조부·자금·예산·채권채무 v3.1</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:256px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:256px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:24px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+.wf-sel{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 18px 2px 8px;color:#33415e;font-size:11.3px;min-width:70px;position:relative;background-image:linear-gradient(45deg,transparent 50%,#7c879c 50%),linear-gradient(135deg,#7c879c 50%,transparent 50%);background-position:calc(100% - 9px) 9px,calc(100% - 5px) 9px;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.wf-in.wide{min-width:170px}
+.wf-in.full{display:block;width:100%;min-width:0}
+/* ---------- crumb (entry path) ---------- */
+.crumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#f0f4fc;border:1px solid #d8e0f3;border-radius:6px;padding:6px 12px;margin:8px 0 10px;font-size:12.2px;color:#33415e}
+.crumb b{color:#2554c7}
+.crumb .sep{color:#9aa6bd}
+/* ---------- business flow ---------- */
+.flow{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch;margin:12px 0;overflow-x:auto;padding-bottom:6px}
+.flow .step{flex:1 1 0;min-width:128px;border:1.5px solid var(--wf-line);border-radius:8px;background:#fff;padding:8px 10px;font-size:12px}
+.flow .step .n{display:inline-block;background:#2554c7;color:#fff;border-radius:50%;width:18px;height:18px;text-align:center;font-size:11px;line-height:18px;margin-right:5px}
+.flow .step .sc{display:block;font-family:Consolas,monospace;font-size:10.5px;color:#15803d;margin-top:4px}
+.flow .step .ds{display:block;color:#5b6478;font-size:11px;margin-top:2px}
+.flow .arr{display:flex;align-items:center;color:#7c879c;font-weight:700;font-size:16px;flex:0 0 auto}
+.flow.mini .step{min-width:96px;padding:5px 8px;font-size:11.3px}
+.flow.mini .step .n{width:16px;height:16px;line-height:16px;font-size:10px}
+/* ---------- menu catalog tree ---------- */
+.menu{border:1.5px solid var(--wf-line);border-radius:8px;background:#fff;padding:0;overflow:hidden;margin:10px 0}
+.menu .mtop{background:#27314d;color:#fff;padding:6px 12px;font-weight:700;font-size:12px}
+.menu ul{list-style:none;margin:0;padding:6px 0}
+.menu li{margin:0;padding:3px 14px;font-size:12.4px;border-bottom:1px dashed #eef1f6}
+.menu li.grp{font-weight:700;color:#27314d;background:#f5f7fb}
+.menu li .lv2{padding-left:18px;color:#33415e;font-weight:400}
+.menu .lk{color:#2554c7;font-family:Consolas,monospace;font-size:11px;background:#eaf0fd;border-radius:4px;padding:0 6px;margin-left:6px}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head><body>
+<nav id="toc">
+  <h2>구현 화면설계서 v3.1</h2>
+  <div class="ver">페이즈 3 · 장부·보조부·자금·예산·채권채무 · 2026-06-24</div>
+  <a href="#s1">1. 문서 개요</a>
+  <a href="#s2">2. 업무 흐름</a>
+  <a href="#s3">3. 화면 목록(인벤토리)</a>
+  <div class="g">M-WS-03 ▸ 보조부 (AUX)</div>
+  <a class="sub" href="#aux01">AUX-01 거래처별 보조원장</a>
+  <a class="sub" href="#aux02">AUX-02 어음 보조원장</a>
+  <a class="sub" href="#aux03">AUX-03 예금 보조원장</a>
+  <a class="sub" href="#aux04">AUX-04 카드 보조원장</a>
+  <a class="sub" href="#aux05">AUX-05 가지급금·가수금</a>
+  <a class="sub" href="#aux06">AUX-06 부가세 보조원장</a>
+  <a class="sub" href="#aux07">AUX-07 현금출납장</a>
+  <a class="sub" href="#aux08">AUX-08 재고 수불부(P2)</a>
+  <a class="sub" href="#aux09">AUX-09 고정자산대장(기초)</a>
+  <div class="g">M-WS-03 ▸ 장부 (SA-LDG)</div>
+  <a class="sub" href="#sa-ldg-01">SA-LDG-01 전표출력</a>
+  <a class="sub" href="#sa-ldg-02">SA-LDG-02 분개장</a>
+  <a class="sub" href="#sa-ldg-03">SA-LDG-03 일/월계표</a>
+  <a class="sub" href="#sa-ldg-04">SA-LDG-04 총계정원장</a>
+  <a class="sub" href="#sa-ldg-05">SA-LDG-05 현금출납장</a>
+  <a class="sub" href="#sa-ldg-06">SA-LDG-06 계정별원장</a>
+  <a class="sub" href="#sa-ldg-07">SA-LDG-07 거래처원장</a>
+  <a class="sub" href="#sa-ldg-08">SA-LDG-08 총괄원장</a>
+  <a class="sub" href="#sa-ldg-09">SA-LDG-09 매입매출장</a>
+  <a class="sub" href="#sa-ldg-10">SA-LDG-10 총계정관리원장</a>
+  <a class="sub" href="#sa-ldg-11">SA-LDG-11 계산서 발급·수취현황</a>
+  <a class="sub" href="#sa-ldg-12">SA-LDG-12 카드매출 발행현황</a>
+  <a class="sub" href="#sa-ldg-13">SA-LDG-13 적요별원장</a>
+  <a class="sub" href="#sa-ldg-14">SA-LDG-14 전도금원장</a>
+  <a class="sub" href="#sa-ldg-15">SA-LDG-15 공사대장</a>
+  <a class="sub" href="#sa-ldg-16">SA-LDG-16 외주대장</a>
+  <a class="sub" href="#sa-ldg-17">SA-LDG-17 운행기록부</a>
+  <a class="sub" href="#sa-ldg-18">SA-LDG-18 차량비용현황</a>
+  <a class="sub" href="#sa-ldg-19">SA-LDG-19 원가안분</a>
+  <a class="sub" href="#sa-ldg-20">SA-LDG-20 원가현황</a>
+  <a class="sub" href="#sa-ldg-21">SA-LDG-21 손익안분</a>
+  <a class="sub" href="#sa-ldg-22">SA-LDG-22 손익현황</a>
+  <a class="sub" href="#sa-ldg-23">SA-LDG-23 원가손익</a>
+  <a class="sub" href="#sa-ldg-24">SA-LDG-24 공사원가집계표</a>
+  <a class="sub" href="#sa-ldg-25">SA-LDG-25 공사비용현황</a>
+  <a class="sub" href="#sa-ldg-26">SA-LDG-26 현장별 잔액명세서</a>
+  <a class="sub" href="#sa-ldg-27">SA-LDG-27 차원 거래처원장</a>
+  <a class="sub" href="#sa-ldg-28">SA-LDG-28 프로젝트 누적손익</a>
+  <a class="sub" href="#sa-ldg-29">SA-LDG-29 프로젝트 누적원가</a>
+  <div class="g">M-WS-06 자금·채권채무</div>
+  <a class="sub" href="#sa-fnd-01">SA-FND-01 일일자금명세/경리일보</a>
+  <a class="sub" href="#sa-fnd-02">SA-FND-02 자금계획입력</a>
+  <a class="sub" href="#sa-fnd-03">SA-FND-03 일일자금현황</a>
+  <a class="sub" href="#sa-fnd-04">SA-FND-04 자금일월보</a>
+  <a class="sub" href="#sa-fnd-05">SA-FND-05 자금입출금내역</a>
+  <a class="sub" href="#sa-fnd-06">SA-FND-06 자금계획서</a>
+  <a class="sub" href="#sa-dep-01">SA-DEP-01 예적금현황</a>
+  <a class="sub" href="#sa-dep-02">SA-DEP-02 차입금스케줄관리</a>
+  <a class="sub" href="#sa-dep-03">SA-DEP-03 차입금현황</a>
+  <a class="sub" href="#sa-bil-01">SA-BIL-01 받을어음현황</a>
+  <a class="sub" href="#sa-bil-02">SA-BIL-02 지급어음현황</a>
+  <a class="sub" href="#sa-bil-03">SA-BIL-03 어음집계표</a>
+  <a class="sub" href="#sa-bil-04">SA-BIL-04 당좌수표현황</a>
+  <a class="sub" href="#fnd-bnk-01">FND-BNK-01 은행거래 자동분류·매칭 <span style="color:#7ee0c8">★신규</span></a>
+  <a class="sub" href="#fnd-wk-01">FND-WK-01 주간 자금마감 <span style="color:#7ee0c8">★신규</span></a>
+  <a class="sub" href="#fnd-age-01">FND-AGE-01 채권·채무 Aging 현황 <span style="color:#7ee0c8">★신규</span></a>
+  <div class="g">M-WS-11 ▸ 예산 편성·실적(예실)</div>
+  <a class="sub" href="#sa-fnd-07">SA-FND-07 예산입력</a>
+  <a class="sub" href="#sa-fnd-08">SA-FND-08 당기예산 월별실적</a>
+  <a class="sub" href="#sa-fnd-09">SA-FND-09 당기예산 분기/반기실적</a>
+  <a class="sub" href="#sa-fnd-10">SA-FND-10 전기실행액입력</a>
+  <a class="sub" href="#sa-fnd-11">SA-FND-11 전기예산 월별실적</a>
+  <a class="sub" href="#sa-fnd-12">SA-FND-12 전기예산 분기/반기실적</a>
+  <a class="sub" href="#sa-fnd-13">SA-FND-13 차기예산입력</a>
+  <a class="sub" href="#sa-fnd-14">SA-FND-14 추정예산</a>
+  <div class="g">전체 페이즈</div>
+  <a class="sub" href="페이즈1_플랫폼운영기초_상세화면구성_v3.1.html">P1 플랫폼·운영·기초</a>
+  <a class="sub" href="페이즈2_개시이월전표증빙_상세화면구성_v3.1.html">P2 개시이월·전표·증빙</a>
+  <a class="sub" href="페이즈3_장부자금예산_상세화면구성_v3.1.html">P3 장부·자금·예산</a>
+  <a class="sub" href="페이즈4_결산공시외화_상세화면구성_v3.1.html">P4 결산·공시·외화</a>
+  <a class="sub" href="페이즈5_세무고정자산AI_상세화면구성_v3.1.html">P5 세무·고정자산·AI</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>페이즈 3 · 장부·보조부·자금·예산·채권채무 v3.1</h1>
+  <p>BK 회계/세무 SaaS 구현 화면설계서 · BK 기준 · v3.1</p>
+  <p>작성일 2026-06-24 · 멀티테넌트(SHARED+RLS) · NestJS / React 18</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 페이즈 3 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>v3.0 10개 페이즈 문서를 <b>v3.1 5-페이즈 구조</b>로 재편하면서, 두 채널 메뉴 카탈로그(OP=<code>M-OP-*</code>·TN=<code>M-WS-*</code>) 기준으로 <b>전표가 자동 반영된 결과물</b>인 보조부·장부·자금·예산·채권채무 화면을 한 페이즈로 묶는다. 전표 입력(P2) 이후, 결산·신고(P4·P5) 이전의 <b>장부 조회·자금 운용·예산 관리·채권채무 관리</b> 화면을 구현 가능한 수준으로 정의한다.</td></tr>
+  <tr><th>페이즈 정의</th><td><b>M-WS-03 전표·장부</b>의 보조부(AUX)·장부(SA-LDG), <b>M-WS-06 자금·채권채무</b>의 자금 일보·내역(SA-FND-01~06)·예적금/차입금(SA-DEP)·어음/당좌(SA-BIL)와 신규 은행매칭·주간마감·Aging, <b>M-WS-11 관리회계·보고</b>의 예산 편성·실적(SA-FND-07~14)을 포함한다. 모든 조회 장부는 POSTED 전표를 원천으로 하며, 차원·거래처·계정을 집계 키로 사용한다.</td></tr>
+  <tr><th>화면 구성</th><td><b>이관 59화면</b>(보조부 AUX-01~09 9 · 장부 SA-LDG-01~29 29 · 자금 SA-FND-01~06 6 · 예적금/차입 SA-DEP-01~03 3 · 어음/당좌 SA-BIL-01~04 4 · 예산 SA-FND-07~14 8) + <b>신규 3화면</b>(FND-BNK-01 은행거래 자동분류·매칭 · FND-WK-01 주간 자금마감 · FND-AGE-01 채권·채무 Aging 현황) = 총 <b>62화면</b>.</td></tr>
+  <tr><th>표기 원칙</th><td>화면 ID는 v3.0 본 문서 ID(<code>AUX-xx</code>·<code>SA-LDG-xx</code>·<code>SA-FND-xx</code>·<code>SA-DEP-xx</code>·<code>SA-BIL-xx</code>)를 그대로 유지하고, 신규 화면은 <code>FND-BNK/WK/AGE-01</code>로 부여한다. 검증은 <span class="badge b-amber">경고</span>(저장가능)·<span class="badge b-red">차단</span>(저장불가) 2단계로 표기한다.</td></tr>
+</table>
+<div class="tip">본 페이즈는 <b>읽기형 리포트(장부·현황)</b>가 다수이므로 화면 대부분이 <b>조회조건 툴바 + 대용량 결과 그리드 + 합계/누계 풋터</b> 패턴이다. 입력 마스터(자금계획·예산편성·차입스케줄·어음책·신규 매칭룰/주간마감)는 <b>좌측 입력 + 중앙 그리드/캘린더 + 우측 정책·연계 패널</b>의 분할 구조를 사용한다.</div>
+<div class="note"><b>페이즈 3 연계 핵심</b> — 모든 장부·보조부·자금 화면은 <b>전표(P2 JournalLine)</b>를 원천으로 실시간 집계되며, 자금항목 매핑(<code>fund_item_account_map</code>)·계정 관리항목(SA-BAS-07)·차원 설정(BF-09)이 집계 키를 결정한다. 예산(Budget) 마스터의 실적은 전표 계정+차원+회계월로 자동 합산되고, 신규 <b>FND-BNK-01</b> 은행 매칭은 P2 전표 생성의 후보를 공급한다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 업무 흐름 (전표 → 장부/보조부 → 자금 → 예실 → 주간마감)</h2>
+<p>전표 입력(P2)이 완료된 이후 본 페이즈 화면이 사용되는 동선. 각 단계의 <span class="sc" style="color:#15803d;font-family:Consolas,monospace">코드</span>는 대표 화면 ID이며, 장부·보조부는 <b>실시간 조회</b>, 자금·예산은 <b>운영·관리</b>, 주간마감은 <b>확정</b> 단계다.</p>
+<div class="flow">
+  <div class="step"><span class="n">1</span>전표 입력·승인<span class="sc">P2 JV/SA-JNL</span><span class="ds">POSTED 전표 생성</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">2</span>보조부·원장 자동 반영<span class="sc">AUX-01~09 · SA-LDG-01~29</span><span class="ds">거래처·계정·차원 집계</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">3</span>은행거래 매칭<span class="sc">FND-BNK-01</span><span class="ds">통장 ↔ 전표 자동대사</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">4</span>자금일보·현황<span class="sc">SA-FND-01·03 · SA-DEP · SA-BIL</span><span class="ds">일일 자금·예적금·어음</span></div>
+</div>
+<div class="flow">
+  <div class="step"><span class="n">5</span>채권채무 Aging<span class="sc">FND-AGE-01</span><span class="ds">거래처별 연령분석</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">6</span>자금계획·예산 대비<span class="sc">SA-FND-02·06 · SA-FND-07~14</span><span class="ds">계획·예실(BvA)</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">7</span>주간 자금마감<span class="sc">FND-WK-01</span><span class="ds">주간 자금일보 확정</span></div>
+  <div class="arr">→</div>
+  <div class="step"><span class="n">8</span>결산·신고 연계<span class="sc">P4 SA-CLS · P5 SA-VAT</span><span class="ds">재무제표·부가세</span></div>
+</div>
+<div class="tip"><b>실시간 vs 확정</b> · 장부·보조부(2단계)는 전표 POSTED 즉시 재집계되는 읽기 뷰다. 자금마감(7단계, FND-WK-01)은 주간 단위로 자금일보를 <b>확정(스냅샷 고정)</b>하여 이후 소급 변경을 차단한다. 예산 실적(6단계)은 회계월 마감과 동기화된다.</div>
+</section>
+
+<section id="s3">
+<h2>3. 페이즈 3 화면 목록 (인벤토리)</h2>
+<table>
+<tr><th>화면 ID</th><th>메뉴</th><th>화면명</th><th>유형</th><th>비고</th></tr>
+<tr><td><code>AUX-01</code></td><td>M-WS-03 보조부</td><td>거래처별 보조원장</td><td><span class="badge b-blue">조회/대사</span></td><td>이관</td></tr>
+<tr><td><code>AUX-02</code></td><td>M-WS-03 보조부</td><td>어음 보조원장(타임라인)</td><td><span class="badge b-blue">조회/상태</span></td><td>이관</td></tr>
+<tr><td><code>AUX-03</code></td><td>M-WS-03 보조부</td><td>예금 보조원장(대사)</td><td><span class="badge b-blue">조회/대사</span></td><td>이관</td></tr>
+<tr><td><code>AUX-04</code></td><td>M-WS-03 보조부</td><td>카드 보조원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>AUX-05</code></td><td>M-WS-03 보조부</td><td>가지급금·가수금 보조원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>AUX-06</code></td><td>M-WS-03 보조부</td><td>부가세 보조원장</td><td><span class="badge b-blue">집계</span></td><td>이관</td></tr>
+<tr><td><code>AUX-07</code></td><td>M-WS-03 보조부</td><td>현금출납장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>AUX-08</code></td><td>M-WS-03 보조부</td><td>재고 수불부</td><td><span class="badge b-gray">P2 이관</span></td><td>이관(골격)</td></tr>
+<tr><td><code>AUX-09</code></td><td>M-WS-03 보조부</td><td>고정자산대장(기초)</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-01</code></td><td>M-WS-03 장부</td><td>전표출력</td><td><span class="badge b-blue">출력</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-02</code></td><td>M-WS-03 장부</td><td>분개장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-03</code></td><td>M-WS-03 장부</td><td>일/월계표</td><td><span class="badge b-blue">합계표</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-04</code></td><td>M-WS-03 장부</td><td>총계정원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-05</code></td><td>M-WS-03 장부</td><td>현금출납장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-06</code></td><td>M-WS-03 장부</td><td>계정별원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-07</code></td><td>M-WS-03 장부</td><td>거래처원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-08</code></td><td>M-WS-03 장부</td><td>총괄원장</td><td><span class="badge b-blue">매트릭스</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-09</code></td><td>M-WS-03 장부</td><td>매입매출장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-10</code></td><td>M-WS-03 장부</td><td>총계정관리원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-11</code></td><td>M-WS-03 장부</td><td>(세금)계산서 발급·수취현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-12</code></td><td>M-WS-03 장부</td><td>신용카드매출전표 발행현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-13</code></td><td>M-WS-03 장부</td><td>적요별원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-14</code></td><td>M-WS-03 장부</td><td>전도금원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-15</code></td><td>M-WS-03 장부</td><td>공사대장</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-16</code></td><td>M-WS-03 장부</td><td>외주대장</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-17</code></td><td>M-WS-03 장부</td><td>운행기록부</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-18</code></td><td>M-WS-03 장부</td><td>차량비용현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-19</code></td><td>M-WS-03 장부</td><td>원가안분</td><td><span class="badge b-teal">안분</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-20</code></td><td>M-WS-03 장부</td><td>원가현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-21</code></td><td>M-WS-03 장부</td><td>손익안분</td><td><span class="badge b-teal">안분</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-22</code></td><td>M-WS-03 장부</td><td>손익현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-23</code></td><td>M-WS-03 장부</td><td>원가손익</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-24</code></td><td>M-WS-03 장부</td><td>공사원가집계표</td><td><span class="badge b-blue">집계</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-25</code></td><td>M-WS-03 장부</td><td>공사비용현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-26</code></td><td>M-WS-03 장부</td><td>현장별 잔액명세서</td><td><span class="badge b-blue">명세</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-27</code></td><td>M-WS-03 장부</td><td>차원 거래처원장</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-28</code></td><td>M-WS-03 장부</td><td>프로젝트 누적손익</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-LDG-29</code></td><td>M-WS-03 장부</td><td>프로젝트 누적원가</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-01</code></td><td>M-WS-06 자금</td><td>일일자금명세/경리일보</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-02</code></td><td>M-WS-06 자금</td><td>자금계획입력</td><td><span class="badge b-green">입력</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-03</code></td><td>M-WS-06 자금</td><td>일일자금현황</td><td><span class="badge b-blue">대시보드</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-04</code></td><td>M-WS-06 자금</td><td>자금일월보</td><td><span class="badge b-blue">예실</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-05</code></td><td>M-WS-06 자금</td><td>자금입출금내역</td><td><span class="badge b-blue">조회</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-06</code></td><td>M-WS-06 자금</td><td>자금계획서</td><td><span class="badge b-blue">캘린더</span></td><td>이관</td></tr>
+<tr><td><code>SA-DEP-01</code></td><td>M-WS-06 자금</td><td>예적금현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-DEP-02</code></td><td>M-WS-06 자금</td><td>차입금스케줄관리</td><td><span class="badge b-green">입력</span></td><td>이관</td></tr>
+<tr><td><code>SA-DEP-03</code></td><td>M-WS-06 자금</td><td>차입금현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-BIL-01</code></td><td>M-WS-06 자금</td><td>받을어음현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-BIL-02</code></td><td>M-WS-06 자금</td><td>지급어음현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>SA-BIL-03</code></td><td>M-WS-06 자금</td><td>어음집계표(어음책 수불)</td><td><span class="badge b-green">입력/집계</span></td><td>이관</td></tr>
+<tr><td><code>SA-BIL-04</code></td><td>M-WS-06 자금</td><td>당좌수표현황</td><td><span class="badge b-blue">현황</span></td><td>이관</td></tr>
+<tr><td><code>FND-BNK-01</code></td><td>M-WS-06 자금</td><td>은행거래 자동분류·매칭</td><td><span class="badge b-green">매칭/룰</span></td><td><span class="badge b-teal">신규</span></td></tr>
+<tr><td><code>FND-WK-01</code></td><td>M-WS-06 자금</td><td>주간 자금마감</td><td><span class="badge b-green">마감/확정</span></td><td><span class="badge b-teal">신규</span></td></tr>
+<tr><td><code>FND-AGE-01</code></td><td>M-WS-06 자금</td><td>채권·채무 Aging 현황</td><td><span class="badge b-blue">연령분석</span></td><td><span class="badge b-teal">신규</span></td></tr>
+<tr><td><code>SA-FND-07</code></td><td>M-WS-11 예실</td><td>예산입력</td><td><span class="badge b-green">입력</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-08</code></td><td>M-WS-11 예실</td><td>당기예산 월별 실적</td><td><span class="badge b-blue">BvA</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-09</code></td><td>M-WS-11 예실</td><td>당기예산 분기/반기 실적</td><td><span class="badge b-blue">BvA</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-10</code></td><td>M-WS-11 예실</td><td>전기실행액입력</td><td><span class="badge b-green">입력</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-11</code></td><td>M-WS-11 예실</td><td>전기예산 월별 실적</td><td><span class="badge b-blue">BvA</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-12</code></td><td>M-WS-11 예실</td><td>전기예산 분기/반기 실적</td><td><span class="badge b-blue">BvA</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-13</code></td><td>M-WS-11 예실</td><td>차기예산입력</td><td><span class="badge b-green">입력</span></td><td>이관</td></tr>
+<tr><td><code>SA-FND-14</code></td><td>M-WS-11 예실</td><td>추정예산</td><td><span class="badge b-blue">전망</span></td><td>이관</td></tr>
+</table>
+<div class="note">총 <b>62화면</b> = 이관 <b>59</b>(AUX 9 · SA-LDG 29 · SA-FND 14 · SA-DEP 3 · SA-BIL 4) + 신규 <b>3</b>(FND-BNK-01 · FND-WK-01 · FND-AGE-01).</div>
+</section>
+
+<section id="g-aux">
+<h2>M-WS-03 전표·장부 ▸ 보조부 (AUX-01~09)</h2>
+<p>전표의 관리항목(거래처·계좌·카드·어음번호·차원)을 키로 실시간 집계되는 보조원장군. 모든 행은 더블클릭 시 원전표(JV-07)로 드릴다운하며, POSTED 전표만 반영한다. 자금·채권채무(M-WS-06)·부가세 신고(P5)의 집계 원천이다.</p>
+<div class="crumb"><b>회사 작업공간(TN)</b><span class="sep">›</span>M-WS-03 전표·장부<span class="sep">›</span><b>보조부</b><span class="sep">›</span>AUX-01~09</div>
+
+<h4 id="aux01"><span class="sid">AUX-01</span>거래처별 보조원장 (매출처/매입처)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>외상매출금·외상매입금·받을어음·미수금 등 거래처 관리계정의 거래처별 발생·회수·잔액·연체를 조회. 외화/발생환율·거래성격(신규·일부회수·청구반제·대손조정·선수선급대체) 표시</td><th>API</th><td><code>GET /api/tenant/ledger/partner</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux(VENDOR)</code> · <code>partner</code></td></tr>
+</table>
+<div class="tip">조회조건에 <b>잔액만/연체만/미반제만/선수·선급 대체건만</b> 토글을 둔다. 행 더블클릭 → 원전표(JV-07) 드릴다운. 외화 거래처는 발생환율·회수환율·송금수수료·외환차손익을 모달로 표시.</div>
+<div class="wf">
+  <div class="wf-cap">거래처별 보조원장 — 조회조건 + 거래처 목록/명세 그리드 + 잔액 풋터</div>
+  <div class="wf-bar">장부 › 거래처원장 <span class="sp"></span><span class="badge b-blue">조회</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in" style="min-width:140px">2026-06-01~30</span> 계정 <span class="wf-in">108 외상매출금</span> 거래처 <span class="wf-in">(F2) 전체</span> <span class="wf-in">잔액만 ▾</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">엑셀</span><span class="wf-btn">인쇄</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th>전표번호</th><th>거래처</th><th>적요</th><th>거래성격</th><th class="r">차변(발생)</th><th class="r">대변(회수)</th><th class="r">잔액</th></tr>
+      <tr><td>06-01</td><td class="r">06-01-002</td><td>(주)대한상사</td><td>전기이월</td><td>—</td><td class="r"></td><td class="r"></td><td class="r">40,000,000</td></tr>
+      <tr><td>06-12</td><td class="r">06-12-005</td><td>(주)대한상사</td><td>제품매출</td><td><span class="badge b-blue">신규</span></td><td class="r">22,000,000</td><td class="r"></td><td class="r">62,000,000</td></tr>
+      <tr><td>06-20</td><td class="r">06-20-003</td><td>(주)대한상사</td><td>대금회수</td><td><span class="badge b-green">일부회수</span></td><td class="r"></td><td class="r">30,000,000</td><td class="r">32,000,000</td></tr>
+      <tr><td colspan="8" style="color:#8a94a8">… 거래처 전환 시 소계 표시 · 연체 거래처 행 강조 …</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">기간 발생 <b>22,000,000</b> · 회수 <b>30,000,000</b> · 기말잔액 <b>32,000,000</b> <span class="badge b-amber">연체 1건</span><span class="sp" style="flex:1"></span><span class="wf-btn">잔액명세 출력</span></div>
+</div>
+<table>
+  <tr><th>요소 / 액션</th><th>처리 · 검증</th></tr>
+  <tr><td>조회</td><td>POSTED 전표의 <code>journal_line_aux(VENDOR)</code>를 거래처·기간으로 집계. 전기이월=기간개시 전 누적잔액.</td></tr>
+  <tr><td>드릴다운</td><td>행 더블클릭 → JV-07 원전표 열람(읽기). 정정은 역분개(JV-06).</td></tr>
+  <tr><td>외화</td><td>외화 거래처 모달: 발생환율·회수환율·송금수수료·수수료계정·외환차손익 라인 표시.</td></tr>
+</table>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>권한</td><td>ledger:read 없음</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>기간</td><td>회계기간 컨텍스트 초과</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="aux02"><span class="sid">AUX-02</span>어음 보조원장 (받을/지급) · 추적 타임라인</h4>
+<table class="meta">
+  <tr><th>용도</th><td>받을어음·지급어음의 발행·수취·배서·할인·만기·결제·부도를 어음번호 단위로 추적. 할인율(연)·할인일수·할인료·실수령액 계산 및 할인 자동분개</td><th>API</th><td><code>GET /api/tenant/ledger/note</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code> / <code>tenant:note:write</code>(상태변경)</td><th>엔티티</th><td><code>note</code> · <code>note.audit_trail</code></td></tr>
+</table>
+<div class="note"><b>추적 타임라인</b> — 원전표 → 증빙 → 상태변경이력(배서/할인/만기) → 후속전표(결제/부도)를 한 흐름으로 추적. 어음 상태는 물리삭제 없이 이력으로 누적된다.</div>
+<div class="wf">
+  <div class="wf-cap">어음 보조원장 — 어음 목록 + 선택 어음 추적 타임라인 패널</div>
+  <div class="wf-bar">장부 › 어음 보조원장 <span class="sp"></span><span class="badge b-purple">타임라인</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">구분 <span class="wf-in">받을어음 ▾</span> 만기 <span class="wf-in">2026-07 ▾</span> 상태 <span class="wf-in">보유 ▾</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">할인 분개(M5)</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 60%">
+      <table class="wf-grid">
+        <tr><th>어음번호</th><th>거래처</th><th class="r">금액</th><th>만기</th><th>상태</th></tr>
+        <tr style="background:#eef3ff"><td>가12345678</td><td>(주)대한상사</td><td class="r">20,000,000</td><td>2026-07-15</td><td><span class="badge b-blue">보유</span></td></tr>
+        <tr><td>가12345679</td><td>한빌딩</td><td class="r">8,000,000</td><td>2026-07-30</td><td><span class="badge b-amber">할인</span></td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 38%">
+      <div class="wf-panel pnl"><div class="pt">추적 타임라인 — 가12345678</div>
+        <div class="wf-row"><label>06-12</label>수취(원전표 06-12-005)</div>
+        <div class="wf-row"><label>증빙</label>📎 어음사본.pdf</div>
+        <div class="wf-row"><label>07-15</label>만기 예정</div>
+      </div>
+      <div class="wf-panel"><div class="pt">할인 계산</div>
+        <div class="wf-row"><label>할인율(연)</label>6.5%</div>
+        <div class="wf-row"><label>할인일수</label>25</div>
+        <div class="wf-row"><label>할인료</label>89,041</div>
+        <div class="wf-row"><label>실수령액</label><b>19,910,959</b></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">보유 <b>2건</b> · 합계 <b>28,000,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">할인 자동분개 생성</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>상태변경</td><td>note:write 권한 없음</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>할인분개</td><td>보통예금/매출채권처분손실 ↔ 받을어음 자동분개 검증</td><td><span class="badge b-green">생성</span></td></tr>
+</table>
+
+<h4 id="aux03"><span class="sid">AUX-03</span>예금 보조원장 (계좌별 입출·대사)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>은행 계좌 단위 입출 내역과 은행거래(통장) 대사·자금일정 기준 관리. 단순 계정원장과 달리 <b>계좌 단위 대사</b> 목적</td><th>API</th><td><code>GET /api/tenant/ledger/bank</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>bank_account</code> · <code>journal_line_aux(BANK)</code></td></tr>
+</table>
+<div class="note">계좌번호는 기본 마스킹(<code>123-**-****56</code>), 👁 평문조회는 Step-up 인증+사유+자동 재마스킹(17장).</div>
+<div class="wf">
+  <div class="wf-cap">예금 보조원장 — 계좌 선택 + 입출 그리드 + 통장 대사 패널</div>
+  <div class="wf-bar">장부 › 예금 보조원장 <span class="sp"></span><span class="badge b-teal">대사</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">계좌 <span class="wf-in" style="min-width:150px">국민 123-**-****56</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">통장 불러오기</span><span class="wf-btn">자동 대사</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th>적요</th><th class="r">입금</th><th class="r">출금</th><th class="r">잔액</th><th>대사</th></tr>
+      <tr><td>06-12</td><td>매출대금 입금</td><td class="r">22,000,000</td><td class="r"></td><td class="r">107,200,000</td><td><span class="badge b-green">매칭</span></td></tr>
+      <tr><td>06-18</td><td>임차료 이체</td><td class="r"></td><td class="r">3,300,000</td><td class="r">103,900,000</td><td><span class="badge b-amber">미매칭</span></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">입금 <b>22,000,000</b> · 출금 <b>3,300,000</b> · 잔액 <b>103,900,000</b> <span class="badge b-amber">미매칭 1</span><span class="sp" style="flex:1"></span><span class="wf-btn">전표 생성 후보</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>마스킹</td><td>평문조회 Step-up 미인증</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>대사</td><td>통장 잔액 ≠ 장부 잔액</td><td><span class="badge b-amber">경고</span> 차이 표시</td></tr>
+</table>
+
+<h4 id="aux04"><span class="sid">AUX-04</span>카드 보조원장 (사용·결제·전표 자동생성 후보)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>법인/체크카드 사용내역 수집→전표 자동생성 후보·매입원장 연계. 업종(MCC)·사용사원·공제판정·공제세액 표시</td><th>API</th><td><code>GET /api/tenant/ledger/card</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>card</code> · <code>card_txn</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">카드 보조원장 — 사용내역 + 매입세액 공제판정 패널</div>
+  <div class="wf-bar">장부 › 카드 보조원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">카드 <span class="wf-in">법인 **-1234</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">전표 자동생성</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 64%">
+      <table class="wf-grid">
+        <tr><th>사용일</th><th>가맹점</th><th>업종(MCC)</th><th>사원</th><th class="r">금액</th><th>공제</th></tr>
+        <tr><td>06-10</td><td>○○주유소</td><td>주유(5541)</td><td>김영업</td><td class="r">110,000</td><td><span class="badge b-green">공제</span></td></tr>
+        <tr><td>06-14</td><td>△△식당</td><td>음식(5812)</td><td>이관리</td><td class="r">66,000</td><td><span class="badge b-red">불공제</span></td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 34%">
+      <div class="wf-panel pnl"><div class="pt">매입세액 공제 요약</div>
+        <div class="wf-row"><label>공제대상</label>110,000</div>
+        <div class="wf-row"><label>공제세액</label>10,000</div>
+        <div class="wf-row"><label>불공제</label>66,000</div>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">사용 <b>176,000</b> · 공제세액 <b>10,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">매입원장 연계</span></div>
+</div>
+<table>
+  <tr><th>검증</th><th>조건</th><th>처리</th></tr>
+  <tr><td>공제판정</td><td>업종(MCC) 불공제 대상</td><td><span class="badge b-red">불공제</span> 표시</td></tr>
+</table>
+
+<h4 id="aux05"><span class="sid">AUX-05</span>가지급금·가수금 보조원장 (인정이자 연동)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>거래처/직원별 가지급금·가수금 잔액 관리. 세무조정 <b>가지급금 인정이자</b> 계산 연동</td><th>API</th><td><code>GET /api/tenant/ledger/advance</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux(ADVANCE)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">가지급금·가수금 보조원장 — 대상별 잔액 + 인정이자 계산 패널</div>
+  <div class="wf-bar">장부 › 가지급금/가수금 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">구분 <span class="wf-in">가지급금 ▾</span> 대상 <span class="wf-in">(F2)</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">인정이자 계산</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th>대상</th><th>적요</th><th class="r">증가</th><th class="r">감소</th><th class="r">잔액</th></tr>
+      <tr><td>06-05</td><td>대표이사</td><td>가지급</td><td class="r">5,000,000</td><td class="r"></td><td class="r">5,000,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">잔액 <b>5,000,000</b> · 가중평균잔액 기준 인정이자 산정<span class="sp" style="flex:1"></span><span class="wf-btn">세무조정 연계</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>인정이자</td><td>당좌대출이자율/가중평균차입이자율 적용</td><td><span class="badge b-blue">계산</span></td></tr></table>
+
+<h4 id="aux06"><span class="sid">AUX-06</span>부가세 보조원장 (매입/매출 세액 집계)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>부가세대급금/예수금을 매입/매출 세금계산서·세무구분별로 집계. 사업장·프로젝트·부서 필터, 과세유형별(과세/영세/면세) 분류</td><th>API</th><td><code>GET /api/tenant/ledger/vat</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>purchase_sales_ledger_line</code></td></tr>
+</table>
+<div class="note">NTS 전송상태(PENDING/SENT/ACCEPTED)를 표기한다. 본 보조원장은 P5 부가세 신고서·합계표의 집계 원천이다.</div>
+<div class="wf">
+  <div class="wf-cap">부가세 보조원장 — 매출/매입 세무구분별 집계표</div>
+  <div class="wf-bar">장부 › 부가세 보조원장 <span class="sp"></span><span class="badge b-amber">집계</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">과세기간 <span class="wf-in">2026 1기 확정</span> 사업장 <span class="wf-in">전체 ▾</span> 구분 <span class="wf-in">매출 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>세무구분</th><th class="r">건수</th><th class="r">공급가액</th><th class="r">세액</th><th>NTS</th></tr>
+      <tr><td>11 과세 세금계산서</td><td class="r">42</td><td class="r">320,000,000</td><td class="r">32,000,000</td><td><span class="badge b-green">ACCEPTED</span></td></tr>
+      <tr><td>12 영세율 세금계산서</td><td class="r">5</td><td class="r">48,000,000</td><td class="r">0</td><td><span class="badge b-blue">SENT</span></td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">매출세액 <b>32,000,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">신고서 연계(P5)</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>NTS 상태</td><td>PENDING 건 존재</td><td><span class="badge b-amber">경고</span> 미전송 표시</td></tr></table>
+
+<h4 id="aux07"><span class="sid">AUX-07</span>현금출납장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>현금 계정의 일자별 입금·출금·잔액. 전기 입력 화면의 현금잔액과 동기</td><th>API</th><td><code>GET /api/tenant/ledger/cash</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line(현금)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">현금출납장 — 일자별 입출 + 잔액</div>
+  <div class="wf-bar">장부 › 현금출납장 <span class="sp"></span><span class="badge b-green">현금</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 사업장 <span class="wf-in">본점 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th>전표번호</th><th>적요</th><th class="r">입금</th><th class="r">출금</th><th class="r">잔액</th></tr>
+      <tr><td>06-18</td><td class="r">06-18-002</td><td>예금이자 외</td><td class="r">65,000</td><td class="r"></td><td class="r">2,205,000</td></tr>
+      <tr><td>06-18</td><td class="r">06-18-004</td><td>소모품 구입</td><td class="r"></td><td class="r">65,000</td><td class="r">2,140,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">입금 <b>65,000</b> · 출금 <b>65,000</b> · 현금잔액 <b>2,140,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">엑셀</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>잔액</td><td>현금잔액 음수</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="aux08"><span class="sid">AUX-08</span>재고 수불부 <span class="badge b-gray">Phase 2 이관</span></h4>
+<table class="meta">
+  <tr><th>용도</th><td>품목별 입고·출고·재고 수량/금액 수불(선입선출/이동평균). <b>2차 개발(Phase 2)로 이관</b> — 본 문서는 골격만 정의</td><th>API</th><td><code>GET /api/tenant/ledger/stock</code> <span class="badge b-gray">P2</span></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>stock_move</code> <span class="badge b-gray">P2</span></td></tr>
+</table>
+<div class="note">Phase 2 이관 화면. 수량 관리항목(QTY) 계정 연동 골격만 표시하고, 실제 단가법·평가는 2차 개발에서 구현.</div>
+<div class="wf">
+  <div class="wf-cap">재고 수불부(골격) — 품목별 입출고/재고</div>
+  <div class="wf-bar">장부 › 재고 수불부 <span class="sp"></span><span class="badge b-gray">Phase 2</span><span>👤 홍길동</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>품목</th><th class="r">입고</th><th class="r">출고</th><th class="r">재고</th></tr>
+      <tr><td colspan="4" style="color:#8a94a8">… Phase 2 구현 예정 …</td></tr></table>
+  </div>
+</div>
+
+<h4 id="aux09"><span class="sid">AUX-09</span>고정자산대장 (기초)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>고정자산 취득·상각·잔존가액·처분 목록(기초 수준). 상세 자산변동·상각계산은 P5 세무·고정자산에서 정의</td><th>API</th><td><code>GET /api/tenant/ledger/asset</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>fixed_asset</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">고정자산대장(기초) — 자산 목록 + 상각 요약</div>
+  <div class="wf-bar">장부 › 고정자산대장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">자산구분 <span class="wf-in">전체 ▾</span> 기준일 <span class="wf-in">2026-06-30</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>자산코드</th><th>자산명</th><th class="r">취득가액</th><th class="r">감가상각누계</th><th class="r">장부가액</th></tr>
+      <tr><td>FA-001</td><td>업무용 차량</td><td class="r">40,000,000</td><td class="r">12,000,000</td><td class="r">28,000,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">장부가액 합계 <b>28,000,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">P5 상세</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>드릴다운</td><td>자산 선택 → P5 자산변동</td><td><span class="badge b-blue">연계</span></td></tr></table>
+</section>
+
+<section id="g-ldg">
+<h2>M-WS-03 전표·장부 ▸ 장부 (SA-LDG-01~29)</h2>
+<p>BK 「장부관리」의 핵심 장부군. 주요 장부(01~09)·관리/현황 장부(10~18)·원가/손익 차원 장부(19~29)로 구성된다. 모두 <b>조회조건 툴바 + 대용량 결과 그리드 + 합계/누계 풋터</b>의 읽기형 리포트이며, 모든 행은 더블클릭 시 원전표(JV-07)로 드릴다운한다. POSTED 전표만 집계한다.</p>
+<div class="crumb"><b>회사 작업공간(TN)</b><span class="sep">›</span>M-WS-03 전표·장부<span class="sep">›</span><b>장부</b><span class="sep">›</span>SA-LDG-01~29</div>
+
+<h3>주요 장부 (SA-LDG-01~09)</h3>
+<h4 id="sa-ldg-01"><span class="sid">SA-LDG-01</span>전표출력</h4>
+<table class="meta">
+  <tr><th>용도</th><td>일자·번호·구분·계정·금액·적요·작성자 형식의 전표를 조건 조회·출력(개별/일괄). 결재상태·증빙 표시</td><th>API</th><td><code>GET /api/tenant/ledger/journal-print</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_header/line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전표출력 — 조회조건 + 전표 목록 + 인쇄 미리보기</div>
+  <div class="wf-bar">장부 › 전표출력 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 구분 <span class="wf-in">전체 ▾</span> 사업장 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">조회</span><span class="sp" style="flex:1"></span><span class="wf-btn">일괄 인쇄</span><span class="wf-btn">PDF</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자</th><th>번호</th><th>구분</th><th>계정</th><th class="r">차변</th><th class="r">대변</th><th>적요</th><th>증빙</th></tr>
+      <tr><td>06-18</td><td class="r">003</td><td><span class="badge b-gray">대체</span></td><td>519 임차료</td><td class="r">3,000,000</td><td class="r"></td><td>6월 임차료</td><td>📎1</td></tr>
+      <tr><td>06-18</td><td class="r">003</td><td><span class="badge b-gray">대체</span></td><td>253 미지급금</td><td class="r"></td><td class="r">3,300,000</td><td>—</td><td>—</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">전표 <b>3건</b> · 차변 <b>4,245,000</b> = 대변 <b>4,245,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">인쇄</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>권한</td><td>ledger:read 없음</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-ldg-02"><span class="sid">SA-LDG-02</span>분개장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>모든 분개를 일자·전표번호 순으로 연속 나열(차변/대변 양변). 기간 합계·차대 검증</td><th>API</th><td><code>GET /api/tenant/ledger/daybook</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">분개장 — 일자/번호 순 분개 연속</div>
+  <div class="wf-bar">장부 › 분개장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일자-번호</th><th>계정</th><th class="r">차변</th><th class="r">대변</th><th>적요</th></tr>
+      <tr><td>06-18-003</td><td>519 임차료</td><td class="r">3,000,000</td><td class="r"></td><td>6월 임차료</td></tr>
+      <tr><td>06-18-003</td><td>135 부가세대급금</td><td class="r">300,000</td><td class="r"></td><td>매입세액</td></tr>
+      <tr><td>06-18-003</td><td>253 미지급금</td><td class="r"></td><td class="r">3,300,000</td><td>—</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">차변 <b>4,245,000</b> = 대변 <b>4,245,000</b> <span class="badge b-green">차대 일치</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>차대</td><td>기간 차변합 ≠ 대변합</td><td><span class="badge b-red">차단</span> 데이터 이상</td></tr></table>
+
+<h4 id="sa-ldg-03"><span class="sid">SA-LDG-03</span>일/월계표</h4>
+<table class="meta">
+  <tr><th>용도</th><td>계정별 당일/당월 차변·대변 발생과 누계를 집계한 합계표. 일계표·월계표 토글</td><th>API</th><td><code>GET /api/tenant/ledger/daily-monthly</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line</code> 집계</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">일/월계표 — 계정별 차변·대변 집계</div>
+  <div class="wf-bar">장부 › 일/월계표 <span class="sp"></span><span class="badge b-blue">합계표</span><span>👤 홍길동</span></div>
+  <div class="wf-tool"><span class="wf-in">월계표 ▾</span> 기준 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">차변(당월)</th><th class="r">대변(당월)</th><th class="r">차변(누계)</th><th class="r">대변(누계)</th></tr>
+      <tr><td>현금</td><td class="r">650,000</td><td class="r">920,000</td><td class="r">8,400,000</td><td class="r">6,260,000</td></tr>
+      <tr><td>보통예금</td><td class="r">22,000,000</td><td class="r">3,300,000</td><td class="r">105,000,000</td><td class="r">1,100,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">차변 합 = 대변 합</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>합계</td><td>차변총합 ≠ 대변총합</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-ldg-04"><span class="sid">SA-LDG-04</span>총계정원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>계정과목별 전기이월·기간 차변/대변·잔액·차기이월을 월별로 집계</td><th>API</th><td><code>GET /api/tenant/ledger/gl</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">총계정원장 — 계정 선택 + 월별 증감/잔액</div>
+  <div class="wf-bar">장부 › 총계정원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">계정 <span class="wf-in">103 보통예금</span> 기간 <span class="wf-in">2026</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>월</th><th class="r">차변</th><th class="r">대변</th><th class="r">잔액</th></tr>
+      <tr><td>전기이월</td><td class="r"></td><td class="r"></td><td class="r">85,200,000</td></tr>
+      <tr><td>06월</td><td class="r">22,000,000</td><td class="r">3,300,000</td><td class="r">103,900,000</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">차기이월 <b>103,900,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>이월정합</td><td>전기이월 = OPN/마감이월</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-05"><span class="sid">SA-LDG-05</span>현금출납장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>현금 계정의 일자별 입출·잔액(AUX-07과 동일 원천, 장부 메뉴 진입점)</td><th>API</th><td><code>GET /api/tenant/ledger/cash</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line(현금)</code></td></tr>
+</table>
+<div class="tip">AUX-07과 동일한 데이터 뷰이며 장부 메뉴 트리에서의 진입점이다. 사업장·기간 필터, 일자별 잔액 연속.</div>
+<div class="wf">
+  <div class="wf-cap">현금출납장 — 일자별 입출/잔액</div>
+  <div class="wf-bar">장부 › 현금출납장 <span class="sp"></span><span class="badge b-green">현금</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 사업장 <span class="wf-in">본점 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>일자</th><th>적요</th><th class="r">입금</th><th class="r">출금</th><th class="r">잔액</th></tr>
+      <tr><td>06-18</td><td>예금이자 외</td><td class="r">65,000</td><td class="r"></td><td class="r">2,205,000</td></tr></table>
+  </div>
+  <div class="wf-foot">현금잔액 <b>2,140,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>잔액</td><td>현금 음수</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-06"><span class="sid">SA-LDG-06</span>계정별원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>단일 계정의 거래 명세(일자·전표·상대계정·적요·차/대·잔액)를 연속 조회</td><th>API</th><td><code>GET /api/tenant/ledger/account</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">계정별원장 — 계정 거래 명세 + 잔액</div>
+  <div class="wf-bar">장부 › 계정별원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">계정 <span class="wf-in">811 복리후생비</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>일자</th><th>전표</th><th>상대계정</th><th>적요</th><th class="r">차변</th><th class="r">대변</th><th class="r">잔액</th></tr>
+      <tr><td>06-14</td><td>06-14-001</td><td>현금</td><td>회식비</td><td class="r">220,000</td><td class="r"></td><td class="r">1,840,000</td></tr></table>
+  </div>
+  <div class="wf-foot">기간 차변 <b>1,840,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>계정</td><td>미선택</td><td><span class="badge b-amber">경고</span> 계정 필수</td></tr></table>
+
+<h4 id="sa-ldg-07"><span class="sid">SA-LDG-07</span>거래처원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>거래처별 채권·채무 발생/회수/잔액(AUX-01 장부 진입점). 계정·기간·거래처 필터</td><th>API</th><td><code>GET /api/tenant/ledger/partner</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux(VENDOR)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">거래처원장 — 거래처별 발생/회수/잔액</div>
+  <div class="wf-bar">장부 › 거래처원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">계정 <span class="wf-in">108 외상매출금</span> 거래처 <span class="wf-in">(F2)</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>거래처</th><th class="r">전기이월</th><th class="r">발생</th><th class="r">회수</th><th class="r">잔액</th></tr>
+      <tr><td>(주)대한상사</td><td class="r">40,000,000</td><td class="r">22,000,000</td><td class="r">30,000,000</td><td class="r">32,000,000</td></tr></table>
+  </div>
+  <div class="wf-foot">합계 잔액 <b>32,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>드릴다운</td><td>행 → AUX-01 상세/원전표</td><td><span class="badge b-blue">연계</span></td></tr></table>
+
+<h4 id="sa-ldg-08"><span class="sid">SA-LDG-08</span>총괄원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>다수 계정/사업장의 잔액을 한 화면에서 총괄 비교(계정×사업장 매트릭스)</td><th>API</th><td><code>GET /api/tenant/ledger/summary</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line</code> 집계</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">총괄원장 — 계정 × 사업장 잔액 매트릭스</div>
+  <div class="wf-bar">장부 › 총괄원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in">2026-06-30</span> 차원 <span class="wf-in">사업장 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>계정</th><th class="r">본점</th><th class="r">지점</th><th class="r">합계</th></tr>
+      <tr><td>현금</td><td class="r">2,140,000</td><td class="r">800,000</td><td class="r">2,940,000</td></tr></table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">사업장 합 = 전사 합</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>합계</td><td>사업장합 ≠ 전사합</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-ldg-09"><span class="sid">SA-LDG-09</span>매입매출장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>세금계산서·계산서·카드·현금영수증 매입/매출을 세무구분별로 나열(부가세 신고 원천)</td><th>API</th><td><code>GET /api/tenant/ledger/purchase-sales</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>purchase_sales_ledger_line</code></td></tr>
+</table>
+<div class="note">세무구분(11~25 매출/51~64 매입)별 집계가 P5 부가세 신고서·합계표에 직접 공급된다.</div>
+<div class="wf">
+  <div class="wf-cap">매입매출장 — 세무구분별 매입/매출 명세</div>
+  <div class="wf-bar">장부 › 매입매출장 <span class="sp"></span><span class="badge b-amber">매입매출</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">과세기간 <span class="wf-in">2026 1기</span> 구분 <span class="wf-in">매출 ▾</span> 유형 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid"><tr><th>일자</th><th>거래처</th><th>세무구분</th><th class="r">공급가액</th><th class="r">세액</th><th>증빙</th></tr>
+      <tr><td>06-12</td><td>(주)대한상사</td><td>11 과세</td><td class="r">20,000,000</td><td class="r">2,000,000</td><td><span class="badge b-green">전자</span></td></tr></table>
+  </div>
+  <div class="wf-foot">공급가액 <b>320,000,000</b> · 세액 <b>32,000,000</b><span class="sp" style="flex:1"></span><span class="wf-btn">신고서 연계(P5)</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>세무구분</td><td>미지정 라인</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h3>관리·현황 장부 (SA-LDG-10~18)</h3>
+<p>관리 목적의 특수 원장·현황 리포트. 적요·전도금·공사·외주·차량 등 업무 축으로 집계하며, 운행기록부·차량비용현황은 업무용승용차 비용 손금산입 한도 검토와 연동된다.</p>
+
+<h4 id="sa-ldg-10"><span class="sid">SA-LDG-10</span>총계정관리원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>관리항목(거래처/부서/프로젝트 등)이 설정된 계정의 총계정원장을 관리항목 축으로 분해 조회</td><th>API</th><td><code>GET /api/tenant/ledger/gl-managed</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">총계정관리원장 — 계정 × 관리항목 집계</div>
+  <div class="wf-bar">장부 › 총계정관리원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">계정 <span class="wf-in">108 외상매출금</span> 관리축 <span class="wf-in">거래처 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>관리항목</th><th class="r">차변</th><th class="r">대변</th><th class="r">잔액</th></tr>
+    <tr><td>(주)대한상사</td><td class="r">22,000,000</td><td class="r">30,000,000</td><td class="r">32,000,000</td></tr></table></div>
+  <div class="wf-foot"><span class="badge b-green">관리항목 합 = 계정 잔액</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>정합</td><td>관리항목합 ≠ 계정잔액</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-ldg-11"><span class="sid">SA-LDG-11</span>(세금)계산서 발급 및 수취현황</h4>
+<table class="meta">
+  <tr><th>용도</th><td>전자(세금)계산서 발급(매출)·수취(매입) 현황을 거래처·기간·상태(정상/수정/취소)로 조회. NTS 전송상태 표시</td><th>API</th><td><code>GET /api/tenant/ledger/einvoice</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>einvoice</code> / <code>purchase_sales_ledger_line</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">(세금)계산서 발급·수취현황</div>
+  <div class="wf-bar">장부 › 계산서 현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">구분 <span class="wf-in">발급 ▾</span> 기간 <span class="wf-in">2026-06</span> 상태 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>일자</th><th>거래처</th><th>유형</th><th class="r">공급가액</th><th class="r">세액</th><th>NTS</th></tr>
+    <tr><td>06-12</td><td>(주)대한상사</td><td>세금계산서</td><td class="r">20,000,000</td><td class="r">2,000,000</td><td><span class="badge b-green">ACCEPTED</span></td></tr></table></div>
+  <div class="wf-foot">발급 <b>42건</b> · 세액 <b>32,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>NTS</td><td>미전송/오류 건</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-12"><span class="sid">SA-LDG-12</span>신용카드매출전표 발행현황</h4>
+<table class="meta">
+  <tr><th>용도</th><td>신용카드·현금영수증 매출 발행내역을 집계(부가세 매출 가산·공제 검토)</td><th>API</th><td><code>GET /api/tenant/ledger/card-sales</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>card_sales</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">신용카드매출전표 발행현황</div>
+  <div class="wf-bar">장부 › 카드매출 현황 <span class="sp"></span><span class="badge b-blue">카드</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 수단 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>일자</th><th>수단</th><th class="r">건수</th><th class="r">공급가액</th><th class="r">세액</th></tr>
+    <tr><td>06-15</td><td>신용카드</td><td class="r">18</td><td class="r">4,500,000</td><td class="r">450,000</td></tr></table></div>
+  <div class="wf-foot">매출 <b>4,950,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>집계</td><td>부가세 매출과 대사</td><td><span class="badge b-blue">연계</span></td></tr></table>
+
+<h4 id="sa-ldg-13"><span class="sid">SA-LDG-13</span>적요별원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>적요(코드/텍스트) 기준으로 분개를 집계 — 반복거래·특정 비용 추적</td><th>API</th><td><code>GET /api/tenant/ledger/memo</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line.memo</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">적요별원장 — 적요 기준 집계</div>
+  <div class="wf-bar">장부 › 적요별원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">적요 <span class="wf-in">회식비 (F2)</span> 기간 <span class="wf-in">2026</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>일자</th><th>계정</th><th>적요</th><th class="r">금액</th></tr>
+    <tr><td>06-14</td><td>811 복리후생비</td><td>회식비</td><td class="r">220,000</td></tr></table></div>
+  <div class="wf-foot">적요 합계 <b>1,320,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>적요</td><td>미지정</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-14"><span class="sid">SA-LDG-14</span>전도금원장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>현장·부서 전도금(소액운영자금) 지급·정산·잔액을 대상별 관리</td><th>API</th><td><code>GET /api/tenant/ledger/imprest</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux(ADVANCE)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">전도금원장 — 대상별 지급/정산/잔액</div>
+  <div class="wf-bar">장부 › 전도금원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">대상 <span class="wf-in">A현장 ▾</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>일자</th><th>대상</th><th class="r">지급</th><th class="r">정산</th><th class="r">잔액</th></tr>
+    <tr><td>06-03</td><td>A현장</td><td class="r">3,000,000</td><td class="r">1,200,000</td><td class="r">1,800,000</td></tr></table></div>
+  <div class="wf-foot">잔액 <b>1,800,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>정산</td><td>정산 &gt; 지급</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-15"><span class="sid">SA-LDG-15</span>공사대장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>현장(공사)별 도급금액·기성·원가·손익을 누적 관리(진행기준 연동)</td><th>API</th><td><code>GET /api/tenant/ledger/construction</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>dimension_site</code> 집계</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">공사대장 — 현장별 도급/기성/원가/손익</div>
+  <div class="wf-bar">장부 › 공사대장 <span class="sp"></span><span class="badge b-teal">공사</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">현장 <span class="wf-in">A현장 ▾</span> 기준 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>현장</th><th class="r">도급금액</th><th class="r">누적기성</th><th class="r">누적원가</th><th class="r">진행률</th></tr>
+    <tr><td>A현장 신축</td><td class="r">500,000,000</td><td class="r">320,000,000</td><td class="r">240,000,000</td><td class="r">64%</td></tr></table></div>
+  <div class="wf-foot">진행률 <b>64%</b> · 공사손익 <b>80,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>진행률</td><td>누적원가/총예정원가 산출</td><td><span class="badge b-blue">계산</span></td></tr></table>
+
+<h4 id="sa-ldg-16"><span class="sid">SA-LDG-16</span>외주대장</h4>
+<table class="meta">
+  <tr><th>용도</th><td>외주처·현장별 계약·기성외주비·선급금·잔액을 관리(P2 OPN-18 이월 연계)</td><th>API</th><td><code>GET /api/tenant/ledger/subcontractor</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux(SUBCON)</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">외주대장 — 외주처×현장 계약/기성/잔액</div>
+  <div class="wf-bar">장부 › 외주대장 <span class="sp"></span><span class="badge b-teal">외주</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">외주처 <span class="wf-in">(F2)</span> 현장 <span class="wf-in">(F2)</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>외주처</th><th>현장</th><th class="r">계약</th><th class="r">선급</th><th class="r">기성</th><th class="r">잔액</th></tr>
+    <tr><td>(주)신성건설</td><td>A현장</td><td class="r">200,000,000</td><td class="r">40,000,000</td><td class="r">90,000,000</td><td class="r">70,000,000</td></tr></table></div>
+  <div class="wf-foot">잔액 합계 <b>70,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>잔액</td><td>계약−선급−기성 &lt; 0</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-17"><span class="sid">SA-LDG-17</span>운행기록부(업무용승용차)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>업무용승용차 운행일지(주행거리·업무용 비율) 집계 — 비용 손금산입 한도 검토 기초</td><th>API</th><td><code>GET /api/tenant/ledger/vehicle-log</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>vehicle</code> / <code>vehicle_log</code></td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">운행기록부 — 차량별 운행/업무비율</div>
+  <div class="wf-bar">장부 › 운행기록부 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차량 <span class="wf-in">12가3456 ▾</span> 기간 <span class="wf-in">2026</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>차량</th><th class="r">총주행</th><th class="r">업무용</th><th class="r">업무비율</th></tr>
+    <tr><td>12가3456</td><td class="r">18,000km</td><td class="r">15,300km</td><td class="r">85%</td></tr></table></div>
+  <div class="wf-foot">업무사용비율 <b>85%</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>비율</td><td>운행기록 미작성 시 50% 한도</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-18"><span class="sid">SA-LDG-18</span>차량비용현황(업무용승용차)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>차량별 감가상각·유류·보험·수선 등 비용 집계와 손금산입 한도(연 1,500만원 등) 검토</td><th>API</th><td><code>GET /api/tenant/ledger/vehicle-cost</code></td></tr>
+  <tr><th>권한</th><td><code>tenant:ledger:read</code></td><th>엔티티</th><td><code>journal_line_aux</code> 차량</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">차량비용현황 — 비용 항목 + 손금산입 한도</div>
+  <div class="wf-bar">장부 › 차량비용현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차량 <span class="wf-in">12가3456 ▾</span> 기간 <span class="wf-in">2026</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>비용항목</th><th class="r">금액</th><th class="r">업무용(85%)</th></tr>
+    <tr><td>감가상각비</td><td class="r">8,000,000</td><td class="r">6,800,000</td></tr>
+    <tr><td>유류비</td><td class="r">3,200,000</td><td class="r">2,720,000</td></tr></table></div>
+  <div class="wf-foot">업무사용 비용 <b>9,520,000</b> <span class="badge b-amber">한도 검토</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>한도</td><td>손금산입 한도 초과</td><td><span class="badge b-amber">경고</span> 세무조정 연계</td></tr></table>
+
+<h3>원가·손익 차원 장부 (SA-LDG-19~29)</h3>
+<p>6대 관리차원(사업장·코스트센터·부서·프로젝트·현장·사원) 기준으로 원가·손익을 안분·집계하는 장부군이다. 전표의 관리항목 입력값(거래명세 라인의 dimension 컬럼)을 집계 키로 사용하며, 안분 장부는 <b>배분키(공통비 배부기준)</b> 설정에 따라 직접비/공통비를 차원별로 배분한다. 건설업·프로젝트 손익 관리의 핵심 출력물이다.</p>
+<div class="tip"><b>안분 로직</b> 직접귀속 비용은 입력된 차원으로 그대로 집계, 공통비는 SA-BAS의 배부기준(매출액비·인원비·면적비 등) 비율로 차원에 안분한다. 안분 결과는 조회 시점 재계산(미저장)이 기본이며, 결산 확정 시 스냅샷으로 고정한다.</div>
+
+<h4 id="sa-ldg-19"><span class="sid">SA-LDG-19</span>원가안분</h4>
+<table class="meta"><tr><th>용도</th><td>공통 제조·공사원가를 배부기준에 따라 현장·프로젝트별로 안분</td><th>권한</th><td>원가담당·관리자</td></tr>
+<tr><th>API</th><td>GET /ledger/cost-allocation?period=&basis=</td><th>엔티티</th><td>JournalLine, DimensionConfig, AllocationBasis</td></tr></table>
+<div class="note">배부기준 미설정 차원은 안분 대상에서 제외되고 "미배부" 행으로 별도 집계된다. 미배부 금액이 0이 아니면 경고.</div>
+<div class="wf">
+  <div class="wf-cap">원가안분 — 공통비 배부 결과</div>
+  <div class="wf-bar">장부 › 원가안분 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 배부기준 <span class="wf-in">매출액비 ▾</span> 계정 <span class="wf-in">제조경비 ▾</span><span class="wf-btn pri">안분실행</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>현장/프로젝트</th><th class="r">직접비</th><th class="r">공통비 배부</th><th class="r">합계</th><th class="r">배부율</th></tr>
+    <tr><td>A현장(신축)</td><td class="r">120,000,000</td><td class="r">18,000,000</td><td class="r">138,000,000</td><td class="r">45%</td></tr>
+    <tr><td>B현장(리모델링)</td><td class="r">80,000,000</td><td class="r">12,000,000</td><td class="r">92,000,000</td><td class="r">30%</td></tr>
+    <tr><td>C프로젝트</td><td class="r">66,000,000</td><td class="r">10,000,000</td><td class="r">76,000,000</td><td class="r">25%</td></tr></table></div>
+  <div class="wf-foot">공통비 총 <b>40,000,000</b> 배부 완료 · 미배부 <b>0</b> <span class="badge b-teal">정상</span></div>
+</div>
+<table><tr><th>요소</th><th>설명</th><th>비고</th></tr>
+<tr><td>배부기준</td><td>매출액비/직접노무비비/인원수/면적/직접재료비/수동</td><td>SA-BAS AllocationBasis</td></tr>
+<tr><td>배부율</td><td>차원별 기준값 ÷ 전체 기준값</td><td>소수 4자리, 합계 100% 보정</td></tr></table>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>미배부</td><td>배부 후 미배부 잔액 ≠ 0</td><td><span class="badge b-amber">경고</span> 단수차 행 표시</td></tr>
+<tr><td>기준값0</td><td>모든 차원 기준값 합계 = 0</td><td><span class="badge b-red">차단</span> 안분 불가</td></tr></table>
+
+<h4 id="sa-ldg-20"><span class="sid">SA-LDG-20</span>원가현황</h4>
+<table class="meta"><tr><th>용도</th><td>현장·프로젝트별 원가요소(재료비/노무비/외주비/경비) 집계 현황</td><th>권한</th><td>원가담당</td></tr>
+<tr><th>API</th><td>GET /ledger/cost-status?dim=&period=</td><th>엔티티</th><td>JournalLine, AccountCostType</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">원가현황 — 원가요소별 누적</div>
+  <div class="wf-bar">장부 › 원가현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차원 <span class="wf-in">현장 ▾</span> 대상 <span class="wf-in">A현장 ▾</span> 기간 <span class="wf-in">2026-01~06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>원가요소</th><th class="r">당월</th><th class="r">누적</th><th class="r">구성비</th></tr>
+    <tr><td>재료비</td><td class="r">40,000,000</td><td class="r">220,000,000</td><td class="r">48%</td></tr>
+    <tr><td>노무비</td><td class="r">25,000,000</td><td class="r">140,000,000</td><td class="r">30%</td></tr>
+    <tr><td>외주비</td><td class="r">12,000,000</td><td class="r">70,000,000</td><td class="r">15%</td></tr>
+    <tr><td>경비</td><td class="r">5,000,000</td><td class="r">32,000,000</td><td class="r">7%</td></tr></table></div>
+  <div class="wf-foot">누적 원가 <b>462,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>요소매핑</td><td>계정에 원가요소 미지정</td><td><span class="badge b-amber">경고</span> 기타로 분류</td></tr></table>
+
+<h4 id="sa-ldg-21"><span class="sid">SA-LDG-21</span>손익안분</h4>
+<table class="meta"><tr><th>용도</th><td>공통 수익·비용을 차원별로 안분하여 부분 손익 산출</td><th>권한</th><td>관리회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/profit-allocation?period=&basis=</td><th>엔티티</th><td>JournalLine, AllocationBasis</td></tr></table>
+<div class="tip">손익안분은 원가안분과 동일한 배부엔진을 사용하되 매출·판관비까지 포함한다. 본사 공통 판관비를 사업부/프로젝트로 배부할 때 사용.</div>
+<div class="wf">
+  <div class="wf-cap">손익안분 — 부문별 손익</div>
+  <div class="wf-bar">장부 › 손익안분 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 차원 <span class="wf-in">부서 ▾</span> 배부기준 <span class="wf-in">인원비 ▾</span><span class="wf-btn pri">안분실행</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>부서</th><th class="r">매출</th><th class="r">직접비</th><th class="r">공통배부</th><th class="r">영업이익</th></tr>
+    <tr><td>영업1부</td><td class="r">300,000,000</td><td class="r">180,000,000</td><td class="r">24,000,000</td><td class="r">96,000,000</td></tr>
+    <tr><td>영업2부</td><td class="r">200,000,000</td><td class="r">130,000,000</td><td class="r">16,000,000</td><td class="r">54,000,000</td></tr></table></div>
+  <div class="wf-foot">공통 판관비 <b>40,000,000</b> 배부 완료</div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>음수손익</td><td>안분 후 영업이익 음수</td><td><span class="badge b-amber">경고</span> 적자부문 강조</td></tr></table>
+
+<h4 id="sa-ldg-22"><span class="sid">SA-LDG-22</span>손익현황</h4>
+<table class="meta"><tr><th>용도</th><td>차원별 손익계산서 형식 현황(매출~당기순이익 단계별)</td><th>권한</th><td>관리회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/profit-status?dim=&target=&period=</td><th>엔티티</th><td>JournalLine, FsMapping</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">손익현황 — 부문 손익계산서</div>
+  <div class="wf-bar">장부 › 손익현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차원 <span class="wf-in">프로젝트 ▾</span> 대상 <span class="wf-in">C프로젝트 ▾</span> 기간 <span class="wf-in">2026 누적</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>구분</th><th class="r">금액</th><th class="r">매출대비</th></tr>
+    <tr><td>매출액</td><td class="r">500,000,000</td><td class="r">100%</td></tr>
+    <tr><td>매출원가</td><td class="r">350,000,000</td><td class="r">70%</td></tr>
+    <tr><td>매출총이익</td><td class="r">150,000,000</td><td class="r">30%</td></tr>
+    <tr><td>판관비</td><td class="r">90,000,000</td><td class="r">18%</td></tr>
+    <tr><td>영업이익</td><td class="r">60,000,000</td><td class="r">12%</td></tr></table></div>
+  <div class="wf-foot">당기순이익 <b>48,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>FS매핑</td><td>손익계정 FS 단계 미지정</td><td><span class="badge b-amber">경고</span> 미분류 행</td></tr></table>
+
+<h4 id="sa-ldg-23"><span class="sid">SA-LDG-23</span>원가손익</h4>
+<table class="meta"><tr><th>용도</th><td>현장·프로젝트별 원가와 손익을 한 화면에 대비(완성도·예정원가 포함)</td><th>권한</th><td>원가·관리회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/cost-profit?dim=&period=</td><th>엔티티</th><td>JournalLine, Contract, BudgetCost</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">원가손익 — 현장별 진행 손익</div>
+  <div class="wf-bar">장부 › 원가손익 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 차원 <span class="wf-in">현장 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>현장</th><th class="r">도급액</th><th class="r">누적원가</th><th class="r">진행률</th><th class="r">진행이익</th></tr>
+    <tr><td>A현장</td><td class="r">600,000,000</td><td class="r">462,000,000</td><td class="r">77%</td><td class="r">90,000,000</td></tr>
+    <tr><td>B현장</td><td class="r">300,000,000</td><td class="r">92,000,000</td><td class="r">31%</td><td class="r">24,000,000</td></tr></table></div>
+  <div class="wf-foot">진행기준(완성도=누적원가÷총예정원가) 적용 <span class="badge b-teal">진행기준</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>진행률</td><td>진행률 > 100%</td><td><span class="badge b-amber">경고</span> 예정원가 재검토</td></tr>
+<tr><td>예정원가</td><td>총예정원가 미입력</td><td><span class="badge b-red">차단</span> 진행률 계산 불가</td></tr></table>
+
+<h4 id="sa-ldg-24"><span class="sid">SA-LDG-24</span>공사원가집계표</h4>
+<table class="meta"><tr><th>용도</th><td>현장별 원가요소·공종별 누적 집계표(건설업 표준 양식)</td><th>권한</th><td>원가담당</td></tr>
+<tr><th>API</th><td>GET /ledger/construction-cost?site=&period=</td><th>엔티티</th><td>JournalLine, WorkType(공종)</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">공사원가집계표 — A현장</div>
+  <div class="wf-bar">장부 › 공사원가집계표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">현장 <span class="wf-in">A현장 ▾</span> 기간 <span class="wf-in">착공~2026-06</span><span class="wf-btn pri">조회</span><span class="wf-btn">인쇄</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>공종</th><th class="r">재료비</th><th class="r">노무비</th><th class="r">외주비</th><th class="r">경비</th><th class="r">계</th></tr>
+    <tr><td>토공사</td><td class="r">30,000,000</td><td class="r">20,000,000</td><td class="r">10,000,000</td><td class="r">5,000,000</td><td class="r">65,000,000</td></tr>
+    <tr><td>골조공사</td><td class="r">120,000,000</td><td class="r">60,000,000</td><td class="r">40,000,000</td><td class="r">12,000,000</td><td class="r">232,000,000</td></tr>
+    <tr><td>마감공사</td><td class="r">70,000,000</td><td class="r">60,000,000</td><td class="r">20,000,000</td><td class="r">15,000,000</td><td class="r">165,000,000</td></tr></table></div>
+  <div class="wf-foot">총 공사원가 <b>462,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>공종매핑</td><td>전표 라인에 공종 미지정</td><td><span class="badge b-amber">경고</span> 미분류 공종 집계</td></tr></table>
+
+<h4 id="sa-ldg-25"><span class="sid">SA-LDG-25</span>공사비용현황</h4>
+<table class="meta"><tr><th>용도</th><td>현장별 비용 발생 시계열·예산 대비 집행률 현황</td><th>권한</th><td>현장관리자</td></tr>
+<tr><th>API</th><td>GET /ledger/construction-expense?site=&period=</td><th>엔티티</th><td>JournalLine, BudgetCost</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">공사비용현황 — 예산 대비 집행</div>
+  <div class="wf-bar">장부 › 공사비용현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">현장 <span class="wf-in">A현장 ▾</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>원가요소</th><th class="r">예산</th><th class="r">집행누적</th><th class="r">집행률</th><th class="r">잔여</th></tr>
+    <tr><td>재료비</td><td class="r">250,000,000</td><td class="r">220,000,000</td><td class="r">88%</td><td class="r">30,000,000</td></tr>
+    <tr><td>노무비</td><td class="r">150,000,000</td><td class="r">140,000,000</td><td class="r">93%</td><td class="r">10,000,000</td></tr></table></div>
+  <div class="wf-foot">총 예산 <b>500,000,000</b> 집행률 <b>92%</b> <span class="badge b-amber">집행률 90% 초과</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>예산초과</td><td>집행 > 예산</td><td><span class="badge b-red">차단</span> 추가 예산 승인 필요 안내</td></tr>
+<tr><td>한도임박</td><td>집행률 ≥ 90%</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-26"><span class="sid">SA-LDG-26</span>현장별 잔액명세서</h4>
+<table class="meta"><tr><th>용도</th><td>현장(차원) 단위 계정별 잔액 명세 — 미완성공사·선급금 등 자산부채 포함</td><th>권한</th><td>현장관리자·회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/site-balance?site=&date=</td><th>엔티티</th><td>JournalLine, Account</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">현장별 잔액명세서</div>
+  <div class="wf-bar">장부 › 현장별 잔액명세서 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">현장 <span class="wf-in">A현장 ▾</span> 기준일 <span class="wf-in">2026-06-30</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>계정</th><th class="r">차변잔액</th><th class="r">대변잔액</th></tr>
+    <tr><td>미완성공사</td><td class="r">462,000,000</td><td class="r">-</td></tr>
+    <tr><td>공사선수금</td><td class="r">-</td><td class="r">200,000,000</td></tr>
+    <tr><td>외상매입금</td><td class="r">-</td><td class="r">35,000,000</td></tr></table></div>
+  <div class="wf-foot">차변 <b>462,000,000</b> / 대변 <b>235,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>차원누락</td><td>해당 계정 전표에 현장 미입력</td><td><span class="badge b-amber">경고</span> 미배정 행 표시</td></tr></table>
+
+<h4 id="sa-ldg-27"><span class="sid">SA-LDG-27</span>차원 거래처원장</h4>
+<table class="meta"><tr><th>용도</th><td>거래처 × 관리차원 교차 원장 — 동일 거래처를 현장·프로젝트별로 분리 조회</td><th>권한</th><td>회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/dim-partner?partner=&dim=&period=</td><th>엔티티</th><td>JournalLine, Partner, DimensionConfig</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">차원 거래처원장</div>
+  <div class="wf-bar">장부 › 차원 거래처원장 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">거래처 <span class="wf-in">㈜대한자재 ▾</span> 차원 <span class="wf-in">현장 ▾</span> 기간 <span class="wf-in">2026-06</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>현장</th><th>일자</th><th>적요</th><th class="r">차변</th><th class="r">대변</th><th class="r">잔액</th></tr>
+    <tr><td>A현장</td><td>06-05</td><td>철근 매입</td><td class="r">-</td><td class="r">22,000,000</td><td class="r">22,000,000</td></tr>
+    <tr><td>A현장</td><td>06-20</td><td>대금 지급</td><td class="r">22,000,000</td><td class="r">-</td><td class="r">0</td></tr>
+    <tr><td>B현장</td><td>06-12</td><td>시멘트 매입</td><td class="r">-</td><td class="r">8,000,000</td><td class="r">8,000,000</td></tr></table></div>
+  <div class="wf-foot">현장 합계잔액 <b>8,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>잔액불일치</td><td>차원합계 ≠ 거래처총잔액(미배정 존재)</td><td><span class="badge b-amber">경고</span></td></tr></table>
+
+<h4 id="sa-ldg-28"><span class="sid">SA-LDG-28</span>프로젝트 누적손익</h4>
+<table class="meta"><tr><th>용도</th><td>프로젝트 착수~현재 누적 손익(다년도 집계) — 종료 프로젝트 정산 근거</td><th>권한</th><td>관리회계담당</td></tr>
+<tr><th>API</th><td>GET /ledger/project-cumulative-profit?project=</td><th>엔티티</th><td>JournalLine, Project</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">프로젝트 누적손익 — C프로젝트</div>
+  <div class="wf-bar">장부 › 프로젝트 누적손익 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">프로젝트 <span class="wf-in">C프로젝트 ▾</span> 기준 <span class="wf-in">착수~현재</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>연도</th><th class="r">매출</th><th class="r">원가</th><th class="r">손익</th><th class="r">누적손익</th></tr>
+    <tr><td>2025</td><td class="r">200,000,000</td><td class="r">150,000,000</td><td class="r">50,000,000</td><td class="r">50,000,000</td></tr>
+    <tr><td>2026</td><td class="r">300,000,000</td><td class="r">252,000,000</td><td class="r">48,000,000</td><td class="r">98,000,000</td></tr></table></div>
+  <div class="wf-foot">누적손익 <b>98,000,000</b> · 누적 이익률 <b>19.6%</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>연도연속</td><td>중간 회계연도 데이터 누락</td><td><span class="badge b-amber">경고</span> 결측 연도 표시</td></tr></table>
+
+<h4 id="sa-ldg-29"><span class="sid">SA-LDG-29</span>프로젝트 누적원가</h4>
+<table class="meta"><tr><th>용도</th><td>프로젝트 누적 원가요소별 집계 — 예정원가 대비 투입현황</td><th>권한</th><td>원가담당</td></tr>
+<tr><th>API</th><td>GET /ledger/project-cumulative-cost?project=</td><th>엔티티</th><td>JournalLine, BudgetCost</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">프로젝트 누적원가 — C프로젝트</div>
+  <div class="wf-bar">장부 › 프로젝트 누적원가 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">프로젝트 <span class="wf-in">C프로젝트 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>원가요소</th><th class="r">예정원가</th><th class="r">누적투입</th><th class="r">투입률</th></tr>
+    <tr><td>재료비</td><td class="r">200,000,000</td><td class="r">190,000,000</td><td class="r">95%</td></tr>
+    <tr><td>노무비</td><td class="r">120,000,000</td><td class="r">112,000,000</td><td class="r">93%</td></tr>
+    <tr><td>외주비</td><td class="r">80,000,000</td><td class="r">70,000,000</td><td class="r">88%</td></tr></table></div>
+  <div class="wf-foot">총 예정 <b>400,000,000</b> / 누적투입 <b>372,000,000</b> (93%)</div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>초과투입</td><td>누적투입 > 예정원가</td><td><span class="badge b-red">차단</span> 예정원가 변경관리 안내</td></tr></table>
+</section>
+
+<section id="g-fnd">
+<h2>M-WS-06 자금·채권채무</h2>
+<p>자금 보조부(일일자금·자금계획·일월보·입출금내역)와 예적금·차입금·어음·당좌 보조원장, 그리고 채권·채무 관리(은행 자동매칭·주간 자금마감·Aging)를 묶은 그룹이다. 모든 잔액·현황은 전표(JournalLine)의 자금관리 라인을 원천으로 집계하며, 예적금·차입·어음은 계좌·차입금번호·어음번호를 키로 보조원장을 구성한다.</p>
+<div class="crumb">회사 작업공간 ▸ 자금·채권채무 (M-WS-06) ▸ 일일자금명세 / 자금계획 / 자금일월보 / 입출금내역 / 예적금·차입금 / 어음·당좌 / 은행매칭 · 주간마감 · Aging</div>
+<div class="tip"><b>참조 갱신</b> · 본 그룹의 화면 간 참조 ID는 v3.1 5-페이즈 체계 기준이다. 자금항목 계정설정(SA-BAS-07)은 페이즈 2(기초정보)에 위치하며, 예산 편성·실적(SA-FND-07~14)은 페이즈 3 내 M-WS-11 관리회계·보고 그룹으로 분리되었다.</div>
+
+<h4 id="sa-fnd-01"><span class="sid">SA-FND-01</span>일일자금명세 / 경리일보</h4>
+<table class="meta">
+<tr><th>용도</th><td>자금항목으로 설정된 계정과목의 전일잔액·당일증감·당일잔액을 조회일자 기준으로 보여주는 BK 자금 보조부(AUX) 일일 자금증감 화면. 경리일보(전체용) 출력 포함.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:read</code> (자금항목 계정설정은 <code>tenant:fund:config:write</code>)</td></tr>
+<tr><th>API</th><td><code>GET /api/fund/daily?date=&item=</code> · <code>PUT /api/fund/item-account-map</code></td></tr>
+<tr><th>엔티티</th><td><code>fund_item</code> · <code>fund_item_account_map</code> · <code>journal_line</code> · <code>deposit_account</code> · <code>note</code> · <code>loan</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 자금항목(0.전체/1.당좌예금/2.보통예금/3.받을어음/4.지급어음/5.단기차입금/6.장기차입금/7.정기예적금)은 계정 그룹핑이자 <b>보조원장 키</b>다. 지급/받을어음·차입금은 어음번호·차입금번호별로 집계하며, 일일거래는 현금 일별 수입·지출이라 코드설정이 불가하다. 자금항목명은 더블클릭으로 수정한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-01 · 일일자금명세 — KPI 스트립 + 일자별 항목 그리드 + 우측 자금조건 패널</div>
+  <div class="wf-bar"><span>자금관리 › 일일자금명세/경리일보</span><span class="sp"></span><span class="badge b-blue">2026기 · (주)가나무역</span><span>👤 김자금</span></div>
+  <div class="wf-tool">조회일자 <span class="wf-in">2026-06-20</span><span class="kbd">◀</span><span class="kbd">▶</span> 자금항목 <span class="wf-in">0.전체</span> 일일거래 <span class="wf-in">1.요약</span><span class="wf-btn pri">조회</span><span class="wf-btn">자금항목계정설정</span><span class="wf-btn">코드보기</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">일일자금명세</span><span>경리일보(전체용)</span></div>
+    <table class="wf-grid">
+      <tr><th>전일잔액</th><th class="r">82,400,000</th><th>입금예정</th><th class="r">15,400,000</th><th>지급예정</th><th class="r">9,200,000</th><th>가용자금</th><th class="r">88,600,000</th></tr>
+    </table>
+    <div class="wf-split">
+      <div style="flex:1.7">
+        <table class="wf-grid">
+          <tr><th>자금항목</th><th class="r">전일잔액</th><th class="r">당일증가(+)</th><th class="r">당일감소(−)</th><th class="r">당일잔액</th><th>거래처</th></tr>
+          <tr><td>당좌예금</td><td class="r">35,000,000</td><td class="r">5,000,000</td><td class="r">2,300,000</td><td class="r">37,700,000</td><td>대한상사</td></tr>
+          <tr><td>보통예금</td><td class="r">28,400,000</td><td class="r">3,750,000</td><td class="r">1,200,000</td><td class="r">30,950,000</td><td>청운제조</td></tr>
+          <tr><td>받을어음</td><td class="r">12,000,000</td><td class="r">6,250,000</td><td class="r">0</td><td class="r">18,250,000</td><td>나래상사</td></tr>
+          <tr><td>지급어음</td><td class="r">7,000,000</td><td class="r">0</td><td class="r">5,000,000</td><td class="r">2,000,000</td><td>대한상사</td></tr>
+          <tr><td>단기차입금</td><td class="r">0</td><td class="r">0</td><td class="r">700,000</td><td class="r">−700,000</td><td>국민은행</td></tr>
+          <tr><th>합계</th><th class="r">82,400,000</th><th class="r">15,000,000</th><th class="r">9,200,000</th><th class="r">88,200,000</th><th></th></tr>
+        </table>
+      </div>
+      <div style="flex:1">
+        <div class="wf-panel pnl">
+          <div class="pt">자금 조건 · 항목계정설정</div>
+          <div class="wf-row"><label>조회일자 <span class="req">*</span></label><span class="wf-in">2026-06-20</span></div>
+          <div class="wf-row"><label>자금항목</label><span class="wf-in">0.전체</span></div>
+          <div class="wf-row"><label>일일거래</label><span class="wf-in">1.요약(계정·거래처 동일거래 1줄)</span></div>
+          <div class="wf-row"><label>대체거래</label><span class="wf-in">포함</span></div>
+          <div class="wf-row"><label>당좌예금 ↦</label><span class="wf-in">102 당좌예금</span></div>
+          <div class="wf-row"><label>받을어음 ↦</label><span class="wf-in">110 받을어음(어음번호 집계)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">차변/대변 자동 집계</span><span class="badge b-blue">경리일보(전체용) 인쇄</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>조회일자 이동</td><td>◀▶ 로 전일/익일 이동, 해당일 전표 기준 재집계</td></tr>
+<tr><td>자금항목계정설정</td><td>자금항목별 집계 계정과목코드 등록(과목만 선택·세목 포함 금액). 일일거래는 현금 수입·지출이라 코드설정 불가</td></tr>
+<tr><td>코드보기</td><td>계정·거래처코드 표시여부 토글</td></tr>
+<tr><td>요약 거래구분</td><td>1.요약 시 계정·거래처 동일 거래 한 줄 요약</td></tr>
+<tr><td>경리일보 탭</td><td>일일거래 계정 발생금액·자금항목별 잔액 계정 발생금액 조회 + 전체용 인쇄</td></tr>
+<tr><td>연계</td><td><code>[일반전표]·[매입매출전표]</code> 반영, <code>[일일자금현황 SA-FND-03]</code>·<code>[예적금현황 SA-DEP-01]</code>·<code>[차입금현황 SA-DEP-03]</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>자금항목 코드 중복</td><td>동일 자금항목코드 중복 등록</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>마감기간 재집계 저장</td><td>LOCKED 기간 계정설정 변경</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-02"><span class="sid">SA-FND-02</span>자금계획입력</h4>
+<table class="meta">
+<tr><th>용도</th><td>월별/일자별 자금 지급·입금 계획을 입력하여 <code>[일일자금현황 SA-FND-03]</code> 입출금예정액·<code>[자금일월보 SA-FND-04]</code> 계획·<code>[자금계획서 SA-FND-06]</code>에 자동 반영하는 BK 자금계획(현금흐름 예측) 보조부.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:plan:write</code></td></tr>
+<tr><th>API</th><td><code>GET/POST /api/fund/plan</code> · <code>PUT /api/fund/item-code</code></td></tr>
+<tr><th>엔티티</th><td><code>fund_plan</code> · <code>fund_item</code> · <code>fund_item_account_map</code> · <code>partner(금융탭)</code></td></tr>
+</table>
+<div class="note"><b>주의</b> · 집계코드는 3자리(지급 1-5/A-M·입금 6-9/N-Z), 자금항목은 01~ZZ. <b>데이터가 있는 항목은 삭제 불가</b>. 전표 '미불계획관리·신용카드관리' 수금예정일 입력 시 계정설정 자금항목으로 자동 반영된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-02 · 자금계획 — 좌측 입력 패널 + 중앙 월 캘린더(입금=파랑/지급=빨강) + 우측 자동반영</div>
+  <div class="wf-bar"><span>자금관리 › 자금계획입력</span><span class="sp"></span><button class="wf-btn">항목코드등록</button><button class="wf-btn pri">저장</button></div>
+  <div class="wf-tool">계획월 <span class="wf-in">2026-06</span> 구분 <span class="wf-in">0.지급</span> 자금항목 <span class="wf-in">F2 코드도움</span><span class="wf-btn">정기자금 전송</span><span class="wf-btn">항목별 합계조회</span> 휴일자료사용 <span class="wf-in">여</span></div>
+  <div class="wf-body"><div class="wf-split">
+    <div class="wf-panel pnl" style="flex:0 0 34%">
+      <div class="pt">계획 입력</div>
+      <div class="wf-row"><label>계획일자 <span class="req">*</span></label><span class="wf-in">2026-06-25(목)</span></div>
+      <div class="wf-row"><label>구분 <span class="req">*</span></label><span class="wf-in">0.지급</span></div>
+      <div class="wf-row"><label>자금항목 <span class="req">*</span></label><span class="wf-in">04 지급어음결제</span></div>
+      <div class="wf-row"><label>거래처</label><span class="wf-in">대한상사</span></div>
+      <div class="wf-row"><label>금액 <span class="req">*</span></label><span class="wf-in">5,000,000</span></div>
+      <div class="wf-row"><label>적요</label><span class="wf-in">어음 만기 결제(자동)</span></div>
+    </div>
+    <div style="flex:1">
+      <table class="wf-grid">
+        <tr><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr>
+        <tr><td>22 <span class="badge b-blue">입 2.0M</span></td><td>23 <span class="badge b-red">지 3.0M</span></td><td>24</td><td>25 <span class="badge b-red">지 5.0M</span></td><td>26 <span class="badge b-blue">입 6.25M</span></td></tr>
+        <tr><td>29 <span class="badge b-red">지 0.7M</span></td><td>30 <span class="badge b-blue">입 3.75M</span></td><td>—</td><td>—</td><td>—</td></tr>
+      </table>
+      <div style="font-size:11px;color:#5b6478">※ 공휴일·주말 다음 영업일 자동 이연(직접입력 제외)</div>
+    </div>
+    <div class="wf-panel" style="flex:0 0 24%">
+      <div class="pt">자동 반영</div>
+      차입금 상환계획(SA-DEP-02)<br>거래처 금융탭(정기예·적금)<br>전표 수금예정일<br>공휴일 이연
+    </div>
+  </div></div>
+  <div class="wf-foot"><span class="badge b-amber">데이터 있는 항목 삭제불가</span><span class="sp"></span><span class="wf-btn">계정설정</span><button class="wf-btn pri">저장</button></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>구분</td><td>0.지급 / 1.입금</td></tr>
+<tr><td>자금항목 코드도움</td><td>F2. 항목코드등록(자금집계항목·자금항목·계정과목)</td></tr>
+<tr><td>정기자금</td><td>정기청구입력 전송 또는 직접입력</td></tr>
+<tr><td>휴일자료사용여부</td><td>주말·공휴일 다음날 반영</td></tr>
+<tr><td>연계</td><td><code>SA-FND-03·04·06</code> · <code>[차입금스케줄관리 SA-DEP-02]</code> · 거래처등록 금융탭</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>집계코드 형식</td><td>지급 1-5/A-M·입금 6-9/N-Z 위반</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>데이터 보유 항목 삭제</td><td>계획 데이터 존재 항목 삭제</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>거래처 미입력</td><td>입금 계획 거래처 누락</td><td><span class="badge b-amber">경고</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-03"><span class="sid">SA-FND-03</span>일일자금현황</h4>
+<table class="meta">
+<tr><th>용도</th><td>전표·자금계획 입력내용을 반영한 일일자금현황 조회 대시보드(자금 AUX). 일일거래증감현황 / 입출금예정액 / 예금현황 / 자금현황 탭.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/fund/status/daily?date=&tab=</code> · <code>GET /api/fund/forecast</code></td></tr>
+<tr><th>엔티티</th><td><code>journal_line</code> · <code>fund_plan</code> · <code>note</code> · <code>loan_schedule</code> · <code>deposit_account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 4개 탭으로 일일 자금을 다면 조회한다. ① 증감현황(계정별 전일잔액·당일증가·당일감소·당일잔액, 환경설정 세목사용 5자리 시 노출), ② 입출금예정액(SA-FND-02·전표 어음·차입금 상환계획), ③ 예금현황(예금종류·계좌개설점·당좌한도잔액 가감), ④ 자금현황(전체 종합).</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-03 · 일일자금현황 — KPI + 탭 + 계정별 증감 그리드</div>
+  <div class="wf-bar"><span>자금관리 › 일일자금현황</span><span class="sp"></span><span class="badge b-blue">2026-06-20</span><span>👤 김자금</span></div>
+  <div class="wf-tool">조회일자 <span class="wf-in">2026-06-20</span> 구분 <span class="wf-in">0.과목</span><span class="wf-btn pri">조회</span><span class="wf-btn">항목별 계정등록</span><span class="wf-btn">드릴다운</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">일일거래증감현황</span><span>입출금예정액</span><span>예금현황</span><span>자금현황</span></div>
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">전일잔액</th><th class="r">당일증가(+)</th><th class="r">당일감소(−)</th><th class="r">당일잔액</th></tr>
+      <tr><td>현금</td><td class="r">6,200,000</td><td class="r">1,800,000</td><td class="r">900,000</td><td class="r">7,100,000</td></tr>
+      <tr><td>당좌예금</td><td class="r">35,000,000</td><td class="r">5,000,000</td><td class="r">2,300,000</td><td class="r">37,700,000</td></tr>
+      <tr><td>보통예금</td><td class="r">28,400,000</td><td class="r">3,750,000</td><td class="r">1,200,000</td><td class="r">30,950,000</td></tr>
+      <tr><th>합계</th><th class="r">69,600,000</th><th class="r">10,550,000</th><th class="r">4,400,000</th><th class="r">75,750,000</th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">입출금예정액(SA-FND-02 + 전표 어음/차입금)</div>입금예정 15,400,000 · 지급예정 9,200,000 · 당좌한도잔액 가감 후 가용 88,600,000</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">전표 차/대 자동 집계</span><span class="badge b-blue">당좌한도잔액 산출</span><span class="sp"></span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>항목별 계정등록</td><td>집계항목별 계정과목 등록(본 탭에서만, 입출금예정액에도 반영)</td></tr>
+<tr><td>당좌한도잔액</td><td>당좌한도액 가감 산출</td></tr>
+<tr><td>자금항목 편집</td><td>자금계획입력 항목코드등록과 연동</td></tr>
+<tr><td>연계</td><td><code>SA-FND-02</code> · <code>[차입금스케줄관리 SA-DEP-02]</code> · <code>SA-DEP-01</code> · <code>[받을어음현황 SA-BIL-01]</code> · 전표</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>예금 한도 초과</td><td>당좌한도 초과 인출</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>세목 노출 조건</td><td>환경설정 세목 5자리 아닐 때 세목 노출 시도</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-04"><span class="sid">SA-FND-04</span>자금일월보</h4>
+<table class="meta">
+<tr><th>용도</th><td>자금계획과 실적을 일별·월별로 조회하고 계획 대비 실적 비율을 분석하는 BK 자금 계획·실적 대비 리포트. 계획 / 실적 / 계획·실적대비 탭.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/fund/monthly?period=&unit=day|month</code></td></tr>
+<tr><th>엔티티</th><td><code>fund_plan</code> · <code>journal_line(자금란)</code> · <code>loan_schedule</code> · 현금출납장 뷰</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 계획은 자금계획 보조부(SA-FND-02)·차입금 상환계획(SA-DEP-02), 실적은 전표 '자금'란 입력 + 현금출납장 잔액과 전일(월)현금자금에서 자금입출금실적 가감 차액. 대비 탭은 기간·일·월별 계획·실적 차이를 분석한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-04 · 자금일월보 — 계획·실적·대비 탭 + 일자별 그리드</div>
+  <div class="wf-bar"><span>자금관리 › 자금일월보</span><span class="sp"></span><span class="badge b-blue">2026-06</span><span>👤 김자금</span></div>
+  <div class="wf-tool">기간 <span class="wf-in">2026-06</span> 단위 <span class="wf-in">일별</span><span class="wf-btn pri">조회</span><span class="wf-btn">현금자금계정설정</span><span class="wf-btn">공휴일자료변경</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span>계획</span><span>실적</span><span class="on">계획·실적대비</span></div>
+    <table class="wf-grid">
+      <tr><th>일자</th><th>자금항목</th><th class="r">계획입금</th><th class="r">계획지급</th><th class="r">실적입금</th><th class="r">실적지급</th><th class="r">차액</th></tr>
+      <tr><td>06-25</td><td>지급어음결제</td><td class="r">0</td><td class="r">5,000,000</td><td class="r">0</td><td class="r">5,000,000</td><td class="r">0</td></tr>
+      <tr><td>06-26</td><td>매출대금</td><td class="r">6,250,000</td><td class="r">0</td><td class="r">6,000,000</td><td class="r">0</td><td class="r">−250,000</td></tr>
+      <tr><td>06-29</td><td>차입금상환</td><td class="r">0</td><td class="r">700,000</td><td class="r">0</td><td class="r">700,000</td><td class="r">0</td></tr>
+      <tr><th>합계</th><th></th><th class="r">6,250,000</th><th class="r">5,700,000</th><th class="r">6,000,000</th><th class="r">5,700,000</th><th class="r">−250,000</th></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">계획달성율 96.0%</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>현금자금계정설정</td><td>현금자금항목 계정과목 설정 후 재조회 반영</td></tr>
+<tr><td>공휴일자료변경</td><td>납부·결제일 공휴일 시 다음날 반영(직접입력 제외)</td></tr>
+<tr><td>실적 소스</td><td>전표 자금관리 항목 / 계획은 자금계획 보조부</td></tr>
+<tr><td>연계</td><td><code>SA-FND-02</code> · <code>[차입금스케줄관리 SA-DEP-02]</code> · 현금출납장</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>잔액 연속성</td><td>전일(월) 현금자금 ≠ 당일 시작잔액</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>마감기간 재계산</td><td>CLOSED 기간 계정설정 변경</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-05"><span class="sid">SA-FND-05</span>자금입출금내역</h4>
+<table class="meta">
+<tr><th>용도</th><td>현금·당좌·보통예금·정기예적금·받을어음·지급어음·차입금 입출금내역을 조회하는 BK 자금 보조부 입출금 거래내역 화면. 입금내역 / 지출내역 탭.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/fund/cashflow?date=&type=in|out</code></td></tr>
+<tr><th>엔티티</th><td><code>journal_line</code> · <code>fund_item_account_map</code> · <code>partner</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 전표 차변(대변)에 입력된 현금·당좌·보통예금 증가(감소)금액을 입금·지출내역으로 반영한다. 적요·거래처는 전표에서 그대로 반영하며 미입력 시 공란이다. 자금항목 계정설정은 과목만 선택·세목 포함, 최대 3개 추가 등록.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-05 · 자금입출금내역 — 입금/지출 탭 + 거래 그리드</div>
+  <div class="wf-bar"><span>자금관리 › 자금입출금내역</span><span class="sp"></span><span class="badge b-blue">2026-06-20</span><span>👤 김자금</span></div>
+  <div class="wf-tool">일자 <span class="wf-in">2026-06-20</span> 자금항목 <span class="wf-in">2.보통예금</span><span class="wf-btn pri">조회</span><span class="wf-btn">자금항목 계정설정</span><span class="wf-btn">드릴다운</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">입금내역</span><span>지출내역</span></div>
+    <table class="wf-grid">
+      <tr><th>일자</th><th>적요</th><th>Code</th><th>거래처명</th><th class="r">금액</th><th>전표</th></tr>
+      <tr><td>06-20</td><td>상품매출 수금</td><td>1001</td><td>대한상사</td><td class="r">3,750,000</td><td>JV-0620-012</td></tr>
+      <tr><td>06-20</td><td>받을어음 추심입금</td><td>1002</td><td>청운제조</td><td class="r">5,000,000</td><td>JV-0620-018</td></tr>
+      <tr><td>06-20</td><td>이자수익</td><td></td><td></td><td class="r">120,000</td><td>JV-0620-021</td></tr>
+      <tr><th>입금 합계</th><th></th><th></th><th></th><th class="r">8,870,000</th><th></th></tr>
+    </table>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">계정별 자동 집계</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>적요·거래처</td><td>전표 적요·거래처코드 반영, 미입력 시 공란</td></tr>
+<tr><td>자금항목 계정설정</td><td>자금항목 계정코드·사용여부, 과목만·세목 포함, 최대 3개 추가</td></tr>
+<tr><td>연계</td><td><code>[일반전표]·[매입매출전표]</code> · <code>[일일자금명세 SA-FND-01]</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>추가 항목 초과</td><td>자금항목 계정 4개 이상 등록</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>권한</td><td>읽기 권한 없음</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-06"><span class="sid">SA-FND-06</span>자금계획서</h4>
+<table class="meta">
+<tr><th>용도</th><td>자금계획을 월별 달력 형태로 한눈에 조회하는 BK 자금계획 캘린더 뷰. <code>[자금계획입력 SA-FND-02]</code>·거래처등록 금융탭(추가사항·정기적금·정기예금) 내용 조회.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/fund/plan/calendar?month=</code></td></tr>
+<tr><th>엔티티</th><td><code>fund_plan</code> · <code>partner(금융탭)</code> · 영업일 캘린더</td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 지급=빨강·입금=파랑으로 시각화하고 특정일자 더블클릭 시 <code>[자금계획입력 SA-FND-02]</code>로 이동·수정한다. 공휴일반영('여' 시 공휴일·토·일 다음날 자동반영), 현금자금반영설정, 인쇄옵션(전월 잔액 기준: 전표 입력상 잔액 / 자금계획서상 잔액).</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-06 · 자금계획서 — 월 캘린더(입금/지급 일별 표시)</div>
+  <div class="wf-bar"><span>자금관리 › 자금계획서</span><span class="sp"></span><span class="badge b-blue">2026-06</span><span>👤 김자금</span></div>
+  <div class="wf-tool">계획월 <span class="wf-in">2026-06</span> 공휴일반영 <span class="wf-in">여</span><span class="wf-btn pri">조회</span><span class="wf-btn">현금자금반영설정</span><span class="wf-btn">인쇄옵션</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
+      <tr><td>21</td><td>22<br><span class="badge b-blue">입 2.0M</span></td><td>23<br><span class="badge b-red">지 3.0M</span></td><td>24</td><td>25<br><span class="badge b-red">지 5.0M</span></td><td>26<br><span class="badge b-blue">입 6.25M</span></td><td>27</td></tr>
+      <tr><td>28</td><td>29<br><span class="badge b-red">지 0.7M</span></td><td>30<br><span class="badge b-blue">입 3.75M</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </table>
+    <div style="font-size:11px;color:#5b6478">전월 이월잔액 82,400,000 · 당월 입금계획 12,000,000 · 당월 지급계획 8,700,000 · 월말 예상잔액 85,700,000</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">일자 더블클릭 → SA-FND-02</span><span class="sp"></span><span class="wf-btn">인쇄</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>색상 표기</td><td>지급=빨강 / 입금=파랑</td></tr>
+<tr><td>공휴일반영</td><td>'여' 시 공휴일·토·일 다음날 자동반영(직접입력 제외)</td></tr>
+<tr><td>인쇄옵션</td><td>전월 잔액 기준: 전표 입력상 잔액 / 자금계획서상 잔액</td></tr>
+<tr><td>연계</td><td><code>[자금계획입력 SA-FND-02]</code> · 거래처등록 금융탭</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>잔액 연속성</td><td>전월말 잔액과 당월초 시작잔액 불일치</td><td><span class="badge b-amber">경고</span></td></tr>
+<tr><td>권한</td><td>읽기 권한 없음</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h3>예적금·차입금 (SA-DEP-01~03)</h3>
+<p>금융자산(예금·적금)·금융부채(차입금)의 보조원장이다. 전표의 자금관리 라인(계좌·차입금번호·만기)을 키로 잔액·상환스케줄을 집계하며, 차입스케줄은 원리금 상환계획을 <b>입력 마스터</b>로 등록한다.</p>
+
+<h4 id="sa-dep-01"><span class="sid">SA-DEP-01</span>예적금현황</h4>
+<table class="meta"><tr><th>용도</th><td>예금·적금 계좌별 잔액·만기·이자 현황(마스킹 적용)</td><th>권한</th><td>자금담당</td></tr>
+<tr><th>API</th><td>GET /fund/deposit-status?date=</td><th>엔티티</th><td>DepositAccount, JournalLine</td></tr></table>
+<div class="note">계좌번호는 마스킹 표시(****-**-1234)되며, 전체 표시는 Step-up 인증 후 가능하다(SA-BAS 마스킹 정책 연계).</div>
+<div class="wf">
+  <div class="wf-cap">예적금현황</div>
+  <div class="wf-bar">자금 › 예적금현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in">2026-06-30</span> 구분 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>은행/계좌</th><th>구분</th><th class="r">잔액</th><th>만기</th><th class="r">이율</th></tr>
+    <tr><td>국민 ****-**-1234</td><td>보통예금</td><td class="r">85,000,000</td><td>-</td><td class="r">0.1%</td></tr>
+    <tr><td>신한 ****-**-5678</td><td>정기적금</td><td class="r">36,000,000</td><td>2026-12-31</td><td class="r">3.5%</td></tr></table></div>
+  <div class="wf-foot">금융자산 총 <b>121,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>만기임박</td><td>만기 30일 이내</td><td><span class="badge b-amber">경고</span> 만기 알림</td></tr>
+<tr><td>마스킹</td><td>인증 없이 전체번호 요청</td><td><span class="badge b-red">차단</span> Step-up 인증 요구</td></tr></table>
+
+<h4 id="sa-dep-02"><span class="sid">SA-DEP-02</span>차입금스케줄관리</h4>
+<table class="meta"><tr><th>용도</th><td>차입금 건별 원리금 상환계획(상환방식·거치·만기) 등록·관리</td><th>권한</th><td>자금담당·관리자</td></tr>
+<tr><th>API</th><td>GET·PUT /fund/loan-schedule?loan=</td><th>엔티티</th><td>Loan, LoanSchedule</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">차입금스케줄관리 — 상환계획</div>
+  <div class="wf-bar">자금 › 차입금스케줄 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">차입건 <span class="wf-in">L-2025-003 ▾</span> 방식 <span class="wf-in">원리금균등 ▾</span><span class="wf-btn pri">스케줄생성</span><span class="wf-btn">저장</span></div>
+  <div class="wf-split">
+   <div class="wf-panel pnl"><b>차입정보</b>
+     <table class="wf-grid"><tr><td>금융기관</td><td>기업은행</td></tr><tr><td>원금</td><td class="r">300,000,000</td></tr><tr><td>이율</td><td class="r">4.8%</td></tr><tr><td>기간</td><td>2025-07~2028-06</td></tr><tr><td>거치</td><td>6개월</td></tr></table></div>
+   <div class="wf-panel pnl"><b>상환 스케줄</b>
+     <table class="wf-grid"><tr><th>회차</th><th>일자</th><th class="r">원금</th><th class="r">이자</th><th class="r">잔액</th></tr>
+       <tr><td>12</td><td>2026-06</td><td class="r">9,200,000</td><td class="r">980,000</td><td class="r">245,000,000</td></tr>
+       <tr><td>13</td><td>2026-07</td><td class="r">9,240,000</td><td class="r">940,000</td><td class="r">235,760,000</td></tr></table></div>
+  </div>
+  <div class="wf-foot">총 상환회차 36 · 잔여원금 <b>245,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>합계불일치</td><td>스케줄 원금합 ≠ 차입원금</td><td><span class="badge b-red">차단</span> 단수 보정 안내</td></tr>
+<tr><td>거치</td><td>거치기간 > 대출기간</td><td><span class="badge b-red">차단</span></td></tr></table>
+
+<h4 id="sa-dep-03"><span class="sid">SA-DEP-03</span>차입금현황</h4>
+<table class="meta"><tr><th>용도</th><td>차입금 건별 잔액·이자·차기상환액 현황(장단기 분류)</td><th>권한</th><td>자금담당</td></tr>
+<tr><th>API</th><td>GET /fund/loan-status?date=</td><th>엔티티</th><td>Loan, LoanSchedule, JournalLine</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">차입금현황</div>
+  <div class="wf-bar">자금 › 차입금현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in">2026-06-30</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>차입건</th><th>금융기관</th><th class="r">원금</th><th class="r">잔액</th><th class="r">1년내상환</th></tr>
+    <tr><td>L-2025-003</td><td>기업은행</td><td class="r">300,000,000</td><td class="r">245,000,000</td><td class="r">110,000,000</td></tr>
+    <tr><td>L-2024-011</td><td>국민은행</td><td class="r">100,000,000</td><td class="r">40,000,000</td><td class="r">40,000,000</td></tr></table></div>
+  <div class="wf-foot">총 차입잔액 <b>285,000,000</b> (유동 150,000,000 / 비유동 135,000,000)</div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>장부대사</td><td>현황 잔액 ≠ 총계정원장 차입금 잔액</td><td><span class="badge b-amber">경고</span> 차이 표시</td></tr></table>
+
+<h3>어음·당좌 (SA-BIL-01~04)</h3>
+<p>어음(받을/지급)·당좌수표의 보조원장이다. 어음번호(note PK)를 키로 발행→배서→할인→만기→결제 상태전이를 추적하며, 전표 라인과 양방향 연계된다. 어음 사용 계정은 SA-BAS-07 관리항목에서 "어음 O" 설정이 선행되어야 한다.</p>
+<div class="tip"><b>상태전이</b> 받을어음: 보유→배서양도/할인/추심의뢰→만기결제(또는 부도). 지급어음: 발행→만기결제. 할인 시 매각손익·할인료 자동분개가 연계된다.</div>
+
+<h4 id="sa-bil-01"><span class="sid">SA-BIL-01</span>받을어음현황</h4>
+<table class="meta"><tr><th>용도</th><td>받을어음 건별 보유·만기·상태 현황 및 만기 추적</td><th>권한</th><td>자금담당</td></tr>
+<tr><th>API</th><td>GET /note/receivable?date=&status=</td><th>엔티티</th><td>Note, Partner, JournalLine</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">받을어음현황 — 목록 + 상세</div>
+  <div class="wf-bar">자금 › 받을어음현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">상태 <span class="wf-in">보유 ▾</span> 만기 <span class="wf-in">2026-07 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-split">
+   <div class="wf-panel pnl"><b>어음 목록</b>
+     <table class="wf-grid"><tr><th>어음번호</th><th>거래처</th><th class="r">금액</th><th>만기</th></tr>
+       <tr><td>나12345678</td><td>㈜한빛</td><td class="r">50,000,000</td><td>07-15</td></tr>
+       <tr><td>나12345679</td><td>대성상사</td><td class="r">30,000,000</td><td>07-28</td></tr></table></div>
+   <div class="wf-panel pnl"><b>어음 상세 (나12345678)</b>
+     <table class="wf-grid"><tr><td>발행인</td><td>㈜한빛</td></tr><tr><td>지급은행</td><td>국민은행</td></tr><tr><td>발행일</td><td>2026-04-15</td></tr><tr><td>만기일</td><td>2026-07-15</td></tr><tr><td>상태</td><td>보유</td></tr></table>
+     <div class="wf-foot">상태전이: 수취 → <b>보유</b> → (배서/할인/추심)</div></div>
+  </div>
+  <div class="wf-foot">보유 어음 총 <b>80,000,000</b> · 만기 7일내 <b>0</b>건</div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>만기임박</td><td>만기 7일 이내 보유</td><td><span class="badge b-amber">경고</span> 추심 안내</td></tr>
+<tr><td>부도</td><td>만기경과 미결제</td><td><span class="badge b-red">차단</span> 부도 처리 워크플로우</td></tr></table>
+
+<h4 id="sa-bil-02"><span class="sid">SA-BIL-02</span>지급어음현황</h4>
+<table class="meta"><tr><th>용도</th><td>발행한 지급어음 건별 만기·결제예정 현황(자금계획 연계)</td><th>권한</th><td>자금담당</td></tr>
+<tr><th>API</th><td>GET /note/payable?date=&status=</td><th>엔티티</th><td>Note, Partner, JournalLine</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">지급어음현황</div>
+  <div class="wf-bar">자금 › 지급어음현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">상태 <span class="wf-in">미결제 ▾</span> 만기 <span class="wf-in">2026-07 ▾</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>어음번호</th><th>수취인</th><th class="r">금액</th><th>만기</th><th>상태</th></tr>
+    <tr><td>다98765432</td><td>㈜대한자재</td><td class="r">22,000,000</td><td>07-10</td><td>미결제</td></tr>
+    <tr><td>다98765433</td><td>금성철강</td><td class="r">15,000,000</td><td>07-25</td><td>미결제</td></tr></table></div>
+  <div class="wf-foot">7월 결제예정 <b>37,000,000</b> <span class="badge b-amber">자금소요</span></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr><tr><td>결제자금</td><td>만기 결제예정액 > 가용자금</td><td><span class="badge b-amber">경고</span> 자금부족 경고</td></tr></table>
+
+<h4 id="sa-bil-03"><span class="sid">SA-BIL-03</span>어음집계표</h4>
+<table class="meta"><tr><th>용도</th><td>어음책(수불) 관리 — 수령·사용·잔량 집계 및 어음 채번</td><th>권한</th><td>자금담당·관리자</td></tr>
+<tr><th>API</th><td>GET·POST /note/book?bank=</td><th>엔티티</th><td>NoteBook, Note</td></tr></table>
+<div class="note">지급어음 발행 전 어음책(은행 수령) 등록·채번이 선행되어야 한다. 어음번호는 본 수불부에서 발번된 범위 내에서만 전표에 사용 가능하다.</div>
+<div class="wf">
+  <div class="wf-cap">어음집계표 — 어음책 수불</div>
+  <div class="wf-bar">자금 › 어음집계표 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">은행 <span class="wf-in">기업은행 ▾</span><span class="wf-btn pri">어음책등록</span><span class="wf-btn">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>은행</th><th>수령번호범위</th><th class="r">수령</th><th class="r">사용</th><th class="r">잔량</th></tr>
+    <tr><td>기업은행</td><td>다98765401~500</td><td class="r">100</td><td class="r">33</td><td class="r">67</td></tr></table></div>
+  <div class="wf-foot">미사용 어음용지 잔량 <b>67</b>매</div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>범위초과</td><td>수불 범위 밖 어음번호 사용</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>잔량부족</td><td>잔량 0 상태 발행 시도</td><td><span class="badge b-red">차단</span> 어음책 추가등록 안내</td></tr></table>
+
+<h4 id="sa-bil-04"><span class="sid">SA-BIL-04</span>당좌수표현황</h4>
+<table class="meta"><tr><th>용도</th><td>당좌예금·발행 당좌수표 현황 및 당좌한도(차월) 관리</td><th>권한</th><td>자금담당</td></tr>
+<tr><th>API</th><td>GET /note/check-status?account=</td><th>엔티티</th><td>BankAccount(당좌), Check, JournalLine</td></tr></table>
+<div class="wf">
+  <div class="wf-cap">당좌수표현황</div>
+  <div class="wf-bar">자금 › 당좌수표현황 <span class="sp"></span><span>👤 홍길동</span></div>
+  <div class="wf-tool">당좌계좌 <span class="wf-in">기업 ****-**-9001 ▾</span> 기준일 <span class="wf-in">2026-06-30</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body"><table class="wf-grid"><tr><th>수표번호</th><th>수취인</th><th class="r">금액</th><th>발행일</th><th>상태</th></tr>
+    <tr><td>가0001234</td><td>㈜대한자재</td><td class="r">18,000,000</td><td>06-18</td><td>미결제</td></tr></table></div>
+  <div class="wf-foot">당좌예금 잔액 <b>42,000,000</b> · 당좌한도 <b>100,000,000</b> · 가용 <b>142,000,000</b></div>
+</div>
+<table><tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>한도초과</td><td>발행액 > 잔액+당좌한도</td><td><span class="badge b-red">차단</span> 부도위험 경고</td></tr>
+<tr><td>잔액부족</td><td>잔액 < 발행액(한도 내)</td><td><span class="badge b-amber">경고</span> 당좌차월 발생</td></tr></table>
+
+<h3>채권·채무 관리 — 신규 (FND-BNK-01 · FND-WK-01 · FND-AGE-01)</h3>
+<p>v3.1에서 신설된 채권·채무 운영 화면이다. 은행 거래내역과 전표를 자동 매칭하여 자금 실적 입력을 자동화하고(FND-BNK-01), 주간 단위로 자금 실적을 마감·확정하며(FND-WK-01), 거래처별 채권·채무 연령(Aging)을 분석한다(FND-AGE-01). 세 화면 모두 전표(JournalLine)·자금계획·예적금/차입금 보조원장을 원천으로 한다.</p>
+
+<h4 id="fnd-bnk-01"><span class="sid">FND-BNK-01</span>은행거래 자동분류·매칭</h4>
+<table class="meta">
+<tr><th>용도</th><td>은행 거래내역(펌뱅킹/엑셀 업로드/오픈뱅킹 수집)을 전표·자금계획과 자동 매칭하여 미입력 거래를 식별하고, 매칭 룰(거래처·적요 키워드·금액)로 자동분개 초안을 생성하는 BK 자금 실적 자동화 화면.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:bank:write</code> (매칭 룰 등록은 <code>tenant:fund:config:write</code>)</td></tr>
+<tr><th>API</th><td><code>GET /api/fund/bank/transactions?account=&date=</code> · <code>POST /api/fund/bank/match</code> · <code>GET·PUT /api/fund/bank/rule</code></td></tr>
+<tr><th>엔티티</th><td><code>bank_transaction</code> · <code>bank_match_rule</code> · <code>journal_line</code> · <code>fund_plan</code> · <code>partner</code> · <code>deposit_account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 은행 거래 한 건은 (1) 기존 전표와 1:1 자동매칭, (2) 매칭 룰로 분개초안 자동생성, (3) 미매칭 수동처리 중 하나로 귀결된다. 매칭 상태(자동매칭/룰생성/미매칭/제외)별 색상 배지로 구분하며, 확정 시 전표 자금란에 실적이 반영되어 SA-FND-04(자금일월보) 실적·FND-WK-01(주간마감)으로 전파된다.</div>
+<div class="wf">
+  <div class="wf-cap">FND-BNK-01 · 은행거래 자동분류 — KPI + 매칭 그리드 + 우측 매칭룰/분개초안 패널</div>
+  <div class="wf-bar"><span>자금관리 › 은행거래 자동분류·매칭</span><span class="sp"></span><span class="badge b-blue">2026-06-20</span><span>👤 김자금</span></div>
+  <div class="wf-tool">계좌 <span class="wf-in">국민 ****-**-1234 ▾</span> 기간 <span class="wf-in">2026-06-16 ~ 06-20</span> 상태 <span class="wf-in">전체 ▾</span><span class="wf-btn pri">자동매칭 실행</span><span class="wf-btn">거래내역 업로드</span><span class="wf-btn">매칭룰 관리</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>총 거래</th><th class="r">42건</th><th>자동매칭</th><th class="r">31건</th><th>룰 분개초안</th><th class="r">6건</th><th>미매칭</th><th class="r">5건</th></tr>
+    </table>
+    <div class="wf-split">
+      <div style="flex:1.8">
+        <table class="wf-grid">
+          <tr><th>거래일시</th><th>적요(은행)</th><th class="r">입금</th><th class="r">출금</th><th>매칭상태</th><th>대응전표/룰</th></tr>
+          <tr><td>06-20 10:21</td><td>대한상사 입금</td><td class="r">3,750,000</td><td class="r">0</td><td><span class="badge b-green">자동매칭</span></td><td>JV-0620-012</td></tr>
+          <tr><td>06-20 13:05</td><td>전기요금 자동이체</td><td class="r">0</td><td class="r">182,000</td><td><span class="badge b-teal">룰 분개초안</span></td><td>룰#7 수도광열비</td></tr>
+          <tr><td>06-20 15:40</td><td>(주)미상 송금</td><td class="r">2,100,000</td><td class="r">0</td><td><span class="badge b-amber">미매칭</span></td><td>—</td></tr>
+          <tr><td>06-20 16:12</td><td>카드대금 결제</td><td class="r">0</td><td class="r">5,400,000</td><td><span class="badge b-green">자동매칭</span></td><td>JV-0620-031</td></tr>
+          <tr><td>06-20 17:00</td><td>이체수수료</td><td class="r">0</td><td class="r">500</td><td><span class="badge b-gray">제외</span></td><td>소액 제외룰</td></tr>
+        </table>
+      </div>
+      <div style="flex:1">
+        <div class="wf-panel pnl">
+          <div class="pt">매칭 룰 / 분개초안</div>
+          <div class="wf-row"><label>룰명 <span class="req">*</span></label><span class="wf-in">전기요금 자동이체</span></div>
+          <div class="wf-row"><label>조건 적요</label><span class="wf-in">"전기요금" 포함</span></div>
+          <div class="wf-row"><label>조건 금액</label><span class="wf-in">출금 100,000~300,000</span></div>
+          <div class="wf-row"><label>차변 계정</label><span class="wf-in">815 수도광열비</span></div>
+          <div class="wf-row"><label>대변 계정</label><span class="wf-in">103 보통예금</span></div>
+          <div class="wf-row"><label>거래처</label><span class="wf-in">한국전력공사</span></div>
+          <div class="wf-row"><label>우선순위</label><span class="wf-in">7</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">자동매칭 31</span><span class="badge b-teal">룰생성 6</span><span class="badge b-amber">미매칭 5</span><span class="sp"></span><span class="wf-btn">선택 전표생성</span><span class="wf-btn pri">매칭 확정</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>자동매칭 실행</td><td>거래일·금액·거래처·적요키워드로 기존 전표 1:1 매칭 (금액 정확일치 우선, 근접일자 가중)</td></tr>
+<tr><td>거래내역 업로드</td><td>펌뱅킹/오픈뱅킹 API 수집 또는 엑셀(은행 표준포맷) 업로드, 중복 거래 해시 제거</td></tr>
+<tr><td>룰 분개초안</td><td>매칭 룰 적중 시 차/대변 분개초안 자동생성 → "선택 전표생성"으로 일괄 전표 반영</td></tr>
+<tr><td>미매칭 수동처리</td><td>거래 더블클릭 → 전표 직접연결 또는 신규전표 작성</td></tr>
+<tr><td>연계</td><td><code>[일반전표]</code> · <code>SA-FND-04 자금일월보(실적)</code> · <code>FND-WK-01 주간 자금마감</code> · <code>SA-DEP-01 예적금현황</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>중복 업로드</td><td>동일 거래해시(계좌·일시·금액·잔액) 재업로드</td><td><span class="badge b-amber">경고</span> 중복 거래 자동 스킵</td></tr>
+<tr><td>룰 충돌</td><td>동일 우선순위 룰이 한 거래에 복수 적중</td><td><span class="badge b-amber">경고</span> 우선순위 재정의 안내</td></tr>
+<tr><td>마감기간 전표생성</td><td>CLOSED/LOCKED 기간 거래 분개 생성</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>계정 미설정</td><td>룰 차/대변 계정 누락 상태 확정</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="fnd-wk-01"><span class="sid">FND-WK-01</span>주간 자금마감</h4>
+<table class="meta">
+<tr><th>용도</th><td>한 주(영업일 5일) 단위로 자금 실적(입금·지급·잔액)을 점검·확정하여 주간 자금일보를 마감하고, 계획 대비 실적 차이와 차주 자금소요를 정리하는 BK 주간 자금마감 화면.</td></tr>
+<tr><th>권한</th><td><code>tenant:fund:close:write</code> (조회는 <code>tenant:fund:read</code>)</td></tr>
+<tr><th>API</th><td><code>GET /api/fund/weekly?weekStart=</code> · <code>POST /api/fund/weekly/close</code> · <code>POST /api/fund/weekly/reopen</code></td></tr>
+<tr><th>엔티티</th><td><code>fund_weekly_close</code> · <code>journal_line</code> · <code>fund_plan</code> · <code>bank_transaction</code> · <code>note</code> · <code>loan_schedule</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 주간마감은 일 단위 전표·은행매칭(FND-BNK-01) 결과를 주차로 집계해 확정한다. 마감 전 체크리스트(미매칭 은행거래 0건·미결전표 0건·계획대비 차이 검토)를 통과해야 확정 가능하다. 확정 시 해당 주 자금실적이 잠기며(재오픈은 권한자만), 차주 이월잔액·자금소요가 SA-FND-02/06으로 전파된다.</div>
+<div class="wf">
+  <div class="wf-cap">FND-WK-01 · 주간 자금마감 — 주차 KPI + 체크리스트 + 요일별 실적 그리드</div>
+  <div class="wf-bar"><span>자금관리 › 주간 자금마감</span><span class="sp"></span><span class="badge b-blue">2026 W25 (06-16~06-20)</span><span>👤 김자금</span></div>
+  <div class="wf-tool">주차 <span class="wf-in">2026-W25 ▾</span><span class="kbd">◀</span><span class="kbd">▶</span><span class="wf-btn pri">주간 마감</span><span class="wf-btn">마감 취소</span><span class="wf-btn">주간 자금일보 인쇄</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>주초 이월</th><th class="r">75,000,000</th><th>주간 입금</th><th class="r">28,400,000</th><th>주간 지급</th><th class="r">19,200,000</th><th>주말 잔액</th><th class="r">84,200,000</th></tr>
+    </table>
+    <div class="wf-split">
+      <div style="flex:1.6">
+        <table class="wf-grid">
+          <tr><th>영업일</th><th class="r">계획입금</th><th class="r">실적입금</th><th class="r">계획지급</th><th class="r">실적지급</th><th class="r">일말잔액</th><th>상태</th></tr>
+          <tr><td>06-16(월)</td><td class="r">5,000,000</td><td class="r">5,200,000</td><td class="r">3,000,000</td><td class="r">3,000,000</td><td class="r">77,200,000</td><td><span class="badge b-green">확정</span></td></tr>
+          <tr><td>06-17(화)</td><td class="r">4,000,000</td><td class="r">3,800,000</td><td class="r">2,500,000</td><td class="r">2,500,000</td><td class="r">78,500,000</td><td><span class="badge b-green">확정</span></td></tr>
+          <tr><td>06-18(수)</td><td class="r">6,000,000</td><td class="r">6,000,000</td><td class="r">5,000,000</td><td class="r">5,200,000</td><td class="r">79,300,000</td><td><span class="badge b-green">확정</span></td></tr>
+          <tr><td>06-19(목)</td><td class="r">4,400,000</td><td class="r">4,400,000</td><td class="r">3,000,000</td><td class="r">3,000,000</td><td class="r">80,700,000</td><td><span class="badge b-green">확정</span></td></tr>
+          <tr><td>06-20(금)</td><td class="r">9,000,000</td><td class="r">9,000,000</td><td class="r">5,500,000</td><td class="r">5,500,000</td><td class="r">84,200,000</td><td><span class="badge b-amber">검토중</span></td></tr>
+          <tr><th>주간 합계</th><th class="r">28,400,000</th><th class="r">28,400,000</th><th class="r">19,000,000</th><th class="r">19,200,000</th><th class="r">84,200,000</th><th></th></tr>
+        </table>
+      </div>
+      <div style="flex:1">
+        <div class="wf-panel pnl">
+          <div class="pt">마감 전 체크리스트</div>
+          <div class="wf-row"><label>미매칭 은행거래</label><span class="wf-in">0건 ✓</span></div>
+          <div class="wf-row"><label>미결(미승인) 전표</label><span class="wf-in">0건 ✓</span></div>
+          <div class="wf-row"><label>계획대비 차이</label><span class="wf-in">지급 +200,000 검토필요 ⚠</span></div>
+          <div class="wf-row"><label>어음 만기(차주)</label><span class="wf-in">2건 22,000,000</span></div>
+          <div class="wf-row"><label>차입 상환(차주)</label><span class="wf-in">1건 9,240,000</span></div>
+          <div class="wf-row"><label>차주 예상 자금소요</label><span class="wf-in">31,240,000</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">계획달성 99.3%</span><span class="badge b-amber">금요일 검토중</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">주간 마감 확정</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>주차 이동</td><td>◀▶ 로 전주/익주 이동, 영업일 캘린더 기준 주차 자동산정(공휴일 제외)</td></tr>
+<tr><td>주간 마감</td><td>체크리스트 통과 시 주차 실적 확정·잠금, 차주 이월잔액 자동 계산</td></tr>
+<tr><td>마감 취소</td><td><code>tenant:fund:close:write</code> 권한자만 재오픈, 사유 입력·감사로그 기록</td></tr>
+<tr><td>차주 자금소요</td><td>어음만기(SA-BIL)·차입상환(SA-DEP-02)·자금계획(SA-FND-02) 합산</td></tr>
+<tr><td>연계</td><td><code>FND-BNK-01 은행매칭</code> · <code>SA-FND-04 자금일월보</code> · <code>SA-FND-02/06 자금계획</code> · 전표</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>미매칭 잔존</td><td>주차 내 미매칭 은행거래 존재</td><td><span class="badge b-red">차단</span> FND-BNK-01 처리 안내</td></tr>
+<tr><td>미결전표</td><td>주차 내 미승인 전표 존재</td><td><span class="badge b-red">차단</span></td></tr>
+<tr><td>계획대비 과다 차이</td><td>주간 계획·실적 차이율 ±10% 초과</td><td><span class="badge b-amber">경고</span> 사유 입력 후 진행</td></tr>
+<tr><td>이미 마감</td><td>확정된 주차 재마감</td><td><span class="badge b-red">차단</span> 재오픈 후 진행</td></tr>
+</table>
+
+<h4 id="fnd-age-01"><span class="sid">FND-AGE-01</span>채권·채무 Aging 현황</h4>
+<table class="meta">
+<tr><th>용도</th><td>거래처별 외상매출금·받을어음(채권) / 외상매입금·지급어음(채무)의 미결제 잔액을 연령구간(30/60/90/90초과)으로 분석하여 회수·지급 우선순위와 장기미수·연체위험을 식별하는 BK 채권·채무 연령분석(Aging) 화면.</td></tr>
+<tr><th>권한</th><td><code>tenant:ar-ap:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/ar-ap/aging?date=&type=ar|ap&partner=</code></td></tr>
+<tr><th>엔티티</th><td><code>journal_line(매출채권/매입채무)</code> · <code>note</code> · <code>partner</code> · <code>partner_credit_limit</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 기준일 현재 미결제 채권·채무를 발생일 경과일수로 버킷팅한다. 채권 탭은 회수관리(여신한도 대비 초과·90일초과 장기미수 적색), 채무 탭은 지급계획(만기 도래 자금소요)에 활용한다. 거래처 더블클릭 시 거래내역 드릴다운, 90일 초과 항목은 대손충당 검토 대상으로 표시한다.</div>
+<div class="wf">
+  <div class="wf-cap">FND-AGE-01 · 채권·채무 Aging — 채권/채무 탭 + 거래처별 연령구간 매트릭스</div>
+  <div class="wf-bar"><span>채권채무 › 채권·채무 Aging 현황</span><span class="sp"></span><span class="badge b-blue">2026-06-30 기준</span><span>👤 홍길동</span></div>
+  <div class="wf-tool">기준일 <span class="wf-in">2026-06-30</span> 거래처 <span class="wf-in">전체 ▾</span> 기준 <span class="wf-in">발생일 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">회수예정 등록</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">채권(매출·받을어음)</span><span>채무(매입·지급어음)</span></div>
+    <table class="wf-grid">
+      <tr><th>거래처</th><th class="r">미결제 합계</th><th class="r">30일 이내</th><th class="r">31~60일</th><th class="r">61~90일</th><th class="r">90일 초과</th><th>여신한도</th></tr>
+      <tr><td>대한상사</td><td class="r">42,000,000</td><td class="r">30,000,000</td><td class="r">12,000,000</td><td class="r">0</td><td class="r">0</td><td>50,000,000</td></tr>
+      <tr><td>청운제조</td><td class="r">28,500,000</td><td class="r">10,000,000</td><td class="r">8,500,000</td><td class="r">10,000,000</td><td class="r">0</td><td>30,000,000</td></tr>
+      <tr><td>나래상사</td><td class="r">15,200,000</td><td class="r">0</td><td class="r">0</td><td class="r">3,200,000</td><td class="r"><b style="color:#c0392b">12,000,000</b></td><td>10,000,000 <span class="badge b-red">초과</span></td></tr>
+      <tr><th>합계</th><th class="r">85,700,000</th><th class="r">40,000,000</th><th class="r">20,500,000</th><th class="r">13,200,000</th><th class="r">12,000,000</th><th></th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">위험 요약</div>90일 초과 장기미수 <b>12,000,000</b> (나래상사) · 여신한도 초과 1건 · 대손충당 검토대상 1건 · 평균 회수기일(DSO) <b>38일</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">90일초과 1건</span><span class="badge b-red">여신초과 1건</span><span class="sp"></span><span class="wf-btn">독촉장 출력</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>연령구간 산정</td><td>기준일 − 발생일(또는 만기일) 경과일수로 30/60/90/90초과 버킷 자동 분류</td></tr>
+<tr><td>채권/채무 탭</td><td>채권=매출채권+받을어음, 채무=매입채무+지급어음. 어음은 만기일 기준 옵션</td></tr>
+<tr><td>거래처 드릴다운</td><td>거래처 더블클릭 → 미결제 건별 거래내역(전표·어음번호) 조회</td></tr>
+<tr><td>여신한도 비교</td><td>거래처등록 여신한도(partner_credit_limit) 대비 미결제 합계 초과 시 적색</td></tr>
+<tr><td>연계</td><td><code>[일반전표]·[매입매출전표]</code> · <code>SA-BIL-01/02 어음현황</code> · <code>SA-FND-02 자금계획(채무 지급)</code> · 거래처등록 여신탭</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>여신한도 초과</td><td>거래처 미결제 채권 > 여신한도</td><td><span class="badge b-amber">경고</span> 신규 여신 거래 시 차단 연계</td></tr>
+<tr><td>장기미수</td><td>90일 초과 미수채권 존재</td><td><span class="badge b-amber">경고</span> 대손충당·법적조치 검토 표시</td></tr>
+<tr><td>대사 불일치</td><td>Aging 채권합계 ≠ 총계정원장 매출채권 잔액</td><td><span class="badge b-amber">경고</span> 차이 명세 제공</td></tr>
+<tr><td>기준일 오류</td><td>기준일 > 시스템 현재일(미래)</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+</section>
+
+
+<section id="s-bdg">
+<h2>M-WS-11 예산 편성·실적 (예실) — SA-FND-07~14</h2>
+<div class="tip"><b>그룹 개요</b> · 예산(Budget)은 계정과목 × 관리차원(부서/현장/프로젝트) × 월(月) 단위로 편성하고, 전표 발생액(실적)과 대비하여 예실(豫實) 차이를 분석한다. 당기예산(편성·실적)·전기예산(실행액·실적)·차기예산·추정예산의 4축으로 구성되며, 월별/분기·반기 두 집계 레벨을 제공한다. 실적은 <code>journal_line</code> 발생액을 예산 편성 차원과 동일 키로 집계하여 자동 산출한다.</div>
+
+<h4 id="sa-fnd-07"><span class="sid">SA-FND-07</span>예산입력 (당기 편성)</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 회계연도의 예산을 계정과목 × 관리차원(부서/현장/프로젝트) × 월별로 편성·입력하는 BK 예산편성 화면. 연간 총액 배분(균등/비율/전기실적 연동)과 월별 수기 조정을 지원한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code> (조회 <code>tenant:budget:read</code>) · 확정 <code>tenant:budget:confirm</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget?fy=&dim=&type=current</code> · <code>POST /api/budget/bulk</code> · <code>POST /api/budget/allocate</code> · <code>POST /api/budget/confirm</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_header(fy,type,dim,status)</code> · <code>budget_line(account,dim,month,amount)</code> · <code>account</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 좌측 계정·차원 트리, 중앙 월별(1~12월) 매트릭스 그리드, 우측 배분 도구의 3분할. 연간 총액을 입력하면 균등/비율/전기실적 패턴으로 12개월에 자동 배분 후 셀 단위 수기 조정한다. 확정(Confirm) 시 잠금되어 SA-FND-08 실적대비의 기준선이 된다. 미확정 예산은 실적대비에서 "초안" 표시.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-07 · 예산입력 — 계정/차원 트리 + 월별 편성 매트릭스 + 배분도구</div>
+  <div class="wf-bar"><span>예산 › 예산입력</span><span class="sp"></span><span class="badge b-blue">FY2026 당기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 차원 <span class="wf-in">부서: 영업부 ▾</span> 단위 <span class="wf-in">천원 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">예산 확정</span><span class="wf-btn">엑셀 업로드</span></div>
+  <div class="wf-body">
+    <div class="wf-split">
+      <div style="flex:0.8">
+        <div class="wf-panel pnl"><div class="pt">계정·차원 트리</div>
+          <div class="wf-row"><label>▸ 매출액</label></div>
+          <div class="wf-row"><label>▾ 판매비와관리비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 급여 (선택)</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 복리후생비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 여비교통비</label></div>
+          <div class="wf-row"><label>&nbsp;&nbsp;• 광고선전비</label></div>
+        </div>
+      </div>
+      <div style="flex:2">
+        <table class="wf-grid">
+          <tr><th>계정/월</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간계</th></tr>
+          <tr><td>급여</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">…</td><td class="r">14,000</td><td class="r">150,000</td></tr>
+          <tr><td>복리후생비</td><td class="r">1,500</td><td class="r">1,500</td><td class="r">1,800</td><td class="r">…</td><td class="r">2,000</td><td class="r">20,000</td></tr>
+          <tr><td>여비교통비</td><td class="r">800</td><td class="r">800</td><td class="r">1,200</td><td class="r">…</td><td class="r">900</td><td class="r">12,000</td></tr>
+          <tr><th>합계</th><th class="r">14,300</th><th class="r">14,300</th><th class="r">15,000</th><th class="r">…</th><th class="r">16,900</th><th class="r">182,000</th></tr>
+        </table>
+      </div>
+      <div style="flex:1">
+        <div class="wf-panel pnl"><div class="pt">연간총액 배분</div>
+          <div class="wf-row"><label>연간 총액</label><span class="wf-in">150,000</span></div>
+          <div class="wf-row"><label>배분 방식</label><span class="wf-in">균등 ▾</span></div>
+          <div class="wf-row"><label>참조</label><span class="wf-in">전기실적 ×1.05 ▾</span></div>
+          <div class="wf-row"><span class="wf-btn pri">배분 실행</span></div>
+          <div class="pt" style="margin-top:8px">상태</div>
+          <div class="wf-row"><span class="badge b-amber">초안(미확정)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">편성률 82%</span><span class="sp"></span><span class="wf-btn">초기화</span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>연간총액 배분</td><td>균등(÷12)·비율(월별 가중치)·전기실적연동(전기 월별실적×증감률)로 12개월 자동 분배</td></tr>
+<tr><td>셀 편집</td><td>월별 셀 직접 입력 시 연간계·합계 실시간 재계산, 변경셀 하이라이트</td></tr>
+<tr><td>엑셀 업로드</td><td>계정×월 템플릿 양식으로 대량 입력, 계정코드 매칭 검증 후 반영</td></tr>
+<tr><td>예산 확정</td><td>편성 완료분 잠금, 차원·계정 합계 검증 후 status=확정, SA-FND-08 기준선 설정</td></tr>
+<tr><td>연계</td><td><code>SA-BAS-07 계정과목</code> · <code>SA-BAS-04/08/09 차원</code> · <code>SA-FND-08/09 실적대비</code> · <code>SA-FND-13 차기예산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>차원 미선택</td><td>관리차원 미지정 상태로 편성</td><td><span class="badge b-red">차단</span> 차원(부서/현장) 선택 요구</td></tr>
+<tr><td>배분 잔액</td><td>월별 합계 ≠ 연간 총액</td><td><span class="badge b-amber">경고</span> 차액 자동 12월 조정 옵션</td></tr>
+<tr><td>확정 후 수정</td><td>확정 예산 셀 편집 시도</td><td><span class="badge b-red">차단</span> 확정 해제 권한 필요</td></tr>
+<tr><td>음수 예산</td><td>비용계정 음수 입력</td><td><span class="badge b-amber">경고</span> 환입 의도 확인</td></tr>
+</table>
+
+<h4 id="sa-fnd-08"><span class="sid">SA-FND-08</span>당기예산 월별실적 (예실 대비)</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 편성예산(SA-FND-07) 대비 월별 실적(전표 발생액)을 비교하여 달성률·차이·차이율을 분석하는 BK 당기 예실대비(월별) 화면.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=&type=current&grain=month&dim=&account=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line</code> · <code>journal_line(집계)</code> · <code>account</code> · <code>dimension</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 계정×월 매트릭스에 예산/실적/차이/달성률 4값을 표시한다. 차이율 ±10% 초과 셀은 색상 강조(초과지출=적색, 절감=청색). 누계(YTD) 열과 잔여예산(연간−누계실적) 열을 제공하여 예산 소진 속도를 모니터링한다. 셀 더블클릭 시 해당 월·계정 전표 드릴다운.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-08 · 당기예산 월별실적 — 예산/실적/차이 매트릭스 + 누계·달성률</div>
+  <div class="wf-bar"><span>예산 › 당기예산 월별실적</span><span class="sp"></span><span class="badge b-blue">FY2026 1~6월</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 차원 <span class="wf-in">부서: 영업부 ▾</span> 표시 <span class="wf-in">예산/실적/차이 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">구분</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">누계(YTD)</th><th class="r">연간예산</th><th class="r">달성률</th></tr>
+      <tr><td rowspan="3">급여</td><td>예산</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">12,000</td><td class="r">36,000</td><td class="r">150,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">12,000</td><td class="r">12,500</td><td class="r">12,000</td><td class="r">36,500</td><td class="r">—</td><td class="r">24.3%</td></tr>
+      <tr><td>차이</td><td class="r">0</td><td class="r"><b style="color:#c0392b">+500</b></td><td class="r">0</td><td class="r"><b style="color:#c0392b">+500</b></td><td class="r">잔여 113,500</td><td class="r">—</td></tr>
+      <tr><td rowspan="2">여비교통비</td><td>예산</td><td class="r">800</td><td class="r">800</td><td class="r">1,200</td><td class="r">2,800</td><td class="r">12,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">650</td><td class="r">700</td><td class="r">1,500</td><td class="r">2,850</td><td class="r">—</td><td class="r">23.8%</td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">예실 요약</div>판관비 누계 달성률 <b>24.1%</b> (정상범위) · 차이율 +10% 초과 계정 <b>1건</b>(3월 여비교통비) · 예산 조기소진 경보 <b>0건</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-amber">초과 1건</span><span class="sp"></span><span class="wf-btn">차이분석 리포트</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>실적 집계</td><td>전표 발생액을 예산 편성 차원·계정 키로 월별 집계(확정·미확정 전표 옵션)</td></tr>
+<tr><td>차이·차이율</td><td>차이=실적−예산, 차이율=차이/예산. ±10% 초과 색상 강조</td></tr>
+<tr><td>전표 드릴다운</td><td>셀 더블클릭 → 해당 월·계정·차원 전표 라인 조회</td></tr>
+<tr><td>잔여예산</td><td>연간예산−YTD실적, 소진속도(월평균실적×잔여월) 초과 시 경보</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 편성</code> · <code>SA-LDG-04 총계정원장</code> · <code>SA-FND-09 분기·반기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>미확정 예산</td><td>편성예산 status=초안</td><td><span class="badge b-amber">경고</span> "초안 기준" 라벨 표시</td></tr>
+<tr><td>예산 조기소진</td><td>소진속도 기준 연간예산 초과 예상</td><td><span class="badge b-amber">경고</span> 적색 경보 표시</td></tr>
+<tr><td>차원 불일치</td><td>실적 차원이 편성 차원과 매칭 안됨</td><td><span class="badge b-amber">경고</span> 미배부 실적 별도 표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-09"><span class="sid">SA-FND-09</span>당기예산 분기/반기실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 예산·실적을 분기(1~4Q) 및 반기(상/하반기) 단위로 집계하여 대비하는 BK 당기 예실대비(분기·반기) 화면. SA-FND-08 월별 데이터를 상위 기간으로 롤업한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=&type=current&grain=quarter|half&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line</code> · <code>journal_line(집계)</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 월별실적(SA-FND-08)을 분기/반기로 합산한 요약 뷰. 경영보고용으로 차트(예산 vs 실적 막대) + 그리드를 함께 제공하고, 분기 누적 달성률 추이를 보여준다. 집계 레벨 토글(분기↔반기)을 지원한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-09 · 당기예산 분기/반기실적 — 분기 집계 그리드 + 달성률 차트</div>
+  <div class="wf-bar"><span>예산 › 당기예산 분기/반기실적</span><span class="sp"></span><span class="badge b-blue">FY2026</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 집계 <span class="wf-in">분기 ▾</span> 차원 <span class="wf-in">전사 ▾</span><span class="wf-btn pri">조회</span><span class="wf-btn">경영보고 출력</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th class="r">1분기 예산</th><th class="r">1분기 실적</th><th class="r">달성률</th><th class="r">2분기 예산</th><th class="r">2분기 실적</th><th class="r">달성률</th></tr>
+      <tr><td>매출액</td><td class="r">300,000</td><td class="r">312,000</td><td class="r"><b style="color:#2563eb">104%</b></td><td class="r">320,000</td><td class="r">298,000</td><td class="r">93%</td></tr>
+      <tr><td>판관비</td><td class="r">42,900</td><td class="r">43,200</td><td class="r">101%</td><td class="r">45,000</td><td class="r">44,100</td><td class="r">98%</td></tr>
+      <tr><td>영업이익</td><td class="r">120,000</td><td class="r">128,000</td><td class="r"><b style="color:#2563eb">107%</b></td><td class="r">130,000</td><td class="r">118,000</td><td class="r">91%</td></tr>
+    </table>
+    <div class="wf-panel">[차트] 분기별 예산 vs 실적 막대그래프 · 누적 달성률 추이선 (1Q 104% → 2Q 98%)</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">상반기 달성 99%</span><span class="sp"></span><span class="wf-btn">엑셀</span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>분기/반기 롤업</td><td>월별 예산·실적을 분기(3개월)·반기(6개월) 합산, 집계 토글</td></tr>
+<tr><td>차트 연동</td><td>예산/실적 막대 + 달성률 추이선, 분기 클릭 시 SA-FND-08 월별 드릴다운</td></tr>
+<tr><td>경영보고 출력</td><td>분기·반기 요약표 + 차트를 보고서 양식(PDF)으로 생성</td></tr>
+<tr><td>연계</td><td><code>SA-FND-08 월별실적</code> · <code>SA-CLS 결산</code> · <code>경영보고 대시보드</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>분기 미완료</td><td>진행 중 분기(미경과 월 포함)</td><td><span class="badge b-amber">경고</span> "진행중" 표시·부분 집계</td></tr>
+<tr><td>합계 불일치</td><td>분기합 ≠ 월별합</td><td><span class="badge b-red">차단</span> 재집계</td></tr>
+</table>
+
+<h4 id="sa-fnd-10"><span class="sid">SA-FND-10</span>전기실행액입력</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기(직전 회계연도)의 실적(실행액)을 계정×차원×월별로 입력·확정하여 당기 예산편성의 참조기준 및 전기 예실대비의 실적원천으로 사용하는 BK 전기실행액 입력 화면. 전기 전표가 시스템에 없거나 외부 이관 시 수기 입력에 사용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/prior-actual?fy=</code> · <code>POST /api/budget/prior-actual/bulk</code> · <code>POST /api/budget/prior-actual/import</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_prior_actual(fy,account,dim,month,amount)</code> · <code>account</code> · <code>journal_line(전기, 자동연동 옵션)</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 전기 전표가 시스템에 존재하면 자동 집계로 채우고(읽기전용), 없으면 수기/엑셀 입력한다. SA-FND-07 예산입력의 "전기실적 연동" 배분과 SA-FND-11 전기 예실대비의 실적값이 된다. 자동/수기 출처(source) 플래그를 보존한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-10 · 전기실행액입력 — 계정×월 실적 입력 그리드 + 자동연동 토글</div>
+  <div class="wf-bar"><span>예산 › 전기실행액입력</span><span class="sp"></span><span class="badge b-blue">FY2025 전기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 출처 <span class="wf-in">전표 자동연동 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">전표에서 가져오기</span><span class="wf-btn">엑셀 업로드</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">…</th><th class="r">12월</th><th class="r">연간계</th><th>출처</th></tr>
+      <tr><td>급여</td><td class="r">11,500</td><td class="r">11,500</td><td class="r">11,500</td><td class="r">…</td><td class="r">13,000</td><td class="r">142,000</td><td><span class="badge b-green">전표</span></td></tr>
+      <tr><td>복리후생비</td><td class="r">1,400</td><td class="r">1,400</td><td class="r">1,600</td><td class="r">…</td><td class="r">1,900</td><td class="r">18,500</td><td><span class="badge b-amber">수기</span></td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">가져오기 안내</div>전기 전표 자동집계 가능 계정 <b>48</b> · 수기입력 필요 <b>6</b> · 마지막 동기화 2026-01-15</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">자동 48 / 수기 6</span><span class="sp"></span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전표에서 가져오기</td><td>전기 회계연도 전표 발생액을 계정×차원×월 집계하여 자동 채움(source=전표)</td></tr>
+<tr><td>수기/엑셀 입력</td><td>전표 부재 계정은 직접 입력 또는 양식 업로드(source=수기)</td></tr>
+<tr><td>출처 보존</td><td>자동/수기 플래그로 데이터 신뢰도 구분, 자동분은 읽기전용</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 전기실적 연동</code> · <code>SA-FND-11 전기 월별실적</code> · 전기 전표</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전기 마감 미완</td><td>전기 결산 미확정</td><td><span class="badge b-amber">경고</span> 잠정 실적 표시</td></tr>
+<tr><td>중복 입력</td><td>자동연동분 수기 덮어쓰기</td><td><span class="badge b-amber">경고</span> 출처 변경 확인</td></tr>
+</table>
+
+<h4 id="sa-fnd-11"><span class="sid">SA-FND-11</span>전기예산 월별실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기 편성예산 대비 전기 실행액(SA-FND-10)을 월별로 대비하여 전기 예실 달성도를 분석하는 BK 전기 예실대비(월별) 화면. 당기 예산 편성의 정확도 검증과 추세 비교에 활용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=prior&grain=month&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line(전기)</code> · <code>budget_prior_actual</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-08과 동일한 월별 예실 매트릭스이나 전기 데이터를 대상으로 한다. 당기와 나란히 비교(전기 vs 당기 달성률)할 수 있는 비교모드를 제공하여 예측 정확도 개선에 활용한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-11 · 전기예산 월별실적 — 전기 예산/실적/차이 매트릭스</div>
+  <div class="wf-bar"><span>예산 › 전기예산 월별실적</span><span class="sp"></span><span class="badge b-blue">FY2025 전기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 차원 <span class="wf-in">전사 ▾</span> 비교 <span class="wf-in">당기대비 □</span><span class="wf-btn pri">조회</span><span class="wf-btn">엑셀</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">구분</th><th class="r">1월</th><th class="r">2월</th><th class="r">3월</th><th class="r">누계</th><th class="r">연간</th><th class="r">달성률</th></tr>
+      <tr><td rowspan="2">판관비</td><td>예산</td><td class="r">14,000</td><td class="r">14,000</td><td class="r">14,500</td><td class="r">42,500</td><td class="r">175,000</td><td class="r">—</td></tr>
+      <tr><td>실적</td><td class="r">13,800</td><td class="r">14,100</td><td class="r">14,200</td><td class="r">42,100</td><td class="r">170,500</td><td class="r">97%</td></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">전기 종합</div>전기 판관비 연간 달성률 <b>97.4%</b> · 예측 정확도(MAPE) <b>3.2%</b> · 당기 편성 신뢰도 양호</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-green">정확도 양호</span><span class="sp"></span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전기 예실 대비</td><td>전기 편성예산 대비 전기 실행액(SA-FND-10) 월별 차이·달성률 산출</td></tr>
+<tr><td>당기대비 모드</td><td>전기·당기 달성률 병렬 비교, 추세 분석</td></tr>
+<tr><td>예측 정확도</td><td>MAPE(평균절대오차율) 산출로 편성 정확도 평가</td></tr>
+<tr><td>연계</td><td><code>SA-FND-10 전기실행액</code> · <code>SA-FND-08 당기 월별실적</code> · <code>SA-FND-12 분기·반기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>전기 데이터 결측</td><td>전기 실행액 미입력 월 존재</td><td><span class="badge b-amber">경고</span> 결측월 0 처리·표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-12"><span class="sid">SA-FND-12</span>전기예산 분기/반기실적</h4>
+<table class="meta">
+<tr><th>용도</th><td>전기 예산·실행액을 분기·반기로 집계하여 대비하는 BK 전기 예실대비(분기·반기) 화면. 전기 경영성과 분기 추이 분석 및 당기 분기 대비에 활용한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:read</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/variance?fy=prior&grain=quarter|half&dim=</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_line(전기)</code> · <code>budget_prior_actual</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-09(당기 분기·반기)의 전기 버전. 전기 분기 실적 추이 차트와 함께 당기 동분기 비교(YoY) 컬럼을 제공한다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-12 · 전기예산 분기/반기실적 — 전기 분기 집계 + YoY 비교</div>
+  <div class="wf-bar"><span>예산 › 전기예산 분기/반기실적</span><span class="sp"></span><span class="badge b-blue">FY2025</span><span>👤 김예산</span></div>
+  <div class="wf-tool">전기연도 <span class="wf-in">2025 ▾</span> 집계 <span class="wf-in">반기 ▾</span> YoY <span class="wf-in">☑</span><span class="wf-btn pri">조회</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>구분</th><th class="r">상반기 예산</th><th class="r">상반기 실적</th><th class="r">달성률</th><th class="r">당기 상반기</th><th class="r">YoY 증감</th></tr>
+      <tr><td>매출액</td><td class="r">600,000</td><td class="r">595,000</td><td class="r">99%</td><td class="r">610,000</td><td class="r"><b style="color:#2563eb">+2.5%</b></td></tr>
+      <tr><td>영업이익</td><td class="r">240,000</td><td class="r">232,000</td><td class="r">97%</td><td class="r">246,000</td><td class="r"><b style="color:#2563eb">+6.0%</b></td></tr>
+    </table>
+    <div class="wf-panel">[차트] 전기 분기 실적 추이 + 당기 동분기 비교 막대</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">YoY 매출 +2.5%</span><span class="sp"></span><span class="wf-btn pri">조회</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>전기 분기/반기 롤업</td><td>전기 월별을 분기·반기 합산</td></tr>
+<tr><td>YoY 비교</td><td>전기 동분기 vs 당기 동분기 증감률 산출</td></tr>
+<tr><td>연계</td><td><code>SA-FND-11 전기 월별</code> · <code>SA-FND-09 당기 분기</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>당기 진행중</td><td>당기 동분기 미완료</td><td><span class="badge b-amber">경고</span> YoY 부분비교 표시</td></tr>
+</table>
+
+<h4 id="sa-fnd-13"><span class="sid">SA-FND-13</span>차기예산입력</h4>
+<table class="meta">
+<tr><th>용도</th><td>차기(다음 회계연도) 예산을 계정×차원×월별로 사전 편성·시뮬레이션하는 BK 차기예산 입력 화면. 당기 실적·전기 추세 기반 자동 제안(증감률 적용)과 수기 조정, 다중 시나리오(보수/기본/공격) 관리를 지원한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code> · 이관(차기→당기) <code>tenant:budget:rollover</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget?fy=next&scenario=</code> · <code>POST /api/budget/next/propose</code> · <code>POST /api/budget/next/rollover</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_header(type=next,scenario)</code> · <code>budget_line</code> · <code>account</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · SA-FND-07과 유사 매트릭스이나 차기연도 대상이며 시나리오(보수/기본/공격) 탭으로 다중안을 관리한다. "당기실적×증감률" 자동제안 후 조정한다. 연초 차기예산을 당기예산으로 이관(rollover)하면 SA-FND-07 당기 편성으로 승격된다.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-13 · 차기예산입력 — 시나리오 탭 + 월별 편성 + 자동제안</div>
+  <div class="wf-bar"><span>예산 › 차기예산입력</span><span class="sp"></span><span class="badge b-blue">FY2027 차기</span><span>👤 김예산</span></div>
+  <div class="wf-tool">차기연도 <span class="wf-in">2027 ▾</span> 제안기준 <span class="wf-in">당기실적 ×1.08 ▾</span><span class="wf-btn pri">저장</span><span class="wf-btn">자동제안</span><span class="wf-btn">당기로 이관</span></div>
+  <div class="wf-body">
+    <div class="wf-tab"><span class="on">기본안</span><span>보수안</span><span>공격안</span></div>
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">당기실적</th><th class="r">증감률</th><th class="r">차기 연간</th><th class="r">월평균</th></tr>
+      <tr><td>매출액</td><td class="r">1,210,000</td><td class="r">+8%</td><td class="r">1,306,800</td><td class="r">108,900</td></tr>
+      <tr><td>판관비</td><td class="r">178,000</td><td class="r">+5%</td><td class="r">186,900</td><td class="r">15,575</td></tr>
+      <tr><th>영업이익</th><th class="r">520,000</th><th class="r">+12%</th><th class="r">582,400</th><th class="r">48,533</th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">시나리오 비교</div>보수안 영업이익 540,000 · 기본안 582,400 · 공격안 640,000 · 선택안 <b>기본안</b></div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">기본안 선택</span><span class="sp"></span><span class="wf-btn">시나리오 복제</span><span class="wf-btn pri">저장</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>자동제안</td><td>당기실적·전기추세에 증감률 적용하여 차기 초안 생성</td></tr>
+<tr><td>시나리오 관리</td><td>보수/기본/공격 다중안 복제·비교, 선택안 지정</td></tr>
+<tr><td>당기로 이관</td><td>연초 선택 시나리오를 SA-FND-07 당기 편성예산으로 승격(rollover)</td></tr>
+<tr><td>연계</td><td><code>SA-FND-08 당기실적</code> · <code>SA-FND-07 당기편성(이관 대상)</code> · <code>SA-FND-14 추정예산</code></td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>당기 미마감 이관</td><td>당기 실적 미확정 상태 이관</td><td><span class="badge b-amber">경고</span> 잠정실적 기준 안내</td></tr>
+<tr><td>중복 이관</td><td>이미 당기예산 존재</td><td><span class="badge b-red">차단</span> 덮어쓰기 확인 필요</td></tr>
+<tr><td>시나리오 미선택</td><td>이관 시 선택안 없음</td><td><span class="badge b-red">차단</span></td></tr>
+</table>
+
+<h4 id="sa-fnd-14"><span class="sid">SA-FND-14</span>추정예산</h4>
+<table class="meta">
+<tr><th>용도</th><td>당기 누계 실적과 잔여기간 추정치를 합산하여 연말 착지 전망(연간 추정실적)을 산출하는 BK 추정예산(Forecast/Outlook) 화면. 확정실적(경과월) + 추정실적(잔여월)로 연간 전망을 갱신하고 편성예산 대비 착지 차이를 조기 경보한다.</td></tr>
+<tr><th>권한</th><td><code>tenant:budget:write</code></td></tr>
+<tr><th>API</th><td><code>GET /api/budget/forecast?fy=&asof=</code> · <code>POST /api/budget/forecast</code></td></tr>
+<tr><th>엔티티</th><td><code>budget_forecast(fy,asof,account,month,amount,basis)</code> · <code>budget_line</code> · <code>journal_line</code></td></tr>
+</table>
+<div class="tip"><b>설계 의도</b> · 기준월(as-of)까지는 확정실적(잠금), 이후 월은 추정(편성예산/직전추세/수기 중 선택)으로 채워 연간 착지(Full-Year Outlook)를 만든다. 편성예산 대비 착지차이를 표시하여 연말 초과·미달을 조기 경보한다. 추정 스냅샷을 월별로 보관하여 추정 정확도 추적.</div>
+<div class="wf">
+  <div class="wf-cap">SA-FND-14 · 추정예산 — 확정실적+추정 연간착지 + 편성대비 차이</div>
+  <div class="wf-bar"><span>예산 › 추정예산</span><span class="sp"></span><span class="badge b-blue">FY2026 6월 기준</span><span>👤 김예산</span></div>
+  <div class="wf-tool">연도 <span class="wf-in">2026 ▾</span> 기준월 <span class="wf-in">6월 ▾</span> 추정기준 <span class="wf-in">편성예산 ▾</span><span class="wf-btn pri">추정 생성</span><span class="wf-btn">스냅샷 저장</span></div>
+  <div class="wf-body">
+    <table class="wf-grid">
+      <tr><th>계정</th><th class="r">확정(1~6월)</th><th class="r">추정(7~12월)</th><th class="r">연간 착지</th><th class="r">편성예산</th><th class="r">착지차이</th></tr>
+      <tr><td>매출액</td><td class="r">610,000</td><td class="r">650,000</td><td class="r">1,260,000</td><td class="r">1,240,000</td><td class="r"><b style="color:#2563eb">+20,000</b></td></tr>
+      <tr><td>판관비</td><td class="r">89,500</td><td class="r">95,000</td><td class="r">184,500</td><td class="r">182,000</td><td class="r"><b style="color:#c0392b">+2,500</b></td></tr>
+      <tr><th>영업이익</th><th class="r">270,000</th><th class="r">285,000</th><th class="r">555,000</th><th class="r">540,000</th><th class="r"><b style="color:#2563eb">+15,000</b></th></tr>
+    </table>
+    <div class="wf-panel"><div class="pt">착지 전망</div>연간 영업이익 착지 <b>555,000</b> (편성 대비 +2.8%) · 매출 초과착지 · 판관비 소폭 초과 · 6월 기준 스냅샷</div>
+  </div>
+  <div class="wf-foot"><span class="badge b-blue">착지 +2.8%</span><span class="sp"></span><span class="wf-btn">스냅샷 비교</span><span class="wf-btn pri">추정 생성</span></div>
+</div>
+<table>
+<tr><th>요소 / 액션</th><th>처리 · 검증 (근거)</th></tr>
+<tr><td>추정 생성</td><td>경과월=확정실적, 잔여월=추정기준(편성/추세/수기)으로 연간 착지 산출</td></tr>
+<tr><td>착지차이</td><td>연간 착지 − 편성예산, 초과·미달 색상 강조</td></tr>
+<tr><td>스냅샷 저장/비교</td><td>월별 추정 스냅샷 보관, 추정치 변화 추적·정확도 평가</td></tr>
+<tr><td>연계</td><td><code>SA-FND-07 편성</code> · <code>SA-FND-08 실적</code> · <code>SA-FND-13 차기예산</code> · 경영보고</td></tr>
+</table>
+<table>
+<tr><th>검증</th><th>조건</th><th>처리</th></tr>
+<tr><td>기준월 실적 미마감</td><td>as-of 월 전표 미확정</td><td><span class="badge b-amber">경고</span> 잠정실적 기준 추정</td></tr>
+<tr><td>착지 미달 경보</td><td>영업이익 착지 < 편성예산 −10%</td><td><span class="badge b-amber">경고</span> 적색 경보·원인분석 안내</td></tr>
+</table>
+
+</section>
+
+</main>
+</body></html>
