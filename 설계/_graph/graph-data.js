@@ -1,0 +1,15492 @@
+window.GRAPH = {
+    "meta":  {
+                 "generatedAt":  "2026-06-26 16:12:41",
+                 "scope":  "현재 기준: bk_설계서_v3.0.md + 최신 화면설계(9)",
+                 "designDoc":  "bk_설계서_v3.0.md",
+                 "screenDocs":  [
+                                    "bk_화면설계서_v3.0.html",
+                                    "구현_화면_기초_v3.0.html",
+                                    "구현_화면_전표_v3.4.html",
+                                    "구현_매입매출_전표_v1.0.html",
+                                    "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                                    "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                                    "페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                                    "페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                                    "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                                ],
+                 "counts":  {
+                                "nodes":  625,
+                                "edges":  1676,
+                                "chapters":  406,
+                                "screens":  200,
+                                "impl":  10,
+                                "docs":  9
+                            }
+             },
+    "nodes":  [
+                  {
+                      "id":  "CH:0",
+                      "type":  "Chapter",
+                      "label":  "§0 확정 원칙 및 결정 매트릭스",
+                      "attrs":  {
+                                    "num":  "0",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:0.1",
+                      "type":  "Chapter",
+                      "label":  "§0.1 v4.0 확장 매트릭스 (실무 산출물 역분석 통합)",
+                      "attrs":  {
+                                    "num":  "0.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:0.2",
+                      "type":  "Chapter",
+                      "label":  "§0.2 v4.1 화면설계 반영 매트릭스 (구현 화면 역반영)",
+                      "attrs":  {
+                                    "num":  "0.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:0.3",
+                      "type":  "Chapter",
+                      "label":  "§0.3 주간정기회의(2026-06-18) 반영 매트릭스",
+                      "attrs":  {
+                                    "num":  "0.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1",
+                      "type":  "Chapter",
+                      "label":  "§1 시스템 개요 (서비스형 + 자가운영)",
+                      "attrs":  {
+                                    "num":  "1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.0.1",
+                      "type":  "Chapter",
+                      "label":  "§1.0.1 대상 고객·서비스 범위·개발 로드맵 (v4.1 rev, M12·M13)",
+                      "attrs":  {
+                                    "num":  "1.0.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.1",
+                      "type":  "Chapter",
+                      "label":  "§1.1 전체 업무흐름 (End-to-End) (v2.0 추가)",
+                      "attrs":  {
+                                    "num":  "1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.1.1",
+                      "type":  "Chapter",
+                      "label":  "§1.1.1 티어 전환 하이브리드 워크플로우",
+                      "attrs":  {
+                                    "num":  "1.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.10",
+                      "type":  "Chapter",
+                      "label":  "§1.10 원천징수·지방세·4대보험 연계 범위 (확인 필요)",
+                      "attrs":  {
+                                    "num":  "1.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.11",
+                      "type":  "Chapter",
+                      "label":  "§1.11 채권·채무 관리 보강 (보완)",
+                      "attrs":  {
+                                    "num":  "1.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.12",
+                      "type":  "Chapter",
+                      "label":  "§1.12 첨부파일·증빙 처리 정책 (보완)",
+                      "attrs":  {
+                                    "num":  "1.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.13",
+                      "type":  "Chapter",
+                      "label":  "§1.13 알림 채널·재처리 구체화 (보완)",
+                      "attrs":  {
+                                    "num":  "1.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.14",
+                      "type":  "Chapter",
+                      "label":  "§1.14 데이터 마이그레이션·초기 구축 (누락)",
+                      "attrs":  {
+                                    "num":  "1.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.15",
+                      "type":  "Chapter",
+                      "label":  "§1.15 다중 회계기준 및 외부 데이터 변환 입력 (신규)",
+                      "attrs":  {
+                                    "num":  "1.15",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.2",
+                      "type":  "Chapter",
+                      "label":  "§1.2 용어 정의",
+                      "attrs":  {
+                                    "num":  "1.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.2.1",
+                      "type":  "Chapter",
+                      "label":  "§1.2.1 분산 락 적용 대상 및 락 키(Lock Key) 명명 규칙",
+                      "attrs":  {
+                                    "num":  "1.2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.2.2",
+                      "type":  "Chapter",
+                      "label":  "§1.2.2 분산 락 처리 의사코드(Pseudo-code) 예시",
+                      "attrs":  {
+                                    "num":  "1.2.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.3",
+                      "type":  "Chapter",
+                      "label":  "§1.3 회사 설정(BookkeepingConfig)",
+                      "attrs":  {
+                                    "num":  "1.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.4",
+                      "type":  "Chapter",
+                      "label":  "§1.4 동시성·잠금 제어 (보완)",
+                      "attrs":  {
+                                    "num":  "1.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.5",
+                      "type":  "Chapter",
+                      "label":  "§1.5 법정 보존기간 및 데이터 소산 정책 (보완)",
+                      "attrs":  {
+                                    "num":  "1.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.6",
+                      "type":  "Chapter",
+                      "label":  "§1.6 감사로그 위변조 방지 (보완)",
+                      "attrs":  {
+                                    "num":  "1.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.7",
+                      "type":  "Chapter",
+                      "label":  "§1.7 직무분리(SOD) 통제 (누락)",
+                      "attrs":  {
+                                    "num":  "1.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.8",
+                      "type":  "Chapter",
+                      "label":  "§1.8 부가세 사업장 단위 처리 (보완)",
+                      "attrs":  {
+                                    "num":  "1.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:1.9",
+                      "type":  "Chapter",
+                      "label":  "§1.9 부가세 신고 유형 세분화 (보완)",
+                      "attrs":  {
+                                    "num":  "1.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:10",
+                      "type":  "Chapter",
+                      "label":  "§10 차원 설정 변경 · 영향관리 (확정 #10)",
+                      "attrs":  {
+                                    "num":  "10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:10.1",
+                      "type":  "Chapter",
+                      "label":  "§10.1 유효일자 기반 설정 버전관리",
+                      "attrs":  {
+                                    "num":  "10.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:10.2",
+                      "type":  "Chapter",
+                      "label":  "§10.2 변경 영향 분석",
+                      "attrs":  {
+                                    "num":  "10.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:10.3",
+                      "type":  "Chapter",
+                      "label":  "§10.3 과거 데이터 처리(최대 기능)",
+                      "attrs":  {
+                                    "num":  "10.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:10.4",
+                      "type":  "Chapter",
+                      "label":  "§10.4 엔티티",
+                      "attrs":  {
+                                    "num":  "10.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11",
+                      "type":  "Chapter",
+                      "label":  "§11 전표 · 장부 · 결산 · 세무 모듈 상세 (준용 + 서비스 특화)",
+                      "attrs":  {
+                                    "num":  "11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.1",
+                      "type":  "Chapter",
+                      "label":  "§11.1 전표",
+                      "attrs":  {
+                                    "num":  "11.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.10",
+                      "type":  "Chapter",
+                      "label":  "§11.10 원천세 · 지급명세서 (v2.0 추가)",
+                      "attrs":  {
+                                    "num":  "11.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.11",
+                      "type":  "Chapter",
+                      "label":  "§11.11 자금 · 채권채무 관리 (준용 + 서비스 특화) (v2.0 추가)",
+                      "attrs":  {
+                                    "num":  "11.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.12",
+                      "type":  "Chapter",
+                      "label":  "§11.12 증빙 · 전자문서 관리 (v2.0 추가)",
+                      "attrs":  {
+                                    "num":  "11.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.13",
+                      "type":  "Chapter",
+                      "label":  "§11.13 월별 결산·보고 패키지 (Reporting Package) (v4.0 추가, 보강 항목 A)",
+                      "attrs":  {
+                                    "num":  "11.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.14",
+                      "type":  "Chapter",
+                      "label":  "§11.14 계정별 명세서 · 잔액 소명 (BS Reconciliation Schedule) · 자동 tie-out (v4.0 추가, 보강 항목 B)",
+                      "attrs":  {
+                                    "num":  "11.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.15",
+                      "type":  "Chapter",
+                      "label":  "§11.15 경과·충당·리스 기간배분 스케줄 자동화 (v4.0 추가, 보강 항목 C)",
+                      "attrs":  {
+                                    "num":  "11.15",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.16",
+                      "type":  "Chapter",
+                      "label":  "§11.16 외화 · 다중통화 운영회계 — 월말 환산 · 실현/미실현 외환손익 (v4.0 추가, 보강 항목 D)",
+                      "attrs":  {
+                                    "num":  "11.16",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.17",
+                      "type":  "Chapter",
+                      "label":  "§11.17 관계사 (Intercompany) 거래 식별 · 대사 · 연결제거 기초 (v4.0 추가, 보강 항목 E)",
+                      "attrs":  {
+                                    "num":  "11.17",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.18",
+                      "type":  "Chapter",
+                      "label":  "§11.18 Cost-plus(원가가산) 수익 인식 + Invoice vs PL 차이분석 (v4.0 추가, 보강 항목 F)",
+                      "attrs":  {
+                                    "num":  "11.18",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.19",
+                      "type":  "Chapter",
+                      "label":  "§11.19 예산 대비 실적 (Budget vs Actual) · 부서/코스트센터 관리회계 (v4.0 추가, 보강 항목 G)",
+                      "attrs":  {
+                                    "num":  "11.19",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.2",
+                      "type":  "Chapter",
+                      "label":  "§11.2 장부/원장",
+                      "attrs":  {
+                                    "num":  "11.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.20",
+                      "type":  "Chapter",
+                      "label":  "§11.20 그룹/모회사 연결보고 Export (HFM · Weblink) (v4.0 추가, 보강 항목 H)",
+                      "attrs":  {
+                                    "num":  "11.20",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.21",
+                      "type":  "Chapter",
+                      "label":  "§11.21 제조업 원가 · 재고 · 제조원가명세 (v4.0 추가, 보강 항목 O)",
+                      "attrs":  {
+                                    "num":  "11.21",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.3",
+                      "type":  "Chapter",
+                      "label":  "§11.3 결산",
+                      "attrs":  {
+                                    "num":  "11.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.3.1",
+                      "type":  "Chapter",
+                      "label":  "§11.3.1 현금흐름표 생성 (직접법/간접법)",
+                      "attrs":  {
+                                    "num":  "11.3.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.3.2",
+                      "type":  "Chapter",
+                      "label":  "§11.3.2 공시자료 생성 (재무제표 공시·주석·XBRL)",
+                      "attrs":  {
+                                    "num":  "11.3.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.4",
+                      "type":  "Chapter",
+                      "label":  "§11.4 매입매출/부가세",
+                      "attrs":  {
+                                    "num":  "11.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.5",
+                      "type":  "Chapter",
+                      "label":  "§11.5 세무/고정자산",
+                      "attrs":  {
+                                    "num":  "11.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.6",
+                      "type":  "Chapter",
+                      "label":  "§11.6 다중 회계기준 및 외부 데이터 변환 입력 (확정 #11, 최대 기능)",
+                      "attrs":  {
+                                    "num":  "11.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.6.1",
+                      "type":  "Chapter",
+                      "label":  "§11.6.1 다중 회계기준 이중 통화 환산(Dual Currency Translation) (추가검토 2.1)",
+                      "attrs":  {
+                                    "num":  "11.6.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.7",
+                      "type":  "Chapter",
+                      "label":  "§11.7 AI 기반 이상거래 탐지 (이상 전표/거래 탐지) (확정 #16)",
+                      "attrs":  {
+                                    "num":  "11.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.8",
+                      "type":  "Chapter",
+                      "label":  "§11.8 AI 조회 챗봇 (자연어 데이터 조회) (확정 #17)",
+                      "attrs":  {
+                                    "num":  "11.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:11.9",
+                      "type":  "Chapter",
+                      "label":  "§11.9 회계기간 · 마감 워크플로우 상세 (v2.0 추가)",
+                      "attrs":  {
+                                    "num":  "11.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:12",
+                      "type":  "Chapter",
+                      "label":  "§12 데이터 모델 통합",
+                      "attrs":  {
+                                    "num":  "12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:12.1",
+                      "type":  "Chapter",
+                      "label":  "§12.1 신규/확장 엔티티 (본 상세설계서)",
+                      "attrs":  {
+                                    "num":  "12.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:12.2",
+                      "type":  "Chapter",
+                      "label":  "§12.2 주요 상태값 (추가)",
+                      "attrs":  {
+                                    "num":  "12.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:12.3",
+                      "type":  "Chapter",
+                      "label":  "§12.3 테이블 설계 공통 제약",
+                      "attrs":  {
+                                    "num":  "12.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:13",
+                      "type":  "Chapter",
+                      "label":  "§13 서비스 / API 상세",
+                      "attrs":  {
+                                    "num":  "13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:13.1",
+                      "type":  "Chapter",
+                      "label":  "§13.1 서비스 (추가)",
+                      "attrs":  {
+                                    "num":  "13.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:13.2",
+                      "type":  "Chapter",
+                      "label":  "§13.2 API (추가/대표)",
+                      "attrs":  {
+                                    "num":  "13.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:13.3",
+                      "type":  "Chapter",
+                      "label":  "§13.3 API 공통 계약",
+                      "attrs":  {
+                                    "num":  "13.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:13.4",
+                      "type":  "Chapter",
+                      "label":  "§13.4 주요 상태값",
+                      "attrs":  {
+                                    "num":  "13.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14",
+                      "type":  "Chapter",
+                      "label":  "§14 배치 / 스케줄 상세",
+                      "attrs":  {
+                                    "num":  "14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14.1",
+                      "type":  "Chapter",
+                      "label":  "§14.1 내부 서비스 (변경/추가)",
+                      "attrs":  {
+                                    "num":  "14.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14.2",
+                      "type":  "Chapter",
+                      "label":  "§14.2 API 예시 (운영/테넌트)",
+                      "attrs":  {
+                                    "num":  "14.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14.3",
+                      "type":  "Chapter",
+                      "label":  "§14.3 데이터 분리 기준",
+                      "attrs":  {
+                                    "num":  "14.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14.4",
+                      "type":  "Chapter",
+                      "label":  "§14.4 주요 관계",
+                      "attrs":  {
+                                    "num":  "14.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:14.5",
+                      "type":  "Chapter",
+                      "label":  "§14.5 주요 상태값",
+                      "attrs":  {
+                                    "num":  "14.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:15",
+                      "type":  "Chapter",
+                      "label":  "§15 검증 / 오류 처리 상세",
+                      "attrs":  {
+                                    "num":  "15",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:15.1",
+                      "type":  "Chapter",
+                      "label":  "§15.1 내부 서비스",
+                      "attrs":  {
+                                    "num":  "15.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:15.2",
+                      "type":  "Chapter",
+                      "label":  "§15.2 API 예시",
+                      "attrs":  {
+                                    "num":  "15.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:16",
+                      "type":  "Chapter",
+                      "label":  "§16 배치 / 스케줄",
+                      "attrs":  {
+                                    "num":  "16",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:16.1",
+                      "type":  "Chapter",
+                      "label":  "§16.1 데이터 무결성·세법 유연성 상세 (SaaS 가이드 1·2 반영)",
+                      "attrs":  {
+                                    "num":  "16.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:16.2",
+                      "type":  "Chapter",
+                      "label":  "§16.2 프론트엔드 대량 그리드 성능·UX 상세 (SaaS 가이드 4 반영)",
+                      "attrs":  {
+                                    "num":  "16.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:17",
+                      "type":  "Chapter",
+                      "label":  "§17 보안 · 개인정보 · 데이터 변경이력 상세",
+                      "attrs":  {
+                                    "num":  "17",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:18",
+                      "type":  "Chapter",
+                      "label":  "§18 알림 · 커뮤니케이션 상세 (v2.0 신설)",
+                      "attrs":  {
+                                    "num":  "18",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:18.1",
+                      "type":  "Chapter",
+                      "label":  "§18.1 채널·발송 정책",
+                      "attrs":  {
+                                    "num":  "18.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:18.2",
+                      "type":  "Chapter",
+                      "label":  "§18.2 엔티티",
+                      "attrs":  {
+                                    "num":  "18.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:18.3",
+                      "type":  "Chapter",
+                      "label":  "§18.3 고객 협업 · 질의 · 미결항목 (Open Items / Query) 관리 (v4.0 추가, 보강 항목 J)",
+                      "attrs":  {
+                                    "num":  "18.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:19",
+                      "type":  "Chapter",
+                      "label":  "§19 시스템 운영 · 인프라 상세 (v2.0 신설)",
+                      "attrs":  {
+                                    "num":  "19",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:19.1",
+                      "type":  "Chapter",
+                      "label":  "§19.1 환경 분리 · 배포(CI/CD)",
+                      "attrs":  {
+                                    "num":  "19.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:19.2",
+                      "type":  "Chapter",
+                      "label":  "§19.2 관측성(Observability)",
+                      "attrs":  {
+                                    "num":  "19.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:19.3",
+                      "type":  "Chapter",
+                      "label":  "§19.3 SLO · 장애 대응 · 재해복구(DR)",
+                      "attrs":  {
+                                    "num":  "19.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:19.4",
+                      "type":  "Chapter",
+                      "label":  "§19.4 엔티티",
+                      "attrs":  {
+                                    "num":  "19.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2",
+                      "type":  "Chapter",
+                      "label":  "§2 멀티테넌시 아키텍처 상세 (확정 #8)",
+                      "attrs":  {
+                                    "num":  "2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.1",
+                      "type":  "Chapter",
+                      "label":  "§2.1 격리 모델 — 하이브리드(테넌트 티어 선택)",
+                      "attrs":  {
+                                    "num":  "2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.1.1",
+                      "type":  "Chapter",
+                      "label":  "§2.1.1 티어 전환 하이브리드 워크플로우 (추가검토 1.1)",
+                      "attrs":  {
+                                    "num":  "2.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.1.2",
+                      "type":  "Chapter",
+                      "label":  "§2.1.2 다중 WAS 분산 락(Distributed Lock) (추가검토 1.2)",
+                      "attrs":  {
+                                    "num":  "2.1.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.10",
+                      "type":  "Chapter",
+                      "label":  "§2.10 추가 검증 규칙 (11.1 보완)",
+                      "attrs":  {
+                                    "num":  "2.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.2",
+                      "type":  "Chapter",
+                      "label":  "§2.2 테넌트 컨텍스트 처리",
+                      "attrs":  {
+                                    "num":  "2.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.2.1",
+                      "type":  "Chapter",
+                      "label":  "§2.2.1 현금흐름 조정 워크플로우 (Cash Flow Adjustment Workflow)",
+                      "attrs":  {
+                                    "num":  "2.2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.3",
+                      "type":  "Chapter",
+                      "label":  "§2.3 성능 설계",
+                      "attrs":  {
+                                    "num":  "2.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.4",
+                      "type":  "Chapter",
+                      "label":  "§2.4 백업·복구",
+                      "attrs":  {
+                                    "num":  "2.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.5",
+                      "type":  "Chapter",
+                      "label":  "§2.5 엔티티",
+                      "attrs":  {
+                                    "num":  "2.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.6",
+                      "type":  "Chapter",
+                      "label":  "§2.6 외화 전표 처리",
+                      "attrs":  {
+                                    "num":  "2.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.7",
+                      "type":  "Chapter",
+                      "label":  "§2.7 전표 출력·인쇄",
+                      "attrs":  {
+                                    "num":  "2.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.8",
+                      "type":  "Chapter",
+                      "label":  "§2.8 동시성·상태 표시",
+                      "attrs":  {
+                                    "num":  "2.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:2.9",
+                      "type":  "Chapter",
+                      "label":  "§2.9 자금·증빙 연계 보조부",
+                      "attrs":  {
+                                    "num":  "2.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20",
+                      "type":  "Chapter",
+                      "label":  "§20 보안 강화 추가사항 (v2.0 신설)",
+                      "attrs":  {
+                                    "num":  "20",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20.1",
+                      "type":  "Chapter",
+                      "label":  "§20.1 키 관리 체계(KMS) 상세",
+                      "attrs":  {
+                                    "num":  "20.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20.2",
+                      "type":  "Chapter",
+                      "label":  "§20.2 취약점 관리 · 시큐어 개발",
+                      "attrs":  {
+                                    "num":  "20.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20.3",
+                      "type":  "Chapter",
+                      "label":  "§20.3 경계 방어 · 접근 통제 강화",
+                      "attrs":  {
+                                    "num":  "20.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20.4",
+                      "type":  "Chapter",
+                      "label":  "§20.4 데이터 유출 방지(DLP) · 대량 행위 통제",
+                      "attrs":  {
+                                    "num":  "20.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:20.5",
+                      "type":  "Chapter",
+                      "label":  "§20.5 침해사고 대응(IR) · 컴플라이언스",
+                      "attrs":  {
+                                    "num":  "20.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21",
+                      "type":  "Chapter",
+                      "label":  "§21 기장 방식 선택 (Bookkeeping Mode) 상세 (v3.0 신설)",
+                      "attrs":  {
+                                    "num":  "21",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.1",
+                      "type":  "Chapter",
+                      "label":  "§21.1 기장 모드 · 주기장",
+                      "attrs":  {
+                                    "num":  "21.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.10",
+                      "type":  "Chapter",
+                      "label":  "§21.10 개인정보·보안 엔티티",
+                      "attrs":  {
+                                    "num":  "21.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.11",
+                      "type":  "Chapter",
+                      "label":  "§21.11 통제 규칙 요약",
+                      "attrs":  {
+                                    "num":  "21.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.2",
+                      "type":  "Chapter",
+                      "label":  "§21.2 회사 설정 (BookkeepingConfig)",
+                      "attrs":  {
+                                    "num":  "21.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.3",
+                      "type":  "Chapter",
+                      "label":  "§21.3 설정 · 전환 워크플로우",
+                      "attrs":  {
+                                    "num":  "21.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.4",
+                      "type":  "Chapter",
+                      "label":  "§21.4 모드별 업무흐름 · 확인(Ack) · 신고 책임",
+                      "attrs":  {
+                                    "num":  "21.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.5",
+                      "type":  "Chapter",
+                      "label":  "§21.5 관리회사 기장 워크벤치",
+                      "attrs":  {
+                                    "num":  "21.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.6",
+                      "type":  "Chapter",
+                      "label":  "§21.6 HYBRID 분담 규칙 · 충돌 방지",
+                      "attrs":  {
+                                    "num":  "21.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.7",
+                      "type":  "Chapter",
+                      "label":  "§21.7 과금 (7.2 확장)",
+                      "attrs":  {
+                                    "num":  "21.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.8",
+                      "type":  "Chapter",
+                      "label":  "§21.8 데이터 변경이력 관리 (Audit Trail) EXT-16",
+                      "attrs":  {
+                                    "num":  "21.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:21.9",
+                      "type":  "Chapter",
+                      "label":  "§21.9 접근·보안 로그 및 이상행위 탐지",
+                      "attrs":  {
+                                    "num":  "21.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:22",
+                      "type":  "Chapter",
+                      "label":  "§22 구현 우선순위 · 마이그레이션",
+                      "attrs":  {
+                                    "num":  "22",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:22.1",
+                      "type":  "Chapter",
+                      "label":  "§22.1 기장 이관(전임 기장처 데이터 인수) 온보딩 (v4.0 추가, 보강 항목 N)",
+                      "attrs":  {
+                                    "num":  "22.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:23",
+                      "type":  "Chapter",
+                      "label":  "§23 잔여 확인사항 (최대 채택 전제, 정책·수치 확정 필요)",
+                      "attrs":  {
+                                    "num":  "23",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:24",
+                      "type":  "Chapter",
+                      "label":  "§24 산출물 연결 계획",
+                      "attrs":  {
+                                    "num":  "24",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25",
+                      "type":  "Chapter",
+                      "label":  "§25 Smart A 기준 화면 설계 (기능 준거 재설계) (문서 v2.1 재작성)",
+                      "attrs":  {
+                                    "num":  "25",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.0",
+                      "type":  "Chapter",
+                      "label":  "§25.0 Smart A 기준 화면 인벤토리 및 충돌 조정 정책",
+                      "attrs":  {
+                                    "num":  "25.0",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.0.1",
+                      "type":  "Chapter",
+                      "label":  "§25.0.1 화면 인벤토리 (SA-* 화면 ID 체계)",
+                      "attrs":  {
+                                    "num":  "25.0.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.0.2",
+                      "type":  "Chapter",
+                      "label":  "§25.0.2 충돌 조정 정책 (BK 코어 우선)",
+                      "attrs":  {
+                                    "num":  "25.0.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1",
+                      "type":  "Chapter",
+                      "label":  "§25.1 기초정보관리 (Smart A Ch.1)",
+                      "attrs":  {
+                                    "num":  "25.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.1",
+                      "type":  "Chapter",
+                      "label":  "§25.1.1 회사등록 SA-BAS-01",
+                      "attrs":  {
+                                    "num":  "25.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.10",
+                      "type":  "Chapter",
+                      "label":  "§25.1.10 업무용승용차 등록 SA-BAS-10",
+                      "attrs":  {
+                                    "num":  "25.1.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.11",
+                      "type":  "Chapter",
+                      "label":  "§25.1.11 외주처등록 SA-BAS-11",
+                      "attrs":  {
+                                    "num":  "25.1.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.12",
+                      "type":  "Chapter",
+                      "label":  "§25.1.12 거래처DM인쇄 SA-BAS-12",
+                      "attrs":  {
+                                    "num":  "25.1.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.13",
+                      "type":  "Chapter",
+                      "label":  "§25.1.13 거래처등코드변환 SA-BAS-13",
+                      "attrs":  {
+                                    "num":  "25.1.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.14",
+                      "type":  "Chapter",
+                      "label":  "§25.1.14 마감후이월(회계) SA-BAS-14",
+                      "attrs":  {
+                                    "num":  "25.1.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.2",
+                      "type":  "Chapter",
+                      "label":  "§25.1.2 권한설정 SA-BAS-02",
+                      "attrs":  {
+                                    "num":  "25.1.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.3",
+                      "type":  "Chapter",
+                      "label":  "§25.1.3 환경설정 SA-BAS-03",
+                      "attrs":  {
+                                    "num":  "25.1.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.4",
+                      "type":  "Chapter",
+                      "label":  "§25.1.4 부서등록(회계) SA-BAS-04",
+                      "attrs":  {
+                                    "num":  "25.1.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.5",
+                      "type":  "Chapter",
+                      "label":  "§25.1.5 사원등록(회계) SA-BAS-05",
+                      "attrs":  {
+                                    "num":  "25.1.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.6",
+                      "type":  "Chapter",
+                      "label":  "§25.1.6 거래처등록 SA-BAS-06",
+                      "attrs":  {
+                                    "num":  "25.1.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.7",
+                      "type":  "Chapter",
+                      "label":  "§25.1.7 계정과목 및 적요등록(회계) SA-BAS-07",
+                      "attrs":  {
+                                    "num":  "25.1.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.8",
+                      "type":  "Chapter",
+                      "label":  "§25.1.8 현장등록(회계) SA-BAS-08",
+                      "attrs":  {
+                                    "num":  "25.1.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.1.9",
+                      "type":  "Chapter",
+                      "label":  "§25.1.9 프로젝트등록(회계) SA-BAS-09",
+                      "attrs":  {
+                                    "num":  "25.1.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10",
+                      "type":  "Chapter",
+                      "label":  "§25.10 결산장부 (Smart A Ch.10)",
+                      "attrs":  {
+                                    "num":  "25.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.1",
+                      "type":  "Chapter",
+                      "label":  "§25.10.1 영수증수취명세서 SA-CLS-15",
+                      "attrs":  {
+                                    "num":  "25.10.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.2",
+                      "type":  "Chapter",
+                      "label":  "§25.10.2 경비등의송금명세서 SA-CLS-16",
+                      "attrs":  {
+                                    "num":  "25.10.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.3",
+                      "type":  "Chapter",
+                      "label":  "§25.10.3 지출증명서류합계표 SA-CLS-17",
+                      "attrs":  {
+                                    "num":  "25.10.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.4",
+                      "type":  "Chapter",
+                      "label":  "§25.10.4 기간별손익계산서 SA-CLS-18",
+                      "attrs":  {
+                                    "num":  "25.10.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.5",
+                      "type":  "Chapter",
+                      "label":  "§25.10.5 기간별원가명세서 SA-CLS-19",
+                      "attrs":  {
+                                    "num":  "25.10.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.6",
+                      "type":  "Chapter",
+                      "label":  "§25.10.6 중단사업손익계산서 SA-CLS-20",
+                      "attrs":  {
+                                    "num":  "25.10.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.10.7",
+                      "type":  "Chapter",
+                      "label":  "§25.10.7 중단사업원가명세서 SA-CLS-21",
+                      "attrs":  {
+                                    "num":  "25.10.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11",
+                      "type":  "Chapter",
+                      "label":  "§25.11 부가가치세 주요신고서류 (Smart A Ch.11)",
+                      "attrs":  {
+                                    "num":  "25.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.1",
+                      "type":  "Chapter",
+                      "label":  "§25.11.1 부가가치세신고서 SA-VAT-01",
+                      "attrs":  {
+                                    "num":  "25.11.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.2",
+                      "type":  "Chapter",
+                      "label":  "§25.11.2 세무리스크 자동검증(부가가치세 MRI) SA-VAT-02",
+                      "attrs":  {
+                                    "num":  "25.11.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.3",
+                      "type":  "Chapter",
+                      "label":  "§25.11.3 세금계산서합계표 SA-VAT-03",
+                      "attrs":  {
+                                    "num":  "25.11.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.4",
+                      "type":  "Chapter",
+                      "label":  "§25.11.4 신용카드매출전표등 수령명세서 SA-VAT-04",
+                      "attrs":  {
+                                    "num":  "25.11.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.5",
+                      "type":  "Chapter",
+                      "label":  "§25.11.5 신용카드매출전표 발행집계표 SA-VAT-05",
+                      "attrs":  {
+                                    "num":  "25.11.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.6",
+                      "type":  "Chapter",
+                      "label":  "§25.11.6 계산서합계표 SA-VAT-06",
+                      "attrs":  {
+                                    "num":  "25.11.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.7",
+                      "type":  "Chapter",
+                      "label":  "§25.11.7 부가가치세 전자신고 SA-VAT-07",
+                      "attrs":  {
+                                    "num":  "25.11.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.11.8",
+                      "type":  "Chapter",
+                      "label":  "§25.11.8 부가가치세 납부서 SA-VAT-08",
+                      "attrs":  {
+                                    "num":  "25.11.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12",
+                      "type":  "Chapter",
+                      "label":  "§25.12 업종별 첨부서류 (Smart A Ch.12)",
+                      "attrs":  {
+                                    "num":  "25.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.1",
+                      "type":  "Chapter",
+                      "label":  "§25.12.1 부동산임대공급가액명세서 SA-VAT-09",
+                      "attrs":  {
+                                    "num":  "25.12.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.10",
+                      "type":  "Chapter",
+                      "label":  "§25.12.10 농어업기자재 부가세환급신청 SA-VAT-18",
+                      "attrs":  {
+                                    "num":  "25.12.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.11",
+                      "type":  "Chapter",
+                      "label":  "§25.12.11 전자화폐결제명세서 SA-VAT-19",
+                      "attrs":  {
+                                    "num":  "25.12.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.12",
+                      "type":  "Chapter",
+                      "label":  "§25.12.12 전자신고세액공제신청서 SA-VAT-20",
+                      "attrs":  {
+                                    "num":  "25.12.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.13",
+                      "type":  "Chapter",
+                      "label":  "§25.12.13 입국경로 설치된 보세판매장 공급실적명세서 SA-VAT-21",
+                      "attrs":  {
+                                    "num":  "25.12.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.2",
+                      "type":  "Chapter",
+                      "label":  "§25.12.2 건물관리명세서 SA-VAT-10",
+                      "attrs":  {
+                                    "num":  "25.12.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.3",
+                      "type":  "Chapter",
+                      "label":  "§25.12.3 의제매입세액공제신고서 SA-VAT-11",
+                      "attrs":  {
+                                    "num":  "25.12.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.4",
+                      "type":  "Chapter",
+                      "label":  "§25.12.4 재활용폐자원세액공제신고서 SA-VAT-12",
+                      "attrs":  {
+                                    "num":  "25.12.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.5",
+                      "type":  "Chapter",
+                      "label":  "§25.12.5 구리스크랩등 매입세액공제신고서 SA-VAT-13",
+                      "attrs":  {
+                                    "num":  "25.12.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.6",
+                      "type":  "Chapter",
+                      "label":  "§25.12.6 현금매출명세서 SA-VAT-14",
+                      "attrs":  {
+                                    "num":  "25.12.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.7",
+                      "type":  "Chapter",
+                      "label":  "§25.12.7 동물진료용역매출명세서 SA-VAT-15",
+                      "attrs":  {
+                                    "num":  "25.12.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.8",
+                      "type":  "Chapter",
+                      "label":  "§25.12.8 면세유류공급명세서(갑) SA-VAT-16",
+                      "attrs":  {
+                                    "num":  "25.12.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.12.9",
+                      "type":  "Chapter",
+                      "label":  "§25.12.9 월별판매액합계표 SA-VAT-17",
+                      "attrs":  {
+                                    "num":  "25.12.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13",
+                      "type":  "Chapter",
+                      "label":  "§25.13 부가가치세 첨부서류 (Smart A Ch.13)",
+                      "attrs":  {
+                                    "num":  "25.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.1",
+                      "type":  "Chapter",
+                      "label":  "§25.13.1 공제받지못할매입세액명세서 SA-VAT-22",
+                      "attrs":  {
+                                    "num":  "25.13.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.2",
+                      "type":  "Chapter",
+                      "label":  "§25.13.2 건물등감가상각자산취득명세서 SA-VAT-23",
+                      "attrs":  {
+                                    "num":  "25.13.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.3",
+                      "type":  "Chapter",
+                      "label":  "§25.13.3 대손세액공제신고서 SA-VAT-24",
+                      "attrs":  {
+                                    "num":  "25.13.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.4",
+                      "type":  "Chapter",
+                      "label":  "§25.13.4 사업장별 부가세 납부/환급 신고명세 SA-VAT-25",
+                      "attrs":  {
+                                    "num":  "25.13.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.5",
+                      "type":  "Chapter",
+                      "label":  "§25.13.5 사업자단위과세 사업장별 부가세 SA-VAT-26",
+                      "attrs":  {
+                                    "num":  "25.13.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.6",
+                      "type":  "Chapter",
+                      "label":  "§25.13.6 과표수정 및 추가납부계산서(부가세) SA-VAT-27",
+                      "attrs":  {
+                                    "num":  "25.13.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.13.7",
+                      "type":  "Chapter",
+                      "label":  "§25.13.7 과표 및 세액 경정청구서(부가세) SA-VAT-28",
+                      "attrs":  {
+                                    "num":  "25.13.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14",
+                      "type":  "Chapter",
+                      "label":  "§25.14 영세율·수출관련서류 (Smart A Ch.14)",
+                      "attrs":  {
+                                    "num":  "25.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.1",
+                      "type":  "Chapter",
+                      "label":  "§25.14.1 수출실적명세서 SA-VAT-29",
+                      "attrs":  {
+                                    "num":  "25.14.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.10",
+                      "type":  "Chapter",
+                      "label":  "§25.14.10 외국인물품(외교관면세) 판매기록표 SA-VAT-38",
+                      "attrs":  {
+                                    "num":  "25.14.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.11",
+                      "type":  "Chapter",
+                      "label":  "§25.14.11 재화·용역 공급기록표 SA-VAT-39",
+                      "attrs":  {
+                                    "num":  "25.14.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.12",
+                      "type":  "Chapter",
+                      "label":  "§25.14.12 공급가액확정명세서 SA-VAT-40",
+                      "attrs":  {
+                                    "num":  "25.14.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.13",
+                      "type":  "Chapter",
+                      "label":  "§25.14.13 선박에 의한 운송용역 공급가액일람표 SA-VAT-41",
+                      "attrs":  {
+                                    "num":  "25.14.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.14",
+                      "type":  "Chapter",
+                      "label":  "§25.14.14 외항선박등에 제공한 재화·용역 일람표 SA-VAT-42",
+                      "attrs":  {
+                                    "num":  "25.14.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.15",
+                      "type":  "Chapter",
+                      "label":  "§25.14.15 영세율매출명세서 SA-VAT-43",
+                      "attrs":  {
+                                    "num":  "25.14.15",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.2",
+                      "type":  "Chapter",
+                      "label":  "§25.14.2 영세율첨부서류제출명세서 SA-VAT-30",
+                      "attrs":  {
+                                    "num":  "25.14.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.3",
+                      "type":  "Chapter",
+                      "label":  "§25.14.3 내국신용장/구매확인서 전자발급 SA-VAT-31",
+                      "attrs":  {
+                                    "num":  "25.14.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.4",
+                      "type":  "Chapter",
+                      "label":  "§25.14.4 외화획득명세서 SA-VAT-32",
+                      "attrs":  {
+                                    "num":  "25.14.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.5",
+                      "type":  "Chapter",
+                      "label":  "§25.14.5 관세환급금등명세서 SA-VAT-33",
+                      "attrs":  {
+                                    "num":  "25.14.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.6",
+                      "type":  "Chapter",
+                      "label":  "§25.14.6 외국인관광객 면세판매 및 환급명세서 SA-VAT-34",
+                      "attrs":  {
+                                    "num":  "25.14.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.7",
+                      "type":  "Chapter",
+                      "label":  "§25.14.7 외국인관광객 미용성형 의료용역 환급실적명세서 SA-VAT-35",
+                      "attrs":  {
+                                    "num":  "25.14.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.8",
+                      "type":  "Chapter",
+                      "label":  "§25.14.8 외국인관광객 숙박용역 환급실적명세서 SA-VAT-36",
+                      "attrs":  {
+                                    "num":  "25.14.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.14.9",
+                      "type":  "Chapter",
+                      "label":  "§25.14.9 외국인관광객 즉시환급 물품판매실적명세서 SA-VAT-37",
+                      "attrs":  {
+                                    "num":  "25.14.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15",
+                      "type":  "Chapter",
+                      "label":  "§25.15 기타 신고서류 (Smart A Ch.15)",
+                      "attrs":  {
+                                    "num":  "25.15",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.1",
+                      "type":  "Chapter",
+                      "label":  "§25.15.1 일반/간이과세 전환 시 재고품등 신고 SA-VAT-44",
+                      "attrs":  {
+                                    "num":  "25.15.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.2",
+                      "type":  "Chapter",
+                      "label":  "§25.15.2 과세사업전환 감가상각자산 신고서 SA-VAT-45",
+                      "attrs":  {
+                                    "num":  "25.15.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.3",
+                      "type":  "Chapter",
+                      "label":  "§25.15.3 매입자발행세금계산서합계표 SA-VAT-46",
+                      "attrs":  {
+                                    "num":  "25.15.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.4",
+                      "type":  "Chapter",
+                      "label":  "§25.15.4 과세유흥장소 과표신고서(신) SA-VAT-47",
+                      "attrs":  {
+                                    "num":  "25.15.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.5",
+                      "type":  "Chapter",
+                      "label":  "§25.15.5 사업용계좌 개설신고서 SA-VAT-48",
+                      "attrs":  {
+                                    "num":  "25.15.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.6",
+                      "type":  "Chapter",
+                      "label":  "§25.15.6 납부서 작성(전세목) SA-VAT-49",
+                      "attrs":  {
+                                    "num":  "25.15.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.15.7",
+                      "type":  "Chapter",
+                      "label":  "§25.15.7 사업양도신고서 SA-VAT-50",
+                      "attrs":  {
+                                    "num":  "25.15.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16",
+                      "type":  "Chapter",
+                      "label":  "§25.16 고정자산 (Smart A Ch.16)",
+                      "attrs":  {
+                                    "num":  "25.16",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.1",
+                      "type":  "Chapter",
+                      "label":  "§25.16.1 고정자산등록 SA-FA-01",
+                      "attrs":  {
+                                    "num":  "25.16.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.2",
+                      "type":  "Chapter",
+                      "label":  "§25.16.2 미상각분 감가상각계산 SA-FA-02",
+                      "attrs":  {
+                                    "num":  "25.16.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.3",
+                      "type":  "Chapter",
+                      "label":  "§25.16.3 양도자산 감가상각계산 SA-FA-03",
+                      "attrs":  {
+                                    "num":  "25.16.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.4",
+                      "type":  "Chapter",
+                      "label":  "§25.16.4 원가경비별 감가상각명세서 SA-FA-04",
+                      "attrs":  {
+                                    "num":  "25.16.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.5",
+                      "type":  "Chapter",
+                      "label":  "§25.16.5 고정자산관리대장 SA-FA-05",
+                      "attrs":  {
+                                    "num":  "25.16.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.6",
+                      "type":  "Chapter",
+                      "label":  "§25.16.6 현장 / 프로젝트 / 부서 자산명세서 SA-FA-06",
+                      "attrs":  {
+                                    "num":  "25.16.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.16.7",
+                      "type":  "Chapter",
+                      "label":  "§25.16.7 월별 감가상각비 계상 SA-FA-07",
+                      "attrs":  {
+                                    "num":  "25.16.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17",
+                      "type":  "Chapter",
+                      "label":  "§25.17 자금·예산관리 (Smart A Ch.17)",
+                      "attrs":  {
+                                    "num":  "25.17",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.1",
+                      "type":  "Chapter",
+                      "label":  "§25.17.1 일일자금명세/경리일보 SA-FND-01",
+                      "attrs":  {
+                                    "num":  "25.17.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.10",
+                      "type":  "Chapter",
+                      "label":  "§25.17.10 전기실행액입력 SA-FND-10",
+                      "attrs":  {
+                                    "num":  "25.17.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.11",
+                      "type":  "Chapter",
+                      "label":  "§25.17.11 전기예산 월별 실적현황 SA-FND-11",
+                      "attrs":  {
+                                    "num":  "25.17.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.12",
+                      "type":  "Chapter",
+                      "label":  "§25.17.12 전기예산 분기/반기 실적현황 SA-FND-12",
+                      "attrs":  {
+                                    "num":  "25.17.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.13",
+                      "type":  "Chapter",
+                      "label":  "§25.17.13 차기예산입력 SA-FND-13",
+                      "attrs":  {
+                                    "num":  "25.17.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.14",
+                      "type":  "Chapter",
+                      "label":  "§25.17.14 추정예산 SA-FND-14",
+                      "attrs":  {
+                                    "num":  "25.17.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.2",
+                      "type":  "Chapter",
+                      "label":  "§25.17.2 자금계획입력 SA-FND-02",
+                      "attrs":  {
+                                    "num":  "25.17.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.3",
+                      "type":  "Chapter",
+                      "label":  "§25.17.3 일일자금현황 SA-FND-03",
+                      "attrs":  {
+                                    "num":  "25.17.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.4",
+                      "type":  "Chapter",
+                      "label":  "§25.17.4 자금일월보 SA-FND-04",
+                      "attrs":  {
+                                    "num":  "25.17.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.5",
+                      "type":  "Chapter",
+                      "label":  "§25.17.5 자금입출금내역 SA-FND-05",
+                      "attrs":  {
+                                    "num":  "25.17.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.6",
+                      "type":  "Chapter",
+                      "label":  "§25.17.6 자금계획서 SA-FND-06",
+                      "attrs":  {
+                                    "num":  "25.17.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.7",
+                      "type":  "Chapter",
+                      "label":  "§25.17.7 예산입력 SA-FND-07",
+                      "attrs":  {
+                                    "num":  "25.17.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.8",
+                      "type":  "Chapter",
+                      "label":  "§25.17.8 당기예산 월별 실적현황 SA-FND-08",
+                      "attrs":  {
+                                    "num":  "25.17.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.17.9",
+                      "type":  "Chapter",
+                      "label":  "§25.17.9 당기예산 분기/반기 실적현황 SA-FND-09",
+                      "attrs":  {
+                                    "num":  "25.17.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.18",
+                      "type":  "Chapter",
+                      "label":  "§25.18 예적금·차입금 (Smart A Ch.18)",
+                      "attrs":  {
+                                    "num":  "25.18",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.18.1",
+                      "type":  "Chapter",
+                      "label":  "§25.18.1 예적금현황 SA-DEP-01",
+                      "attrs":  {
+                                    "num":  "25.18.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.18.2",
+                      "type":  "Chapter",
+                      "label":  "§25.18.2 차입금스케줄관리 SA-DEP-02",
+                      "attrs":  {
+                                    "num":  "25.18.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.18.3",
+                      "type":  "Chapter",
+                      "label":  "§25.18.3 차입금현황 SA-DEP-03",
+                      "attrs":  {
+                                    "num":  "25.18.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.19",
+                      "type":  "Chapter",
+                      "label":  "§25.19 어음·당좌관리 (Smart A Ch.19)",
+                      "attrs":  {
+                                    "num":  "25.19",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.19.1",
+                      "type":  "Chapter",
+                      "label":  "§25.19.1 받을어음현황 SA-BIL-01",
+                      "attrs":  {
+                                    "num":  "25.19.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.19.2",
+                      "type":  "Chapter",
+                      "label":  "§25.19.2 지급어음현황 SA-BIL-02",
+                      "attrs":  {
+                                    "num":  "25.19.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.19.3",
+                      "type":  "Chapter",
+                      "label":  "§25.19.3 어음집계표 SA-BIL-03",
+                      "attrs":  {
+                                    "num":  "25.19.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.19.4",
+                      "type":  "Chapter",
+                      "label":  "§25.19.4 당좌수표현황 SA-BIL-04",
+                      "attrs":  {
+                                    "num":  "25.19.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2",
+                      "type":  "Chapter",
+                      "label":  "§25.2 전기이월 I (Smart A Ch.2)",
+                      "attrs":  {
+                                    "num":  "25.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.1",
+                      "type":  "Chapter",
+                      "label":  "§25.2.1 전기분재무상태표 SA-OPN-01",
+                      "attrs":  {
+                                    "num":  "25.2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.2",
+                      "type":  "Chapter",
+                      "label":  "§25.2.2 전기분손익계산서 SA-OPN-02",
+                      "attrs":  {
+                                    "num":  "25.2.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.3",
+                      "type":  "Chapter",
+                      "label":  "§25.2.3 전기분원가명세서 SA-OPN-03",
+                      "attrs":  {
+                                    "num":  "25.2.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.4",
+                      "type":  "Chapter",
+                      "label":  "§25.2.4 전기분이익잉여금처분계산서 SA-OPN-04",
+                      "attrs":  {
+                                    "num":  "25.2.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.5",
+                      "type":  "Chapter",
+                      "label":  "§25.2.5 전기분자본변동표 SA-OPN-05",
+                      "attrs":  {
+                                    "num":  "25.2.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.6",
+                      "type":  "Chapter",
+                      "label":  "§25.2.6 전기분현금흐름표 SA-OPN-06",
+                      "attrs":  {
+                                    "num":  "25.2.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.7",
+                      "type":  "Chapter",
+                      "label":  "§25.2.7 거래처별초기이월 SA-OPN-07",
+                      "attrs":  {
+                                    "num":  "25.2.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.2.8",
+                      "type":  "Chapter",
+                      "label":  "§25.2.8 부서/사원별초기이월 SA-OPN-08",
+                      "attrs":  {
+                                    "num":  "25.2.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20",
+                      "type":  "Chapter",
+                      "label":  "§25.20 데이터관리 (Smart A Ch.20)",
+                      "attrs":  {
+                                    "num":  "25.20",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.1",
+                      "type":  "Chapter",
+                      "label":  "§25.20.1 삭제전표복구 SA-DAT-01",
+                      "attrs":  {
+                                    "num":  "25.20.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.2",
+                      "type":  "Chapter",
+                      "label":  "§25.20.2 데이터백업 / 데이터복구(기수별) SA-DAT-02",
+                      "attrs":  {
+                                    "num":  "25.20.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.3",
+                      "type":  "Chapter",
+                      "label":  "§25.20.3 SmartA로 보낼 데이터 만들기(기수별) SA-DAT-03",
+                      "attrs":  {
+                                    "num":  "25.20.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.4",
+                      "type":  "Chapter",
+                      "label":  "§25.20.4 SmartA로 보낼 데이터 만들기(월별/분기별) SA-DAT-04",
+                      "attrs":  {
+                                    "num":  "25.20.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.5",
+                      "type":  "Chapter",
+                      "label":  "§25.20.5 SmartA 데이터올리기(전체기수) SA-DAT-05",
+                      "attrs":  {
+                                    "num":  "25.20.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.6",
+                      "type":  "Chapter",
+                      "label":  "§25.20.6 SmartA 데이터올리기(월별/분기별) SA-DAT-06",
+                      "attrs":  {
+                                    "num":  "25.20.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.20.7",
+                      "type":  "Chapter",
+                      "label":  "§25.20.7 기수변경 SA-DAT-07",
+                      "attrs":  {
+                                    "num":  "25.20.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3",
+                      "type":  "Chapter",
+                      "label":  "§25.3 전기이월 II·전기현장관리 (Smart A Ch.3)",
+                      "attrs":  {
+                                    "num":  "25.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.1",
+                      "type":  "Chapter",
+                      "label":  "§25.3.1 전기 기간별손익계산서 SA-OPN-09",
+                      "attrs":  {
+                                    "num":  "25.3.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.10",
+                      "type":  "Chapter",
+                      "label":  "§25.3.10 외주처별초기이월 SA-OPN-18",
+                      "attrs":  {
+                                    "num":  "25.3.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.11",
+                      "type":  "Chapter",
+                      "label":  "§25.3.11 현장별/거래처별초기이월 SA-OPN-19",
+                      "attrs":  {
+                                    "num":  "25.3.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.2",
+                      "type":  "Chapter",
+                      "label":  "§25.3.2 전기 기간별원가계산서(원가명세서) SA-OPN-10",
+                      "attrs":  {
+                                    "num":  "25.3.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.3",
+                      "type":  "Chapter",
+                      "label":  "§25.3.3 전기 프로젝트손익현황 SA-OPN-11",
+                      "attrs":  {
+                                    "num":  "25.3.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.4",
+                      "type":  "Chapter",
+                      "label":  "§25.3.4 전기 프로젝트원가현황 SA-OPN-12",
+                      "attrs":  {
+                                    "num":  "25.3.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.5",
+                      "type":  "Chapter",
+                      "label":  "§25.3.5 프로젝트초기이월 SA-OPN-13",
+                      "attrs":  {
+                                    "num":  "25.3.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.6",
+                      "type":  "Chapter",
+                      "label":  "§25.3.6 전기 중단사업손익계산서 SA-OPN-14",
+                      "attrs":  {
+                                    "num":  "25.3.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.7",
+                      "type":  "Chapter",
+                      "label":  "§25.3.7 전기 중단사업원가명세서 SA-OPN-15",
+                      "attrs":  {
+                                    "num":  "25.3.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.8",
+                      "type":  "Chapter",
+                      "label":  "§25.3.8 중도시산표 SA-OPN-16",
+                      "attrs":  {
+                                    "num":  "25.3.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.3.9",
+                      "type":  "Chapter",
+                      "label":  "§25.3.9 미완성공사초기이월 SA-OPN-17",
+                      "attrs":  {
+                                    "num":  "25.3.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.4",
+                      "type":  "Chapter",
+                      "label":  "§25.4 전표관리 (Smart A Ch.4)",
+                      "attrs":  {
+                                    "num":  "25.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.4.1",
+                      "type":  "Chapter",
+                      "label":  "§25.4.1 일반전표입력 SA-JNL-01",
+                      "attrs":  {
+                                    "num":  "25.4.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.4.2",
+                      "type":  "Chapter",
+                      "label":  "§25.4.2 매입매출전표입력 SA-JNL-02",
+                      "attrs":  {
+                                    "num":  "25.4.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.4.3",
+                      "type":  "Chapter",
+                      "label":  "§25.4.3 정기청구입력 SA-JNL-03",
+                      "attrs":  {
+                                    "num":  "25.4.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.4.4",
+                      "type":  "Chapter",
+                      "label":  "§25.4.4 물류전표처리 SA-JNL-04",
+                      "attrs":  {
+                                    "num":  "25.4.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5",
+                      "type":  "Chapter",
+                      "label":  "§25.5 자동전표처리 (Smart A Ch.5)",
+                      "attrs":  {
+                                    "num":  "25.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.1",
+                      "type":  "Chapter",
+                      "label":  "§25.5.1 수집정보등록 SA-ATX-01",
+                      "attrs":  {
+                                    "num":  "25.5.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.10",
+                      "type":  "Chapter",
+                      "label":  "§25.5.10 ScrappingBoard SA-ATX-10",
+                      "attrs":  {
+                                    "num":  "25.5.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.2",
+                      "type":  "Chapter",
+                      "label":  "§25.5.2 전자세금계산서 SA-ATX-02",
+                      "attrs":  {
+                                    "num":  "25.5.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.3",
+                      "type":  "Chapter",
+                      "label":  "§25.5.3 전자계산서 SA-ATX-03",
+                      "attrs":  {
+                                    "num":  "25.5.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.4",
+                      "type":  "Chapter",
+                      "label":  "§25.5.4 신용카드 SA-ATX-04",
+                      "attrs":  {
+                                    "num":  "25.5.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.5",
+                      "type":  "Chapter",
+                      "label":  "§25.5.5 현금영수증 SA-ATX-05",
+                      "attrs":  {
+                                    "num":  "25.5.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.6",
+                      "type":  "Chapter",
+                      "label":  "§25.5.6 통장 SA-ATX-06",
+                      "attrs":  {
+                                    "num":  "25.5.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.7",
+                      "type":  "Chapter",
+                      "label":  "§25.5.7 자료수집현황 SA-ATX-07",
+                      "attrs":  {
+                                    "num":  "25.5.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.8",
+                      "type":  "Chapter",
+                      "label":  "§25.5.8 전표전송현황 SA-ATX-08",
+                      "attrs":  {
+                                    "num":  "25.5.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.5.9",
+                      "type":  "Chapter",
+                      "label":  "§25.5.9 국세청자료검증 및 사이트비교 SA-ATX-09",
+                      "attrs":  {
+                                    "num":  "25.5.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6",
+                      "type":  "Chapter",
+                      "label":  "§25.6 주요장부 (Smart A Ch.6)",
+                      "attrs":  {
+                                    "num":  "25.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.1",
+                      "type":  "Chapter",
+                      "label":  "§25.6.1 전표출력 SA-LDG-01",
+                      "attrs":  {
+                                    "num":  "25.6.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.2",
+                      "type":  "Chapter",
+                      "label":  "§25.6.2 분개장 SA-LDG-02",
+                      "attrs":  {
+                                    "num":  "25.6.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.3",
+                      "type":  "Chapter",
+                      "label":  "§25.6.3 일/월계표 SA-LDG-03",
+                      "attrs":  {
+                                    "num":  "25.6.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.4",
+                      "type":  "Chapter",
+                      "label":  "§25.6.4 총계정원장 SA-LDG-04",
+                      "attrs":  {
+                                    "num":  "25.6.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.5",
+                      "type":  "Chapter",
+                      "label":  "§25.6.5 현금출납장 SA-LDG-05",
+                      "attrs":  {
+                                    "num":  "25.6.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.6",
+                      "type":  "Chapter",
+                      "label":  "§25.6.6 계정별원장 SA-LDG-06",
+                      "attrs":  {
+                                    "num":  "25.6.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.7",
+                      "type":  "Chapter",
+                      "label":  "§25.6.7 거래처원장 SA-LDG-07",
+                      "attrs":  {
+                                    "num":  "25.6.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.8",
+                      "type":  "Chapter",
+                      "label":  "§25.6.8 총괄원장 SA-LDG-08",
+                      "attrs":  {
+                                    "num":  "25.6.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.6.9",
+                      "type":  "Chapter",
+                      "label":  "§25.6.9 매입매출장 SA-LDG-09",
+                      "attrs":  {
+                                    "num":  "25.6.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7",
+                      "type":  "Chapter",
+                      "label":  "§25.7 보조장부 I (Smart A Ch.7)",
+                      "attrs":  {
+                                    "num":  "25.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.1",
+                      "type":  "Chapter",
+                      "label":  "§25.7.1 총계정관리원장 SA-LDG-10",
+                      "attrs":  {
+                                    "num":  "25.7.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.2",
+                      "type":  "Chapter",
+                      "label":  "§25.7.2 세금/계산서 발급 및 수취현황 SA-LDG-11",
+                      "attrs":  {
+                                    "num":  "25.7.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.3",
+                      "type":  "Chapter",
+                      "label":  "§25.7.3 신용카드매출전표 발행현황 SA-LDG-12",
+                      "attrs":  {
+                                    "num":  "25.7.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.4",
+                      "type":  "Chapter",
+                      "label":  "§25.7.4 적요별원장 SA-LDG-13",
+                      "attrs":  {
+                                    "num":  "25.7.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.5",
+                      "type":  "Chapter",
+                      "label":  "§25.7.5 전도금원장 SA-LDG-14",
+                      "attrs":  {
+                                    "num":  "25.7.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.6",
+                      "type":  "Chapter",
+                      "label":  "§25.7.6 공사대장 SA-LDG-15",
+                      "attrs":  {
+                                    "num":  "25.7.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.7",
+                      "type":  "Chapter",
+                      "label":  "§25.7.7 외주대장 SA-LDG-16",
+                      "attrs":  {
+                                    "num":  "25.7.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.8",
+                      "type":  "Chapter",
+                      "label":  "§25.7.8 운행기록부(업무용승용차) SA-LDG-17",
+                      "attrs":  {
+                                    "num":  "25.7.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.7.9",
+                      "type":  "Chapter",
+                      "label":  "§25.7.9 차량비용현황(업무용승용차) SA-LDG-18",
+                      "attrs":  {
+                                    "num":  "25.7.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8",
+                      "type":  "Chapter",
+                      "label":  "§25.8 보조장부 II (Smart A Ch.8)",
+                      "attrs":  {
+                                    "num":  "25.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.1",
+                      "type":  "Chapter",
+                      "label":  "§25.8.1 현장/프로젝트/부서 원가안분 SA-LDG-19",
+                      "attrs":  {
+                                    "num":  "25.8.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.10",
+                      "type":  "Chapter",
+                      "label":  "§25.8.10 프로젝트 누적손익현황 SA-LDG-28",
+                      "attrs":  {
+                                    "num":  "25.8.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.11",
+                      "type":  "Chapter",
+                      "label":  "§25.8.11 프로젝트 누적원가현황 SA-LDG-29",
+                      "attrs":  {
+                                    "num":  "25.8.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.2",
+                      "type":  "Chapter",
+                      "label":  "§25.8.2 현장/프로젝트/부서 원가현황 SA-LDG-20",
+                      "attrs":  {
+                                    "num":  "25.8.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.3",
+                      "type":  "Chapter",
+                      "label":  "§25.8.3 현장/프로젝트/부서 손익안분 SA-LDG-21",
+                      "attrs":  {
+                                    "num":  "25.8.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.4",
+                      "type":  "Chapter",
+                      "label":  "§25.8.4 현장/프로젝트/부서 손익현황 SA-LDG-22",
+                      "attrs":  {
+                                    "num":  "25.8.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.5",
+                      "type":  "Chapter",
+                      "label":  "§25.8.5 현장/프로젝트/부서 원가손익 SA-LDG-23",
+                      "attrs":  {
+                                    "num":  "25.8.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.6",
+                      "type":  "Chapter",
+                      "label":  "§25.8.6 현장별 공사원가집계표 SA-LDG-24",
+                      "attrs":  {
+                                    "num":  "25.8.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.7",
+                      "type":  "Chapter",
+                      "label":  "§25.8.7 현장별 공사비용현황 SA-LDG-25",
+                      "attrs":  {
+                                    "num":  "25.8.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.8",
+                      "type":  "Chapter",
+                      "label":  "§25.8.8 현장별 잔액명세서 SA-LDG-26",
+                      "attrs":  {
+                                    "num":  "25.8.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.8.9",
+                      "type":  "Chapter",
+                      "label":  "§25.8.9 현장/프로젝트/부서 거래처원장 SA-LDG-27",
+                      "attrs":  {
+                                    "num":  "25.8.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9",
+                      "type":  "Chapter",
+                      "label":  "§25.9 결산재무제표 (Smart A Ch.9)",
+                      "attrs":  {
+                                    "num":  "25.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.1",
+                      "type":  "Chapter",
+                      "label":  "§25.9.1 결산자료입력 SA-CLS-01",
+                      "attrs":  {
+                                    "num":  "25.9.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.10",
+                      "type":  "Chapter",
+                      "label":  "§25.9.10 현금및예금잔액검토 SA-CLS-10",
+                      "attrs":  {
+                                    "num":  "25.9.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.11",
+                      "type":  "Chapter",
+                      "label":  "§25.9.11 신용카드 및 상품권 등 사용내역 검토서식 SA-CLS-11",
+                      "attrs":  {
+                                    "num":  "25.9.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.12",
+                      "type":  "Chapter",
+                      "label":  "§25.9.12 AI 합계잔액시산표 SA-CLS-12",
+                      "attrs":  {
+                                    "num":  "25.9.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.13",
+                      "type":  "Chapter",
+                      "label":  "§25.9.13 재무제표 일괄출력 SA-CLS-13",
+                      "attrs":  {
+                                    "num":  "25.9.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.14",
+                      "type":  "Chapter",
+                      "label":  "§25.9.14 경영정보(안정성·수익성·활동성 분석) SA-CLS-14",
+                      "attrs":  {
+                                    "num":  "25.9.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.2",
+                      "type":  "Chapter",
+                      "label":  "§25.9.2 합계잔액시산표 SA-CLS-02",
+                      "attrs":  {
+                                    "num":  "25.9.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.3",
+                      "type":  "Chapter",
+                      "label":  "§25.9.3 재무상태표 SA-CLS-03",
+                      "attrs":  {
+                                    "num":  "25.9.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.4",
+                      "type":  "Chapter",
+                      "label":  "§25.9.4 손익계산서 SA-CLS-04",
+                      "attrs":  {
+                                    "num":  "25.9.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.5",
+                      "type":  "Chapter",
+                      "label":  "§25.9.5 제조원가명세서 SA-CLS-05",
+                      "attrs":  {
+                                    "num":  "25.9.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.6",
+                      "type":  "Chapter",
+                      "label":  "§25.9.6 이익잉여금처분계산서 SA-CLS-06",
+                      "attrs":  {
+                                    "num":  "25.9.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.7",
+                      "type":  "Chapter",
+                      "label":  "§25.9.7 자본변동표 SA-CLS-07",
+                      "attrs":  {
+                                    "num":  "25.9.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.8",
+                      "type":  "Chapter",
+                      "label":  "§25.9.8 현금흐름표 SA-CLS-08",
+                      "attrs":  {
+                                    "num":  "25.9.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:25.9.9",
+                      "type":  "Chapter",
+                      "label":  "§25.9.9 결산부속명세서 SA-CLS-09",
+                      "attrs":  {
+                                    "num":  "25.9.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3",
+                      "type":  "Chapter",
+                      "label":  "§3 인증 · 계정 보안 상세 (확정 #7)",
+                      "attrs":  {
+                                    "num":  "3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.1",
+                      "type":  "Chapter",
+                      "label":  "§3.1 인증 수단 (전 수단 지원)",
+                      "attrs":  {
+                                    "num":  "3.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.1.1",
+                      "type":  "Chapter",
+                      "label":  "§3.1.1 기술적 구현 매커니즘",
+                      "attrs":  {
+                                    "num":  "3.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.2",
+                      "type":  "Chapter",
+                      "label":  "§3.2 적용 정책 (최대 강제)",
+                      "attrs":  {
+                                    "num":  "3.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.2.1",
+                      "type":  "Chapter",
+                      "label":  "§3.2.1 세무대리인 전용 엔티티 속성 확장 (UserCredential)",
+                      "attrs":  {
+                                    "num":  "3.2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.2.2",
+                      "type":  "Chapter",
+                      "label":  "§3.2.2 세무대리인 가드레일(Guardrail) 통제 규칙",
+                      "attrs":  {
+                                    "num":  "3.2.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.3",
+                      "type":  "Chapter",
+                      "label":  "§3.3 비밀번호 정책 파라미터(기본값, 회사 강화 가능)",
+                      "attrs":  {
+                                    "num":  "3.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.4",
+                      "type":  "Chapter",
+                      "label":  "§3.4 세션 관리",
+                      "attrs":  {
+                                    "num":  "3.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:3.5",
+                      "type":  "Chapter",
+                      "label":  "§3.5 엔티티",
+                      "attrs":  {
+                                    "num":  "3.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4",
+                      "type":  "Chapter",
+                      "label":  "§4 권한 · 위임 관리 상세 (확정 #2)",
+                      "attrs":  {
+                                    "num":  "4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.1",
+                      "type":  "Chapter",
+                      "label":  "§4.1 완전 위임 관리(Delegated Administration)",
+                      "attrs":  {
+                                    "num":  "4.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.1.1",
+                      "type":  "Chapter",
+                      "label":  "§4.1.1 데이터 티어링(Data Tiering) 아키텍처",
+                      "attrs":  {
+                                    "num":  "4.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.1.2",
+                      "type":  "Chapter",
+                      "label":  "§4.1.2 콜드 데이터 조회 아키텍처 (Serverless Query 연계)",
+                      "attrs":  {
+                                    "num":  "4.1.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.10",
+                      "type":  "Chapter",
+                      "label":  "§4.10 매입매출·부가세",
+                      "attrs":  {
+                                    "num":  "4.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.11",
+                      "type":  "Chapter",
+                      "label":  "§4.11 세무·고정자산",
+                      "attrs":  {
+                                    "num":  "4.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.12",
+                      "type":  "Chapter",
+                      "label":  "§4.12 자금·채권채무",
+                      "attrs":  {
+                                    "num":  "4.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.2",
+                      "type":  "Chapter",
+                      "label":  "§4.2 관리회사 정책 상한(가드레일)",
+                      "attrs":  {
+                                    "num":  "4.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.3",
+                      "type":  "Chapter",
+                      "label":  "§4.3 권한 모델 (RBAC + 속성 제약)",
+                      "attrs":  {
+                                    "num":  "4.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.4",
+                      "type":  "Chapter",
+                      "label":  "§4.4 외주 세무대리인(수임처) 권한 위임·가드레일 (추가검토 3.2)",
+                      "attrs":  {
+                                    "num":  "4.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.5",
+                      "type":  "Chapter",
+                      "label":  "§4.5 기장 담당 Role · 결재선 · 행위자 표식 (v3.0 추가)",
+                      "attrs":  {
+                                    "num":  "4.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.6",
+                      "type":  "Chapter",
+                      "label":  "§4.6 엔티티",
+                      "attrs":  {
+                                    "num":  "4.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.7",
+                      "type":  "Chapter",
+                      "label":  "§4.7 권한 검증 처리 흐름",
+                      "attrs":  {
+                                    "num":  "4.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.8",
+                      "type":  "Chapter",
+                      "label":  "§4.8 현금흐름표",
+                      "attrs":  {
+                                    "num":  "4.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:4.9",
+                      "type":  "Chapter",
+                      "label":  "§4.9 공시자료·XBRL",
+                      "attrs":  {
+                                    "num":  "4.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5",
+                      "type":  "Chapter",
+                      "label":  "§5 관리회사 관리자 접근 거버넌스 + 긴급 대행 (확정 #1, #3)",
+                      "attrs":  {
+                                    "num":  "5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.1",
+                      "type":  "Chapter",
+                      "label":  "§5.1 접근 모드 (4단계, v3.0 확장)",
+                      "attrs":  {
+                                    "num":  "5.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.1.1",
+                      "type":  "Chapter",
+                      "label":  "§5.1.1 기장 운영 모델",
+                      "attrs":  {
+                                    "num":  "5.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.10",
+                      "type":  "Chapter",
+                      "label":  "§5.10 로그인 시도 통제 및 계정 잠금",
+                      "attrs":  {
+                                    "num":  "5.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.11",
+                      "type":  "Chapter",
+                      "label":  "§5.11 세션 관리",
+                      "attrs":  {
+                                    "num":  "5.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.12",
+                      "type":  "Chapter",
+                      "label":  "§5.12 비밀번호 재설정·계정 복구",
+                      "attrs":  {
+                                    "num":  "5.12",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.13",
+                      "type":  "Chapter",
+                      "label":  "§5.13 로그인 이력 및 이상 로그인 탐지",
+                      "attrs":  {
+                                    "num":  "5.13",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.14",
+                      "type":  "Chapter",
+                      "label":  "§5.14 인증 관련 엔티티",
+                      "attrs":  {
+                                    "num":  "5.14",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.2",
+                      "type":  "Chapter",
+                      "label":  "§5.2 접근 통제 규칙",
+                      "attrs":  {
+                                    "num":  "5.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.2.1",
+                      "type":  "Chapter",
+                      "label":  "§5.2.1 기장 수행(BOOKKEEPING) 모드 통제 (v3.0 추가)",
+                      "attrs":  {
+                                    "num":  "5.2.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.3",
+                      "type":  "Chapter",
+                      "label":  "§5.3 긴급 대행(Break-glass Operate) — 최대 기능 + 최강 통제",
+                      "attrs":  {
+                                    "num":  "5.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.3.1",
+                      "type":  "Chapter",
+                      "label":  "§5.3.1 Break-glass 세션 화면 녹화(Session Recording) (추가검토 3.1)",
+                      "attrs":  {
+                                    "num":  "5.3.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.4",
+                      "type":  "Chapter",
+                      "label":  "§5.4 엔티티",
+                      "attrs":  {
+                                    "num":  "5.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.5",
+                      "type":  "Chapter",
+                      "label":  "§5.5 직무분리(SOD) 규칙 EXT-07",
+                      "attrs":  {
+                                    "num":  "5.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.6",
+                      "type":  "Chapter",
+                      "label":  "§5.6 권한 검증 처리 흐름",
+                      "attrs":  {
+                                    "num":  "5.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.7",
+                      "type":  "Chapter",
+                      "label":  "§5.7 인증·로그인 보안 개요",
+                      "attrs":  {
+                                    "num":  "5.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.8",
+                      "type":  "Chapter",
+                      "label":  "§5.8 비밀번호 정책",
+                      "attrs":  {
+                                    "num":  "5.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:5.9",
+                      "type":  "Chapter",
+                      "label":  "§5.9 다단계 인증(2FA/MFA)",
+                      "attrs":  {
+                                    "num":  "5.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6",
+                      "type":  "Chapter",
+                      "label":  "§6 공통 표준 카탈로그 · 배포 거버넌스 (확정 #4)",
+                      "attrs":  {
+                                    "num":  "6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.1",
+                      "type":  "Chapter",
+                      "label":  "§6.1 표준 카탈로그",
+                      "attrs":  {
+                                    "num":  "6.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.1.1",
+                      "type":  "Chapter",
+                      "label":  "§6.1.1 다국어 계정과목·보고서 출력(L10N) (v4.0 추가, 보강 항목 I)",
+                      "attrs":  {
+                                    "num":  "6.1.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.10",
+                      "type":  "Chapter",
+                      "label":  "§6.10 전표/장부 기능 매핑",
+                      "attrs":  {
+                                    "num":  "6.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.2",
+                      "type":  "Chapter",
+                      "label":  "§6.2 버전 수명주기",
+                      "attrs":  {
+                                    "num":  "6.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.3",
+                      "type":  "Chapter",
+                      "label":  "§6.3 배포 모드 (3모드)",
+                      "attrs":  {
+                                    "num":  "6.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.4",
+                      "type":  "Chapter",
+                      "label":  "§6.4 엔티티",
+                      "attrs":  {
+                                    "num":  "6.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.5",
+                      "type":  "Chapter",
+                      "label":  "§6.5 외화 전표 BASE-08 연계",
+                      "attrs":  {
+                                    "num":  "6.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.6",
+                      "type":  "Chapter",
+                      "label":  "§6.6 전표 생명주기",
+                      "attrs":  {
+                                    "num":  "6.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.7",
+                      "type":  "Chapter",
+                      "label":  "§6.7 결재·승인 및 고객 입력 전표 검토 흐름",
+                      "attrs":  {
+                                    "num":  "6.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.8",
+                      "type":  "Chapter",
+                      "label":  "§6.8 동시성·상태 표시 EXT-04",
+                      "attrs":  {
+                                    "num":  "6.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:6.9",
+                      "type":  "Chapter",
+                      "label":  "§6.9 전표 출력 BKJE-17",
+                      "attrs":  {
+                                    "num":  "6.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7",
+                      "type":  "Chapter",
+                      "label":  "§7 구독 · 요금 · 데이터 수명주기 (확정 #5)",
+                      "attrs":  {
+                                    "num":  "7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.1",
+                      "type":  "Chapter",
+                      "label":  "§7.1 구독 수명주기",
+                      "attrs":  {
+                                    "num":  "7.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.10",
+                      "type":  "Chapter",
+                      "label":  "§7.10 결재 API",
+                      "attrs":  {
+                                    "num":  "7.10",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.11",
+                      "type":  "Chapter",
+                      "label":  "§7.11 결재 통제 규칙",
+                      "attrs":  {
+                                    "num":  "7.11",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.2",
+                      "type":  "Chapter",
+                      "label":  "§7.2 요금/과금",
+                      "attrs":  {
+                                    "num":  "7.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.3",
+                      "type":  "Chapter",
+                      "label":  "§7.3 데이터 내보내기·보존·파기",
+                      "attrs":  {
+                                    "num":  "7.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.4",
+                      "type":  "Chapter",
+                      "label":  "§7.4 엔티티",
+                      "attrs":  {
+                                    "num":  "7.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.5",
+                      "type":  "Chapter",
+                      "label":  "§7.5 데이터 티어링 · 콜드 스토리지 아카이빙 (추가검토 4.1)",
+                      "attrs":  {
+                                    "num":  "7.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.6",
+                      "type":  "Chapter",
+                      "label":  "§7.6 결재 상태 및 이력",
+                      "attrs":  {
+                                    "num":  "7.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.7",
+                      "type":  "Chapter",
+                      "label":  "§7.7 결재 알림",
+                      "attrs":  {
+                                    "num":  "7.7",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.8",
+                      "type":  "Chapter",
+                      "label":  "§7.8 두 사용자 그룹 결재 연계",
+                      "attrs":  {
+                                    "num":  "7.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:7.9",
+                      "type":  "Chapter",
+                      "label":  "§7.9 결재 엔티티",
+                      "attrs":  {
+                                    "num":  "7.9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8",
+                      "type":  "Chapter",
+                      "label":  "§8 외부 연계 인증정보 볼트 (확정 #6)",
+                      "attrs":  {
+                                    "num":  "8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8.1",
+                      "type":  "Chapter",
+                      "label":  "§8.1 테넌트별 시크릿 볼트",
+                      "attrs":  {
+                                    "num":  "8.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8.2",
+                      "type":  "Chapter",
+                      "label":  "§8.2 관리·보안",
+                      "attrs":  {
+                                    "num":  "8.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8.3",
+                      "type":  "Chapter",
+                      "label":  "§8.3 엔티티",
+                      "attrs":  {
+                                    "num":  "8.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8.4",
+                      "type":  "Chapter",
+                      "label":  "§8.4 외부 데이터 수집 비동기·ETL 파이프라인 (SaaS 가이드 3 반영)",
+                      "attrs":  {
+                                    "num":  "8.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:8.8",
+                      "type":  "Chapter",
+                      "label":  "§8.8 자금항목과 액션바 기능 제한",
+                      "attrs":  {
+                                    "num":  "8.8",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9",
+                      "type":  "Chapter",
+                      "label":  "§9 관리차원 엔진: 사업장 · 코스트센터 · 부서 · 프로젝트 · 현장 · 사원 (확정 #9)",
+                      "attrs":  {
+                                    "num":  "9",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.1",
+                      "type":  "Chapter",
+                      "label":  "§9.1 범용 차원 프레임워크",
+                      "attrs":  {
+                                    "num":  "9.1",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.2",
+                      "type":  "Chapter",
+                      "label":  "§9.2 사업장 vs 코스트센터 vs 부서 역할 구분",
+                      "attrs":  {
+                                    "num":  "9.2",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.3",
+                      "type":  "Chapter",
+                      "label":  "§9.3 회사 환경설정(DimensionConfig) — 차원별 상세",
+                      "attrs":  {
+                                    "num":  "9.3",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.4",
+                      "type":  "Chapter",
+                      "label":  "§9.4 운영 규칙(최대 기능)",
+                      "attrs":  {
+                                    "num":  "9.4",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.5",
+                      "type":  "Chapter",
+                      "label":  "§9.5 전표 라인 차원 필드",
+                      "attrs":  {
+                                    "num":  "9.5",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "CH:9.6",
+                      "type":  "Chapter",
+                      "label":  "§9.6 엔티티",
+                      "attrs":  {
+                                    "num":  "9.6",
+                                    "doc":  "bk_설계서_v3.0.md"
+                                }
+                  },
+                  {
+                      "id":  "DOC:bk_화면설계서_v3.0.html",
+                      "type":  "Doc",
+                      "label":  "bk_화면설계서_v3.0.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\bk_화면설계서_v3.0.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "type":  "Doc",
+                      "label":  "구현_매입매출_전표_v1.0.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\구현_매입매출_전표_v1.0.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:구현_화면_기초_v3.0.html",
+                      "type":  "Doc",
+                      "label":  "구현_화면_기초_v3.0.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\구현_화면_기초_v3.0.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:구현_화면_전표_v3.4.html",
+                      "type":  "Doc",
+                      "label":  "구현_화면_전표_v3.4.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\구현_화면_전표_v3.4.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "type":  "Doc",
+                      "label":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\v3.1\\페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "type":  "Doc",
+                      "label":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\v3.1\\페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "type":  "Doc",
+                      "label":  "페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\v3.1\\페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "type":  "Doc",
+                      "label":  "페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\v3.1\\페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                                }
+                  },
+                  {
+                      "id":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "type":  "Doc",
+                      "label":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "attrs":  {
+                                    "path":  "화면설계\\v3.1\\페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WBX-01",
+                      "type":  "Impl",
+                      "label":  "WBX-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WBX-02",
+                      "type":  "Impl",
+                      "label":  "WBX-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-01",
+                      "type":  "Impl",
+                      "label":  "WJV-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-02",
+                      "type":  "Impl",
+                      "label":  "WJV-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-03",
+                      "type":  "Impl",
+                      "label":  "WJV-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-04",
+                      "type":  "Impl",
+                      "label":  "WJV-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-05",
+                      "type":  "Impl",
+                      "label":  "WJV-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-06",
+                      "type":  "Impl",
+                      "label":  "WJV-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WJV-07",
+                      "type":  "Impl",
+                      "label":  "WJV-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "IMPL:WPV-01",
+                      "type":  "Impl",
+                      "label":  "WPV-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-01",
+                      "type":  "Screen",
+                      "label":  "AUX-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-02",
+                      "type":  "Screen",
+                      "label":  "AUX-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-03",
+                      "type":  "Screen",
+                      "label":  "AUX-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-04",
+                      "type":  "Screen",
+                      "label":  "AUX-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-05",
+                      "type":  "Screen",
+                      "label":  "AUX-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-06",
+                      "type":  "Screen",
+                      "label":  "AUX-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-07",
+                      "type":  "Screen",
+                      "label":  "AUX-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-08",
+                      "type":  "Screen",
+                      "label":  "AUX-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:AUX-09",
+                      "type":  "Screen",
+                      "label":  "AUX-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-01",
+                      "type":  "Screen",
+                      "label":  "JV-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-02",
+                      "type":  "Screen",
+                      "label":  "JV-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-03",
+                      "type":  "Screen",
+                      "label":  "JV-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-04",
+                      "type":  "Screen",
+                      "label":  "JV-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-05",
+                      "type":  "Screen",
+                      "label":  "JV-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-06",
+                      "type":  "Screen",
+                      "label":  "JV-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-07",
+                      "type":  "Screen",
+                      "label":  "JV-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-08",
+                      "type":  "Screen",
+                      "label":  "JV-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:JV-20",
+                      "type":  "Screen",
+                      "label":  "JV-20",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-01",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-02",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-03",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-04",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-05",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-06",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-07",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-08",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-09",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-ATX-10",
+                      "type":  "Screen",
+                      "label":  "SA-ATX-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-01",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-02",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-03",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-04",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-05",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-06",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-07",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-08",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-09",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-10",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-11",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-12",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-13",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BAS-14",
+                      "type":  "Screen",
+                      "label":  "SA-BAS-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BIL-01",
+                      "type":  "Screen",
+                      "label":  "SA-BIL-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BIL-02",
+                      "type":  "Screen",
+                      "label":  "SA-BIL-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BIL-03",
+                      "type":  "Screen",
+                      "label":  "SA-BIL-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-BIL-04",
+                      "type":  "Screen",
+                      "label":  "SA-BIL-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-01",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-02",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-03",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-04",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-05",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-06",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-07",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-08",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-09",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-10",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-11",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-12",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-13",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-14",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-15",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-15",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-16",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-16",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-17",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-17",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-18",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-18",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-19",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-19",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-20",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-20",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-CLS-21",
+                      "type":  "Screen",
+                      "label":  "SA-CLS-21",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-01",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-02",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-03",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-04",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-05",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-06",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DAT-07",
+                      "type":  "Screen",
+                      "label":  "SA-DAT-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DEP-01",
+                      "type":  "Screen",
+                      "label":  "SA-DEP-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DEP-02",
+                      "type":  "Screen",
+                      "label":  "SA-DEP-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-DEP-03",
+                      "type":  "Screen",
+                      "label":  "SA-DEP-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-01",
+                      "type":  "Screen",
+                      "label":  "SA-FA-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-02",
+                      "type":  "Screen",
+                      "label":  "SA-FA-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-03",
+                      "type":  "Screen",
+                      "label":  "SA-FA-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-04",
+                      "type":  "Screen",
+                      "label":  "SA-FA-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-05",
+                      "type":  "Screen",
+                      "label":  "SA-FA-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-06",
+                      "type":  "Screen",
+                      "label":  "SA-FA-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FA-07",
+                      "type":  "Screen",
+                      "label":  "SA-FA-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-01",
+                      "type":  "Screen",
+                      "label":  "SA-FND-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-02",
+                      "type":  "Screen",
+                      "label":  "SA-FND-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-03",
+                      "type":  "Screen",
+                      "label":  "SA-FND-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-04",
+                      "type":  "Screen",
+                      "label":  "SA-FND-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-05",
+                      "type":  "Screen",
+                      "label":  "SA-FND-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-06",
+                      "type":  "Screen",
+                      "label":  "SA-FND-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-07",
+                      "type":  "Screen",
+                      "label":  "SA-FND-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-08",
+                      "type":  "Screen",
+                      "label":  "SA-FND-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-09",
+                      "type":  "Screen",
+                      "label":  "SA-FND-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-10",
+                      "type":  "Screen",
+                      "label":  "SA-FND-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-11",
+                      "type":  "Screen",
+                      "label":  "SA-FND-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-12",
+                      "type":  "Screen",
+                      "label":  "SA-FND-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-13",
+                      "type":  "Screen",
+                      "label":  "SA-FND-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-FND-14",
+                      "type":  "Screen",
+                      "label":  "SA-FND-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-JNL-01",
+                      "type":  "Screen",
+                      "label":  "SA-JNL-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-JNL-02",
+                      "type":  "Screen",
+                      "label":  "SA-JNL-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-JNL-03",
+                      "type":  "Screen",
+                      "label":  "SA-JNL-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-JNL-04",
+                      "type":  "Screen",
+                      "label":  "SA-JNL-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-01",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-02",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-03",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-04",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-05",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-06",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-07",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-08",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-09",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-10",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-11",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-12",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-13",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-14",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-15",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-15",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-16",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-16",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-17",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-17",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-18",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-18",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-19",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-19",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-20",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-20",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-21",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-21",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-22",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-22",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-23",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-23",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-24",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-24",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-25",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-25",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-26",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-26",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-27",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-27",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-28",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-28",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-LDG-29",
+                      "type":  "Screen",
+                      "label":  "SA-LDG-29",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-01",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-02",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-03",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-04",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-05",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-06",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-07",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-08",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-09",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-10",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-11",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-12",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-13",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-14",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-15",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-15",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-16",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-16",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-17",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-17",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-18",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-18",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-OPN-19",
+                      "type":  "Screen",
+                      "label":  "SA-OPN-19",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-01",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-01",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-02",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-02",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-03",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-03",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-04",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-04",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-05",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-05",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-06",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-06",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-07",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-07",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-08",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-08",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-09",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-09",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-10",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-10",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-11",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-11",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-12",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-12",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-13",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-13",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-14",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-14",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-15",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-15",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-16",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-16",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-17",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-17",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-18",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-18",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-19",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-19",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-20",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-20",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-21",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-21",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-22",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-22",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-23",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-23",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-24",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-24",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-25",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-25",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-26",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-26",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-27",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-27",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-28",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-28",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-29",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-29",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-30",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-30",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-31",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-31",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-32",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-32",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-33",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-33",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-34",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-34",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-35",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-35",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-36",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-36",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-37",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-37",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-38",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-38",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-39",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-39",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-40",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-40",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-41",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-41",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-42",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-42",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-43",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-43",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-44",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-44",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-45",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-45",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-46",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-46",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-47",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-47",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-48",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-48",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-49",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-49",
+                      "attrs":  {
+
+                                }
+                  },
+                  {
+                      "id":  "SCR:SA-VAT-50",
+                      "type":  "Screen",
+                      "label":  "SA-VAT-50",
+                      "attrs":  {
+
+                                }
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.2",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.3",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.3",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.3",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:0.3",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:1",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:10.3",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:10.3",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:10.3",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.1",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.10",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.10",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.10",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.10",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.11",
+                      "to":  "SCR:AUX-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.3",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.4",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.4",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.4",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.4",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.9",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.9",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11.9",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:11",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:2",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.1",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-DAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.0.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.1",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.10",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.10",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.10",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.10",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.11",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.11",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.11",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.11",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.11",
+                      "to":  "SCR:SA-OPN-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.12",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.12",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.12",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.12",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.13",
+                      "to":  "SCR:SA-BAS-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.13",
+                      "to":  "SCR:SA-BAS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.13",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.13",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-BAS-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-OPN-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-OPN-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.14",
+                      "to":  "SCR:SA-OPN-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.2",
+                      "to":  "SCR:SA-BAS-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.2",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.3",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.3",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.3",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.4",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.4",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.4",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.4",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.4",
+                      "to":  "SCR:SA-OPN-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.5",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.5",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.5",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.5",
+                      "to":  "SCR:SA-OPN-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.6",
+                      "to":  "SCR:SA-OPN-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.7",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.7",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.7",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-OPN-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-OPN-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.8",
+                      "to":  "SCR:SA-OPN-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.9",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.9",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.9",
+                      "to":  "SCR:SA-OPN-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.9",
+                      "to":  "SCR:SA-OPN-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.1.9",
+                      "to":  "SCR:SA-OPN-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.1",
+                      "to":  "SCR:SA-CLS-15",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.2",
+                      "to":  "SCR:SA-CLS-16",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.2",
+                      "to":  "SCR:SA-CLS-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.3",
+                      "to":  "SCR:SA-CLS-17",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.4",
+                      "to":  "SCR:SA-CLS-18",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.4",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.5",
+                      "to":  "SCR:SA-CLS-19",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.5",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.6",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.6",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.7",
+                      "to":  "SCR:SA-CLS-21",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.7",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.10.7",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-22",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.1",
+                      "to":  "SCR:SA-VAT-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.2",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.2",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.3",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.3",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.3",
+                      "to":  "SCR:SA-VAT-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.4",
+                      "to":  "SCR:SA-VAT-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.4",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.5",
+                      "to":  "SCR:SA-VAT-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.5",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.6",
+                      "to":  "SCR:SA-VAT-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.6",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.6",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.7",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.7",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.7",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.7",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.7",
+                      "to":  "SCR:SA-VAT-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.8",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.8",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.11.8",
+                      "to":  "SCR:SA-VAT-25",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.1",
+                      "to":  "SCR:SA-VAT-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.1",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.1",
+                      "to":  "SCR:SA-VAT-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.10",
+                      "to":  "SCR:SA-VAT-18",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.10",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.11",
+                      "to":  "SCR:SA-VAT-19",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.11",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.12",
+                      "to":  "SCR:SA-VAT-20",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.12",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.12",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.13",
+                      "to":  "SCR:SA-VAT-21",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.13",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.2",
+                      "to":  "SCR:SA-VAT-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.2",
+                      "to":  "SCR:SA-VAT-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.3",
+                      "to":  "SCR:SA-VAT-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.3",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.4",
+                      "to":  "SCR:SA-VAT-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.4",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.4",
+                      "to":  "SCR:SA-VAT-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.5",
+                      "to":  "SCR:SA-VAT-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.5",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.5",
+                      "to":  "SCR:SA-VAT-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.6",
+                      "to":  "SCR:SA-VAT-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.6",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.6",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.7",
+                      "to":  "SCR:SA-VAT-15",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.7",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.8",
+                      "to":  "SCR:SA-VAT-16",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.8",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.9",
+                      "to":  "SCR:SA-VAT-17",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.9",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.12.9",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.1",
+                      "to":  "SCR:SA-VAT-22",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.1",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.1",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.2",
+                      "to":  "SCR:SA-VAT-23",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.3",
+                      "to":  "SCR:SA-VAT-24",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.3",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.4",
+                      "to":  "SCR:SA-VAT-25",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.4",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.4",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.5",
+                      "to":  "SCR:SA-VAT-26",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.5",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.6",
+                      "to":  "SCR:SA-VAT-27",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.6",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.6",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.7",
+                      "to":  "SCR:SA-VAT-28",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.7",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.13.7",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.1",
+                      "to":  "SCR:SA-VAT-29",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.1",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.1",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.10",
+                      "to":  "SCR:SA-VAT-38",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.10",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.11",
+                      "to":  "SCR:SA-VAT-39",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.11",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.12",
+                      "to":  "SCR:SA-VAT-40",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.12",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.12",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.13",
+                      "to":  "SCR:SA-VAT-41",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.13",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.13",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.14",
+                      "to":  "SCR:SA-VAT-42",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.14",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.14",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-29",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-31",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-32",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-33",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.15",
+                      "to":  "SCR:SA-VAT-40",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.2",
+                      "to":  "SCR:SA-VAT-30",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.2",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.3",
+                      "to":  "SCR:SA-VAT-31",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.3",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.3",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.4",
+                      "to":  "SCR:SA-VAT-32",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.4",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.4",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.5",
+                      "to":  "SCR:SA-VAT-33",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.5",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.5",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.6",
+                      "to":  "SCR:SA-VAT-34",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.6",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.7",
+                      "to":  "SCR:SA-VAT-35",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.7",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.8",
+                      "to":  "SCR:SA-VAT-36",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.8",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.9",
+                      "to":  "SCR:SA-VAT-37",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.14.9",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.1",
+                      "to":  "SCR:SA-VAT-44",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.1",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.2",
+                      "to":  "SCR:SA-VAT-45",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.2",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.3",
+                      "to":  "SCR:SA-VAT-46",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.3",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.4",
+                      "to":  "SCR:SA-VAT-47",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.4",
+                      "to":  "SCR:SA-VAT-49",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.5",
+                      "to":  "SCR:SA-VAT-48",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.6",
+                      "to":  "SCR:SA-VAT-49",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.6",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.6",
+                      "to":  "SCR:SA-VAT-47",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.7",
+                      "to":  "SCR:SA-VAT-50",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.15.7",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.1",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.2",
+                      "to":  "SCR:SA-FA-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.2",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.2",
+                      "to":  "SCR:SA-FA-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.2",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.3",
+                      "to":  "SCR:SA-FA-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.3",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.3",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.4",
+                      "to":  "SCR:SA-FA-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.4",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.4",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.5",
+                      "to":  "SCR:SA-FA-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.5",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.6",
+                      "to":  "SCR:SA-FA-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.6",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.7",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.16.7",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-FND-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-DEP-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.1",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.10",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.11",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.11",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.11",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.12",
+                      "to":  "SCR:SA-FND-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.12",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.12",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.12",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.13",
+                      "to":  "SCR:SA-FND-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.13",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.13",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.14",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.14",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.14",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.14",
+                      "to":  "SCR:SA-FND-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.2",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.2",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.2",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.2",
+                      "to":  "SCR:SA-FND-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.2",
+                      "to":  "SCR:SA-FND-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.3",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.4",
+                      "to":  "SCR:SA-FND-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.4",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.4",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.5",
+                      "to":  "SCR:SA-FND-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.5",
+                      "to":  "SCR:SA-FND-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.6",
+                      "to":  "SCR:SA-FND-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.6",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.7",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.8",
+                      "to":  "SCR:SA-FND-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.8",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.9",
+                      "to":  "SCR:SA-FND-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.9",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.17.9",
+                      "to":  "SCR:SA-FND-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.1",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.1",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.1",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.2",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.2",
+                      "to":  "SCR:SA-DEP-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.2",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.2",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.2",
+                      "to":  "SCR:SA-FND-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.3",
+                      "to":  "SCR:SA-DEP-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.18.3",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.1",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.1",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.1",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.1",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.2",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.2",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.2",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.2",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.3",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.3",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.3",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.3",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.3",
+                      "to":  "SCR:SA-BIL-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.4",
+                      "to":  "SCR:SA-BIL-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.4",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.19.4",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-OPN-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.1",
+                      "to":  "SCR:SA-OPN-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.2",
+                      "to":  "SCR:SA-OPN-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-OPN-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.3",
+                      "to":  "SCR:SA-OPN-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.4",
+                      "to":  "SCR:SA-OPN-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.4",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.4",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.4",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.5",
+                      "to":  "SCR:SA-OPN-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.5",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.5",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.6",
+                      "to":  "SCR:SA-OPN-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.6",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.6",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.7",
+                      "to":  "SCR:SA-OPN-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.7",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.7",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.7",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.8",
+                      "to":  "SCR:SA-OPN-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.8",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.8",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.8",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.2.8",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.1",
+                      "to":  "SCR:SA-DAT-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.2",
+                      "to":  "SCR:SA-DAT-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.2",
+                      "to":  "SCR:SA-DAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.3",
+                      "to":  "SCR:SA-DAT-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.3",
+                      "to":  "SCR:SA-DAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.4",
+                      "to":  "SCR:SA-DAT-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.5",
+                      "to":  "SCR:SA-DAT-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.6",
+                      "to":  "SCR:SA-DAT-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.20.7",
+                      "to":  "SCR:SA-DAT-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.1",
+                      "to":  "SCR:SA-OPN-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.1",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.1",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.10",
+                      "to":  "SCR:SA-OPN-18",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.10",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.10",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.10",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.11",
+                      "to":  "SCR:SA-OPN-19",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.11",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.11",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.11",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.11",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.2",
+                      "to":  "SCR:SA-OPN-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.2",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.2",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.3",
+                      "to":  "SCR:SA-OPN-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.3",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.3",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.3",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.4",
+                      "to":  "SCR:SA-OPN-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.4",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.4",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.4",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.5",
+                      "to":  "SCR:SA-OPN-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.5",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.5",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.5",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.5",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-OPN-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.6",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-OPN-15",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.7",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.8",
+                      "to":  "SCR:SA-OPN-16",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.8",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.9",
+                      "to":  "SCR:SA-OPN-17",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.9",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.9",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.3.9",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.1",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.1",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.1",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.1",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.1",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.2",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.3",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.3",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.3",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.4",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.4",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.4.4",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.1",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.1",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.1",
+                      "to":  "SCR:SA-ATX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.1",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.10",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.10",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.10",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.10",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.10",
+                      "to":  "SCR:SA-ATX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.2",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.2",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.2",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.2",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.2",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.3",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.4",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-ATX-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.5",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.6",
+                      "to":  "SCR:SA-ATX-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.6",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.6",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.6",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.6",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.7",
+                      "to":  "SCR:SA-ATX-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.7",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.7",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.7",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.8",
+                      "to":  "SCR:SA-ATX-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.8",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.8",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.8",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5.9",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.5",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.1",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.1",
+                      "to":  "SCR:SA-LDG-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.1",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.2",
+                      "to":  "SCR:SA-LDG-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.2",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.3",
+                      "to":  "SCR:SA-LDG-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.3",
+                      "to":  "SCR:SA-LDG-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.4",
+                      "to":  "SCR:SA-LDG-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.4",
+                      "to":  "SCR:SA-LDG-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.5",
+                      "to":  "SCR:SA-LDG-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.6",
+                      "to":  "SCR:SA-LDG-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.6",
+                      "to":  "SCR:SA-LDG-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.7",
+                      "to":  "SCR:SA-LDG-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.8",
+                      "to":  "SCR:SA-LDG-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.6.9",
+                      "to":  "SCR:SA-LDG-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.1",
+                      "to":  "SCR:SA-LDG-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.2",
+                      "to":  "SCR:SA-LDG-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.3",
+                      "to":  "SCR:SA-LDG-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.4",
+                      "to":  "SCR:SA-LDG-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.5",
+                      "to":  "SCR:SA-LDG-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.6",
+                      "to":  "SCR:SA-LDG-15",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.6",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.7",
+                      "to":  "SCR:SA-LDG-16",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.8",
+                      "to":  "SCR:SA-LDG-17",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.8",
+                      "to":  "SCR:SA-LDG-18",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.9",
+                      "to":  "SCR:SA-LDG-18",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.7.9",
+                      "to":  "SCR:SA-LDG-17",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.1",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.1",
+                      "to":  "SCR:SA-LDG-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.1",
+                      "to":  "SCR:SA-LDG-23",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.1",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.10",
+                      "to":  "SCR:SA-LDG-28",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.10",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.11",
+                      "to":  "SCR:SA-LDG-29",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.11",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.2",
+                      "to":  "SCR:SA-LDG-20",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.2",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.3",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.3",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.3",
+                      "to":  "SCR:SA-LDG-22",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.3",
+                      "to":  "SCR:SA-LDG-23",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.3",
+                      "to":  "SCR:SA-LDG-28",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.4",
+                      "to":  "SCR:SA-LDG-22",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.4",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.5",
+                      "to":  "SCR:SA-LDG-23",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.5",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.5",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.6",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.6",
+                      "to":  "SCR:SA-LDG-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.6",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.6",
+                      "to":  "SCR:SA-LDG-25",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.7",
+                      "to":  "SCR:SA-LDG-25",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.7",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.8",
+                      "to":  "SCR:SA-LDG-26",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.9",
+                      "to":  "SCR:SA-LDG-27",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.8.9",
+                      "to":  "SCR:SA-LDG-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.1",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.1",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.1",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.1",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.1",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.10",
+                      "to":  "SCR:SA-CLS-10",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.10",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.10",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.11",
+                      "to":  "SCR:SA-CLS-11",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.12",
+                      "to":  "SCR:SA-CLS-12",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.12",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.13",
+                      "to":  "SCR:SA-CLS-13",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.13",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.13",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.13",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.13",
+                      "to":  "SCR:SA-CLS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.14",
+                      "to":  "SCR:SA-CLS-14",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.14",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.14",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.2",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.2",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.2",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.2",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.3",
+                      "to":  "SCR:SA-CLS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.4",
+                      "to":  "SCR:SA-CLS-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.5",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.5",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.5",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.5",
+                      "to":  "SCR:SA-CLS-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.5",
+                      "to":  "SCR:SA-CLS-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.6",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.6",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.6",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.6",
+                      "to":  "SCR:SA-CLS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.7",
+                      "to":  "SCR:SA-CLS-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.7",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.7",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.8",
+                      "to":  "SCR:SA-CLS-08",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.8",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.8",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.9",
+                      "to":  "SCR:SA-CLS-09",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.9",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:25.9.9",
+                      "to":  "SCR:SA-CLS-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3.1.1",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3.3",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:3",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4.5",
+                      "to":  "SCR:JV-07",
+                      "type":  "DEFINES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4.5",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4.5",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4.5",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:4",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:5",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:5",
+                      "to":  "SCR:JV-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:6.1",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:6.1",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:6.1",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:6.1",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:9.5",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:9",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "CH:9",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_설계서_v3.0.md"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.15",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.16",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.17",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.18",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.19",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.20",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.21",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.3.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:11.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:13.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:16.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:16.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:18.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:18.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:20.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:21.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.1.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.10.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.11.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.12.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.13.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.15",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.14.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.15.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.16.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.17.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.18.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.18.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.18.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.19.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.19.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.19.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.19.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.2.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.20.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.3.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.4.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.4.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.4.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.4.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.5.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.6.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.7.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.8.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "CH:25.9.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-BIL-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-17",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-18",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-CLS-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-DEP-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-17",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-18",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-22",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-23",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-25",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-26",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-27",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-28",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-LDG-29",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-17",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-18",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-OPN-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-04",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-05",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-06",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-09",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-10",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-11",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-12",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-13",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-14",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-15",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-16",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-17",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-18",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-19",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-20",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-21",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-22",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-23",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-24",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-25",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-26",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-27",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-28",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-29",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-30",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-31",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-32",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-33",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-34",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-35",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-36",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-37",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-38",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-39",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-40",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-41",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-42",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-44",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-45",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-46",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-47",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-48",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-49",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:bk_화면설계서_v3.0.html",
+                      "to":  "SCR:SA-VAT-50",
+                      "type":  "REFERENCES",
+                      "src":  "bk_화면설계서_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "IMPL:WJV-01",
+                      "type":  "CONTAINS",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "IMPL:WPV-01",
+                      "type":  "CONTAINS",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.4.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.4.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.4.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.4.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.5.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.5.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.5.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "CH:25.5.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_매입매출_전표_v1.0.html",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "REFERENCES",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.15",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.16",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.17",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.18",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.19",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.20",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.21",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.3.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.3.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.6.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:11.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:16.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:18.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:19",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:20.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:21.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:25.1.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:4.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:4.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:7.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:7.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "CH:8.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-13",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_기초_v3.0.html",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_기초_v3.0.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-01",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-02",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-03",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-04",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-05",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-06",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "IMPL:WJV-07",
+                      "type":  "CONTAINS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:11.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:11.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:11.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.4.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.4.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.4.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.5.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:25.5.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:4.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "CH:6.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-03",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:구현_화면_전표_v3.4.html",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "IMPL:WBX-01",
+                      "type":  "CONTAINS",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "IMPL:WBX-02",
+                      "type":  "CONTAINS",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.18.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.19.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.4.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "CH:8.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-11",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-16",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-22",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-29",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-36",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:11.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.4.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.4.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.4.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.4.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "CH:4.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-JNL-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-JNL-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-JNL-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.17.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.18.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.18.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.18.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.19.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.19.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.19.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.19.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.7.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "CH:4.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:AUX-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BIL-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BIL-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BIL-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BIL-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DEP-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DEP-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DEP-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-11",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FND-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-11",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-15",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-16",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-17",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-18",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-20",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-21",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-22",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-23",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-25",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-26",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-27",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-28",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-29",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈3_장부자금예산_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.10.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "CH:25.9.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-11",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-15",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-16",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-17",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-18",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-19",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-20",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-CLS-21",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈4_결산공시외화_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:21",
+                      "type":  "IMPLEMENTS",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:24",
+                      "type":  "IMPLEMENTS",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.1.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.11.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.12.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.13.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.10",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.11",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.12",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.13",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.14",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.15",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.8",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.14.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.15.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.16.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.2",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.3",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.5",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.20.7",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.5.9",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.6.4",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.1",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "CH:25.8.6",
+                      "type":  "IMPLEMENTS",
+                      "src":  "(추론: 화면ID 경유)"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:JV-20",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-ATX-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-DAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-FA-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-19",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-LDG-24",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-01",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-02",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-03",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-04",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-05",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-06",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-07",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-08",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-09",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-10",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-11",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-12",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-13",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-14",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-15",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-16",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-17",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-18",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-19",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-20",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-21",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-22",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-23",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-24",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-25",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-26",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-27",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-28",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-29",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-30",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-31",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-32",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-33",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-34",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-35",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-36",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-37",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-38",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-39",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-40",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-41",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-42",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-43",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-44",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-45",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-46",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-47",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-48",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-49",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html",
+                      "to":  "SCR:SA-VAT-50",
+                      "type":  "REFERENCES",
+                      "src":  "페이즈5_세무고정자산AI_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "IMPL:WBX-01",
+                      "to":  "SCR:SA-BAS-14",
+                      "type":  "MAPS_TO",
+                      "src":  "페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-01",
+                      "to":  "SCR:JV-01",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-02",
+                      "to":  "SCR:JV-02",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-03",
+                      "to":  "SCR:JV-03",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-04",
+                      "to":  "SCR:JV-04",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-05",
+                      "to":  "SCR:JV-05",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-06",
+                      "to":  "SCR:JV-06",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WJV-07",
+                      "to":  "SCR:JV-07",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_화면_전표_v3.4.html"
+                  },
+                  {
+                      "from":  "IMPL:WPV-01",
+                      "to":  "SCR:SA-JNL-02",
+                      "type":  "MAPS_TO",
+                      "src":  "구현_매입매출_전표_v1.0.html"
+                  }
+              ]
+};

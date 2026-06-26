@@ -1,0 +1,1676 @@
+{"from":"CH:0.2","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:AUX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.2","to":"SCR:JV-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.3","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.3","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.3","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:0.3","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:1","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:10.3","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:10.3","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:10.3","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.1","to":"SCR:JV-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.10","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.10","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.10","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.10","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.11","to":"SCR:AUX-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.3","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.4","to":"SCR:SA-JNL-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.4","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.4","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.4","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.9","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.9","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11.9","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:11","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:AUX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:JV-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:2","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:AUX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:AUX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.1","to":"SCR:JV-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-DAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-LDG-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.0.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.1","to":"SCR:SA-BAS-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.10","to":"SCR:SA-BAS-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.10","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.10","to":"SCR:SA-BAS-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.10","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.11","to":"SCR:SA-BAS-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.11","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.11","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.11","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.11","to":"SCR:SA-OPN-16","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.12","to":"SCR:SA-BAS-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.12","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.12","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.12","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.13","to":"SCR:SA-BAS-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.13","to":"SCR:SA-BAS-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.13","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.13","to":"SCR:SA-BAS-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-BAS-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-BAS-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-BAS-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-OPN-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-OPN-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.14","to":"SCR:SA-OPN-15","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.2","to":"SCR:SA-BAS-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.2","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.3","to":"SCR:SA-BAS-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.3","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.3","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.4","to":"SCR:SA-BAS-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.4","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.4","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.4","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.4","to":"SCR:SA-OPN-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.5","to":"SCR:SA-BAS-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.5","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.5","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.5","to":"SCR:SA-OPN-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-BAS-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.6","to":"SCR:SA-OPN-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.7","to":"SCR:SA-BAS-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.7","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.7","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-BAS-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-OPN-15","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-OPN-16","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.8","to":"SCR:SA-OPN-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.9","to":"SCR:SA-BAS-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.9","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.9","to":"SCR:SA-OPN-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.9","to":"SCR:SA-OPN-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.1.9","to":"SCR:SA-OPN-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.1","to":"SCR:SA-CLS-15","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.2","to":"SCR:SA-CLS-16","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.2","to":"SCR:SA-CLS-15","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.3","to":"SCR:SA-CLS-17","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.4","to":"SCR:SA-CLS-18","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.4","to":"SCR:SA-CLS-20","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.5","to":"SCR:SA-CLS-19","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.5","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.6","to":"SCR:SA-CLS-20","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.6","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.7","to":"SCR:SA-CLS-21","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.7","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.10.7","to":"SCR:SA-CLS-20","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-22","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.1","to":"SCR:SA-VAT-24","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.2","to":"SCR:SA-VAT-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.2","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.3","to":"SCR:SA-VAT-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.3","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.3","to":"SCR:SA-VAT-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.4","to":"SCR:SA-VAT-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.4","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.5","to":"SCR:SA-VAT-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.5","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.6","to":"SCR:SA-VAT-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.6","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.6","to":"SCR:SA-VAT-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.7","to":"SCR:SA-VAT-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.7","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.7","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.7","to":"SCR:SA-VAT-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.7","to":"SCR:SA-VAT-20","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.8","to":"SCR:SA-VAT-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.8","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.11.8","to":"SCR:SA-VAT-25","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.1","to":"SCR:SA-VAT-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.1","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.1","to":"SCR:SA-VAT-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.10","to":"SCR:SA-VAT-18","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.10","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.11","to":"SCR:SA-VAT-19","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.11","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.12","to":"SCR:SA-VAT-20","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.12","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.12","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.13","to":"SCR:SA-VAT-21","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.13","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.2","to":"SCR:SA-VAT-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.2","to":"SCR:SA-VAT-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.3","to":"SCR:SA-VAT-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.3","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.4","to":"SCR:SA-VAT-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.4","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.4","to":"SCR:SA-VAT-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.5","to":"SCR:SA-VAT-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.5","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.5","to":"SCR:SA-VAT-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.6","to":"SCR:SA-VAT-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.6","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.6","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.7","to":"SCR:SA-VAT-15","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.7","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.8","to":"SCR:SA-VAT-16","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.8","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.9","to":"SCR:SA-VAT-17","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.9","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.12.9","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.1","to":"SCR:SA-VAT-22","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.1","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.1","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.2","to":"SCR:SA-VAT-23","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.3","to":"SCR:SA-VAT-24","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.3","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.4","to":"SCR:SA-VAT-25","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.4","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.4","to":"SCR:SA-VAT-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.5","to":"SCR:SA-VAT-26","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.5","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.6","to":"SCR:SA-VAT-27","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.6","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.6","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.7","to":"SCR:SA-VAT-28","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.7","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.13.7","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.1","to":"SCR:SA-VAT-29","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.1","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.1","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.10","to":"SCR:SA-VAT-38","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.10","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.11","to":"SCR:SA-VAT-39","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.11","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.12","to":"SCR:SA-VAT-40","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.12","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.12","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.13","to":"SCR:SA-VAT-41","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.13","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.13","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.14","to":"SCR:SA-VAT-42","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.14","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.14","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-43","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-29","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-31","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-32","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-33","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.15","to":"SCR:SA-VAT-40","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.2","to":"SCR:SA-VAT-30","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.2","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.3","to":"SCR:SA-VAT-31","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.3","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.3","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.4","to":"SCR:SA-VAT-32","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.4","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.4","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.5","to":"SCR:SA-VAT-33","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.5","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.5","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.6","to":"SCR:SA-VAT-34","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.6","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.7","to":"SCR:SA-VAT-35","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.7","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.8","to":"SCR:SA-VAT-36","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.8","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.9","to":"SCR:SA-VAT-37","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.14.9","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.1","to":"SCR:SA-VAT-44","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.1","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.2","to":"SCR:SA-VAT-45","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.2","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.3","to":"SCR:SA-VAT-46","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.3","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.4","to":"SCR:SA-VAT-47","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.4","to":"SCR:SA-VAT-49","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.5","to":"SCR:SA-VAT-48","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.6","to":"SCR:SA-VAT-49","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.6","to":"SCR:SA-VAT-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.6","to":"SCR:SA-VAT-47","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.7","to":"SCR:SA-VAT-50","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.15.7","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:AUX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.1","to":"SCR:SA-FA-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.2","to":"SCR:SA-FA-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.2","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.2","to":"SCR:SA-FA-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.2","to":"SCR:SA-FA-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.3","to":"SCR:SA-FA-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.3","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.3","to":"SCR:SA-FA-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.4","to":"SCR:SA-FA-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.4","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.4","to":"SCR:SA-FA-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.5","to":"SCR:SA-FA-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.5","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.6","to":"SCR:SA-FA-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.6","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.7","to":"SCR:SA-FA-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.16.7","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-FND-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-BIL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-DEP-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-DEP-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.1","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.10","to":"SCR:SA-FND-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.11","to":"SCR:SA-FND-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.11","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.11","to":"SCR:SA-FND-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.12","to":"SCR:SA-FND-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.12","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.12","to":"SCR:SA-FND-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.12","to":"SCR:SA-FND-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.13","to":"SCR:SA-FND-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.13","to":"SCR:SA-FND-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.13","to":"SCR:SA-FND-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.14","to":"SCR:SA-FND-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.14","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.14","to":"SCR:SA-FND-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.14","to":"SCR:SA-FND-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.2","to":"SCR:SA-FND-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.2","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.2","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.2","to":"SCR:SA-FND-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.2","to":"SCR:SA-FND-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-FND-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-BIL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-DEP-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.3","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.4","to":"SCR:SA-FND-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.4","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.4","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.5","to":"SCR:SA-FND-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.5","to":"SCR:SA-FND-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.6","to":"SCR:SA-FND-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.6","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.7","to":"SCR:SA-FND-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.8","to":"SCR:SA-FND-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.8","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.9","to":"SCR:SA-FND-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.9","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.17.9","to":"SCR:SA-FND-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.1","to":"SCR:SA-DEP-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.1","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.1","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.2","to":"SCR:SA-DEP-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.2","to":"SCR:SA-DEP-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.2","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.2","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.2","to":"SCR:SA-FND-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.3","to":"SCR:SA-DEP-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.18.3","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.1","to":"SCR:SA-BIL-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.1","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.1","to":"SCR:SA-BIL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.1","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.2","to":"SCR:SA-BIL-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.2","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.2","to":"SCR:SA-BIL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.2","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.3","to":"SCR:SA-BIL-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.3","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.3","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.3","to":"SCR:SA-BIL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.3","to":"SCR:SA-BIL-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.4","to":"SCR:SA-BIL-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.4","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.19.4","to":"SCR:SA-BIL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-OPN-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-OPN-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.1","to":"SCR:SA-OPN-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.2","to":"SCR:SA-OPN-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-OPN-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-OPN-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.3","to":"SCR:SA-OPN-12","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.4","to":"SCR:SA-OPN-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.4","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.4","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.4","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.5","to":"SCR:SA-OPN-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.5","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.5","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.6","to":"SCR:SA-OPN-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.6","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.6","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.7","to":"SCR:SA-OPN-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.7","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.7","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.7","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.8","to":"SCR:SA-OPN-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.8","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.8","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.8","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.2.8","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.1","to":"SCR:SA-DAT-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.2","to":"SCR:SA-DAT-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.2","to":"SCR:SA-DAT-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.3","to":"SCR:SA-DAT-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.3","to":"SCR:SA-DAT-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.4","to":"SCR:SA-DAT-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.5","to":"SCR:SA-DAT-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.6","to":"SCR:SA-DAT-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.20.7","to":"SCR:SA-DAT-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.1","to":"SCR:SA-OPN-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.1","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.1","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.10","to":"SCR:SA-OPN-18","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.10","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.10","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.10","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.11","to":"SCR:SA-OPN-19","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.11","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.11","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.11","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.11","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.2","to":"SCR:SA-OPN-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.2","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.2","to":"SCR:SA-OPN-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.3","to":"SCR:SA-OPN-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.3","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.3","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.3","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.4","to":"SCR:SA-OPN-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.4","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.4","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.4","to":"SCR:SA-OPN-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.5","to":"SCR:SA-OPN-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.5","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.5","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.5","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.5","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-OPN-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.6","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-OPN-15","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.7","to":"SCR:SA-OPN-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.8","to":"SCR:SA-OPN-16","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.8","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.9","to":"SCR:SA-OPN-17","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.9","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.9","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.3.9","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.1","to":"SCR:SA-JNL-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.1","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.1","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.1","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.1","to":"SCR:SA-JNL-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-JNL-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-ATX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.2","to":"SCR:SA-JNL-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.3","to":"SCR:SA-JNL-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.3","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.3","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.4","to":"SCR:SA-JNL-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.4","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.4.4","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.1","to":"SCR:SA-ATX-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.1","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.1","to":"SCR:SA-ATX-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.1","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.10","to":"SCR:SA-ATX-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.10","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.10","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.10","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.10","to":"SCR:SA-ATX-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.2","to":"SCR:SA-ATX-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.2","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.2","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.2","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.2","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-ATX-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.3","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-ATX-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.4","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-ATX-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.5","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.6","to":"SCR:SA-ATX-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.6","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.6","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.6","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.6","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.7","to":"SCR:SA-ATX-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.7","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.7","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.7","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.8","to":"SCR:SA-ATX-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.8","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.8","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.8","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5.9","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.5","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.1","to":"SCR:SA-LDG-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.1","to":"SCR:SA-LDG-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.1","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.2","to":"SCR:SA-LDG-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.2","to":"SCR:SA-LDG-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.3","to":"SCR:SA-LDG-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.3","to":"SCR:SA-LDG-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.4","to":"SCR:SA-LDG-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.4","to":"SCR:SA-LDG-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.5","to":"SCR:SA-LDG-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.6","to":"SCR:SA-LDG-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.6","to":"SCR:SA-LDG-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.7","to":"SCR:SA-LDG-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.8","to":"SCR:SA-LDG-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.6.9","to":"SCR:SA-LDG-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.1","to":"SCR:SA-LDG-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.2","to":"SCR:SA-LDG-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.3","to":"SCR:SA-LDG-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.4","to":"SCR:SA-LDG-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.5","to":"SCR:SA-LDG-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.6","to":"SCR:SA-LDG-15","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.6","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.7","to":"SCR:SA-LDG-16","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.8","to":"SCR:SA-LDG-17","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.8","to":"SCR:SA-LDG-18","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.9","to":"SCR:SA-LDG-18","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.7.9","to":"SCR:SA-LDG-17","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.1","to":"SCR:SA-LDG-19","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.1","to":"SCR:SA-LDG-20","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.1","to":"SCR:SA-LDG-23","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.1","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.10","to":"SCR:SA-LDG-28","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.10","to":"SCR:SA-LDG-21","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.11","to":"SCR:SA-LDG-29","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.11","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.2","to":"SCR:SA-LDG-20","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.2","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.3","to":"SCR:SA-LDG-21","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.3","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.3","to":"SCR:SA-LDG-22","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.3","to":"SCR:SA-LDG-23","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.3","to":"SCR:SA-LDG-28","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.4","to":"SCR:SA-LDG-22","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.4","to":"SCR:SA-LDG-21","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.5","to":"SCR:SA-LDG-23","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.5","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.5","to":"SCR:SA-LDG-21","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.6","to":"SCR:SA-LDG-24","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.6","to":"SCR:SA-LDG-15","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.6","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.6","to":"SCR:SA-LDG-25","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.7","to":"SCR:SA-LDG-25","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.7","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.8","to":"SCR:SA-LDG-26","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.9","to":"SCR:SA-LDG-27","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.8.9","to":"SCR:SA-LDG-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.1","to":"SCR:SA-CLS-01","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.1","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.1","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.1","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.1","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.10","to":"SCR:SA-CLS-10","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.10","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.10","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.11","to":"SCR:SA-CLS-11","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.12","to":"SCR:SA-CLS-12","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.12","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.13","to":"SCR:SA-CLS-13","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.13","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.13","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.13","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.13","to":"SCR:SA-CLS-09","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.14","to":"SCR:SA-CLS-14","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.14","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.14","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.2","to":"SCR:SA-CLS-02","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.2","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.2","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.2","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-03","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-08","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.3","to":"SCR:SA-CLS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-04","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-14","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-20","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.4","to":"SCR:SA-CLS-21","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.5","to":"SCR:SA-CLS-05","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.5","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.5","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.5","to":"SCR:SA-CLS-19","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.5","to":"SCR:SA-CLS-21","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.6","to":"SCR:SA-CLS-06","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.6","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.6","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.6","to":"SCR:SA-CLS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.7","to":"SCR:SA-CLS-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.7","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.7","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.8","to":"SCR:SA-CLS-08","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.8","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.8","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.9","to":"SCR:SA-CLS-09","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.9","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:25.9.9","to":"SCR:SA-CLS-13","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3.1.1","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3.3","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:3","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4.5","to":"SCR:JV-07","type":"DEFINES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4.5","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4.5","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4.5","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:4","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:5","to":"SCR:AUX-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:5","to":"SCR:JV-03","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:6.1","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:6.1","to":"SCR:JV-04","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:6.1","to":"SCR:JV-05","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:6.1","to":"SCR:JV-06","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:9.5","to":"SCR:JV-01","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:9","to":"SCR:JV-02","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"CH:9","to":"SCR:JV-07","type":"REFERENCES","src":"bk_설계서_v3.0.md"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.1","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.10","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.12","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.13","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.14","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.15","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.16","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.17","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.18","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.19","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.20","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.21","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.3.1","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.4","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.5","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.7","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.8","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:11.9","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:13.3","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:16.1","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:16.2","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:18.1","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:18.3","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:20.4","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:21.5","type":"IMPLEMENTS","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.1.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.10.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.11.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.12.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.13.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.15","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.14.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.15.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.16.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.17.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.18.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.18.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.18.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.19.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.19.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.19.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.19.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.2.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.20.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.3.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.4.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.4.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.4.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.4.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.5.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.6.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.7.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.8.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"CH:25.9.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:AUX-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:JV-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:JV-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:JV-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:JV-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BIL-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BIL-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-BIL-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-15","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-16","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-17","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-18","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-19","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-20","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-CLS-21","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DAT-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DEP-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-DEP-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FA-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-FND-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-JNL-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-15","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-16","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-17","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-18","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-20","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-21","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-22","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-23","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-25","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-26","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-27","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-28","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-LDG-29","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-15","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-16","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-17","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-18","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-OPN-19","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-03","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-04","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-05","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-06","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-08","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-09","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-10","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-11","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-12","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-13","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-14","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-15","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-16","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-17","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-18","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-19","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-20","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-21","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-22","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-23","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-24","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-25","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-26","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-27","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-28","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-29","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-30","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-31","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-32","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-33","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-34","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-35","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-36","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-37","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-38","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-39","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-40","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-41","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-42","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-44","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-45","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-46","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-47","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-48","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-49","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:bk_화면설계서_v3.0.html","to":"SCR:SA-VAT-50","type":"REFERENCES","src":"bk_화면설계서_v3.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"IMPL:WJV-01","type":"CONTAINS","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"IMPL:WPV-01","type":"CONTAINS","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:11.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.4.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.4.2","type":"IMPLEMENTS","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.4.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.4.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.5.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.5.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.5.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"CH:25.5.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:JV-01","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-ATX-03","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_매입매출_전표_v1.0.html","to":"SCR:SA-JNL-04","type":"REFERENCES","src":"구현_매입매출_전표_v1.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.1","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.10","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.11","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.12","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.13","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.14","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.15","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.16","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.17","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.18","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.19","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.2","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.20","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.21","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.3","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.3.1","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.3.2","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.4","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.5","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.6","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.6.1","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.7","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.8","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:11.9","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:14","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:16.1","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:18.3","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:19","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20.1","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20.2","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20.3","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20.4","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:20.5","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:21.5","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:25.1.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:4.3","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:4.4","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:7.3","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:7.5","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:8","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"CH:8.4","type":"IMPLEMENTS","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-02","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-10","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-12","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-13","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_기초_v3.0.html","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"구현_화면_기초_v3.0.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-01","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-02","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-03","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-04","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-05","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-06","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"IMPL:WJV-07","type":"CONTAINS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:11.10","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:11.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:11.5","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:11.6","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:2","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.4.1","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.4.2","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.4.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.5.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:25.5.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:4.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.1","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.10","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.2","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.3","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.4","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.5","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.6","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.7","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.8","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"CH:6.9","type":"IMPLEMENTS","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:AUX-01","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:AUX-02","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:AUX-06","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-01","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-02","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-03","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-04","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-05","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-06","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:JV-07","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:구현_화면_전표_v3.4.html","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"구현_화면_전표_v3.4.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"IMPL:WBX-01","type":"CONTAINS","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"IMPL:WBX-02","type":"CONTAINS","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:11.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.1.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.11.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.11.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.12.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.12.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.13.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.14.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.14.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.16.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.17.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.17.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.18.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.19.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.20.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.4.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.5.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.6.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.9.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.9.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.9.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.9.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:25.9.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"CH:8.1","type":"IMPLEMENTS","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:AUX-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:JV-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-02","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-05","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-06","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-08","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-09","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-10","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-11","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-12","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-13","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-CLS-12","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-CLS-13","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-DAT-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-DEP-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-FA-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-FND-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-FND-07","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-LDG-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-09","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-16","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-22","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-29","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈1_플랫폼운영기초_상세화면구성_v3.1.html","to":"SCR:SA-VAT-36","type":"REFERENCES","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:11.2","type":"IMPLEMENTS","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:11.4","type":"IMPLEMENTS","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.1.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.1.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.4.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.4.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.4.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.4.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:25.5.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"CH:4.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:AUX-08","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-01","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-02","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-03","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-04","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-05","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-06","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-07","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:JV-08","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-01","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-02","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-03","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-04","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-05","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-06","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-07","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-08","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-ATX-10","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-BAS-03","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-JNL-01","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-JNL-02","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-JNL-03","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈2_개시이월전표증빙_상세화면구성_v3.1.html","to":"SCR:SA-JNL-04","type":"REFERENCES","src":"페이즈2_개시이월전표증빙_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.1.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.17.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.18.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.18.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.18.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.19.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.19.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.19.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.19.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.6.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.7.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:25.8.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"CH:4.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-01","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-02","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-03","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-04","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-05","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-06","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-07","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-08","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:AUX-09","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:JV-06","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:JV-07","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BAS-04","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BIL-01","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BIL-02","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BIL-03","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-BIL-04","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-DEP-01","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-DEP-02","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-DEP-03","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-01","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-02","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-03","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-04","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-05","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-06","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-07","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-08","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-09","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-10","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-11","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-12","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-13","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-FND-14","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-01","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-02","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-03","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-04","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-05","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-06","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-07","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-08","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-09","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-10","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-11","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-12","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-13","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-14","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-15","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-16","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-17","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-18","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-20","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-21","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-22","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-23","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-25","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-26","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-27","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-28","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈3_장부자금예산_상세화면구성_v3.1.html","to":"SCR:SA-LDG-29","type":"REFERENCES","src":"페이즈3_장부자금예산_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.10.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"CH:25.9.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-01","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-02","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-03","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-04","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-05","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-06","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-07","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-08","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-09","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-10","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-11","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-12","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-13","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-14","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-15","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-16","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-17","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-18","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-19","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-20","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈4_결산공시외화_상세화면구성_v3.1.html","to":"SCR:SA-CLS-21","type":"REFERENCES","src":"페이즈4_결산공시외화_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:21","type":"IMPLEMENTS","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:24","type":"IMPLEMENTS","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.1.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.1.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.11.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.12.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.13.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.10","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.11","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.12","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.13","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.14","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.15","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.8","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.14.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.15.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.16.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.2","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.3","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.5","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.20.7","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.5.9","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.6.4","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.8.1","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"CH:25.8.6","type":"IMPLEMENTS","src":"(추론: 화면ID 경유)"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:JV-20","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-ATX-09","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-BAS-07","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-BAS-14","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-01","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-02","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-03","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-04","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-05","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-06","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-DAT-07","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-01","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-02","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-03","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-04","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-05","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-06","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-FA-07","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-LDG-04","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-LDG-19","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-LDG-24","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-01","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-02","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-03","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-04","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-05","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-06","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-07","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-08","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-09","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-10","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-11","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-12","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-13","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-14","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-15","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-16","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-17","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-18","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-19","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-20","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-21","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-22","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-23","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-24","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-25","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-26","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-27","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-28","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-29","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-30","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-31","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-32","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-33","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-34","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-35","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-36","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-37","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-38","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-39","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-40","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-41","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-42","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-43","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-44","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-45","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-46","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-47","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-48","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-49","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"DOC:페이즈5_세무고정자산AI_상세화면구성_v3.1.html","to":"SCR:SA-VAT-50","type":"REFERENCES","src":"페이즈5_세무고정자산AI_상세화면구성_v3.1.html"}
+{"from":"IMPL:WBX-01","to":"SCR:SA-BAS-14","type":"MAPS_TO","src":"페이즈1_플랫폼운영기초_상세화면구성_v3.1.html"}
+{"from":"IMPL:WJV-01","to":"SCR:JV-01","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-02","to":"SCR:JV-02","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-03","to":"SCR:JV-03","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-04","to":"SCR:JV-04","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-05","to":"SCR:JV-05","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-06","to":"SCR:JV-06","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WJV-07","to":"SCR:JV-07","type":"MAPS_TO","src":"구현_화면_전표_v3.4.html"}
+{"from":"IMPL:WPV-01","to":"SCR:SA-JNL-02","type":"MAPS_TO","src":"구현_매입매출_전표_v1.0.html"}

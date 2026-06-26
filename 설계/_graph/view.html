@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>BK 설계 지식그래프 뷰어</title>
+<script src="graph-data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{ --line:#d7dce5; --ink:#1f2733; --mut:#6b7480; --bg:#f6f8fb; --pri:#2554c7; }
+  *{box-sizing:border-box}
+  body{margin:0;font:13px/1.5 "Segoe UI",Malgun Gothic,sans-serif;color:var(--ink);background:var(--bg)}
+  header{background:#fff;border-bottom:1px solid var(--line);padding:10px 16px;position:sticky;top:0;z-index:5}
+  h1{font-size:15px;margin:0 0 4px}
+  .meta{color:var(--mut);font-size:11.5px}
+  .wrap{display:grid;grid-template-columns:340px 1fr;gap:0;height:calc(100vh - 58px)}
+  .side{border-right:1px solid var(--line);background:#fff;overflow:auto;padding:10px}
+  .main{overflow:auto;padding:14px 18px}
+  input,select{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;width:100%}
+  .row{display:flex;gap:6px;margin-bottom:8px}
+  .row>*{flex:1}
+  .nlist{list-style:none;margin:8px 0 0;padding:0}
+  .nlist li{padding:5px 7px;border-radius:6px;cursor:pointer;display:flex;gap:6px;align-items:center}
+  .nlist li:hover{background:var(--bg)}
+  .nlist li.sel{background:#e7eefc}
+  .tag{font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:10px;color:#fff;white-space:nowrap}
+  .t-Chapter{background:#2554c7}.t-Screen{background:#0a8f57}.t-Impl{background:#b06a00}.t-Doc{background:#8a3ffc}
+  .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:12px}
+  .card h2{font-size:14px;margin:0 0 6px}
+  .grp{margin:10px 0}
+  .grp h3{font-size:12px;color:var(--mut);margin:0 0 4px;text-transform:uppercase;letter-spacing:.04em}
+  .edge{padding:3px 0;border-bottom:1px dashed #eef1f6;cursor:pointer}
+  .edge:hover{color:var(--pri)}
+  .etype{display:inline-block;min-width:96px;font-weight:700;font-size:10.5px;color:#445}
+  .src{color:var(--mut);font-size:10.5px}
+  .stat{display:inline-block;background:#eef2f8;border-radius:10px;padding:1px 9px;margin-right:5px;font-size:11px}
+  .hint{color:var(--mut);font-size:12px}
+  .imp{background:#fff8e8;border:1px solid #e8c97a}
+  .imp h2{color:#8a5a00}
+  b.q{color:var(--pri)}
+  .mmd-wrap{overflow:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:8px;text-align:center}
+  .mmd-err{color:var(--mut);font-size:12px}
+  .toggle{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:2px 8px;cursor:pointer;float:right}
+</style>
+</head>
+<body>
+<header>
+  <h1>BK 설계 지식그래프 뷰어 <span class="hint" id="scope"></span></h1>
+  <div class="meta" id="stats"></div>
+</header>
+<div class="wrap">
+  <div class="side">
+    <div class="row">
+      <input id="q" placeholder="검색: 25.4.2 / SA-JNL-02 / 전표 …">
+    </div>
+    <div class="row">
+      <select id="ftype">
+        <option value="">전체 타입</option>
+        <option value="Chapter">Chapter(장)</option>
+        <option value="Screen">Screen(설계화면)</option>
+        <option value="Impl">Impl(구현화면)</option>
+        <option value="Doc">Doc(문서)</option>
+      </select>
+    </div>
+    <ul class="nlist" id="list"></ul>
+  </div>
+  <div class="main" id="detail">
+    <p class="hint">왼쪽에서 노드를 선택하면 <b>관계(엣지)</b>와 <b>영향분석(역방향 도달)</b>을 보여줍니다.<br>
+    예) <b class="q">CH:25.4.2</b> 선택 → 이 장을 구현/참조하는 화면·문서가 전부 나열됩니다.</p>
+  </div>
+</div>
+<script>
+const G = window.GRAPH;
+if(window.mermaid){ mermaid.initialize({startOnLoad:false, securityLevel:'loose', flowchart:{useMaxWidth:true,htmlLabels:true}}); }
+const byId = {}; G.nodes.forEach(n=>byId[n.id]=n);
+const out = {}, inc = {};
+G.nodes.forEach(n=>{out[n.id]=[];inc[n.id]=[]});
+G.edges.forEach(e=>{ if(out[e.from])out[e.from].push(e); if(inc[e.to])inc[e.to].push(e); });
+
+document.getElementById('scope').textContent = '· ' + G.meta.scope;
+const c=G.meta.counts;
+document.getElementById('stats').innerHTML =
+  `<span class="stat">노드 ${c.nodes}</span><span class="stat">장 ${c.chapters}</span>`+
+  `<span class="stat">설계화면 ${c.screens}</span><span class="stat">구현 ${c.impl}</span>`+
+  `<span class="stat">문서 ${c.docs}</span><span class="stat">엣지 ${G.meta.counts.edges||G.edges.length}</span>`+
+  `<span class="stat">생성 ${G.meta.generatedAt}</span>`;
+
+const listEl=document.getElementById('list');
+let sel=null;
+function render(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  const ft=document.getElementById('ftype').value;
+  const items=G.nodes.filter(n=>(!ft||n.type===ft)&&(!q||n.id.toLowerCase().includes(q)||(n.label||'').toLowerCase().includes(q)))
+    .sort((a,b)=>a.type.localeCompare(b.type)||a.id.localeCompare(b.id)).slice(0,400);
+  listEl.innerHTML=items.map(n=>
+    `<li data-id="${n.id}" class="${n.id===sel?'sel':''}"><span class="tag t-${n.type}">${n.type}</span><span class="lbl" title="${esc(n.label)}">${esc(n.label||n.id)}</span></li>`).join('');
+}
+function esc(s){return (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+
+// 영향분석: 선택 노드로 들어오는 방향을 역방향 BFS (누가 이걸 구현/참조/정의하나)
+function impact(id){
+  const seen=new Set([id]); let frontier=[id]; const layers=[];
+  for(let d=0; d<4 && frontier.length; d++){
+    const next=[];
+    frontier.forEach(x=>(inc[x]||[]).forEach(e=>{ if(!seen.has(e.from)){seen.add(e.from);next.push(e.from);} }));
+    if(next.length) layers.push(next.slice());
+    frontier=next;
+  }
+  return layers;
+}
+function grpEdges(arr,dir){
+  const by={}; arr.forEach(e=>{(by[e.type]=by[e.type]||[]).push(e);});
+  return Object.keys(by).sort().map(t=>{
+    const rows=by[t].map(e=>{const other=dir==='out'?e.to:e.from; const o=byId[other]||{type:'?',label:other};
+      return `<div class="edge" data-go="${other}"><span class="etype">${t}</span> <span class="tag t-${o.type}">${o.type}</span> ${esc(o.label||other)} <span class="src">${esc(e.src||'')}</span></div>`;}).join('');
+    return `<div class="grp"><h3>${dir==='out'?'→ ':'← '}${t} (${by[t].length})</h3>${rows}</div>`;
+  }).join('');
+}
+// Mermaid: 선택 노드의 1-hop 이웃 서브그래프 정의 생성 (노드 과다 시 캡)
+function mmdSafe(s){return 'N'+Math.abs([...s].reduce((a,c)=>((a<<5)-a+c.charCodeAt(0))|0,0));}
+function mmdLabel(n){return (n.type+': '+(n.label||n.id)).replace(/["\[\]{}()]/g,' ').slice(0,42);}
+function buildMermaid(id){
+  const n=byId[id]; if(!n) return null;
+  let nbr=[...new Set([...(out[id]||[]).map(e=>e.to),...(inc[id]||[]).map(e=>e.from)])];
+  const capped = nbr.length>40; if(capped) nbr=nbr.slice(0,40);
+  const useNodes=new Set([id,...nbr]);
+  let lines=['flowchart LR'];
+  useNodes.forEach(x=>{const m=byId[x]||{type:'?',label:x}; lines.push(`  ${mmdSafe(x)}["${mmdLabel(m)}"]:::${m.type}`);});
+  (out[id]||[]).forEach(e=>{ if(useNodes.has(e.to)) lines.push(`  ${mmdSafe(id)} -->|${e.type}| ${mmdSafe(e.to)}`); });
+  (inc[id]||[]).forEach(e=>{ if(useNodes.has(e.from)) lines.push(`  ${mmdSafe(e.from)} -->|${e.type}| ${mmdSafe(id)}`); });
+  lines.push('classDef Chapter fill:#2554c7,color:#fff,stroke:#1b3e95;');
+  lines.push('classDef Screen fill:#0a8f57,color:#fff,stroke:#076b41;');
+  lines.push('classDef Impl fill:#b06a00,color:#fff,stroke:#824e00;');
+  lines.push('classDef Doc fill:#8a3ffc,color:#fff,stroke:#6a2fc5;');
+  lines.push(`  class ${mmdSafe(id)} sel;`);
+  lines.push('classDef sel stroke:#e11,stroke-width:3px;');
+  return {def:lines.join('\n'), capped, count:nbr.length};
+}
+async function renderMermaid(id){
+  const host=document.getElementById('mmd'); if(!host) return;
+  if(!window.mermaid){ host.innerHTML='<div class="mmd-err">Mermaid 라이브러리를 불러오지 못했습니다(오프라인). 인터넷 연결 후 새로고침하면 그래프가 표시됩니다.</div>'; return; }
+  const b=buildMermaid(id); if(!b){return;}
+  try{ const {svg}=await mermaid.render('mmd_'+Date.now(), b.def); host.innerHTML=svg; }
+  catch(err){ host.innerHTML='<div class="mmd-err">그래프 렌더 오류: '+esc(String(err))+'</div>'; }
+}
+function show(id){
+  sel=id; render();
+  const n=byId[id]; if(!n){return;}
+  const o=out[id]||[], i=inc[id]||[];
+  let html=`<div class="card"><h2><span class="tag t-${n.type}">${n.type}</span> ${esc(n.label||id)}</h2>`+
+           `<div class="src">id: ${id}${n.attrs&&n.attrs.doc?' · 출처 '+esc(n.attrs.doc):''}${n.attrs&&n.attrs.path?' · '+esc(n.attrs.path):''}</div></div>`;
+  const mb=buildMermaid(id);
+  html+=`<div class="card"><h2>관계 그래프 <span class="src">${mb?('이웃 '+mb.count+(mb.capped?'+ (40개로 제한)':'')):''}</span></h2><div class="mmd-wrap" id="mmd"><div class="mmd-err">그래프 그리는 중…</div></div></div>`;
+  // 영향분석 (Chapter/Screen에 특히 유용)
+  const lay=impact(id);
+  if(lay.length){
+    const flat=[...new Set(lay.flat())];
+    const docs=flat.filter(x=>byId[x]&&byId[x].type==='Doc');
+    html+=`<div class="card imp"><h2>영향분석 — 이 노드를 바꾸면 (역방향 도달 ${flat.length}개)</h2>`+
+      (docs.length?`<div class="grp"><h3>영향 문서 ${docs.length}</h3>${docs.map(x=>`<div class="edge" data-go="${x}"><span class="tag t-Doc">Doc</span> ${esc(byId[x].label)}</div>`).join('')}</div>`:'')+
+      lay.map((L,di)=>`<div class="grp"><h3>${di+1}단계 (${L.length})</h3>${L.map(x=>{const b=byId[x]||{type:'?'};return `<span class="stat" data-go="${x}" style="cursor:pointer"><b class="tag t-${b.type}" style="font-size:9px">${b.type}</b> ${esc((b.label||x))}</span>`;}).join(' ')}</div>`).join('')+
+      `</div>`;
+  }
+  html+=`<div class="card"><h2>나가는 관계 (${o.length})</h2>${o.length?grpEdges(o,'out'):'<span class=hint>없음</span>'}</div>`;
+  html+=`<div class="card"><h2>들어오는 관계 (${i.length})</h2>${i.length?grpEdges(i,'in'):'<span class=hint>없음</span>'}</div>`;
+  document.getElementById('detail').innerHTML=html;
+  renderMermaid(id);
+}
+document.getElementById('q').addEventListener('input',render);
+document.getElementById('ftype').addEventListener('change',render);
+listEl.addEventListener('click',e=>{const li=e.target.closest('li');if(li)show(li.dataset.id);});
+document.getElementById('detail').addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)show(g.dataset.go);});
+render();
+</script>
+</body>
+</html>
