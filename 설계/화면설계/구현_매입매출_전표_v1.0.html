@@ -100,6 +100,17 @@ li{margin:3px 0}
 .flow.mini .arr{font-size:14px;padding:0 5px}
 .tax-out{font-size:12.3px}
 .tax-out td:first-child{white-space:nowrap;font-weight:700}
+/* ---------- 세금계산서 양식 ---------- */
+.txinv{border:2px solid #b3261e;border-collapse:collapse;width:100%;font-size:10.4px;margin:6px 0 0;background:#fffdfa;color:#7a1f1f}
+.txinv+.txinv{margin-top:-1px}
+.txinv td{border:1px solid #d9a3a0;padding:2px 5px;vertical-align:middle}
+.txinv th{border:1px solid #d9a3a0;padding:2px 4px;text-align:center;background:#fdeeec;color:#7a1f1f;font-weight:700;white-space:nowrap}
+.txinv .ttl{text-align:center;font-size:13px;font-weight:700;letter-spacing:3px;padding:5px;background:#fbe4e1}
+.txinv .side{width:16px;text-align:center;font-weight:700;background:#fbe4e1;line-height:1.1;white-space:nowrap}
+.txinv .k{background:#fdeeec;font-weight:700;text-align:center;white-space:nowrap}
+.txinv .r{text-align:right}
+.txinv .bigo{background:#fff3bf;color:#7a4f00;font-weight:700;text-align:center}
+.txinv .bigo-v{background:#fffbe6;color:#7a4f00}
 @media print{
   nav#toc{display:none} main{margin-left:0;max-width:none}
   section{break-inside:avoid;border:none;padding:10px 0}
@@ -151,6 +162,12 @@ li{margin:3px 0}
   <a class="sub" href="#wpv-check">11.3 실무 체크리스트</a>
   <a class="sub" href="#wpv-bk">11.4 BK 설계 정합 · 구현 모델</a>
   <a class="sub" href="#wpv-src">11.5 출처</a>
+  <div class="g">12. 홈택스 엑셀 업로드</div>
+  <a class="sub" href="#hometax">12.1 자료 취합 두 경로</a>
+  <a class="sub" href="#hometax-upload">12.2 엑셀 업로드 흐름 ★</a>
+  <a class="sub" href="#hometax-map">12.3 업로드 자료 → 전표 자동생성</a>
+  <a class="sub" href="#hometax-gen">12.4 구분별 전표 생성 로직 (상세) ★</a>
+  <a class="sub" href="#hometax-valid">12.5 검증 · 중복방지 · BK 모델</a>
 </nav>
 <main>
 
@@ -503,11 +520,54 @@ li{margin:3px 0}
         <tr style="background:#eef3ff"><td>☑</td><td><span class="badge b-red">11</span></td><td>06-18</td><td>㈜가나상사</td><td class="r">3,000,000</td><td class="r">300,000</td><td><span class="badge b-amber">확인요청</span></td><td>월말 정산분</td></tr>
         <tr><td>☑</td><td><span class="badge b-red">13</span></td><td>06-18</td><td>대한상회</td><td class="r">500,000</td><td class="r">—</td><td><span class="badge b-amber">확인요청</span></td><td></td></tr>
       </table>
-      <div class="wf-panel pnl" style="margin-top:8px"><div class="pt">발행정보 (선택 전표) — 세금계산서 문서에 인쇄</div>
-        <div class="wf-row"><label>비고</label><span class="wf-in wide full">월말 정산분 / 검수확인 후 발행</span></div>
-        <div class="wf-row"><label>영수·청구</label><span class="wf-sel">청구</span> <label style="min-width:60px">받는이 이메일</label><span class="wf-in wide">buyer@example.com</span></div>
-        <div class="wf-row"><label>책(일련)번호</label><span class="wf-in">자동</span> <label style="min-width:80px">사업자단위과세</label><span class="wf-sel">미적용</span></div>
+      <div class="wf-panel pnl" style="margin-top:8px"><div class="pt">발행정보 (선택 전표) — 세금계산서 문서에 인쇄 (발행 전 · 입력)</div>
+        <!-- 발행옵션 (양식 최상단) -->
+        <div class="wf-row" style="margin:2px 0 6px"><label>발행구분</label>
+          <span class="wf-tab" style="border:1px solid var(--line);border-radius:4px 0 0 4px;padding:2px 14px;color:#5b6478">영수</span><span class="wf-tab" style="background:#2554c7;color:#fff;border-radius:0 4px 4px 0;padding:2px 14px">청구</span>
+          <span style="color:#8a94a8">|</span>
+          <label style="min-width:62px">받는이 이메일</label><span class="wf-in wide">buyer@example.com</span>
+          <label style="min-width:70px">책(일련)번호</label><span class="wf-in">자동</span>
+          <label style="min-width:88px">사업자단위과세</label><span class="wf-sel">미적용</span>
+        </div>
+        <div class="wf-row" style="margin:2px 0 6px;flex-wrap:nowrap"><label>비고</label><span class="wf-in" style="flex:1;min-width:0;background:#fffbe6;border-color:#caa86a;color:#7a4f00">월말 정산분 / 검수확인 후 발행 <span style="color:#b3261e">|</span></span> <span style="font-size:9.5px;color:#b08;white-space:nowrap">▼ 본문 비고란 연동</span></div>
+        <!-- 세금계산서 서식 -->
+        <table class="txinv">
+          <colgroup><col style="width:3%"><col style="width:11%"><col style="width:36%"><col style="width:3%"><col style="width:11%"><col style="width:36%"></colgroup>
+          <tr><td class="ttl" colspan="6">전 자 세 금 계 산 서 <span style="font-size:10px;font-weight:400">(공급자 보관용)</span> &nbsp; 승인번호 <span style="font-weight:400;color:#a06">미발급</span> <span style="font-size:9.5px;font-weight:400;color:#b08">(발행 시 국세청 자동 채번)</span></td></tr>
+          <tr>
+            <td class="side" rowspan="5">공<br>급<br>자</td>
+            <td class="k">등록번호</td><td>123-45-67890</td>
+            <td class="side" rowspan="5">공급받는자</td>
+            <td class="k">등록번호</td><td>210-81-00000</td>
+          </tr>
+          <tr><td class="k">상호(법인명)</td><td>㈜한국상사 &nbsp;(대표 홍길동)</td><td class="k">상호(법인명)</td><td>㈜가나상사 &nbsp;(대표 김가나)</td></tr>
+          <tr><td class="k">사업장 주소</td><td>서울 강남구 …</td><td class="k">사업장 주소</td><td>경기 성남시 …</td></tr>
+          <tr><td class="k">업태 / 종목</td><td>제조 / 전자부품</td><td class="k">업태 / 종목</td><td>도소매 / 컴퓨터</td></tr>
+          <tr><td class="k">이메일</td><td>sales@hanguk.co.kr</td><td class="k">이메일</td><td>buyer@example.com</td></tr>
+        </table>
+        <table class="txinv">
+          <colgroup><col style="width:11%"><col style="width:21%"><col style="width:8%"><col style="width:14%"><col style="width:7%"><col style="width:13%"><col style="width:8%"><col style="width:18%"></colgroup>
+          <tr>
+            <td class="k">작성일자</td><td>2026-06-18</td>
+            <td class="k">공급가액</td><td class="r">3,000,000</td>
+            <td class="k">세액</td><td class="r">300,000</td>
+            <td class="bigo">비&nbsp;고</td><td class="bigo-v">월말 정산분 / 검수확인 후 발행 <span style="font-size:9.5px;color:#b08">◀ 최상단 비고 연동(읽기 전용)</span></td>
+          </tr>
+        </table>
+        <table class="txinv">
+          <colgroup><col style="width:5%"><col style="width:5%"><col style="width:22%"><col style="width:9%"><col style="width:7%"><col style="width:13%"><col style="width:14%"><col style="width:13%"><col style="width:12%"></colgroup>
+          <tr><th>월</th><th>일</th><th>품목</th><th>규격</th><th>수량</th><th>단가</th><th>공급가액</th><th>세액</th><th>비고</th></tr>
+          <tr><td class="r">06</td><td class="r">18</td><td>제품A</td><td>EA</td><td class="r">10</td><td class="r">200,000</td><td class="r">2,000,000</td><td class="r">200,000</td><td class="bigo-v"></td></tr>
+          <tr><td class="r">06</td><td class="r">18</td><td>제품B</td><td>BOX</td><td class="r">5</td><td class="r">200,000</td><td class="r">1,000,000</td><td class="r">100,000</td><td class="bigo-v"></td></tr>
+          <tr><td class="r">&nbsp;</td><td></td><td style="color:#c9a">… (복수거래 시 품목별 비고 입력 가능, 인쇄 4품목 + ~외) …</td><td></td><td></td><td></td><td></td><td></td><td class="bigo-v"></td></tr>
+        </table>
+        <table class="txinv">
+          <colgroup><col style="width:16%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:16%"><col style="width:26%"></colgroup>
+          <tr><th>합계금액</th><th>현금</th><th>수표</th><th>어음</th><th>외상미수금</th><th>이 금액을</th></tr>
+          <tr><td class="r"><b>3,300,000</b></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r">3,300,000</td><td style="text-align:center">이 금액을 ( 영수 · <b>청구</b> ) 함 <span style="font-size:9px;color:#b08">← 최상단 발행구분 연동</span></td></tr>
+        </table>
       </div>
+      <div class="note" style="margin:8px 0 0"><b>발행 전 상태</b> — ① <b>승인번호는 미발급</b>(발행 시 국세청에서 자동 채번). ② <b>비고·영수/청구·이메일·책번호·사업자단위과세</b> 등 발행정보는 양식 <b>최상단에서 입력</b>하고, 세금계산서 본문(비고란·'이 금액을 (영수·청구)함')에 <b>연동되어 읽기 전용으로 표시</b>된다(발행 메타정보 → 신고 집계·분개 비반영, 발행 문서에만 인쇄). ③ 복수거래 시에는 품목 명세의 '비고' 열에 품목별 비고도 입력할 수 있다.</div>
       <div class="wf-foot" style="border:0;background:transparent;padding:6px 0">
         선택 2건 · 공급가액 <b>3,500,000</b>
         <span class="sp" style="flex:1"></span>
@@ -723,6 +783,155 @@ li{margin:3px 0}
 <b>입력 사용흐름</b> — 매입매출 전표입력 1편(기초사용·기본구조 2계층·유형/품명/전자/분개/관리), 2편(과세유형별 입력방법·의제/재활용·신고서 반영표·오류예방), 3편(조건검색·액션바·툴바·구현 모델), 4편(더보기 기능·통제 포인트·구현 모델).<br>
 <b>주의</b> — 본 문서는 BK 화면설계 정리본으로 공식 스펙 확정본이 아니며, 사용흐름 서술을 BK 도메인(<code>journals</code>·<code>tax</code>·<code>integrations</code>·관리차원·보조부)으로 연결한 방향 제안이다.
 </div>
+</section>
+
+<section id="hometax">
+<h2>12. 홈택스 엑셀 업로드 · 전표 자동생성</h2>
+<p>매입매출 세무자료는 두 경로로 취합할 수 있다. ① <b>국세청 홈택스 직접 연동</b>(전자세금계산서·전자계산서·카드·현금영수증 자료를 API/스크래핑으로 수집해 전표로 전송), ② <b>홈택스에서 내려받은 엑셀 파일을 업로드</b>해 전표를 생성. 직접 연동이 어렵거나 일괄로 한 번에 반영할 때 엑셀 업로드 경로를 쓴다.</p>
+
+<h3 id="hometax-route">12.1 자료 취합 두 경로</h3>
+<table>
+  <tr><th>경로</th><th>흐름</th><th>BK 연계</th></tr>
+  <tr><td><b>① 홈택스 직접 연동</b></td><td>홈택스 전자세금계산서·전자계산서·카드·현금영수증 수집 → 미확정 전표 → <b>자동전표검증</b>(툴바) 후 확정</td><td>선행 <code>SA-ATX-02/03/04/05</code> 전표전송 · 후행 <code>SA-ATX-09</code> 국세청자료검증</td></tr>
+  <tr><td><b>② 홈택스 엑셀 업로드</b></td><td>홈택스에서 매입/매출 내역 엑셀 <b>다운로드</b> → 본 화면 더보기 <b>'엑셀 자료 반영'</b> → 컬럼 매핑 → 검증 → <b>전표 일괄 생성</b></td><td>본 화면(<code>SA-JNL-02</code>) 더보기 ㉒ 엑셀 자료 반영 · <code>HometaxExcelImportCommand</code></td></tr>
+</table>
+<div class="flow">
+  <div class="step"><b>① 홈택스 다운로드</b><small>매입/매출 내역 엑셀</small></div><div class="arr">→</div>
+  <div class="step"><b>② 엑셀 업로드</b><small>더보기 &gt; 엑셀 자료 반영</small></div><div class="arr">→</div>
+  <div class="step"><b>③ 컬럼 매핑</b><small>홈택스 열 → 전표 필드</small></div><div class="arr">→</div>
+  <div class="step"><b>④ 검증</b><small>사업자번호·중복·합계</small></div><div class="arr">→</div>
+  <div class="step"><b>⑤ 전표 생성</b><small>매입매출전표 일괄 채번</small></div>
+</div>
+
+<h3 id="hometax-upload">12.2 엑셀 업로드 흐름 ★</h3>
+<div class="wf">
+  <div class="wf-cap">홈택스 엑셀 업로드 — 더보기 &gt; 엑셀 자료 반영 (모달)</div>
+  <div class="wf-modal">
+    <div class="mh">홈택스 엑셀 자료 반영<span class="sp"></span><span class="wf-btn" style="background:#fff;color:#2554c7">서식 내려받기</span><span class="kbd">Esc</span></div>
+    <div style="padding:10px 12px">
+      <div class="wf-row"><label>자료 구분</label><span class="wf-sel">매출 (전자세금계산서)</span> <label style="min-width:60px">과세기간</label><span class="wf-in" style="min-width:120px">2026-04 ~ 2026-06</span></div>
+      <div class="wf-row"><label>엑셀 파일</label><span class="wf-in wide">홈택스_매출_2026Q2.xlsx</span> <span class="wf-btn">파일 선택</span> <span class="wf-btn">업로드</span></div>
+      <div style="font-weight:700;color:#27314d;margin:8px 0 3px">미리보기 · 컬럼 매핑</div>
+      <table class="wf-grid cmp">
+        <colgroup><col style="width:8%"><col style="width:14%"><col style="width:18%"><col style="width:13%"><col style="width:13%"><col style="width:9%"><col style="width:11%"><col style="width:14%"></colgroup>
+        <tr><th>작성일자</th><th>사업자번호</th><th>상호</th><th class="r">공급가액</th><th class="r">세액</th><th>전자</th><th>유형(자동)</th><th>검증</th></tr>
+        <tr style="background:#eef3ff"><td>2026-06-18</td><td>210-81-00000</td><td>㈜가나상사</td><td class="r">3,000,000</td><td class="r">300,000</td><td>전자</td><td><span class="badge b-red">11.과세</span></td><td><span class="badge b-green">정상</span></td></tr>
+        <tr><td>2026-06-19</td><td>140-81-11111</td><td>대한상회</td><td class="r">500,000</td><td class="r">0</td><td>전자</td><td><span class="badge b-red">13.면세</span></td><td><span class="badge b-green">정상</span></td></tr>
+        <tr style="background:#fff5f5"><td>2026-06-20</td><td><span style="color:#b91c1c">(누락)</span></td><td>무명상사</td><td class="r">200,000</td><td class="r">20,000</td><td>전자</td><td><span class="badge b-red">11.과세</span></td><td><span class="badge b-red">사업자번호 누락</span></td></tr>
+        <tr style="background:#fffbe6"><td>2026-06-18</td><td>210-81-00000</td><td>㈜가나상사</td><td class="r">3,000,000</td><td class="r">300,000</td><td>전자</td><td><span class="badge b-red">11.과세</span></td><td><span class="badge b-amber">기수집분 중복</span></td></tr>
+      </table>
+      <div class="wf-foot" style="border:0;background:transparent;padding:6px 0">
+        총 124건 · <span class="badge b-green">정상 121</span> <span class="badge b-red">오류 1</span> <span class="badge b-amber">중복 2</span>
+        <span class="sp" style="flex:1"></span>
+        <span class="wf-btn">오류만 보기</span><span class="wf-btn">중복 제외</span><span class="wf-btn pri">전표 생성 (정상 121건)</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ol>
+  <li><b>홈택스 다운로드</b> — 홈택스 &gt; 전자(세금)계산서/신용카드/현금영수증 조회에서 매입·매출 내역을 엑셀로 저장.</li>
+  <li><b>자료 구분·기간 선택</b> — 매출/매입, 전자세금계산서·계산서·카드·현금영수증 등 구분과 과세기간 지정.</li>
+  <li><b>업로드·미리보기</b> — 파일을 올리면 행 단위로 미리보기. 표준 서식과 다르면 <b>'서식 내려받기'</b>로 받은 양식에 맞춰 정리.</li>
+  <li><b>컬럼 매핑</b> — 홈택스 열(작성일자·사업자번호·상호·공급가액·세액·전자 등)을 전표 필드에 매핑하고, <b>유형(과세유형)</b>은 증빙·세액 유무로 자동 추정(11/13/51/53 등) 후 보정.</li>
+  <li><b>검증·전표 생성</b> — 오류·중복을 거른 정상분만 매입매출전표로 일괄 생성(채번 50001~99999).</li>
+</ol>
+
+<h3 id="hometax-map">12.3 업로드 자료 → 전표 자동생성 매핑</h3>
+<table>
+  <tr><th>홈택스 엑셀 열</th><th>매입매출전표 필드</th><th>처리 규칙</th></tr>
+  <tr><td>작성일자</td><td>전표 일자</td><td>일자 단위 채번 기준</td></tr>
+  <tr><td>공급자/공급받는자 사업자등록번호</td><td>거래처(사업자번호)</td><td>거래처 마스터 매칭, 없으면 <b>빠른 거래처 등록</b> 후보. <b>누락 시 오류</b></td></tr>
+  <tr><td>상호 / 대표자</td><td>거래처명</td><td>마스터 우선, 신규 시 엑셀값 사용</td></tr>
+  <tr><td>증빙 종류 + 세액 유무</td><td><b>유형(taxType)</b></td><td>세금계산서+세액→11/51, 계산서/세액0→13/53, 카드→17/57, 현금영수증→22/61 등 자동 추정·보정</td></tr>
+  <tr><td>공급가액 / 세액</td><td>공급가액 / 부가세</td><td>과세유형 세율과 정합 검증(영세·면세 세액 0)</td></tr>
+  <tr><td>전자 발급여부</td><td>전자</td><td>전자분 → <code>1.전자입력</code>(이미 발급·수취분)</td></tr>
+  <tr><td>(설정)</td><td>분개유형 · 계정</td><td>자동분개 설정(6장)에 따라 하단 분개라인·부가세 자동라인 생성</td></tr>
+</table>
+<div class="note"><b>유형 자동 추정은 보정 전제</b> — 엑셀에는 과세유형 코드(11~25/51~64)가 그대로 없을 수 있으므로 증빙·세액으로 추정한 뒤 <b>사용자 확인·보정</b>을 거친다. 불공(54)·수입(55)·의제/재활용(53/58/60/62) 등 특수 유형은 자동 추정만으로 확정하지 않는다.</div>
+
+<h3 id="hometax-gen">12.4 구분별 전표 생성 로직 (상세) ★</h3>
+<p>업로드 행 한 건마다 다음 순서로 판정해 <b>상단 세무헤더 + 하단 분개라인(+부가세 자동라인)</b>을 생성한다.</p>
+<h4>① 판정 순서 (행 단위)</h4>
+<ol>
+  <li><b>매입/매출 구분</b> — 엑셀 자료 구분(공급자=자사면 매출, 공급받는자=자사면 매입) → 매출 11~25 / 매입 51~64 군 결정</li>
+  <li><b>증빙 종류</b> — 세금계산서 / 계산서 / 신용카드 / 현금영수증 → 코드 대역 결정</li>
+  <li><b>세액 유무(과세성격)</b> — 세액&gt;0 → 과세, 세액=0 &amp; 세금계산서 → 영세, 계산서 → 면세</li>
+  <li><b>taxType 확정</b> — 위 조합으로 코드 매핑(아래 표). 특수유형(54·55·의제/재활용)은 <span class="badge b-amber">보류</span> 후 수동 확정</li>
+  <li><b>분개유형 결정</b> — 세금계산서/계산서=<b>2.외상</b>(기본), 신용카드=<b>4.카드</b>, 현금영수증=<b>1.현금</b>(자동분개 설정으로 변경 가능)</li>
+  <li><b>부가세 자동라인</b> — <b>과세유형(세액 있는 과세)에서만</b> 매출=부가세예수금(대변)·매입=부가세대급금(차변) 생성. 영세·면세는 미생성</li>
+  <li><b>고정자산 분기</b> — 매입 51·57·61 + 계정이 고정자산이면 신고서 일반매입→고정자산매입</li>
+</ol>
+
+<h4>② 매출 구분별 생성 전표</h4>
+<table>
+  <tr><th>홈택스 구분</th><th>추정 유형</th><th>분개<br>유형</th><th>상단(공급가액/부가세/전자)</th><th>하단 차변</th><th>하단 대변</th><th>반영 산출물</th></tr>
+  <tr><td>전자세금계산서(과세)</td><td><span class="badge b-red">11.과세</span></td><td>2.외상</td><td>공급가액 ○ / 부가세 ○ / 전자</td><td>외상매출금 <b>(공급대가)</b></td><td>제품(상품)매출 (공급가액)<br><span class="badge b-amber">자동</span> 부가세예수금 (세액)</td><td>부가세신고서 과세매출 · 세금계산서합계표(전자)</td></tr>
+  <tr><td>전자세금계산서(영세)</td><td><span class="badge b-red">12.영세</span></td><td>2.외상</td><td>공급가액 ○ / 부가세 0 / 전자</td><td>외상매출금 (공급가액)</td><td>제품매출 (공급가액)<br><span class="b-gray badge">부가세라인 없음</span></td><td>부가세신고서 영세매출 · 합계표</td></tr>
+  <tr><td>전자계산서(면세)</td><td><span class="badge b-red">13.면세</span></td><td>2.외상</td><td>공급가액 ○ / 부가세 —</td><td>외상매출금 (공급가액)</td><td>면세매출 (공급가액)<br><span class="b-gray badge">부가세라인 없음</span></td><td>부가세신고서 면세수입금액 · 계산서합계표</td></tr>
+  <tr><td>신용카드(과세)</td><td><span class="badge b-red">17.카과</span></td><td>4.카드</td><td>공급가액 ○ / 부가세 ○</td><td>외상매출금/카드채권 <b>(공급대가)</b></td><td>제품매출 (공급가액)<br><span class="badge b-amber">자동</span> 부가세예수금 (세액)</td><td>신용카드매출전표발행집계표 · 부가세신고서</td></tr>
+  <tr><td>현금영수증(과세)</td><td><span class="badge b-red">22.현과</span></td><td>1.현금</td><td>공급가액 ○ / 부가세 ○</td><td>현금 <b>(공급대가)</b></td><td>제품매출 (공급가액)<br><span class="badge b-amber">자동</span> 부가세예수금 (세액)</td><td>부가세신고서 현금영수증 발행분</td></tr>
+</table>
+
+<h4>③ 매입 구분별 생성 전표</h4>
+<table>
+  <tr><th>홈택스 구분</th><th>추정 유형</th><th>분개<br>유형</th><th>상단(공급가액/부가세/전자)</th><th>하단 차변</th><th>하단 대변</th><th>반영 산출물</th></tr>
+  <tr><td>전자세금계산서(과세)</td><td><span class="badge b-blue">51.과세</span></td><td>2.외상</td><td>공급가액 ○ / 부가세 ○ / 전자</td><td>원재료(상품·비용) (공급가액)<br><span class="badge b-amber">자동</span> 부가세대급금 (세액)</td><td>외상매입금 <b>(공급대가)</b></td><td>부가세신고서 일반/고정자산매입 · 세금계산서합계표(전자)</td></tr>
+  <tr><td>전자계산서(면세)</td><td><span class="badge b-blue">53.면세</span></td><td>2.외상</td><td>공급가액 ○ / 부가세 —</td><td>원재료(상품·비용) (공급가액)<br><span class="b-gray badge">부가세라인 없음</span></td><td>외상매입금 (공급가액)</td><td>계산서합계표 매입</td></tr>
+  <tr><td>신용카드(과세·공제)</td><td><span class="badge b-blue">57.카과</span></td><td>4.카드</td><td>공급가액 ○ / 부가세 ○</td><td>매입(비용) (공급가액)<br><span class="badge b-amber">자동</span> 부가세대급금 (세액)</td><td>미지급금/카드채무 <b>(공급대가)</b></td><td>신용카드매출전표등수령명세서</td></tr>
+  <tr><td>현금영수증(과세)</td><td><span class="badge b-blue">61.현과</span></td><td>1.현금</td><td>공급가액 ○ / 부가세 ○</td><td>매입(비용) (공급가액)<br><span class="badge b-amber">자동</span> 부가세대급금 (세액)</td><td>현금 <b>(공급대가)</b></td><td>수령명세서 · 부가세신고서</td></tr>
+  <tr><td>세금계산서(불공제)</td><td><span class="badge b-blue">54.불공</span></td><td><span class="badge b-amber">보류</span></td><td>공급가액 ○ / 부가세 ○ / 전자</td><td>비용·자산 <b>(공급대가=세액 원가포함)</b></td><td>외상매입금 (공급대가)</td><td>공제받지못할매입세액명세서 (사유코드 수동)</td></tr>
+</table>
+
+<h4>④ 생성 결과 예시 — 매입 전자세금계산서(51.과세) 1건</h4>
+<div class="wf">
+  <div class="wf-cap">엑셀 1행 → 생성된 매입매출전표 (2026-06-18 · 대한물산 · 공급가액 1,000,000 / 세액 100,000)</div>
+  <div class="wf-body">
+    <div style="font-weight:700;color:#b91c1c;margin-bottom:3px">상단부 · 세무헤더</div>
+    <table class="wf-grid cmp">
+      <colgroup><col style="width:7%"><col style="width:8%"><col style="width:16%"><col style="width:13%"><col style="width:13%"><col style="width:13%"><col style="width:8%"><col style="width:8%"></colgroup>
+      <tr><th>일</th><th>유형</th><th>거래처</th><th>품명</th><th class="r">공급가액</th><th class="r">부가세</th><th>전자</th><th>분개</th></tr>
+      <tr style="background:#eef3ff"><td>18</td><td><span class="badge b-blue">51.과세</span></td><td>대한물산</td><td>원재료</td><td class="r">1,000,000</td><td class="r">100,000</td><td>1.전자입력</td><td>2.외상</td></tr>
+    </table>
+    <div style="font-weight:700;color:#2554c7;margin:8px 0 3px">하단부 · 분개라인 (자동생성)</div>
+    <table class="wf-grid cmp">
+      <colgroup><col style="width:9%"><col style="width:24%"><col style="width:15%"><col style="width:15%"><col style="width:14%"></colgroup>
+      <tr><th>구분</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th><th>거래처</th></tr>
+      <tr><td><span class="badge b-gray">차변</span></td><td>153 원재료</td><td class="r">1,000,000</td><td class="r"></td><td>대한물산</td></tr>
+      <tr><td><span class="badge b-gray">차변</span></td><td>135 부가세대급금 <span class="badge b-amber">자동</span></td><td class="r">100,000</td><td class="r"></td><td>대한물산</td></tr>
+      <tr><td><span class="badge b-gray">대변</span></td><td>251 외상매입금</td><td class="r"></td><td class="r">1,100,000</td><td>대한물산</td></tr>
+    </table>
+  </div>
+  <div class="wf-foot">부가세 자동라인 <b>차변 부가세대급금 100,000</b> 생성 · 일반매입(고정자산 계정이면 고정자산매입) <span class="sp" style="flex:1"></span><span class="badge b-green">대차 일치 1,100,000</span></div>
+</div>
+
+<h4>⑤ 부가세 자동라인 · 금액 규칙 요약</h4>
+<table>
+  <tr><th>구분</th><th>부가세 자동라인</th><th>채권/채무 라인 금액</th></tr>
+  <tr><td>매출 과세(11·14·17·22 등)</td><td><b>대변 부가세예수금</b> = 세액</td><td>외상매출금/현금/카드채권 = <b>공급대가</b>(공급가액+세액)</td></tr>
+  <tr><td>매입 과세(51·57·61 등)</td><td><b>차변 부가세대급금</b> = 세액</td><td>외상매입금/미지급금/카드채무 = <b>공급대가</b></td></tr>
+  <tr><td>영세·면세(12·13·52·53 등)</td><td><b>생성 안 함</b></td><td>채권/채무 = 공급가액</td></tr>
+  <tr><td>불공(54)</td><td>생성 안 함(매입세액 불공제)</td><td>비용·자산에 <b>세액 포함</b>(공급대가)</td></tr>
+</table>
+<div class="note"><b>분개유형·계정은 자동분개 설정 적용</b> — 위 차/대변 계정(제품매출/원재료/외상매출금 등)과 분개유형(2.외상·4.카드·1.현금)은 더보기 <b>'분개 계정과목 설정'·'자동분개 설정'</b>(6장)의 기본·추가계정을 따른다. 거래처·품목별 과거 자동분개 이력이 있으면 그 계정을 우선 적용한다.</div>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 처리·검증 규칙("부가세 자동라인은 과세유형 입력 시에만 생성", 영세·면세 미생성; 고정자산 분기)·분개유형(0~7)·자동분개 기본계정. 4장 과세유형 라우팅·6장 자동분개. 구분별 생성 매핑은 BK 자동분개 엔진 적용 결과의 설계 제안.</div>
+
+<h3 id="hometax-valid">12.5 검증 · 중복방지 · BK 모델</h3>
+<table>
+  <tr><th>검증</th><th>내용</th><th>표기</th></tr>
+  <tr><td>사업자등록번호</td><td>누락·형식오류 행은 생성 제외(합계표 키)</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>중복 방지</td><td>홈택스 직접 연동으로 <b>이미 수집된 전표</b>·기입력 전표와 (일자·사업자번호·공급가액·세액·승인번호) 대조 → 중복 제외</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>합계 정합</td><td>업로드 합계 = 생성 전표 합계, 세율·세액 정합</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>유형 보정</td><td>자동 추정 유형 사용자 확인 후 확정</td><td><span class="badge b-amber">검토</span></td></tr>
+</table>
+<table>
+  <tr><th>구현 단위</th><th>역할</th></tr>
+  <tr><td><code>HometaxExcelImportCommand</code></td><td>홈택스 엑셀 업로드·파싱·미리보기</td></tr>
+  <tr><td><code>ExcelColumnMappingProfile</code></td><td>홈택스 열 → 전표 필드 매핑 프로파일(자료 구분별)</td></tr>
+  <tr><td><code>TaxTypeInferenceRule</code></td><td>증빙·세액 기반 과세유형 자동 추정</td></tr>
+  <tr><td><code>DuplicateVoucherGuard</code></td><td>연동 수집분·기입력분과 중복 대조(승인번호 등)</td></tr>
+  <tr><td><code>BulkVoucherGenerateCommand</code></td><td>정상 행 매입매출전표 일괄 생성·채번(50001~99999)</td></tr>
+</table>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 더보기 ㉒ '엑셀 자료 반영'(엑셀서식 내려받기→작성→업로드→전표전송)·툴바 자동전표검증(전송 미확정 전표 검증)·연계 <code>SA-ATX-02/03/04/05</code>(전자세금계산서·계산서·카드·현금영수증 전표전송)·<code>SA-ATX-09</code>(국세청자료검증). 매입매출 전표입력 3편(자동전표검증)·4편(엑셀자료반영·자료수집현황 바로가기·데이터검사). 홈택스 다운로드 엑셀 업로드 경로는 직접 연동 대안으로서의 BK 설계 제안(②경로).</div>
 </section>
 
 </main>
