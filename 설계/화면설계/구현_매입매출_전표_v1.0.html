@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK 회계/세무 구현 화면설계서 v1.0 — 매입매출전표입력 (SA-JNL-02 · 2계층 세무헤더+분개라인)</title>
+<style>
+:root{
+  --ink:#1c2333; --sub:#5b6478; --line:#d8dde8; --bg:#f4f6fa; --card:#ffffff;
+  --accent:#2554c7; --accent-bg:#eaf0fd; --warn:#b45309; --warn-bg:#fef3c7;
+  --danger:#b91c1c; --danger-bg:#fee2e2; --ok:#15803d; --ok-bg:#dcfce7;
+  --muted-bg:#eef1f6; --wf-line:#7c879c; --teal:#0f766e; --teal-bg:#cdf3ee;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.65}
+nav#toc{position:fixed;top:0;left:0;bottom:0;width:262px;background:#1c2333;color:#cdd5e4;overflow-y:auto;padding:18px 14px;font-size:12.5px}
+nav#toc h2{font-size:14px;color:#fff;margin:0 0 4px}
+nav#toc .ver{color:#8d99b2;font-size:11px;margin-bottom:14px}
+nav#toc a{display:block;color:#cdd5e4;text-decoration:none;padding:3px 8px;border-radius:5px}
+nav#toc a:hover{background:#2b3650;color:#fff}
+nav#toc .g{margin-top:10px;font-weight:700;color:#8fa6d8;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+nav#toc .sub{padding-left:16px;font-size:12px}
+main{margin-left:262px;padding:32px 40px 80px;max-width:1200px}
+.doc-header{background:linear-gradient(135deg,#1c2333,#2554c7);color:#fff;border-radius:12px;padding:28px 32px;margin-bottom:28px}
+.doc-header h1{margin:0 0 6px;font-size:23px}
+.doc-header p{margin:2px 0;color:#cdd9f6;font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 30px;margin-bottom:26px}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--accent);color:#16213e}
+h3{font-size:16px;margin:26px 0 10px;color:#2554c7}
+h4{font-size:14.5px;margin:24px 0 8px;padding:7px 12px;background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+h4 .sid{display:inline-block;background:var(--accent);color:#fff;border-radius:4px;padding:1px 8px;font-size:12px;margin-right:8px;font-family:Consolas,monospace}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px;font-size:12.8px}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--muted-bg);font-size:12.3px;white-space:nowrap}
+td code,p code,li code{background:var(--muted-bg);border-radius:3px;padding:0 4px;font-family:Consolas,'D2Coding',monospace;font-size:12px;color:#33415e}
+.meta{font-size:12.3px}
+.meta th{width:110px;background:#f0f4fc}
+ul,ol{margin:6px 0 12px;padding-left:22px}
+li{margin:3px 0}
+.badge{display:inline-block;border-radius:10px;padding:1px 9px;font-size:11px;font-weight:700;white-space:nowrap}
+.b-blue{background:var(--accent-bg);color:var(--accent)}
+.b-green{background:var(--ok-bg);color:var(--ok)}
+.b-amber{background:var(--warn-bg);color:var(--warn)}
+.b-red{background:var(--danger-bg);color:var(--danger)}
+.b-gray{background:var(--muted-bg);color:var(--sub)}
+.b-dark{background:#1c2333;color:#fff}
+.b-teal{background:var(--teal-bg);color:var(--teal)}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.note{background:var(--warn-bg);border-left:4px solid var(--warn);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.tip{background:var(--accent-bg);border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.8px;margin:10px 0}
+.src{background:#f0f9ff;border-left:4px solid var(--teal);border-radius:0 6px 6px 0;padding:9px 14px;font-size:12.3px;margin:10px 0;color:#0f5e57}
+/* ---------- wireframe ---------- */
+.wf{border:2px solid var(--wf-line);border-radius:8px;background:#fbfcfe;margin:12px 0 16px;overflow:hidden;font-size:11.8px;color:#2a3349}
+.wf-cap{background:#eef1f6;color:#5b6478;font-size:11px;padding:3px 10px;border-bottom:1px dashed var(--line)}
+.wf-bar{background:#27314d;color:#fff;padding:6px 12px;display:flex;gap:10px;align-items:center}
+.wf-bar .sp{flex:1}
+.wf-tool{display:flex;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid var(--line);background:#f2f5fa;flex-wrap:wrap}
+.wf-body{padding:10px 12px}
+.wf-split{display:flex;gap:10px;align-items:stretch}
+.wf-split>div{flex:1}
+.wf-panel{border:1.5px solid var(--wf-line);border-radius:6px;background:#fff;padding:8px 10px;margin:6px 0}
+.wf-panel .pt{font-weight:700;font-size:11.5px;color:#27314d;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:6px}
+.wf-btn{display:inline-block;border:1.5px solid var(--wf-line);background:#fff;border-radius:5px;padding:2px 10px;font-size:11.3px;white-space:nowrap}
+.wf-btn.pri{background:#2554c7;border-color:#2554c7;color:#fff}
+.wf-btn.dng{background:#b91c1c;border-color:#b91c1c;color:#fff}
+.wf-in{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 8px;color:#8a94a8;font-size:11.3px;min-width:90px}
+.wf-row{display:flex;gap:8px;align-items:center;margin:4px 0;flex-wrap:wrap}
+.wf-row label{min-width:84px;color:#5b6478;font-size:11.3px}
+.req{color:#b91c1c;font-weight:700}
+.wf-panel.pnl{border-color:#2554c7;background:#fbfcff}
+.wf-panel.pnl .pt{color:#2554c7}
+.wf-grid{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.3px}
+.wf-grid th{background:#e6ebf4;border:1px solid #c3cbdb;padding:3px 6px;font-size:10.8px;white-space:nowrap}
+.wf-grid td{border:1px solid #d5dbe7;padding:3px 6px;background:#fff;white-space:nowrap}
+.wf-grid td.r,.wf-grid th.r{text-align:right}
+.wf-grid.cmp{font-size:10.4px;table-layout:fixed}
+.wf-grid.cmp th,.wf-grid.cmp td{padding:2px 3px;white-space:normal;word-break:break-all;overflow:hidden}
+.wf-foot{border-top:1.5px solid var(--wf-line);background:#f2f5fa;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wf-tab{display:flex;gap:0;border-bottom:2px solid var(--wf-line);margin-bottom:8px;flex-wrap:wrap}
+.wf-tab span{padding:4px 14px;border:1.5px solid var(--wf-line);border-bottom:none;border-radius:6px 6px 0 0;background:#e8edf6;margin-right:4px;font-size:11.3px}
+.wf-tab span.on{background:#fff;font-weight:700;color:#2554c7}
+.wf-modal{border:2px solid #2554c7;border-radius:8px;background:#fff;margin:10px 0;box-shadow:0 6px 18px rgba(28,35,51,.18)}
+.wf-modal .mh{background:#2554c7;color:#fff;padding:6px 12px;font-weight:700;font-size:11.6px;border-radius:6px 6px 0 0;display:flex;align-items:center}
+.wf-modal .mh .sp{flex:1}
+.kbd{border:1px solid #aab3c5;border-bottom-width:2px;border-radius:4px;background:#fff;padding:0 5px;font-family:Consolas,monospace;font-size:11px}
+.wf-sel{display:inline-block;border:1px solid #aab3c5;background:#fff;border-radius:4px;padding:2px 22px 2px 8px;color:#5b6478;font-size:11.3px;min-width:110px;position:relative}
+.wf-sel::after{content:"▾";position:absolute;right:7px;top:2px;color:#8a94a8}
+.wf-in.wide{min-width:170px}
+.wf-in.full{display:block;width:100%}
+.crumb{font-size:12px;color:#5b6478;background:#eef1f6;border:1px dashed var(--line);border-radius:6px;padding:6px 12px;margin:8px 0 12px}
+.crumb b{color:#2554c7}
+.crumb .sep{color:#aab3c5;margin:0 6px}
+.flow{display:flex;align-items:stretch;flex-wrap:wrap;gap:0;margin:12px 0 16px}
+.flow .step{border:1.5px solid var(--accent);background:var(--accent-bg);color:#1c2333;border-radius:8px;padding:8px 14px;font-size:12.3px;min-width:120px;text-align:center}
+.flow .step b{display:block;color:#2554c7;font-size:12.6px;margin-bottom:2px}
+.flow .step small{color:#5b6478;font-size:10.8px}
+.flow .arr{display:flex;align-items:center;color:#7c879c;font-size:18px;padding:0 8px}
+.flow.mini .step{min-width:0;padding:5px 10px;font-size:11.3px;background:#fff;border-color:var(--wf-line);border-radius:6px}
+.flow.mini .step b{color:#27314d;font-size:11.5px}
+.flow.mini .arr{font-size:14px;padding:0 5px}
+.tax-out{font-size:12.3px}
+.tax-out td:first-child{white-space:nowrap;font-weight:700}
+@media print{
+  nav#toc{display:none} main{margin-left:0;max-width:none}
+  section{break-inside:avoid;border:none;padding:10px 0}
+  .doc-header{border-radius:0}
+}
+</style>
+</head>
+<body>
+<nav id="toc">
+  <h2>매입매출전표입력 화면설계서</h2>
+  <div class="ver">v1.0 · SA-JNL-02 · 2계층(세무헤더+분개라인) · 2026-06-25</div>
+  <a href="#s1">1. 문서 개요 · 출처 · 범위</a>
+  <a href="#s2">2. 화면 골격 · 2계층 구조</a>
+  <div class="g">3. 매입매출전표입력 메인</div>
+  <a class="sub" href="#wpv01">3.1 매입매출전표입력 WPV-01</a>
+  <a class="sub" href="#wpv-query">3.2 조회방식(전체/유형별·기간/월별)</a>
+  <a class="sub" href="#wpv-head">3.3 상단부(세무헤더) 필드</a>
+  <a class="sub" href="#wpv-line">3.4 하단부(분개라인) 필드</a>
+  <div class="g">4. 과세유형 코드</div>
+  <a class="sub" href="#tax-sale">4.1 매출유형 11~25</a>
+  <a class="sub" href="#tax-buy">4.2 매입유형 51~64</a>
+  <a class="sub" href="#tax-route">4.3 과세유형 → 신고서 라우팅 ★</a>
+  <div class="g">5. 유형별 입력방법</div>
+  <a class="sub" href="#in-11">5.1 11.과세 매출</a>
+  <a class="sub" href="#in-13">5.2 13.면세 매출</a>
+  <a class="sub" href="#in-17">5.3 17.카과 매출</a>
+  <a class="sub" href="#in-51">5.4 51.과세 매입</a>
+  <a class="sub" href="#in-54">5.5 54.불공 매입</a>
+  <a class="sub" href="#in-5761">5.6 57.카과 · 61.현과 매입</a>
+  <a class="sub" href="#in-deem">5.7 의제매입 · 재활용폐자원 공제</a>
+  <div class="g">6. 분개유형 · 자동분개</div>
+  <a class="sub" href="#wpv-bunge">6.1 분개유형 0~7 · 자동분개 엔진</a>
+  <div class="g">7. 전자(세금)계산서</div>
+  <a class="sub" href="#wpv-etax">7. 전자 항목 · 발행 · 전송 상태</a>
+  <a class="sub" href="#wpv-etax-issue">7.1 전자발행 모달 · 비고(발행정보) ★</a>
+  <div class="g">8. 조건검색 · 액션바 · 툴바</div>
+  <a class="sub" href="#wpv-search">8.1 조건검색</a>
+  <a class="sub" href="#wpv-action">8.2 액션바</a>
+  <a class="sub" href="#wpv-tool">8.3 툴바</a>
+  <div class="g">9. 더보기 기능모음</div>
+  <a class="sub" href="#wpv-more">9.1 더보기 22+기능</a>
+  <a class="sub" href="#wpv-more-key">9.2 핵심기능 상세(예정누락 외)</a>
+  <a class="sub" href="#wpv-multi">9.3 복수거래 입력 팝업 ★</a>
+  <div class="g">10. 관리항목</div>
+  <a class="sub" href="#wpv-dim">10.1 6 관리차원 + 자금</a>
+  <div class="g">11. 검증 · 체크리스트 · BK</div>
+  <a class="sub" href="#wpv-valid">11.1 처리·검증 규칙</a>
+  <a class="sub" href="#wpv-err">11.2 자주 발생하는 오류·예방</a>
+  <a class="sub" href="#wpv-check">11.3 실무 체크리스트</a>
+  <a class="sub" href="#wpv-bk">11.4 BK 설계 정합 · 구현 모델</a>
+  <a class="sub" href="#wpv-src">11.5 출처</a>
+</nav>
+<main>
+
+<div class="doc-header">
+  <h1>BK 회계/세무 서비스 구현 화면설계서 v1.0 — 매입매출전표입력</h1>
+  <p>정합 기준: <b>bk_설계서_v3.0.md</b> <code>§25.4.2 매입매출전표입력 SA-JNL-02</code> · 화면 형태: <b>구현_화면_전표_v3.4.html</b>(일반전표입력) 동일 구조 · 입력 사용흐름 출처: 매입매출 전표입력 1~4편</p>
+  <p>작성일: 2026-06-25 · 문서 버전: <b>v1.0</b> · 범위: 매입매출전표를 <b>거래(부가세 신고자료)를 입력하는 상단부</b>와 <b>분개(재무회계자료)를 입력하는 하단부</b>의 <b>2계층</b>으로 설계한다. 상단부는 [부가가치세신고서]·[세금계산서합계표]·[계산서합계표]·[매입매출장]에, 하단부는 [계정별원장]·[총계정원장]·재무제표에 반영된다. <b>과세유형 코드(매출 11~25 / 매입 51~64)</b>를 신고서식 라우팅의 단일 진실원으로 삼고, 유형별 입력방법·전자발행·자동분개·액션바/툴바·더보기 기능을 모두 화면에 반영한다.</p>
+  <p style="color:#cdd9f6">기술 스택: 백엔드 <b>NestJS</b> / 프론트 <b>React 18</b> / DB <b>PostgreSQL 16</b>(SHARED+RLS·파티셔닝). 모든 그리드는 가상 스크롤·키보드 주도·실시간 검증을 전제로 한다. 부가세 자동라인은 <b>부가세 계정코드(과세유형) 입력 시에만</b> 생성한다.</p>
+</div>
+
+<section id="s1">
+<h2>1. 문서 개요 · 출처 · 범위</h2>
+<table class="meta">
+  <tr><th>목적</th><td>부가가치세 신고와 관련한 <b>매입매출 거래</b>를 입력하는 화면을 BK 화면설계로 구성한다. 한 전표가 <b>세무 신고자료(상단부)</b>와 <b>재무회계 분개(하단부)</b>를 동시에 만들어 내는 2계층 구조를 그대로 반영하고, 과세유형 선택이 부가세신고서·부속서류 반영의 기준이 된다는 점을 핵심으로 둔다.</td></tr>
+  <tr><th>구성 범위</th><td><b>① 상단부 세무헤더(일자·거래처·유형·품명·수량·단가·공급가액·부가세·전자)</b> · <b>② 하단부 분개라인(구분·계정·차변/대변·거래처·적요·관리)</b> · <b>③ 과세유형 코드와 신고서 라우팅</b> · <b>④ 유형별 입력방법·의제/재활용 공제</b> · <b>⑤ 분개유형·자동분개</b> · <b>⑥ 전자발행·전송</b> · <b>⑦ 조건검색·액션바·툴바·더보기</b> · <b>⑧ 관리항목·검증·체크리스트</b>로 정리한다.</td></tr>
+  <tr><th>화면 ID 체계</th><td>본 문서 전용 <code>WPV-xx</code>(BK 매입매출전표입력)를 사용하고, bk_설계서 <code>SA-JNL-02</code>(25.4.2)와 연결한다. 일반전표입력 <code>WJV-01</code>(SA-JNL-01)과는 채번 source 구분(매입매출 50001~99999)·메뉴 형제 관계로 매핑된다.</td></tr>
+  <tr><th>핵심 전제</th><td>매입매출전표입력 화면은 <b>① 상단 세무헤더 그리드 + ② 하단 분개라인 그리드 + ③ 액션바·툴바 + ④ 더보기 기능모음 + ⑤ 가이드영역</b>으로 구성된다. <b>과세유형(taxType)</b>이 세율·부가세계정·신고서식 매핑을 결정하고, <b>부가세 자동라인은 과세유형 입력 시에만</b> 생성된다. 상·하단 금액 불일치 시 차액은 [부가가치세신고서] '과표/수입금액제외'로 자동 반영된다.</td></tr>
+  <tr><th>표기</th><td><span class="badge b-green">반영</span> 설계 직접 반영 / <span class="badge b-blue">보완</span> 기능 확장 / <span class="badge b-amber">검토</span> 위험·주의 / <span class="badge b-red">차단</span> 저장·진행 불가. 매출유형은 <span class="badge b-red">빨강</span>, 매입유형은 <span class="badge b-blue">파랑</span>으로 구분. 단축키는 <span class="kbd">F2</span> 형태로 표기.</td></tr>
+</table>
+<div class="src"><b>주의(공통)</b> — 본 문서는 매입매출전표 입력 사용 흐름을 BK 화면설계로 정리한 것이며 BK 공식 스펙 확정본이 아니다. 정합 기준은 <code>bk_설계서_v3.0.md §25.4.2</code>이고, 입력 동작 서술은 매입매출 전표입력 1~4편을 BK 도메인(<code>journals</code>·<code>tax</code>·<code>integrations</code>·관리차원·보조부)으로 연결하는 방향 제안이다.</div>
+</section>
+
+<section id="s2">
+<h2>2. 화면 골격 · 2계층 구조</h2>
+<p>매입매출전표는 한 번의 입력으로 <b>세무 신고자료</b>와 <b>재무회계 분개</b>를 동시에 만든다. 그래서 화면이 <b>상단부(세무헤더)</b>와 <b>하단부(분개라인)</b>의 2계층으로 나뉜다. 상단부에서 거래(부가세 신고자료)를 입력하면 부가세신고서·합계표·매입매출장에 반영되고, 하단부에서 분개(재무회계자료)를 입력하면 계정별원장·재무제표에 반영된다.</p>
+<div class="crumb"><b>진입경로</b> &nbsp; 전표/장부 <span class="sep">›</span> 전표입력 <span class="sep">›</span> <b>매입매출전표입력</b> <span class="sep">|</span> 화면 ID <code>WPV-01</code> ↔ bk_설계서 <code>SA-JNL-02</code>(25.4.2)</div>
+<div class="flow">
+  <div class="step"><b>① 기간·유형 조회</b><small>전체/유형별, 기간/월별</small></div>
+  <div class="arr">→</div>
+  <div class="step"><b>② 상단 세무헤더</b><small>일자·거래처·유형·금액·전자</small></div>
+  <div class="arr">→</div>
+  <div class="step"><b>③ 부가세 자동라인</b><small>과세유형 입력 시 생성</small></div>
+  <div class="arr">→</div>
+  <div class="step"><b>④ 하단 분개라인</b><small>분개유형·계정·관리</small></div>
+  <div class="arr">→</div>
+  <div class="step"><b>⑤ 검증·저장</b><small>합계표키·대차·신고반영</small></div>
+</div>
+<table>
+  <tr><th>계층</th><th>입력 내용</th><th>반영 산출물</th></tr>
+  <tr><td><b>상단부 (세무헤더)</b><br><span class="badge b-amber">세무 신고자료</span></td><td>일자(N/U) · 거래처/사업자등록번호 · <b>유형(과세유형)</b> · 품명 · 수량 · 단가 · 공급가액 · 부가세 · 전자</td><td>[부가가치세신고서] · [세금계산서합계표] · [계산서합계표] · [매입매출장] · [신용카드매출전표발행집계표] · [공제받지못할매입세액명세서]</td></tr>
+  <tr><td><b>하단부 (분개라인)</b><br><span class="badge b-blue">재무회계자료</span></td><td>구분(차변/대변) · 계정과목 · 차변/대변 금액 · 거래처 · 적요 · 관리(6차원+자금)</td><td>[분개장] · [계정별원장] · [총계정원장] · 재무제표(시산표·B/S·I/S)</td></tr>
+</table>
+<div class="wf">
+  <div class="wf-cap">매입매출전표입력 전체 골격 — 액션바 / 상단 세무헤더 그리드 / 하단 분개라인 그리드 / 가이드영역</div>
+  <div class="wf-bar">전표/장부 › 매입매출전표입력 <span class="sp"></span><span class="badge b-blue">자가 기장 TENANT_LED</span> <span>👤 홍길동 · 회계담당</span></div>
+  <div class="wf-tool">
+    <b>액션바</b> <span class="wf-btn">코드변환</span><span class="wf-btn">일괄적용</span><span class="wf-btn">일괄분개</span><span class="wf-btn">전자발행</span><span class="wf-btn">전표복사/이동</span><span class="wf-btn">인쇄</span><span class="wf-btn dng">삭제</span><span class="wf-btn">체크펜</span>
+    <span class="sp" style="flex:1"></span><span class="wf-btn">더보기 ▾</span>
+  </div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 72%;min-width:0">
+      <div style="font-weight:700;color:#b91c1c;margin-bottom:3px">상단부 · 세무헤더(부가세 신고자료)</div>
+      <table class="wf-grid cmp">
+        <colgroup><col style="width:5%"><col style="width:6%"><col style="width:14%"><col style="width:13%"><col style="width:11%"><col style="width:11%"><col style="width:6%"><col style="width:7%"><col style="width:7%"></colgroup>
+        <tr><th>일</th><th>유형</th><th>품명</th><th>거래처</th><th class="r">공급가액</th><th class="r">부가세</th><th>전자</th><th>분개</th><th>관리</th></tr>
+        <tr style="background:#fdeef0"><td>18</td><td><span class="badge b-red">11.과세</span></td><td>제품A</td><td>㈜가나상사</td><td class="r">3,000,000</td><td class="r">300,000</td><td>1.전자입력</td><td>3.혼합</td><td>📋</td></tr>
+      </table>
+      <div style="font-weight:700;color:#2554c7;margin:8px 0 3px">하단부 · 분개라인(재무회계 자료)</div>
+      <table class="wf-grid cmp">
+        <colgroup><col style="width:9%"><col style="width:20%"><col style="width:14%"><col style="width:14%"><col style="width:11%"><col style="width:11%"></colgroup>
+        <tr><th>구분</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th><th>거래처</th><th>적요</th></tr>
+        <tr><td><span class="badge b-gray">차변</span></td><td>108 외상매출금</td><td class="r">3,300,000</td><td class="r"></td><td>㈜가나상사</td><td>제품A</td></tr>
+        <tr><td><span class="badge b-gray">대변</span></td><td>404 제품매출</td><td class="r"></td><td class="r">3,000,000</td><td>㈜가나상사</td><td>제품A</td></tr>
+        <tr><td><span class="badge b-gray">대변</span></td><td>255 부가세예수금</td><td class="r"></td><td class="r">300,000</td><td>㈜가나상사</td><td>제품A</td></tr>
+      </table>
+    </div>
+    <div style="flex:0 0 28%">
+      <div class="wf-panel pnl"><div class="pt">가이드영역</div>
+        안내메시지 · 단축키<br>선택전표 소계<br>세금계산서합계표 키 점검<br>작성자 · 메모 · 일정
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">공급가액 <b>3,000,000</b> · 부가세 <b>300,000</b> <span class="badge b-green">상·하단 일치</span><span class="sp" style="flex:1"></span><span class="badge b-gray">자동전표검증 대기 0</span><span class="wf-btn pri">저장</span></div>
+</div>
+<div class="src"><b>구조 출처</b> — bk_설계서_v3.0 §25.4.2: "거래(부가세 신고자료)를 입력하는 상단부([부가가치세신고서]·[세금계산서합계표]·[매입매출장] 반영)와 분개(재무회계자료)를 입력하는 하단부([계정별원장]·재무제표 반영) 2계층으로 구성. 부가세 자동라인은 부가세 계정코드 입력(과세유형) 시에만 생성한다."</div>
+</section>
+
+<section id="wpv01">
+<h2>3. 매입매출전표입력 메인 화면</h2>
+<h4 id="wpv01-h"><span class="sid">WPV-01</span>매입매출전표입력 (상단 세무헤더 + 하단 분개라인 2계층)</h4>
+<table class="meta">
+  <tr><th>용도</th><td>부가가치세 신고 대상 매입·매출 거래의 단일 입력 화면. 상단부에서 <b>일 → 거래처/사업자등록번호 → 유형(과세유형) → 품명 → 수량·단가 → 공급가액·부가세 → 전자 → 분개</b> 순으로 세무자료를 입력하면, 하단부에 분개유형에 따른 자동분개 라인이 생성된다.</td><th>API</th><td><code>GET /api/journals?source=PURCHASE_SALE&fiscalYear&period&taxType</code> · <code>POST /api/journals</code>(journalType=PURCHASE_SALE) · <code>PUT /api/journals/{id}</code> · <code>POST /api/journals/{id}/auto-line</code>(부가세 자동라인)</td></tr>
+  <tr><th>권한</th><td><code>tenant:journal:write</code> (자가) · <code>operator:journal:review</code>(대행 검토)</td><th>엔티티</th><td><code>journal_header</code>(상단 세무헤더) · <code>journal_tax_line</code> · <code>journal_line</code>(하단 분개) · <code>tax_type_master</code>(11~25/51~64) · <code>vat_account_rule</code> · <code>etax_status</code> · <code>customer_vendor</code> · <code>dimension_*</code></td></tr>
+  <tr><th>식별</th><td>전표 복합키 <b>(tenant_id, fiscal_year, journal_date, journal_no)</b>. 매입매출전표 번호는 source 구분 시퀀스 <b>50001~99999</b>(일반전표 1~50000과 분리). 더존식 일자단위 채번·수동수정 불가.</td><th>산출물</th><td>[부가가치세신고서] · [세금계산서합계표]/[계산서합계표] · [매입매출장] · [신용카드매출전표발행집계표] · [공제받지못할매입세액명세서] · [계정별원장]·재무제표 · 인쇄 세금계산서</td></tr>
+  <tr><th>연계</th><td>선행 <code>SA-ATX-02</code>(전자세금계산서)·<code>SA-ATX-03</code>(전자계산서)·<code>SA-ATX-04~05</code>(카드/현금영수증) 전표전송, <code>SA-JNL-03</code>(정기청구)·<code>SA-JNL-04</code>(물류전표). 후행 <code>SA-ATX-09</code>(국세청자료검증)·부가세 신고 파이프라인.</td><th>상태</th><td>DRAFT→CLIENT_SUBMITTED→REVIEWING→PENDING_APPROVAL→APPROVED→POSTED→CLOSED · 전자: 전자입력/전자발행/국세청성공/전송실패/역발행</td></tr>
+</table>
+<div class="tip"><b>입력 흐름</b> — 상단에서 <b>탭(전체/유형별)</b>과 <b>조회방식(기간/월별)</b>을 고른 뒤(3.2), 상단 세무헤더에서 <b>일</b>·거래처·<b>유형</b>·품명·수량·단가를 채우면 <b>공급가액·부가세가 자동계산</b>된다. 과세유형(부가세 계정)을 입력하면 하단에 <b>부가세 자동라인</b>이 생성되고, 분개유형(0~7)에 따라 매출/매출채권·매입/매입채무 등 자동분개가 깔린다. 영세·면세 유형은 부가세 자동라인을 생성하지 않는다.</div>
+<div class="wf">
+  <div class="wf-cap">매입매출전표입력 — <b>유형별</b> 탭 · <b>월</b> 조회 · 상단 세무헤더 / 하단 분개라인 2계층 + 우측 가이드</div>
+  <div class="wf-bar">전표/장부 › 매입매출전표입력 <span class="sp"></span>전표 <code>2026-06-18-50012</code> <span class="badge b-gray">DRAFT 작성중</span> <span class="badge b-blue">입력경로 MGMT_DIRECT</span> <span class="badge b-purple">자가기장 TENANT_LED</span> <span>👤 홍길동</span></div>
+  <div class="wf-tool">
+    <span class="wf-tab" style="background:#2554c7;color:#fff;border-radius:4px 0 0 4px;padding:2px 12px">전체</span><span class="wf-tab" style="border:1px solid var(--line);border-left:0;padding:2px 12px;color:#5b6478">유형별</span>
+    <span style="color:#8a94a8">|</span>
+    <span class="wf-tab" style="background:#2554c7;color:#fff;border-radius:4px 0 0 4px;padding:2px 12px">월</span><span class="wf-tab" style="border:1px solid var(--line);border-left:0;border-radius:0 4px 4px 0;padding:2px 12px;color:#5b6478">기간</span>
+    회계월 <span class="wf-in" style="min-width:80px">2026-06 ▾</span>
+    <span style="color:#8a94a8">|</span> 기간 <span class="wf-in" style="min-width:96px">2026-06-01</span> ~ <span class="wf-in" style="min-width:96px">2026-06-30</span>
+    유형 <span class="wf-in" style="min-width:90px">전체 ▾</span> <span class="wf-btn pri">조회 <span class="kbd">F1</span></span>
+    <span class="sp" style="flex:1"></span>
+    <span class="wf-btn">화면구성 <span class="kbd">Ctrl+A</span></span><span class="wf-btn">자동전표검증</span><span class="wf-btn">전자발행</span><span class="wf-btn">더보기 ▾</span>
+  </div>
+  <div class="wf-body"><div class="wf-split">
+    <div style="flex:0 0 72%;min-width:0">
+    <div style="font-weight:700;color:#b91c1c;margin-bottom:3px">상단부 · 세무헤더</div>
+    <table class="wf-grid cmp">
+      <colgroup><col style="width:4%"><col style="width:5%"><col style="width:7%"><col style="width:6%"><col style="width:13%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:9%"><col style="width:7%"><col style="width:6%"><col style="width:6%"></colgroup>
+      <tr><th>일</th><th>N/U</th><th>유형</th><th>코드</th><th>거래처</th><th>품명</th><th class="r">수량</th><th class="r">단가</th><th class="r">공급가액</th><th class="r">부가세</th><th>전자</th><th>분개</th></tr>
+      <tr style="background:#fdeef0"><td>18</td><td>N</td><td><span class="badge b-red">11</span></td><td>01010</td><td>㈜가나상사</td><td>제품A</td><td class="r">10</td><td class="r">300,000</td><td class="r">3,000,000</td><td class="r">300,000</td><td>1.전자</td><td>3.혼합</td></tr>
+      <tr><td>18</td><td>N</td><td><span class="badge b-blue">51</span></td><td>02020</td><td>대한물산</td><td>원재료</td><td class="r"></td><td class="r"></td><td class="r">1,000,000</td><td class="r">100,000</td><td>1.전자</td><td>2.외상</td></tr>
+      <tr><td colspan="12" style="color:#8a94a8">… 매출유형 <span class="badge b-red">빨강</span> · 매입유형 <span class="badge b-blue">파랑</span> · <span class="kbd">F2</span> 코드도움 · 수량×단가→공급가액·부가세 자동 …</td></tr>
+    </table>
+    <div style="font-weight:700;color:#2554c7;margin:8px 0 3px">하단부 · 분개라인 <span style="font-weight:400;color:#8a94a8">(상단 선택행 기준 자동분개 + 수기 보정)</span></div>
+    <table class="wf-grid cmp">
+      <colgroup><col style="width:9%"><col style="width:22%"><col style="width:15%"><col style="width:15%"><col style="width:14%"><col style="width:13%"></colgroup>
+      <tr><th>구분</th><th>계정과목</th><th class="r">차변</th><th class="r">대변</th><th>거래처</th><th>적요</th></tr>
+      <tr><td><span class="badge b-gray">차변</span></td><td>108 외상매출금</td><td class="r">3,300,000</td><td class="r"></td><td>㈜가나상사</td><td>제품A 외</td></tr>
+      <tr><td><span class="badge b-gray">대변</span></td><td>404 제품매출</td><td class="r"></td><td class="r">3,000,000</td><td>㈜가나상사</td><td>제품A 외</td></tr>
+      <tr><td><span class="badge b-gray">대변</span></td><td>255 부가세예수금 <span class="badge b-amber">자동</span></td><td class="r"></td><td class="r">300,000</td><td>㈜가나상사</td><td>제품A 외</td></tr>
+    </table>
+    </div>
+    <div style="flex:0 0 28%">
+      <div class="wf-panel pnl"><div class="pt">가이드영역</div>
+        <b>선택전표 소계</b> 공급가액 4,000,000 / 부가세 400,000<br>
+        <b>합계표 키</b> 사업자등록번호 ✔<br>
+        <b>전자</b> 전자입력 2건<br>
+        작성자 · 메모 · 일정
+      </div>
+      <div class="wf-panel"><div class="pt">관리항목</div>
+        부서/현장/프로젝트/사원<br>자금관리(AUX) · 주류 여부<br><span class="wf-btn">관리항목 입력</span> <span class="wf-btn">관리 ▸</span>
+      </div>
+    </div>
+  </div></div>
+  <div class="wf-foot">상단 공급가액 <b>4,000,000</b> · 부가세 <b>400,000</b> <span class="badge b-green">상·하단 일치</span><span class="sp" style="flex:1"></span><span class="badge b-gray">국세청 미확정 0</span><span class="wf-btn pri">저장</span></div>
+</div>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 입력필드(상단부 세무헤더/하단부 분개라인). 매입매출 전표입력 1편(기초사용·기본구조 2계층). 채번 source 구분(50001~99999)은 §전표번호 채번 규칙.</div>
+
+<h3 id="wpv-query">3.2 조회방식 — 전체/유형별 · 기간/월별</h3>
+<table>
+  <tr><th>구분</th><th>옵션</th><th>설명</th><th>BK 반영</th></tr>
+  <tr><td><b>탭①</b></td><td>전체 / 유형별</td><td><b>전체</b>는 모든 과세유형을 한 그리드에 표시. <b>유형별</b>은 더보기 &gt; 빠른부가세 입력설정의 '빠른부가세 입력적용'으로 선택한 과세유형만 표시.</td><td>화면 필터 상태 + <code>quickTaxTypeFilter[]</code></td></tr>
+  <tr><td><b>탭②</b></td><td>기간 / 월별</td><td><b>월별</b>은 회계월 단위(2026-06) 조회 — 월 컬럼 숨김. <b>기간</b>은 from~to 구간(2026-06-01 ~ 2026-06-30) 조회 — 월 컬럼 표시.</td><td><code>periodMode: MONTH|RANGE</code></td></tr>
+  <tr><td><b>일자</b></td><td>N / U</td><td>일자에 요일 색상 표기. 당일 입력 행은 <b>N(신규)</b>, 수정 행은 <b>U(수정)</b> 표식.</td><td><code>rowFlag: NEW|UPDATED</code> + 요일 색상 규칙</td></tr>
+</table>
+<div class="tip"><b>월/기간 토글</b> — 일반전표입력(WJV-01)과 동일하게 세그먼트 토글로 전환한다. <b>월</b> 선택 시 그리드의 '월' 컬럼은 숨기고 회계월 단위로, <b>기간</b> 선택 시 '월' 컬럼을 노출하고 from~to 구간으로 조회한다.</div>
+
+<h3 id="wpv-head">3.3 상단부(세무헤더) 입력 필드</h3>
+<table>
+  <tr><th>필드</th><th>입력 규칙</th><th>BK 관점</th></tr>
+  <tr><td><b>거래처 / 사업자등록번호</b></td><td>거래처코드는 [세금계산서합계표]·[계산서합계표] 추출 기준. <b>사업자등록번호 누락 시 합계표 마감 오류</b>. 빠른거래처 등록(<code>+</code>)으로 거래처 구분·사업자등록번호 등록.</td><td><b>합계표 집계 키</b>. 사업자번호 필수 검증(<span class="badge b-red">차단</span>).</td></tr>
+  <tr><td><b>유형(과세유형)</b></td><td>매출(빨강) 11~25 / 매입(파랑) 51~64. 세율·증빙·부가세 표시 여부를 결정. → 4장 코드표.</td><td><code>taxType</code> 마스터 — 세율·부가세계정·신고서식 매핑 룰의 <b>단일 진실원</b>.</td></tr>
+  <tr><td><b>품명 · 수량 · 단가</b></td><td>2개 이상 품목은 더보기 '복수거래'(최대 99개). 수량×단가 입력 시 공급가액·부가세 자동계산.</td><td>품명 마스터(F2/C 품명도움) + 라인 명세.</td></tr>
+  <tr><td><b>공급가액 / 부가세</b></td><td>직접 입력 가능. 영세·면세는 부가세 미표시. 단수 차이 직접 수정 가능. ※ <b>0원 전자세금계산서</b>: 복수거래로 1원/-1원 입력해 합계 0원, 전자 '1.전자입력', 분개 '0.분개없음'.</td><td>부가세 자동라인은 과세유형 입력 시에만 생성(영세·면세 미생성).</td></tr>
+  <tr><td><b>전자</b></td><td>전자세금(계산)서 발급·수취 항목. 발행 시 공란 후 [전자발행], 수기 시 '1.전자입력'(→[세금계산서합계표] 전자세금계산서란 반영).</td><td>외부 전자세금계산서 서비스 연동 상태필드(<code>etax_status</code>).</td></tr>
+</table>
+
+<h3 id="wpv-line">3.4 하단부(분개라인) 입력 필드</h3>
+<table>
+  <tr><th>필드</th><th>입력 규칙</th><th>BK 관점</th></tr>
+  <tr><td><b>분개유형</b></td><td>0.분개없음 / 1.현금 / 2.외상 / 3.혼합 / 4.카드 / 5~7.외상추가1·2·3. 더보기 '분개 계정과목 설정'의 계정으로 자동분개. → 6장.</td><td>자동분개 엔진 룰 입력값.</td></tr>
+  <tr><td><b>구분 · 계정과목 · 차변/대변</b></td><td>자동분개 라인은 분개유형 기준 자동 생성, 혼합(3)은 수기 보정. 부가세예수금/대급금 라인은 <span class="badge b-amber">자동</span> 표식.</td><td>대차검증, 자동라인 잠금(2.외상은 매출채권/매입채무 계정수정 불가).</td></tr>
+  <tr><td><b>거래처 · 적요</b></td><td>상단 거래처 자동 승계. 적요는 의제매입·재활용 공제 등 부속서류 분기 트리거가 되기도 함(5.7).</td><td>적요코드 마스터 + 부속서류 매핑.</td></tr>
+  <tr><td><b>관리(6차원+자금)</b></td><td>사원·부서·현장·프로젝트·자금관리·주류 여부. [매입매출장]은 현장별/프로젝트별/부서별/사원별 탭 조회. → 10장.</td><td>사원=<code>EMPLOYEE</code>, 부서=<code>DEPARTMENT</code>, 현장=<code>SITE</code>, 프로젝트=<code>PROJECT</code> + <code>DimensionConfig</code>, 자금=AUX 보조부.</td></tr>
+</table>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 입력필드 상·하단부. 매입매출 전표입력 1편(거래처·유형·품명·전자·분개·관리항목).</div>
+</section>
+
+<section id="tax-route-sec">
+<h2>4. 과세유형 코드 — 신고서식 라우팅의 단일 진실원</h2>
+<p>상단부 <b>유형(과세유형)</b>은 세율·부가세계정·증빙·신고서식 매핑을 모두 결정한다. <b>매출은 11~25(빨강), 매입은 51~64(파랑)</b>. BK는 이 코드를 <code>taxType</code> 마스터로 두고 <b>세율·부가세계정·신고서식 라우팅 룰의 단일 진실원</b>으로 삼는다.</p>
+
+<h3 id="tax-sale">4.1 매출유형 (11 ~ 25)</h3>
+<table>
+  <tr><th>코드</th><th>명칭</th><th>거래증빙</th><th>세율</th><th>사용 상황 / 비고</th></tr>
+  <tr><td><span class="badge b-red">11</span></td><td>과세</td><td>세금계산서</td><td>10%</td><td>일반 과세 매출(전자/종이 세금계산서)</td></tr>
+  <tr><td><span class="badge b-red">12</span></td><td>영세</td><td>영세율세금계산서</td><td>0%</td><td>내국신용장·구매확인서 등 영세율</td></tr>
+  <tr><td><span class="badge b-red">13</span></td><td>면세</td><td>계산서</td><td>면세</td><td>면세 재화·용역(계산서 발급)</td></tr>
+  <tr><td><span class="badge b-red">14</span></td><td>건별</td><td>영수증·금전등록기</td><td>10%</td><td>증빙없는 과세매출. <b>공급대가 입력 시 공급가액·부가세 구분</b>, 하단 부가세예수금 반영</td></tr>
+  <tr><td><span class="badge b-red">15</span></td><td>종합</td><td>영수증</td><td>10%</td><td>간이과세 등. <b>부가세 자동구분 안됨 → 직접입력</b></td></tr>
+  <tr><td><span class="badge b-red">16</span></td><td>수출</td><td>직수출(증빙없음)</td><td>0%</td><td>직수출 영세율</td></tr>
+  <tr><td><span class="badge b-red">17</span></td><td>카과</td><td>신용카드</td><td>10%</td><td>신용카드 과세매출(→신용카드매출전표발행집계표)</td></tr>
+  <tr><td><span class="badge b-red">18</span></td><td>카면</td><td>신용카드</td><td>면세</td><td>신용카드 면세매출</td></tr>
+  <tr><td><span class="badge b-red">19</span></td><td>카영</td><td>신용카드</td><td>0%</td><td>신용카드 영세율매출</td></tr>
+  <tr><td><span class="badge b-red">20</span></td><td>면건</td><td>면세영수증</td><td>면세</td><td>증빙없는 면세매출</td></tr>
+  <tr><td><span class="badge b-red">21</span></td><td>전자</td><td>전자화폐</td><td>10%</td><td>전자화폐 과세매출</td></tr>
+  <tr><td><span class="badge b-red">22</span></td><td>현과</td><td>현금영수증</td><td>10%</td><td>현금영수증 과세매출</td></tr>
+  <tr><td><span class="badge b-red">23</span></td><td>현면</td><td>현금영수증</td><td>면세</td><td>현금영수증 면세매출</td></tr>
+  <tr><td><span class="badge b-red">24</span></td><td>현영</td><td>현금영수증</td><td>0%</td><td>현금영수증 영세율매출</td></tr>
+  <tr><td><span class="badge b-red">25</span></td><td>매세</td><td>매입자발행세금계산서</td><td>10%</td><td>환경설정 '과세유형추가 사용함' 시 표시</td></tr>
+</table>
+
+<h3 id="tax-buy">4.2 매입유형 (51 ~ 64)</h3>
+<table>
+  <tr><th>코드</th><th>명칭</th><th>거래증빙</th><th>세율</th><th>사용 상황 / 비고</th></tr>
+  <tr><td><span class="badge b-blue">51</span></td><td>과세</td><td>세금계산서</td><td>10%</td><td>일반 과세 매입. <b>하단 계정이 고정자산이면 신고서 일반매입→고정자산매입 분류 변경</b></td></tr>
+  <tr><td><span class="badge b-blue">52</span></td><td>영세</td><td>영세율세금계산서</td><td>0%</td><td>영세율 매입</td></tr>
+  <tr><td><span class="badge b-blue">53</span></td><td>면세</td><td>계산서</td><td>면세</td><td>면세 매입(의제매입 공제 트리거 가능 — 5.7)</td></tr>
+  <tr><td><span class="badge b-blue">54</span></td><td>불공</td><td>세금계산서</td><td>10%</td><td><b>불공제</b>. 불공제사유 선택 → [공제받지못할매입세액명세서] 반영</td></tr>
+  <tr><td><span class="badge b-blue">55</span></td><td>수입</td><td>수입세금계산서</td><td>0%</td><td>수입분(공급가액=과세표준). 수입납부유예 입력 가능</td></tr>
+  <tr><td><span class="badge b-blue">56</span></td><td>금전</td><td>(폐지)</td><td>10%</td><td>폐지된 유형</td></tr>
+  <tr><td><span class="badge b-blue">57</span></td><td>카과</td><td>신용카드</td><td>10%</td><td>신용카드 과세매입(공제). <b>고정자산 계정 시 분류 변경</b></td></tr>
+  <tr><td><span class="badge b-blue">58</span></td><td>카면</td><td>신용카드</td><td>면세</td><td>신용카드 면세매입</td></tr>
+  <tr><td><span class="badge b-blue">59</span></td><td>카영</td><td>신용카드</td><td>0%</td><td>신용카드 영세율매입</td></tr>
+  <tr><td><span class="badge b-blue">60</span></td><td>면건</td><td>면세영수증</td><td>면세</td><td>증빙없는 면세매입(의제매입 트리거 가능)</td></tr>
+  <tr><td><span class="badge b-blue">61</span></td><td>현과</td><td>현금영수증</td><td>10%</td><td>현금영수증 과세매입. 현금영수증승인번호 입력은 환경설정 '사용함' 시. <b>고정자산 시 분류 변경</b></td></tr>
+  <tr><td><span class="badge b-blue">62</span></td><td>현면</td><td>현금영수증</td><td>면세</td><td>현금영수증 면세매입(의제매입 트리거 가능)</td></tr>
+  <tr><td><span class="badge b-blue">63</span></td><td>복지</td><td>복지카드</td><td>10%</td><td>환경설정 '사용함' 시 표시</td></tr>
+  <tr><td><span class="badge b-blue">64</span></td><td>매세</td><td>매입자발행세금계산서</td><td>10%</td><td>매입자발행 세금계산서</td></tr>
+</table>
+
+<h3 id="tax-route">4.3 과세유형 → 신고서·부속서류 라우팅 ★</h3>
+<table class="tax-out">
+  <tr><th>유형군</th><th>대상 코드</th><th>반영 신고서·부속서류</th></tr>
+  <tr><td>세금계산서 과세/영세</td><td>11·12 / 51·52·55</td><td>[부가가치세신고서] 과세·영세 / [세금계산서합계표]</td></tr>
+  <tr><td>계산서 면세</td><td>13 / 53</td><td>[부가가치세신고서] 면세수입금액 / [계산서합계표]</td></tr>
+  <tr><td>신용카드</td><td>17·18·19 / 57·58·59·63</td><td>[신용카드매출전표발행집계표](매출) / [신용카드매출전표등수령명세서](매입)</td></tr>
+  <tr><td>현금영수증</td><td>22·23·24 / 61·62</td><td>[부가가치세신고서] 현금영수증 / 발행·수령 집계</td></tr>
+  <tr><td>불공제</td><td>54</td><td>[공제받지못할매입세액명세서] + 불공제사유 코드</td></tr>
+  <tr><td>건별·종합·면건</td><td>14·15·20 / 60</td><td>[부가가치세신고서] 기타(영수증 등) / 직접 구분</td></tr>
+  <tr><td>고정자산 분기</td><td>51·57·61 + 고정자산 계정</td><td>[부가가치세신고서] 일반매입 → <b>고정자산매입</b> 자동 분류 변경</td></tr>
+  <tr><td>의제·재활용</td><td>53·58·60·62 + 원재료 계정 + 특수 적요</td><td>[의제매입세액공제신고서] / [재활용폐자원세액공제신고서]</td></tr>
+</table>
+<div class="note"><b>분기 규칙 3종</b> — ① <b>과세유형 자체</b>가 1차 라우팅 키. ② <b>계정 기반 분기</b>: 51·57·61에서 하단 계정이 고정자산이면 일반매입→고정자산매입. ③ <b>적요 기반 분기</b>: 면세 매입유형(53/58/60/62)+원재료 계정+특수 적요코드 조합이면 의제매입/재활용폐자원 부속서류 반영.</div>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 유형(매출 11~25/매입 51~64)·"<code>taxType</code> 코드 마스터, 세율·부가세계정·신고서식 매핑 룰의 단일 진실원". 매입매출 전표입력 1편(유형 코드표)·2편(과세유형별 신고서 반영표·고정자산/적요 분기).</div>
+</section>
+
+<section id="in-sec">
+<h2>5. 유형별 입력방법</h2>
+<p>과세유형마다 입력 흐름과 자동 반영 결과가 다르다. 대표 유형을 입력 단계 → 자동 반영으로 정리한다.</p>
+
+<h3 id="in-11">5.1 매출 11.과세 (세금계산서, 10%)</h3>
+<div class="flow mini">
+  <div class="step"><b>유형 11</b><small>세금계산서</small></div><div class="arr">→</div>
+  <div class="step"><b>거래처</b><small>사업자번호 필수</small></div><div class="arr">→</div>
+  <div class="step"><b>품명·수량·단가</b><small>공급가액·부가세 자동</small></div><div class="arr">→</div>
+  <div class="step"><b>전자</b><small>공란→발행 / 1.전자입력</small></div><div class="arr">→</div>
+  <div class="step"><b>분개유형</b><small>1현금/2외상/3혼합</small></div>
+</div>
+<table>
+  <tr><th>입력</th><th>자동 반영</th></tr>
+  <tr><td>공급가액 3,000,000 입력 → 부가세 300,000 자동</td><td>하단 대변 <b>제품매출 3,000,000 + 부가세예수금 300,000</b>(자동라인), 차변 외상매출금/현금 3,300,000</td></tr>
+  <tr><td>전자 '1.전자입력' 또는 [전자발행]</td><td>[세금계산서합계표] 전자세금계산서란 / [부가가치세신고서] 과세 매출</td></tr>
+</table>
+
+<h3 id="in-13">5.2 매출 13.면세 (계산서)</h3>
+<table>
+  <tr><th>입력</th><th>자동 반영</th></tr>
+  <tr><td>유형 13 → 부가세란 <b>미표시</b>, 공급가액만 입력</td><td>부가세 자동라인 <b>미생성</b>. 하단 대변 면세매출 계정만</td></tr>
+  <tr><td>전자계산서 발행/'1.전자입력'</td><td>[계산서합계표] / [부가가치세신고서] 면세수입금액</td></tr>
+</table>
+
+<h3 id="in-17">5.3 매출 17.카과 (신용카드, 10%)</h3>
+<table>
+  <tr><th>입력</th><th>자동 반영</th></tr>
+  <tr><td>유형 17 → 공급대가(VAT포함) 또는 공급가액 입력(설정에 따름)</td><td>공급가액·부가세 자동구분, 하단 차변 <b>외상매출금/카드채권</b>, 대변 매출+부가세예수금</td></tr>
+  <tr><td>분개유형 4.카드 시 카드채권 자동분개</td><td>[신용카드매출전표발행집계표] / [부가가치세신고서] 신용카드·현금영수증 매출</td></tr>
+</table>
+<div class="note"><b>매출세금계산서 발급 후 카드결제</b> — 세금계산서(11)로 이미 신고된 건이 카드로 결제될 때, 카드매출(17)로 <b>중복 신고</b>되지 않도록 결제수단만 분개 처리한다(상단 과세유형은 11 유지, 17 추가 입력 금지).</div>
+
+<h3 id="in-51">5.4 매입 51.과세 (세금계산서, 10%)</h3>
+<table>
+  <tr><th>입력</th><th>자동 반영</th></tr>
+  <tr><td>유형 51 → 공급가액·부가세</td><td>하단 차변 <b>매입/원재료 + 부가세대급금</b>(자동라인), 대변 외상매입금/현금</td></tr>
+  <tr><td>하단 계정이 <b>고정자산</b>이면</td><td>[부가가치세신고서] 일반매입 → <b>고정자산매입</b> 분류 자동 변경</td></tr>
+  <tr><td>전자/수입 등</td><td>[세금계산서합계표] 매입 / [부가가치세신고서] 일반·고정자산매입</td></tr>
+</table>
+
+<h3 id="in-54">5.5 매입 54.불공 (불공제, 10%)</h3>
+<table>
+  <tr><th>입력</th><th>자동 반영</th></tr>
+  <tr><td>유형 54 → <b>불공제 사유 코드</b> 선택(접대비 관련, 비영업용 승용차 등)</td><td>부가세 매입세액 <b>불공제</b> 처리 → [공제받지못할매입세액명세서] 사유별 반영</td></tr>
+  <tr><td>하단 분개</td><td>부가세대급금이 아니라 <b>해당 비용/자산 원가에 포함</b>(매입세액 비용화)</td></tr>
+</table>
+
+<h3 id="in-5761">5.6 매입 57.카과 · 61.현과</h3>
+<table>
+  <tr><th>유형</th><th>입력 · 자동 반영</th></tr>
+  <tr><td><span class="badge b-blue">57 카과</span></td><td>신용카드 과세매입(공제). 공급대가/공급가액 입력방식 설정. [신용카드매출전표등수령명세서] 반영. 고정자산 계정 시 분류 변경.</td></tr>
+  <tr><td><span class="badge b-blue">61 현과</span></td><td>현금영수증 과세매입. <b>현금영수증승인번호</b> 입력은 환경설정 '사용함' 시. 고정자산 계정 시 분류 변경.</td></tr>
+</table>
+
+<h3 id="in-deem">5.7 의제매입세액공제 · 재활용폐자원세액공제</h3>
+<p>면세로 매입한 농·축·수·임산물 등을 과세 재화의 원재료로 사용할 때 매입세액을 의제 공제하거나, 재활용폐자원을 매입할 때 공제한다. 화면은 <b>세 조건의 조합</b>으로 부속서류 반영을 트리거한다.</p>
+<table>
+  <tr><th>조건</th><th>값</th></tr>
+  <tr><td>① 과세유형</td><td>면세 매입유형 <b>53·58·60·62</b></td></tr>
+  <tr><td>② 하단 계정</td><td><b>원재료</b>(또는 의제/재활용 대상 계정)</td></tr>
+  <tr><td>③ 적요코드</td><td>의제매입세액공제 / 재활용폐자원세액공제 <b>특수 적요코드</b></td></tr>
+  <tr><td>→ 반영</td><td>세 조건 충족 시 [의제매입세액공제신고서] / [재활용폐자원세액공제신고서] 자동 반영</td></tr>
+</table>
+<div class="src"><b>출처</b> — 매입매출 전표입력 2편(11.과세/13.면세/17.카과 매출, 51.과세/54.불공/57.카과/61.현과 매입 입력흐름·자동반영표, 의제매입·재활용폐자원 = 면세유형+계정+적요 조합, 발급후 카드결제 중복방지). bk_설계서_v3.0 §25.4.2 유형별 비고.</div>
+</section>
+
+<section id="wpv-bunge">
+<h2>6. 분개유형 · 자동분개 엔진</h2>
+<p>상단 세무헤더를 입력한 뒤 <b>분개유형(0~7)</b>을 고르면, 더보기 '분개 계정과목 설정'에 등록한 기본·추가계정으로 하단 분개라인이 자동 생성된다. 부가세 자동라인은 과세유형(부가세 계정) 입력 시에만 함께 생성된다.</p>
+<table>
+  <tr><th>코드</th><th>분개유형</th><th>자동분개 동작</th></tr>
+  <tr><td><b>0</b></td><td>분개없음</td><td>하단 분개라인 생성 안함(세무자료만). 0원 세금계산서 등에 사용</td></tr>
+  <tr><td><b>1</b></td><td>현금</td><td>상대계정 현금. 매출=현금/매출, 매입=매입/현금</td></tr>
+  <tr><td><b>2</b></td><td>외상</td><td>외상매출금/외상매입금 자동분개. <b>해당 계정 수정 불가</b></td></tr>
+  <tr><td><b>3</b></td><td>혼합</td><td>차변/대변을 수기로 보정(현금+외상 혼합). 가장 자유로운 입력</td></tr>
+  <tr><td><b>4</b></td><td>카드</td><td>신용카드 기본계정(카드채권/카드채무)으로 자동분개</td></tr>
+  <tr><td><b>5~7</b></td><td>외상추가1·2·3</td><td>외상 기본계정 외 추가 등록계정 사용(매출/매입 추가계정 설정)</td></tr>
+</table>
+<h4>자동분개 기본계정 (더보기 &gt; 분개 계정과목 설정)</h4>
+<table>
+  <tr><th>구분</th><th>매출 기본</th><th>매입 기본</th></tr>
+  <tr><td>일반 기본계정</td><td>매출 / 매출채권(외상매출금)</td><td>매입 / 매입채무(외상매입금)</td></tr>
+  <tr><td>신용카드 기본계정</td><td>카드채권</td><td>카드채무</td></tr>
+  <tr><td>추가계정</td><td colspan="2">매입매출 추가계정 사용여부 + 매출(매입) 추가계정 설정(5~7 외상추가)</td></tr>
+</table>
+<div class="tip"><b>자동분개 설정 옵션</b> — 과거 거래내역 자동분개 / 상대계정 차액 자동반영 / 카드유형 거래처 복사 / 카드 입력방식(공급대가·공급가액) / 카드매입공제 / 봉사료 사용여부 / 전자세금계산서 거래처코드 변경여부.</div>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 분개유형(0~7)·자동분개 기본계정·"자동분개 엔진 룰 입력값". 매입매출 전표입력 1편(분개입력 코드표)·4편(분개계정과목설정·자동분개설정).</div>
+</section>
+
+<section id="wpv-etax">
+<h2>7. 전자(세금)계산서 — 항목 · 발행 · 전송 상태</h2>
+<p>상단부 <b>전자</b> 칸은 전자세금(계산)서의 발급·수취 상태를 표시한다. 발행은 공란으로 두고 액션바 [전자발행], 수기 분은 '1.전자입력'으로 처리한다. 과세기간 종료일 다음달 11일을 기준으로 전자/전자외를 구분한다.</p>
+<table>
+  <tr><th>값 / 상태</th><th>의미</th><th>BK 필드</th></tr>
+  <tr><td>공란</td><td>전자발행 가능(아직 미발행)</td><td rowspan="3"><code>etax_status</code> 상태머신</td></tr>
+  <tr><td>1.전자입력</td><td>이미 발급·수취한 전자분(수기 입력) → [세금계산서합계표] 전자세금계산서란 반영</td></tr>
+  <tr><td>전자발행</td><td>화면에서 발행 처리한 상태</td></tr>
+</table>
+<table>
+  <tr><th>상태 분류</th><th>값</th></tr>
+  <tr><td>발행/전송 결과</td><td>전자입력 · 전자발행 · 국세청성공 · 전송실패 · 역발행</td></tr>
+  <tr><td>발행상태</td><td>확인요청 · 확인 · 발행대상 · 발행요청</td></tr>
+  <tr><td>신고상태</td><td>미전송 · 전송성공</td></tr>
+</table>
+<h4>전자발행 대상 · 옵션 (액션바 [전자발행])</h4>
+<ul>
+  <li><b>발행 대상</b>: 매출 11·12·13 / 매입 역발행 51·52·53·54 전표를 전자세금(계산)서로 발행</li>
+  <li><b>발행 기능</b>: 화면구성 · 휴폐업조회 · 전자발행 · 발행취소(<b>당일 '확인요청' 전표만</b>) · 이메일등록 · 발행옵션 · 도움말</li>
+  <li><b>수량·단가</b>: 소수점 2자리, 3자리 이상은 3자리 반올림</li>
+  <li><b>전송결과</b>: 외부 전자세금계산서 서비스 처리상태 · 국세청 전송결과 반영</li>
+</ul>
+<div class="note"><b>0원 전자세금계산서</b> — 복수거래로 1원/-1원을 입력해 합계 0원, 전자 '1.전자입력', 분개 '0.분개없음'으로 처리한다.</div>
+
+<h3 id="wpv-etax-issue">7.1 전자발행 모달 · 세금계산서 비고(발행정보) 입력 ★</h3>
+<p>세금계산서 상단의 <b>비고</b>는 부가세 신고 집계나 회계분개에 반영되지 않는 <b>발행용 메타정보</b>(문서에만 인쇄)다. 따라서 상단 세무헤더 그리드가 아니라 <b>액션바 [전자발행] → 전자발행 모달의 발행정보(비고)</b>에서 입력한다. 수기로 받은 전자분(<code>1.전자입력</code>)은 비고를 따로 입력하지 않으며, 내부 메모가 필요하면 하단 분개라인 적요를 쓴다.</p>
+<div class="wf">
+  <div class="wf-cap">전자세금계산서 발행 — 액션바 &gt; 전자발행 (모달)</div>
+  <div class="wf-modal">
+    <div class="mh">전자세금계산서 발행<span class="sp"></span><span class="wf-btn" style="background:#fff;color:#2554c7">화면구성</span><span class="wf-btn" style="background:#fff;color:#2554c7">휴폐업조회</span><span class="wf-btn" style="background:#fff;color:#2554c7">발행옵션</span><span class="kbd">Esc</span></div>
+    <div style="padding:10px 12px">
+      <div style="font-weight:700;color:#27314d;margin-bottom:4px">발행 대상 전표 (매출 11·12·13 / 매입 역발행 51·52·53·54)</div>
+      <table class="wf-grid cmp">
+        <colgroup><col style="width:4%"><col style="width:5%"><col style="width:8%"><col style="width:18%"><col style="width:13%"><col style="width:13%"><col style="width:12%"><col style="width:14%"></colgroup>
+        <tr><th>☑</th><th>유형</th><th>일자</th><th>거래처</th><th class="r">공급가액</th><th class="r">부가세</th><th>발행상태</th><th>비고(발행)</th></tr>
+        <tr style="background:#eef3ff"><td>☑</td><td><span class="badge b-red">11</span></td><td>06-18</td><td>㈜가나상사</td><td class="r">3,000,000</td><td class="r">300,000</td><td><span class="badge b-amber">확인요청</span></td><td>월말 정산분</td></tr>
+        <tr><td>☑</td><td><span class="badge b-red">13</span></td><td>06-18</td><td>대한상회</td><td class="r">500,000</td><td class="r">—</td><td><span class="badge b-amber">확인요청</span></td><td></td></tr>
+      </table>
+      <div class="wf-panel pnl" style="margin-top:8px"><div class="pt">발행정보 (선택 전표) — 세금계산서 문서에 인쇄</div>
+        <div class="wf-row"><label>비고</label><span class="wf-in wide full">월말 정산분 / 검수확인 후 발행</span></div>
+        <div class="wf-row"><label>영수·청구</label><span class="wf-sel">청구</span> <label style="min-width:60px">받는이 이메일</label><span class="wf-in wide">buyer@example.com</span></div>
+        <div class="wf-row"><label>책(일련)번호</label><span class="wf-in">자동</span> <label style="min-width:80px">사업자단위과세</label><span class="wf-sel">미적용</span></div>
+      </div>
+      <div class="wf-foot" style="border:0;background:transparent;padding:6px 0">
+        선택 2건 · 공급가액 <b>3,500,000</b>
+        <span class="sp" style="flex:1"></span>
+        <span class="wf-btn">발행취소 <span style="color:#8a94a8">(당일 확인요청만)</span></span><span class="wf-btn">이메일등록</span><span class="wf-btn pri">전자발행</span>
+      </div>
+    </div>
+  </div>
+</div>
+<table>
+  <tr><th>인접 항목</th><th>성격</th><th>반영처</th><th>입력 위치</th></tr>
+  <tr><td><b>품명 / 규격</b></td><td>공급 품목 정보</td><td>세금계산서 본문 · 복수거래</td><td>상단 품명 칸 / 복수거래 팝업(9.3)</td></tr>
+  <tr><td><b>비고</b></td><td><b>발행 메타정보</b> (문서 인쇄용)</td><td>전자세금계산서 <b>문서</b> — 신고 집계·분개 <b>미반영</b></td><td><b>전자발행 모달 &gt; 발행정보 &gt; 비고</b></td></tr>
+  <tr><td><b>하단 적요</b></td><td>내부 분개 설명</td><td>분개장 · 계정별원장</td><td>하단 분개라인 적요 칸</td></tr>
+</table>
+<div class="tip"><b>요약</b> — 세금계산서 <b>비고</b>는 상단 입력 그리드에 칸이 없다. <b>액션바 [전자발행] → 발행정보의 비고</b>에서 입력하며, 신고·분개에는 반영되지 않고 발행 문서에만 인쇄된다. 발행옵션의 영수/청구·책(일련)번호·사업자단위과세 등도 같은 모달에서 지정한다.</div>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 전자 필드·툴바 전자발행(발행 대상 11·12·13/51~54, 화면구성·휴폐업조회·발행취소·이메일등록·발행옵션)·더보기 '세금계산서 인쇄'(영수/청구·책(일련)번호·사업자단위과세·~외 일괄). 비고=발행정보(<code>etax_issue.remark</code>) 위치는 신고·분개 비반영 메타정보라는 성격에 따른 BK 설계 제안(근거 자료에 별도 입력단계 미명시).</div>
+</section>
+
+<section id="wpv-search-sec">
+<h2>8. 조건검색 · 액션바 · 툴바</h2>
+
+<h3 id="wpv-search">8.1 조건검색</h3>
+<p>입력된 매입매출 전표를 일자·유형·계정·거래처·금액 등 조건으로 좁혀 조회한다. 중복전표검색은 별도 키 조합(8.3)을 사용한다.</p>
+<table>
+  <tr><th>검색 조건</th><th>설명</th><th>BK 모델</th></tr>
+  <tr><td>기간/월 · 유형 · 거래처 · 계정 · 금액범위 · 적요 · 전자상태</td><td>조건 조합으로 그리드 필터링. 유형별 탭과 결합 가능</td><td><code>JournalSearchQuery</code></td></tr>
+</table>
+
+<h3 id="wpv-action">8.2 액션바</h3>
+<table>
+  <tr><th>기능</th><th>동작</th><th>위험도 / 통제</th></tr>
+  <tr><td><b>코드변환</b></td><td>선택 전표의 거래처·계정·유형 등 코드를 일괄 다른 코드로 변환</td><td><span class="badge b-amber">중</span> 신고자료 영향 → 변환 전 백업·미리보기</td></tr>
+  <tr><td><b>일괄적용</b></td><td>선택 범위에 동일 값(거래처·적요·관리항목 등) 일괄 채움</td><td><span class="badge b-amber">중</span> 적용 대상 행 명확화</td></tr>
+  <tr><td><b>일괄분개</b></td><td>분개없음(0) 전표들을 분개유형 기준으로 일괄 자동분개</td><td><span class="badge b-amber">중</span> 자동분개 설정 확인 후 실행</td></tr>
+  <tr><td><b>전자발행</b></td><td>발행 대상 전표 전자세금(계산)서 발행(7장)</td><td><span class="badge b-red">고</span> 국세청 전송·외부 발행 → <b>확인요청 후 발행</b></td></tr>
+  <tr><td><b>전표복사 / 이동</b></td><td>전표 복사·다른 일자/기간으로 이동</td><td><span class="badge b-amber">중</span> 자금(차량)관리·일마감·외부전송 데이터 <b>이동불가</b></td></tr>
+  <tr><td><b>인쇄</b></td><td>세금계산서·전표 인쇄</td><td><span class="badge b-gray">저</span></td></tr>
+  <tr><td><b>삭제</b></td><td>선택 전표 삭제</td><td><span class="badge b-red">고</span> 마감·전송분 삭제 차단, 확인 모달</td></tr>
+  <tr><td><b>체크펜</b></td><td>검토 표시(색상 마킹)</td><td><span class="badge b-gray">저</span> 검토 흔적 관리</td></tr>
+</table>
+
+<h3 id="wpv-tool">8.3 툴바</h3>
+<table>
+  <tr><th>기능</th><th>동작</th></tr>
+  <tr><td><b>자동전표검증</b></td><td>[전자세금계산서]·[전자계산서]에서 전송된 <b>미확정 전표</b> 검증 + 사업자등록번호 일치·<b>면세사업자 매출유형</b> 검증</td></tr>
+  <tr><td><b>행/열 고정</b></td><td>스크롤 시 머리행·키 컬럼 고정</td></tr>
+  <tr><td><b>데이터정렬</b></td><td>일자·유형·거래처 등 기준 정렬</td></tr>
+  <tr><td><b>중복전표검색</b></td><td>일자/유형/계정/거래처/공급가액/부가세/공급대가/국세청승인번호 조합으로 중복 탐지</td></tr>
+  <tr><td><b>전자세금계산서조회 · 전송결과 · 계산기 · 이용가이드</b></td><td>발행·전송 상태 조회 및 보조 도구</td></tr>
+</table>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 툴바(자동전표검증·중복전표검색 등)·기능(액션바 전자발행·전표복사/이동). 매입매출 전표입력 3편(조건검색·액션바·툴바·기능 위험도와 통제 포인트·구현 모델 <code>JournalSearchQuery</code>·<code>BulkCodeConversionCommand</code> 등).</div>
+</section>
+
+<section id="wpv-more-sec">
+<h2>9. 더보기 기능모음</h2>
+
+<h3 id="wpv-more">9.1 더보기 기능 목록</h3>
+<table>
+  <tr><th>#</th><th>기능</th><th>설명</th></tr>
+  <tr><td>1</td><td>거래처등록</td><td>빠른 거래처 등록(구분·사업자등록번호)</td></tr>
+  <tr><td>2</td><td>품명등록</td><td>F2/C 품명도움으로 품명 마스터 등록</td></tr>
+  <tr><td>3</td><td>어음등록</td><td>받을/지급 어음 등록(자금 보조부 연계)</td></tr>
+  <tr><td>4</td><td><b>복수거래</b></td><td>최대 <b>99개</b> 품목. 세금계산서 인쇄는 최대 4품목, 나머지 '~외'</td></tr>
+  <tr><td>5</td><td><b>예정누락</b></td><td>예정신고 누락분을 확정신고기간 부가세신고서에 반영. <b>1~3월·7~9월만 입력 가능</b></td></tr>
+  <tr><td>6</td><td>수정세금계산서</td><td>수정사유 선택 발행</td></tr>
+  <tr><td>7</td><td>전자입력</td><td>11·12·13·51·52·53·54·55 일괄 변경</td></tr>
+  <tr><td>8</td><td>수입납부유예입력</td><td>55.수입 전표만 → [부가가치세신고서] '수출기업 수입납부유예' 반영</td></tr>
+  <tr><td>9</td><td>일마감</td><td>일자 단위 마감(수정 잠금)</td></tr>
+  <tr><td>10</td><td>전표복사</td><td>전표 복사</td></tr>
+  <tr><td>11</td><td>전표이동</td><td>자금(차량)관리·일마감·외부전송 데이터 <b>이동불가</b></td></tr>
+  <tr><td>12</td><td>화면구성</td><td>거래처기준 / 품명기준</td></tr>
+  <tr><td>13</td><td>자동분개설정</td><td>과거 거래내역 자동분개 / 상대계정 차액 자동반영 / 카드유형 거래처 복사</td></tr>
+  <tr><td>14</td><td>차액분개 보기</td><td>상·하단 차액 분개 표시</td></tr>
+  <tr><td>15</td><td><b>분개계정과목설정</b></td><td>기본·추가계정, 전자세금계산서 거래처코드 변경여부, 카드 입력방식(공급대가/공급가액), 카드매입공제, 봉사료 사용여부</td></tr>
+  <tr><td>16</td><td>자동분개 일괄검색</td><td>자동분개 누락·오류 전표 일괄 탐색</td></tr>
+  <tr><td>17</td><td>주민번호 별표 설정</td><td>주민번호 마스킹</td></tr>
+  <tr><td>18</td><td><b>세금계산서 인쇄</b></td><td>영수/청구표시·공급자란·'~외' 일괄·물류규격명·사업자단위과세·책(일련)번호·외상거래표시·전자세금계산서 구분</td></tr>
+  <tr><td>19</td><td>국세청 신고여부</td><td>과세기간 종료 다음달 11일 이내 신고여부('부' 시 전자외 발행분 반영)</td></tr>
+  <tr><td>20</td><td>자료수집현황 바로가기</td><td>수집 데이터 현황 화면 이동</td></tr>
+  <tr><td>21</td><td>부가세 신고 요약</td><td>현재까지 입력분 부가세 신고 요약</td></tr>
+  <tr><td>22</td><td><b>엑셀 자료 반영</b></td><td>엑셀서식 내려받기 → 작성 → 업로드 → 전표전송</td></tr>
+</table>
+<div class="note">매입매출 전표입력 4편에는 위 핵심 기능 외에 0원세금계산서·등록전매입·복수거래·빠른부가세입력설정·중복전표검색·데이터검사·부가세신고요약 등 세부 기능까지 더보기로 정리되어 있으며, 본 표는 bk_설계서 §25.4.2 더보기 항목을 단일 진실원으로 통합한 것이다.</div>
+
+<h3 id="wpv-more-key">9.2 핵심 기능 상세</h3>
+<table>
+  <tr><th>기능</th><th>실무 포인트 · 통제</th></tr>
+  <tr><td><b>복수거래</b></td><td>한 거래처·일자에 품목 여러 개. 인쇄 시 4품목 + '~외' 처리. 0원 세금계산서(1원/-1원) 입력에도 사용</td></tr>
+  <tr><td><b>예정누락</b></td><td>예정신고에서 빠진 건을 확정신고에 반영. 입력 가능 월(1~3·7~9) 제한 → 입력월 검증</td></tr>
+  <tr><td><b>수정세금계산서</b></td><td>수정사유 코드 선택 → 음(-)/양(+) 발행. 원전표 추적 키 유지</td></tr>
+  <tr><td><b>수입납부유예</b></td><td>55.수입 전표 한정. 신고서 '수출기업 수입납부유예'란 자동 반영</td></tr>
+  <tr><td><b>엑셀 자료 반영</b></td><td>서식 검증 후 전표전송. 업로드 데이터 사업자번호·유형·금액 검증 필수</td></tr>
+</table>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 더보기(기능모음) 22항목. 매입매출 전표입력 4편(더보기 기능 상세·기능 위험도와 통제 포인트·구현 모델 <code>PartnerQuickCreateCommand</code> 등).</div>
+
+<h3 id="wpv-multi">9.3 복수거래 입력 팝업 ★</h3>
+<p>상단 세무헤더의 <b>품명</b> 칸은 한 줄(대표 품명)만 입력된다. 한 세금계산서에 품목이 <b>2개 이상</b>이면 본문에 직접 입력하지 않고 <b>더보기 &gt; 복수거래</b>로 <b>별도 입력 팝업</b>을 띄워 품목을 줄 단위로 입력한다(최대 99개). 팝업의 <b>품목 합계</b>가 상단 세무헤더의 <b>공급가액·부가세 합계와 일치</b>해야 저장·전자발행·신고 대사에서 오류가 없다.</p>
+<div class="flow mini">
+  <div class="step"><b>① 상단 거래처·유형</b><small>거래처/유형 먼저 입력</small></div><div class="arr">→</div>
+  <div class="step"><b>② 더보기 &gt; 복수거래</b><small>팝업 실행</small></div><div class="arr">→</div>
+  <div class="step"><b>③ 품목 줄입력</b><small>품명·수량·단가·공급가액·세액</small></div><div class="arr">→</div>
+  <div class="step"><b>④ 합계 일치 확인</b><small>상단 합계 = 품목 합계</small></div><div class="arr">→</div>
+  <div class="step"><b>⑤ 적용</b><small>상단에 대표품명+'~외' 반영</small></div>
+</div>
+<div class="wf">
+  <div class="wf-cap">복수거래 입력 팝업 — 더보기 &gt; 복수거래 (모달)</div>
+  <div class="wf-modal">
+    <div class="mh">복수거래 입력 — ㈜가나상사 · <span class="badge b-red" style="margin-left:6px">11.과세</span> · 2026-06-18<span class="sp"></span><span class="kbd">Esc</span> 닫기</div>
+    <div style="padding:10px 12px">
+      <table class="wf-grid cmp">
+        <colgroup><col style="width:5%"><col style="width:24%"><col style="width:12%"><col style="width:8%"><col style="width:13%"><col style="width:15%"><col style="width:13%"><col style="width:10%"></colgroup>
+        <tr><th>No</th><th>품명</th><th>규격</th><th class="r">수량</th><th class="r">단가</th><th class="r">공급가액</th><th class="r">부가세</th><th>비고</th></tr>
+        <tr><td>1</td><td>제품A</td><td>EA</td><td class="r">10</td><td class="r">200,000</td><td class="r">2,000,000</td><td class="r">200,000</td><td></td></tr>
+        <tr><td>2</td><td>제품B</td><td>BOX</td><td class="r">5</td><td class="r">200,000</td><td class="r">1,000,000</td><td class="r">100,000</td><td></td></tr>
+        <tr><td>3</td><td style="color:#8a94a8">＋ 품목 추가 …</td><td></td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r"></td><td></td></tr>
+        <tr><td colspan="8" style="color:#8a94a8">… <span class="kbd">Enter</span> 다음 칸 · <span class="kbd">Insert</span> 줄 추가 · 최대 <b>99개</b> · 수량×단가→공급가액·부가세 자동 …</td></tr>
+      </table>
+      <div class="wf-foot" style="border:0;background:transparent;padding:6px 0">
+        품목 합계 공급가액 <b>3,000,000</b> · 부가세 <b>300,000</b>
+        <span class="badge b-green">상단 합계와 일치</span>
+        <span class="sp" style="flex:1"></span>
+        <span class="wf-btn">취소</span><span class="wf-btn pri">적용</span>
+      </div>
+    </div>
+  </div>
+</div>
+<table>
+  <tr><th>항목</th><th>내용</th></tr>
+  <tr><td>실행 위치</td><td>더보기(기능모음) &gt; <b>복수거래</b> → 모달 팝업 (상단 행이 선택된 상태에서 실행)</td></tr>
+  <tr><td>입력 칸</td><td>품명 · 규격 · 수량 · 단가 · 공급가액 · 부가세 · 비고. 수량×단가 시 공급가액·부가세 자동계산</td></tr>
+  <tr><td>품목 수</td><td>최대 <b>99개</b>. 세금계산서 인쇄 시 표시 품목 수 제한(예: 4품목) → 나머지는 <b>'~외'</b> 처리</td></tr>
+  <tr><td>합계 검증</td><td>품목 합계 = 상단 세무헤더 공급가액·부가세 (불일치 시 <span class="badge b-amber">검토</span> — 전자발행·신고 대사 오류)</td></tr>
+  <tr><td>0원 세금계산서</td><td>팝업에서 <code>+1원</code>/<code>-1원</code> 품목으로 합계 0원 구성 → 전자 '1.전자입력' · 분개 '0.분개없음'</td></tr>
+  <tr><td>적용 후</td><td>상단 품명 칸에 <b>대표품명 + '~외'</b> 표기, 품목 상세는 <code>MultiItemVoucherDetail</code>로 보존</td></tr>
+  <tr><td>전표 복사/이동</td><td>품목 상세를 보존해야 하므로 복사/이동 시 함께 처리</td></tr>
+</table>
+<div class="tip"><b>요약</b> — 복수거래는 본문 그리드에 직접 줄을 추가하는 방식이 <u>아니라</u>, <b>더보기 &gt; 복수거래 팝업(모달)</b>에서 품목을 입력하는 방식이다. 상단 그리드는 대표 품명 한 줄만 보이고, 실제 다품목 명세는 팝업에 보존된다.</div>
+<div class="src"><b>출처</b> — 매입매출 전표입력 1편(품명: "품목이 2개 이상이면 더보기 기능의 복수거래를 사용"), 4편(복수거래 사용흐름 ①상단 거래처·유형 입력 →②더보기 복수거래 실행 →③품명·수량·단가·공급가액·세액 품목별 입력 →④품목 합계=상단 합계 확인 →⑤인쇄/전자발행 시 품목 표시 확인 · 구현 모델 <code>MultiItemVoucherDetail</code>·<code>ZeroAmountInvoiceHandler</code>). bk_설계서_v3.0 §25.4.2 더보기 '복수거래(최대 99개; 세금계산서 인쇄 최대 4품목, 나머지 ~외)'.</div>
+</section>
+
+<section id="wpv-dim">
+<h2>10. 관리항목 — 6 관리차원 + 자금</h2>
+<p>하단 분개라인에는 6개 관리차원과 자금관리를 붙일 수 있다. [매입매출장]은 이 차원으로 현장별·프로젝트별·부서별·사원별 탭 조회를 제공한다.</p>
+<table>
+  <tr><th>관리항목</th><th>BK 매핑</th><th>비고</th></tr>
+  <tr><td>사원</td><td><code>EMPLOYEE</code></td><td rowspan="4">6차원 + <code>DimensionConfig</code> 적용</td></tr>
+  <tr><td>부서</td><td><code>DEPARTMENT</code></td></tr>
+  <tr><td>현장</td><td><code>SITE</code></td></tr>
+  <tr><td>프로젝트</td><td><code>PROJECT</code></td></tr>
+  <tr><td>자금관리</td><td>AUX 보조부 · 자금항목</td><td>자금관리는 차원이 아닌 <b>보조부/자금항목</b>으로 분리</td></tr>
+  <tr><td>주류 여부</td><td>주류 플래그</td><td>주류 거래 구분</td></tr>
+</table>
+<div class="src"><b>출처</b> — bk_설계서_v3.0 §25.4.2 관리(6차원+자금)·"사원=EMPLOYEE, 부서=DEPARTMENT, 현장=SITE, 프로젝트=PROJECT로 6차원 매핑 + DimensionConfig 적용, 자금관리는 AUX 보조부·자금항목으로 분리". 매입매출 전표입력 1편(관리항목).</div>
+</section>
+
+<section id="wpv-valid-sec">
+<h2>11. 검증 · 체크리스트 · BK 설계 정합</h2>
+
+<h3 id="wpv-valid">11.1 처리 · 검증 규칙</h3>
+<table>
+  <tr><th>규칙</th><th>내용</th><th>표기</th></tr>
+  <tr><td>과세유형 정확성</td><td>상단 과세유형이 부가세 신고서·부속서류 반영 기준 → <code>taxType</code> 정확 선택 필수</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>부가세 자동라인</td><td><b>과세유형(부가세 계정) 입력 시에만 생성</b>(영세·면세는 미생성)</td><td><span class="badge b-green">반영</span></td></tr>
+  <tr><td>상·하단 금액 일치</td><td>불일치 시 차액은 [부가가치세신고서] '과표/수입금액제외' 자동반영</td><td><span class="badge b-amber">검토</span></td></tr>
+  <tr><td>사업자등록번호</td><td>누락 시 합계표 마감 오류 → 필수 검증</td><td><span class="badge b-red">차단</span></td></tr>
+  <tr><td>자동전표검증</td><td>사업자번호 일치·면세 매출유형 점검, 전송 미확정 전표 검증</td><td><span class="badge b-blue">보완</span></td></tr>
+  <tr><td>전자 상태머신</td><td>전자세금계산서 발행/전송/신고상태는 상태머신으로 통제</td><td><span class="badge b-green">반영</span></td></tr>
+</table>
+
+<h3 id="wpv-err">11.2 자주 발생하는 오류 · 예방</h3>
+<table>
+  <tr><th>오류</th><th>원인</th><th>예방</th></tr>
+  <tr><td>합계표 마감 오류</td><td>거래처 사업자등록번호 누락</td><td>저장 시 사업자번호 필수 검증, 빠른등록(+)</td></tr>
+  <tr><td>신고서 오반영</td><td>과세유형 오선택(예: 카과↔현과)</td><td>유형 색상(매출 빨강/매입 파랑) + 유형별 탭 확인</td></tr>
+  <tr><td>매출 중복신고</td><td>세금계산서 발급 후 카드매출(17) 추가 입력</td><td>결제수단만 분개, 과세유형 11 유지(5.3)</td></tr>
+  <tr><td>고정자산 분류 누락</td><td>51/57/61에서 비용계정으로 입력</td><td>고정자산 계정 시 자동 분류 변경 확인</td></tr>
+  <tr><td>부가세 자동라인 누락</td><td>영세·면세인데 부가세 기대</td><td>영세·면세는 자동라인 미생성이 정상</td></tr>
+  <tr><td>예정누락 입력월 오류</td><td>확정기간 외 월에 입력 시도</td><td>1~3·7~9월만 허용</td></tr>
+</table>
+
+<h3 id="wpv-check">11.3 실무 체크리스트</h3>
+<ul>
+  <li>□ 거래처 <b>사업자등록번호</b> 입력 확인(합계표 키)</li>
+  <li>□ <b>과세유형</b>이 증빙·세율과 일치(매출 11~25 / 매입 51~64)</li>
+  <li>□ 영세·면세는 부가세란 미표시·자동라인 미생성 확인</li>
+  <li>□ 51/57/61 고정자산 매입 시 분류 변경 확인</li>
+  <li>□ 54.불공 사유코드 선택 → 공제받지못할매입세액명세서 반영</li>
+  <li>□ 전자분 '1.전자입력' 또는 [전자발행] 상태 확인</li>
+  <li>□ 상·하단 공급가액·부가세 일치, 차액분개 점검</li>
+  <li>□ 의제/재활용은 면세유형+원재료+적요 3조건 충족 확인</li>
+  <li>□ 일마감·외부전송분은 복사/이동/삭제 불가 확인</li>
+  <li>□ 중복전표검색(승인번호 포함)으로 중복 신고 방지</li>
+</ul>
+
+<h3 id="wpv-bk">11.4 BK 설계 정합 · 구현 모델</h3>
+<table>
+  <tr><th>구현 단위</th><th>역할</th></tr>
+  <tr><td><code>tax_type_master</code>(11~25/51~64)</td><td>세율·부가세계정·신고서식 매핑 룰의 단일 진실원</td></tr>
+  <tr><td>2계층 엔티티(<code>journal_header</code> 세무헤더 + <code>journal_line</code> 분개)</td><td>상단 세무자료 / 하단 재무회계자료 동시 생성</td></tr>
+  <tr><td><code>vat_account_rule</code> · 부가세 자동라인 생성기</td><td>과세유형 입력 시에만 부가세대급금/예수금 자동라인 생성</td></tr>
+  <tr><td>자동분개 엔진(분개유형 0~7 + 기본·추가계정)</td><td>매출/매출채권·매입/매입채무·카드채권/채무 자동분개</td></tr>
+  <tr><td><code>etax_status</code> 상태머신</td><td>전자입력/전자발행/국세청성공/전송실패/역발행</td></tr>
+  <tr><td><code>JournalSearchQuery</code> · <code>BulkCodeConversionCommand</code> · <code>PartnerQuickCreateCommand</code></td><td>조건검색·코드변환·빠른거래처등록 등 기능 단위</td></tr>
+  <tr><td>6 관리차원 + <code>DimensionConfig</code> + AUX 보조부</td><td>현장/프로젝트/부서/사원별 매입매출장, 자금항목</td></tr>
+  <tr><td>채번 source 구분(50001~99999)</td><td>매입매출전표 일자단위 채번(일반전표 1~50000과 분리)</td></tr>
+</table>
+<div class="note"><b>충돌 조정</b> — bk_설계서 §25.4.2: Smart A 기능 흡수, 부가세 자동라인 규칙을 "부가세 계정코드 입력 시에만 생성"으로 통일, 과세유형 마스터(11~25/51~64)를 단일 진실원으로 채택. 충돌 없음(기존 v2.0 매입매출전표 가정을 2계층 구조로 정밀화).</div>
+
+<h3 id="wpv-src">11.5 출처</h3>
+<div class="src">
+<b>정합 기준</b> — bk_설계서_v3.0.md <code>§25.4.2 매입매출전표입력 SA-JNL-02</code>(구성 목적·입력 필드 상/하단부·기능[툴바/더보기/처리·검증]·산출물·연계·충돌 조정).<br>
+<b>화면 형태</b> — 구현_화면_전표_v3.4.html(일반전표입력 WJV-01) 구조·CSS·표기 규약 동일 적용.<br>
+<b>입력 사용흐름</b> — 매입매출 전표입력 1편(기초사용·기본구조 2계층·유형/품명/전자/분개/관리), 2편(과세유형별 입력방법·의제/재활용·신고서 반영표·오류예방), 3편(조건검색·액션바·툴바·구현 모델), 4편(더보기 기능·통제 포인트·구현 모델).<br>
+<b>주의</b> — 본 문서는 BK 화면설계 정리본으로 공식 스펙 확정본이 아니며, 사용흐름 서술을 BK 도메인(<code>journals</code>·<code>tax</code>·<code>integrations</code>·관리차원·보조부)으로 연결한 방향 제안이다.
+</div>
+</section>
+
+</main>
+</body>
+</html>
