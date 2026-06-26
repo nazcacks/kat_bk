@@ -10,7 +10,8 @@
 | `nodes.jsonl` / `edges.jsonl` | 1줄=1객체. diff·`rg` 조회 친화 |
 | `graph.json` | `{meta,nodes,edges}` 통합본 (스크립트 조회용) |
 | `graph-data.js` | `window.GRAPH=…` (뷰어 전용, file:// 직접 열람) |
-| `view.html` | 검색·관계·영향분석 뷰어. 브라우저로 열기 |
+| `view.html` | 검색·관계·영향분석·Mermaid 시각화 뷰어. 브라우저로 열기 |
+| `mermaid.min.js` | 로컬 번들 Mermaid 라이브러리(오프라인 동작용). `view.html`이 같은 폴더에서 로드 |
 
 ## 스키마
 

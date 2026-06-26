@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>BK 설계 지식그래프 뷰어</title>
 <script src="graph-data.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="mermaid.min.js"></script>
 <style>
   :root{ --line:#d7dce5; --ink:#1f2733; --mut:#6b7480; --bg:#f6f8fb; --pri:#2554c7; }
   *{box-sizing:border-box}
@@ -138,7 +138,7 @@ function buildMermaid(id){
 }
 async function renderMermaid(id){
   const host=document.getElementById('mmd'); if(!host) return;
-  if(!window.mermaid){ host.innerHTML='<div class="mmd-err">Mermaid 라이브러리를 불러오지 못했습니다(오프라인). 인터넷 연결 후 새로고침하면 그래프가 표시됩니다.</div>'; return; }
+  if(!window.mermaid){ host.innerHTML='<div class="mmd-err">Mermaid 라이브러리(mermaid.min.js)를 찾지 못했습니다. _graph 폴더에 mermaid.min.js가 있는지 확인하세요.</div>'; return; }
   const b=buildMermaid(id); if(!b){return;}
   try{ const {svg}=await mermaid.render('mmd_'+Date.now(), b.def); host.innerHTML=svg; }
   catch(err){ host.innerHTML='<div class="mmd-err">그래프 렌더 오류: '+esc(String(err))+'</div>'; }
