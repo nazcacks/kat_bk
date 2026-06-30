@@ -1,6 +1,6 @@
 # BK 설계 지식그래프 조회·유지
 
-`설계/_graph/`의 지식그래프로 설계-구현 추적성, 영향분석, 갭 탐지를 수행한다. 그래프는 **현재 기준 범위**만 담는다: `bk_설계서_v3.0.md` + 최신 화면설계 9종(`bk_화면설계서_v3.0.html`, `구현_화면_기초_v3.0.html`, `구현_화면_전표_v3.4.html`, `구현_매입매출_전표_v1.0.html`, `v3.1\페이즈1~5`).
+`설계/_graph/`의 지식그래프로 설계-구현 추적성, 영향분석, 갭 탐지를 수행한다. 그래프는 **현재 기준 범위**만 담는다: 최신 `bk_설계서_v*.md`(2026-06-27 기준 `bk_설계서_v3.1.md`) + 최신 화면설계 9종(`bk_화면설계서_v3.0.html`, `구현_화면_기초_v3.0.html`, `구현_화면_전표_v3.4.html`, `구현_매입매출_전표_v1.0.html`, `v3.1\페이즈1~5`).
 
 ## 산출물
 
@@ -32,7 +32,7 @@
 powershell -ExecutionPolicy Bypass -File 설계\_graph\build_graph.ps1
 ```
 
-빌더를 편집했다면 반드시 **UTF-8 BOM**으로 저장한다(PS 5.1이 BOM 없는 한글 스크립트를 cp949로 오독). 범위 파일이 바뀌면 `build_graph.ps1` 상단의 `$designDoc`·`$screenDocs`를 갱신한다.
+빌더를 편집했다면 한글 주석이 깨지지 않는지 실행으로 확인한다. 빌더는 최신 `bk_설계서_v*.md`를 자동 선택하고, 범위 화면이 바뀌면 `build_graph.ps1` 상단의 `$screenDocs`를 갱신한다.
 
 ## 조회 레시피 (PowerShell)
 
@@ -44,6 +44,9 @@ $g.edges | ? { $_.to -eq 'CH:25.4.2' } | % { "$($_.from) -[$($_.type)]-> $($_.to
 
 # 2) 추적성 — 한 화면의 근거 장
 $g.edges | ? { $_.to -eq 'SCR:SA-JNL-02' -and $_.type -eq 'DEFINES' }
+
+# 2-1) 매입매출전표 구현 화면(WPV-01)과 설계화면(SA-JNL-02) 매핑
+$g.edges | ? { $_.from -eq 'IMPL:WPV-01' -or $_.to -eq 'SCR:SA-JNL-02' }
 
 # 3) 갭: 정의(DEFINES) 장이 없는 화면
 $def = ($g.edges | ? type -eq DEFINES | % { $_.to }) | Select -Unique

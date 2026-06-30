@@ -2,7 +2,7 @@
   build_graph.ps1 — BK 설계 지식그래프 빌더 (현재 기준 범위)
   ---------------------------------------------------------------
   범위(SCOPE): 현재 기준 설계서 + 최신 화면설계만 그래프화한다.
-    - 설계서: bk_설계서_v3.0.md
+    - 설계서: bk_설계서_v*.md 중 가장 높은 버전(2026-06-27 기준 v3.1)
     - 화면설계: bk_화면설계서_v3.0.html, 구현_화면_기초_v3.0.html,
                 구현_화면_전표_v3.4.html, 구현_매입매출_전표_v1.0.html,
                 v3.1\페이즈1~5_*.html
@@ -26,7 +26,10 @@ $root    = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) 
 $graphDir = Join-Path $root '_graph'
 
 # ---- 범위 파일 목록 (현재 기준) -------------------------------------------
-$designDoc = Join-Path $root 'bk_설계서_v3.0.md'
+$designDoc = Get-ChildItem -LiteralPath $root -Filter 'bk_설계서_v*.md' |
+  Sort-Object { [version]($_.BaseName -replace '^bk_설계서_v','') } -Descending |
+  Select-Object -First 1 -ExpandProperty FullName
+if(-not $designDoc){ throw "설계서 없음: $root\bk_설계서_v*.md" }
 $screenDocs = @(
   'bk_화면설계서_v3.0.html',
   '구현_화면_기초_v3.0.html',
@@ -174,7 +177,7 @@ Write-Utf8 (Join-Path $graphDir 'edges.jsonl') $el
 # graph.json
 $meta = [ordered]@{
   generatedAt = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
-  scope       = '현재 기준: bk_설계서_v3.0.md + 최신 화면설계(9)'
+  scope       = "현재 기준: $(Split-Path $designDoc -Leaf) + 최신 화면설계(9)"
   designDoc   = (Split-Path $designDoc -Leaf)
   screenDocs  = ($screenDocs | ForEach-Object { Split-Path $_ -Leaf })
   counts      = [ordered]@{
